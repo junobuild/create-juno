@@ -5,7 +5,7 @@ import {mkdir, writeFile} from 'node:fs/promises';
 import {dirname, join} from 'node:path';
 import ora from 'ora';
 import prompts from 'prompts';
-import {GitHubTreeEntry} from '../types/github';
+import type {GitHubTreeEntry} from '../types/github';
 import {assertAnswerCtrlC} from '../utils/prompts.utils';
 
 interface Framework {
@@ -129,7 +129,7 @@ const populate = async ({
         throw new Error(`Something went wrong: ${res.statusText} | ${path}`);
       }
 
-      return res.arrayBuffer();
+      return await res.arrayBuffer();
     };
 
     const createFile = async ({path: p}: GitHubTreeEntry) => {
