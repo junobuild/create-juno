@@ -1,7 +1,7 @@
 import {red} from 'kleur';
 import prompts from 'prompts';
-import {exploreExample} from './commands/example';
-import {installCli} from './commands/install';
+import {generate, promptProjectName, promptStarter, promptTemplate} from './commands/generate';
+import {installCliIfNecessary} from './commands/install';
 import {checkNodeVersion} from './utils/env.utils';
 import {assertAnswerCtrlC} from './utils/prompts.utils';
 
@@ -12,24 +12,31 @@ export const run = async () => {
     return;
   }
 
-  const {action}: {action: string} = await prompts({
+  const {action}: {action: 'website' | 'app'} = await prompts({
     type: 'select',
     name: 'action',
-    message: 'Hey there 👋! What you wanna do?',
+    message: 'What type of project do you want to initiate?',
     choices: [
-      {title: `Install Juno's CLI on your machine`, value: `cli`},
-      {title: `Explore an example`, value: `example`}
+      {title: `A static website`, value: `website`},
+      {title: `An application`, value: `app`}
     ]
   });
-
   assertAnswerCtrlC(action);
 
-  if (action === 'cli') {
-    await installCli();
+  if (action === 'website') {
+    console.warn('🚧 This feature is not yet implemented. Please try again later.');
     return;
   }
-
-  await exploreExample();
+  const template = await promptTemplate(action);
+  const starter = action === 'app' ? await promptStarter() : null;
+  const name = await promptProjectName();
+  await generate({
+    action,
+    name,
+    template,
+    starter
+  });
+  await installCliIfNecessary();
 };
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
