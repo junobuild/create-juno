@@ -7,6 +7,8 @@ interface Template {
   title: string;
 }
 
+type TemplateStarter = 'blank' | 'tutorial';
+
 const WEBSITE_TEMPLATES: Template[] = [];
 
 const APP_TEMPLATES: Template[] = [{title: `Next.js`, key: `nextjs`}];
@@ -58,17 +60,19 @@ interface GeneratorInput {
   action: 'website' | 'app';
   name: string;
   template: Template;
-  starter: 'blank' | 'tutorial' | null;
+  starter: TemplateStarter | null;
 }
 
 export const generate = async ({action, name, starter, template}: GeneratorInput) => {
-  const templatePath = path.join(
-    'templates',
-    action,
-    template.key + (starter !== null ? `-${starter}` : '')
-  );
+  const templatePath = getTemplatePath(action, template, starter);
   await populate({
     templatePath,
     where: ['.', ''].includes(name) ? null : name
   });
 };
+
+const getTemplatePath = (
+  action: 'website' | 'app',
+  template: Template,
+  starter: TemplateStarter | null
+) => path.join('templates', action, template.key + (starter !== null ? `-${starter}` : ''));
