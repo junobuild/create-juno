@@ -77,12 +77,6 @@ export const populate = async ({where, templatePath}: PopulateInput) => {
     const files = await (useLocalFiles
       ? getLocalFiles(templatePath)
       : getGitHubFiles(templatePath));
-    console.dir({
-      files,
-      useLocalFiles,
-      where,
-      templatePath
-    });
     if (files.length === 0) {
       console.log(`${red("No files to download. That's unexpected.")}`);
       process.exit(1);
@@ -90,7 +84,6 @@ export const populate = async ({where, templatePath}: PopulateInput) => {
     await createDirectory(where);
 
     const downloadFile = async (url: string): Promise<ArrayBuffer> => {
-      console.dir(url);
       if (url.startsWith('file://')) {
         return await readFile(url.replace('file://', ''));
       }
