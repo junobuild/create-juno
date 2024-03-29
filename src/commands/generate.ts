@@ -23,7 +23,8 @@ export const promptTemplate = async (type: 'app' | 'website'): Promise<Template>
   });
   const item = collection.find(({key}) => key === template);
   if (item === undefined) {
-    throw new Error(`Invalid ${type} template: ${template}`);
+    console.error(`Invalid ${type} template: ${template}`);
+    process.exit(1);
   }
   return item;
 };
