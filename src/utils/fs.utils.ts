@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 
 const TEMPLATE_PATH = 'templates';
 
-const templateName = ({
+export const getTemplateName = ({
   template: {key},
   starter
 }: {
@@ -18,13 +18,10 @@ const templateName = ({
   starter: TemplateStarter | null;
 }): string => `${key}${nonNullish(starter) ? `-${starter}` : ''}`;
 
-export const getRelativeTemplatePath = ({
-  action,
-  ...rest
-}: {
+export const getRelativeTemplatePath = (params: {
   template: Template;
   starter: TemplateStarter | null;
-} & Pick<GeneratorInput, 'action'>) => join(TEMPLATE_PATH, action, templateName(rest));
+}) => join(TEMPLATE_PATH, getTemplateName(params));
 
 export const getLocalTemplatePath = ({
   action,
@@ -33,7 +30,7 @@ export const getLocalTemplatePath = ({
   template: Template;
   starter: TemplateStarter | null;
 } & Pick<GeneratorInput, 'action'>) =>
-  join(__dirname, '..', TEMPLATE_PATH, action, templateName(rest));
+  join(__dirname, '..', TEMPLATE_PATH, action, getTemplateName(rest));
 
 // TODO: cli-tools
 export const files = (source: string): string[] =>

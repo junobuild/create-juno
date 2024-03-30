@@ -5,9 +5,12 @@ import {existsSync} from 'node:fs';
 import {mkdir, writeFile} from 'node:fs/promises';
 import {dirname, join, relative} from 'node:path';
 import ora from 'ora';
+import {JUNO_CDN_URL} from '../constants/constants';
 import type {GeneratorInput} from '../types/generator';
 import type {GitHubTreeEntry} from '../types/github';
-import {files, getLocalTemplatePath, getRelativeTemplatePath} from './fs.utils';
+import {UntarOutputFile, gunzipFile, untarFile} from './compress.utils';
+import {downloadFromURL} from './download.utils';
+import {files, getLocalTemplatePath, getRelativeTemplatePath, getTemplateName} from './fs.utils';
 
 interface FileDescriptor {
   path: string;
@@ -68,6 +71,43 @@ export const populate = async ({where, ...rest}: PopulateInput) => {
   const templatePath = useLocalFiles ? getLocalTemplatePath(rest) : getRelativeTemplatePath(rest);
 
   try {
+    if (!useLocalFiles) {
+      const {hostname} = new URL(JUNO_CDN_URL);
+
+      const buffer = await downloadFromURL({
+        hostname,
+        path: `/${templatePath}.tar.gz`,
+        headers: {
+          'Accept-Encoding': 'gzip, deflate, br'
+        }
+      });
+
+      const uncompressedBuffer = await gunzipFile({source: buffer});
+
+      const files = await untarFile({source: uncompressedBuffer});
+
+      await createDirectory(where);
+
+      const templateName = getTemplateName(rest);
+
+      const createFile = async ({name, content}: UntarOutputFile) => {
+        const target = join(process.cwd(), where ?? '', name.replace(templateName, ''));
+
+        const folder = dirname(target);
+        if (!existsSync(folder)) {
+          mkdirSync(folder, {recursive: true});
+        }
+
+        await writeFile(target, Buffer.concat(content));
+      };
+
+      await Promise.all(
+        files.filter(({content}) => content.length !== 0).map(createFile)
+      );
+
+      return;
+    }
+
     const files = await (useLocalFiles
       ? getLocalFiles(templatePath)
       : getGitHubFiles(templatePath));
