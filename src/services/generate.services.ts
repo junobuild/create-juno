@@ -1,16 +1,10 @@
 import {isNullish} from '@junobuild/utils';
 import {red} from 'kleur';
-import path from 'node:path';
 import prompts from 'prompts';
+import type {GeneratorInput} from '../types/generator';
+import type {Template} from '../types/template';
 import {populate} from '../utils/populate.utils';
 import {assertAnswerCtrlC} from '../utils/prompts.utils';
-
-interface Template {
-  key: string;
-  title: string;
-}
-
-type TemplateStarter = 'blank' | 'tutorial';
 
 const WEBSITE_TEMPLATES: Template[] = [];
 
@@ -72,23 +66,9 @@ export const promptProjectName = async (): Promise<string> => {
   return name;
 };
 
-interface GeneratorInput {
-  action: 'website' | 'app';
-  name: string;
-  template: Template;
-  starter: TemplateStarter | null;
-}
-
-export const generate = async ({action, name, starter, template}: GeneratorInput) => {
-  const templatePath = getTemplatePath(action, template, starter);
+export const generate = async ({name, ...rest}: GeneratorInput) => {
   await populate({
-    templatePath,
-    where: ['.', ''].includes(name) ? null : name
+    where: ['.', ''].includes(name) ? null : name,
+    ...rest
   });
 };
-
-const getTemplatePath = (
-  action: 'website' | 'app',
-  template: Template,
-  starter: TemplateStarter | null
-) => path.join('templates', action, template.key + (starter !== null ? `-${starter}` : ''));

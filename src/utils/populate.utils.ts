@@ -2,10 +2,12 @@ import {mkdirSync} from 'fs';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
 import {existsSync} from 'node:fs';
-import {mkdir, readdir, writeFile} from 'node:fs/promises';
-import {dirname, join, relative, resolve} from 'node:path';
+import {mkdir, writeFile} from 'node:fs/promises';
+import {dirname, join, relative} from 'node:path';
 import ora from 'ora';
+import type {GeneratorInput} from '../types/generator';
 import type {GitHubTreeEntry} from '../types/github';
+import {files, getLocalTemplatePath, getRelativeTemplatePath} from './fs.utils';
 
 interface FileDescriptor {
   path: string;
@@ -14,20 +16,10 @@ interface FileDescriptor {
 
 const REPOSITORY = 'junobuild/create-juno';
 
-const getLocalFiles = async (templatePath: string): Promise<FileDescriptor[]> => {
-  const dirents = await readdir(templatePath, {withFileTypes: true});
-  const files = await Promise.all(
-    dirents.map(async (dirent) => {
-      const res = resolve(templatePath, dirent.name);
-      return dirent.isDirectory() ? await getLocalFiles(res) : res;
-    })
-  );
-  return files
+const getLocalFiles = async (templatePath: string): Promise<FileDescriptor[]> =>
+  files(templatePath)
     .flat()
-    .map((p) =>
-      typeof p === 'string' ? {path: relative(process.cwd(), p), url: `file://${p}`} : p
-    );
-};
+    .map((p) => ({path: relative(templatePath, p), url: `file://${p}`}));
 
 const getGitHubFiles = async (templatePath: string): Promise<FileDescriptor[]> => {
   const res = await fetch(`https://api.github.com/repos/${REPOSITORY}/git/trees/main?recursive=1`);
@@ -65,19 +57,21 @@ const createDirectory = async (where: string | null) => {
   }
 };
 
-interface PopulateInput {
+type PopulateInput = {
   where: string | null;
-  templatePath: string;
-}
+} & Omit<GeneratorInput, 'name'>;
 
-export const populate = async ({where, templatePath}: PopulateInput) => {
+export const populate = async ({where, ...rest}: PopulateInput) => {
   const spinner = ora(`Creating example...`).start();
+
   const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
+  const templatePath = useLocalFiles ? getLocalTemplatePath(rest) : getRelativeTemplatePath(rest);
 
   try {
     const files = await (useLocalFiles
       ? getLocalFiles(templatePath)
       : getGitHubFiles(templatePath));
+
     if (files.length === 0) {
       console.log(`${red("No files to download. That's unexpected.")}`);
       process.exit(1);
