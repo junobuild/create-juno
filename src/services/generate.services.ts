@@ -1,74 +1,100 @@
-import {isNullish} from '@junobuild/utils';
+import {readFile} from 'fs/promises';
 import {red} from 'kleur';
-import prompts from 'prompts';
+import {writeFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import ora from 'ora';
+import {JUNO_CDN_URL} from '../constants/constants';
 import type {GeneratorInput} from '../types/generator';
-import type {Template} from '../types/template';
-import {populate} from '../utils/populate.utils';
-import {assertAnswerCtrlC} from '../utils/prompts.utils';
+import {gunzipFile, untarFile, type UntarOutputFile} from '../utils/compress.utils';
+import {downloadFromURL} from '../utils/download.utils';
+import {
+  createParentFolders,
+  getLocalTemplatePath,
+  getRelativeTemplatePath,
+  getTemplateName
+} from '../utils/fs.utils';
+import {createDirectory, getLocalFiles, type LocalFileDescriptor} from '../utils/populate.utils';
 
-const WEBSITE_TEMPLATES: Template[] = [];
-
-const APP_TEMPLATES: Template[] = [{title: `Next.js`, key: `nextjs`}];
-
-export const promptTemplate = async (type: 'app' | 'website'): Promise<Template> => {
-  const collection = type === 'app' ? APP_TEMPLATES : WEBSITE_TEMPLATES;
-
-  const {template}: {template: string} = await prompts({
-    type: 'select',
-    name: 'template',
-    message: 'Which template do you want to use?',
-    choices: collection.map(({title, key}) => ({title, value: key}))
-  });
-
-  assertAnswerCtrlC(template);
-
-  const item = collection.find(({key}) => key === template);
-
-  if (isNullish(item)) {
-    console.log(red(`Invalid ${type} template: ${template}`));
-    process.exit(1);
-  }
-
-  return item;
-};
-
-export const promptStarter = async () => {
-  const {starter}: {starter: 'blank' | 'tutorial'} = await prompts({
-    type: 'select',
-    name: 'starter',
-    message: 'Which starter template would you like to use?',
-    choices: [
-      {
-        title: 'Blank (A blank starter with "just" a customized index page)',
-        value: 'blank'
-      },
-      {
-        title: 'Tutorial (the "diary" example app)',
-        value: 'tutorial'
-      }
-    ]
-  });
-
-  assertAnswerCtrlC(starter);
-
-  return starter;
-};
-
-export const promptProjectName = async (): Promise<string> => {
-  const {name}: {name: string} = await prompts({
-    type: 'text',
-    name: 'name',
-    message: 'What is the name of your project?'
-  });
-
-  assertAnswerCtrlC(name);
-
-  return name;
-};
+type PopulateInput = {
+  where: string | null;
+} & Omit<GeneratorInput, 'name'>;
 
 export const generate = async ({name, ...rest}: GeneratorInput) => {
   await populate({
     where: ['.', ''].includes(name) ? null : name,
     ...rest
   });
+};
+
+export const populate = async (input: PopulateInput) => {
+  const spinner = ora(`Creating example...`).start();
+
+  try {
+    const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
+
+    if (!useLocalFiles) {
+      await populateFromCDN(input);
+      return;
+    }
+
+    await populateFromLocal(input);
+  } finally {
+    spinner.stop();
+  }
+};
+
+const populateFromCDN = async ({where, ...rest}: PopulateInput) => {
+  const templatePath = getRelativeTemplatePath(rest);
+
+  const {hostname} = new URL(JUNO_CDN_URL);
+
+  const buffer = await downloadFromURL({
+    hostname,
+    path: `/${templatePath}.tar.gz`,
+    headers: {
+      'Accept-Encoding': 'gzip, deflate, br'
+    }
+  });
+
+  const uncompressedBuffer = await gunzipFile({source: buffer});
+
+  const files = await untarFile({source: uncompressedBuffer});
+
+  await createDirectory(where);
+
+  const templateName = getTemplateName(rest);
+
+  const createFile = async ({name, content}: UntarOutputFile) => {
+    const target = join(process.cwd(), where ?? '', name.replace(templateName, ''));
+
+    createParentFolders(target);
+
+    await writeFile(target, Buffer.concat(content));
+  };
+
+  await Promise.all(files.filter(({content}) => content.length !== 0).map(createFile));
+};
+
+const populateFromLocal = async ({where, ...rest}: PopulateInput) => {
+  const templatePath = getLocalTemplatePath(rest);
+
+  const files = await getLocalFiles(templatePath);
+
+  if (files.length === 0) {
+    console.log(`${red("No files to download. That's unexpected.")}`);
+    process.exit(1);
+  }
+
+  await createDirectory(where);
+
+  const createFile = async ({relativePath: p, path}: LocalFileDescriptor) => {
+    const file = await readFile(path);
+    const target = join(where ?? '', p.replace(templatePath, ''));
+
+    createParentFolders(target);
+
+    await writeFile(target, Buffer.from(file));
+  };
+
+  await Promise.all(files.map(createFile));
 };
