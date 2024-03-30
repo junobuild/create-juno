@@ -39,6 +39,7 @@ export const run = async () => {
   const template = await promptTemplate(action);
   const starter = action === 'app' ? await promptStarter() : null;
   const name = await promptProjectName();
+
   await generate({
     action,
     name,
