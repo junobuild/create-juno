@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Check if an argument is provided
+if [ "$#" -eq 0 ]; then
+    echo "Usage: $0 <subdirectory>"
+    exit 1
+fi
+
+# Construct the path
+path="./templates/$1"
+
+# Check if the directory exists
+if [ ! -d "$path" ]; then
+    echo "Directory $path does not exist. Skipping."
+    exit 0
+fi
+
+function compress() {
+    local folder=$1
+
+    # Extract the base name of the folder to use as the archive name
+    local foldername=$(basename "$folder")
+
+    local output="./target/${foldername}.tar.gz"
+
+    # Create a tar.gz file for the folder
+    tar -czf "$output" -C "$(dirname "$folder")" "$(basename "$folder")"
+
+    sha256sum "$output"
+}
+
+compress "$path"
