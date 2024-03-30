@@ -35,6 +35,7 @@ export const getLocalTemplatePath = ({
 } & Pick<GeneratorInput, 'action'>) =>
   join(__dirname, '..', TEMPLATE_PATH, action, templateName(rest));
 
+// TODO: cli-tools
 export const files = (source: string): string[] =>
   readdirSync(source).flatMap((file) => {
     const path = join(source, file);
