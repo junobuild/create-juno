@@ -15,9 +15,9 @@
   "scripts": {
     "format": "prettier . --write",
     "format:check": "prettier --check .",
-    "build": "node rmdir.mjs && node esbuild.mjs",
+    "build": "tsc --noEmit && node rmdir.mjs && node esbuild.mjs",
     "dev": "node rmdir.mjs && NODE_ENV=development node esbuild.mjs",
-    "lint": "eslint --max-warnings 0 src/**/*"
+    "lint": "eslint --max-warnings 0 \"src/**/*\""
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "@types/node": "^20.10.8",
     "@types/prompts": "^2.4.9",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "dotenv": "^16.4.5",
     "esbuild": "^0.19.10",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",

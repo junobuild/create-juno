@@ -9,5 +9,6 @@
     "moduleResolution": "node",
     "outDir": "dist",
     "resolveJsonModule": true
-  }
+  },
+  "exclude": ["templates/**/*"]
 }
