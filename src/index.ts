@@ -7,6 +7,7 @@ import {
   promptTemplate
 } from './services/generate.services';
 import {installCliIfNecessary} from './services/install.services';
+import type {GeneratorInput} from './types/generator';
 import {checkNodeVersion} from './utils/env.utils';
 import {assertAnswerCtrlC} from './utils/prompts.utils';
 
@@ -19,7 +20,7 @@ export const run = async () => {
 
   // TODO: Welcome text "Hey 👋! Welcome to Juno blahblahblah..."
 
-  const {action}: {action: 'website' | 'app'} = await prompts({
+  const {action}: Pick<GeneratorInput, 'action'> = await prompts({
     type: 'select',
     name: 'action',
     message: 'What type of project do you want to initiate?',
