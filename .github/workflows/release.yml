@@ -55,7 +55,7 @@ jobs:
       - name: Download nextjs-blank
         uses: actions/download-artifact@v4
         with:
-          name: nextjs-blank.tar.gz
+          name: nextjs-blank
           path: .
 
       - name: Release
