@@ -71,7 +71,7 @@ interface PopulateInput {
 
 export const populate = async ({where, templatePath}: PopulateInput) => {
   const spinner = ora(`Creating example...`).start();
-  const useLocalFiles = process.env.CREATE_JUNO_USE_LOCAL_FILES === 'true';
+  const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
 
   try {
     const files = await (useLocalFiles

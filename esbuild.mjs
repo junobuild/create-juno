@@ -1,6 +1,19 @@
+import {config} from 'dotenv';
 import esbuild from 'esbuild';
 import {existsSync, mkdirSync, writeFileSync} from 'node:fs';
 import {join} from 'node:path';
+
+config({
+  path: process.env.NODE_ENV === 'development' ? `.env.development` : `.env.production`
+});
+
+const define = Object.entries(process.env).reduce(
+  (acc, [key, value]) => ({
+    ...acc,
+    [`process.env.${key}`.replaceAll('-', '_')]: JSON.stringify(value)
+  }),
+  {}
+);
 
 const dist = join(process.cwd(), 'dist');
 
@@ -18,7 +31,8 @@ const script = await esbuild.build({
   write: false,
   banner: {
     js: "import { createRequire as topLevelCreateRequire } from 'module';\n const require = topLevelCreateRequire(import.meta.url);"
-  }
+  },
+  define
 });
 
 writeFileSync('dist/index.js', `#!/usr/bin/env node\n${script.outputFiles[0].text}`);
