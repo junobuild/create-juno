@@ -1,7 +1,12 @@
 import {red} from 'kleur';
 import prompts from 'prompts';
-import {generate, promptProjectName, promptStarter, promptTemplate} from './commands/generate';
-import {installCliIfNecessary} from './commands/install';
+import {
+  generate,
+  promptProjectName,
+  promptStarter,
+  promptTemplate
+} from './services/generate.services';
+import {installCliIfNecessary} from './services/install.services';
 import {checkNodeVersion} from './utils/env.utils';
 import {assertAnswerCtrlC} from './utils/prompts.utils';
 
@@ -12,6 +17,8 @@ export const run = async () => {
     return;
   }
 
+  // TODO: Welcome text "Hey 👋! Welcome to Juno blahblahblah..."
+
   const {action}: {action: 'website' | 'app'} = await prompts({
     type: 'select',
     name: 'action',
@@ -21,12 +28,14 @@ export const run = async () => {
       {title: `An application`, value: `app`}
     ]
   });
+
   assertAnswerCtrlC(action);
 
   if (action === 'website') {
     console.warn('🚧 This feature is not yet implemented. Please try again later.');
     return;
   }
+
   const template = await promptTemplate(action);
   const starter = action === 'app' ? await promptStarter() : null;
   const name = await promptProjectName();

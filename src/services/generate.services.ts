@@ -1,3 +1,5 @@
+import {isNullish} from '@junobuild/utils';
+import {red} from 'kleur';
 import path from 'node:path';
 import prompts from 'prompts';
 import {populate} from '../utils/populate.utils';
@@ -15,17 +17,21 @@ const APP_TEMPLATES: Template[] = [{title: `Next.js`, key: `nextjs`}];
 
 export const promptTemplate = async (type: 'app' | 'website'): Promise<Template> => {
   const collection = type === 'app' ? APP_TEMPLATES : WEBSITE_TEMPLATES;
+
   const {template}: {template: string} = await prompts({
     type: 'select',
     name: 'template',
     message: 'Which template do you want to use?',
     choices: collection.map(({title, key}) => ({title, value: key}))
   });
+
   const item = collection.find(({key}) => key === template);
-  if (item === undefined) {
-    console.error(`Invalid ${type} template: ${template}`);
+
+  if (isNullish(item)) {
+    console.log(red(`Invalid ${type} template: ${template}`));
     process.exit(1);
   }
+
   return item;
 };
 
