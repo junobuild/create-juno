@@ -61,3 +61,28 @@ jobs:
         with:
           files: |
             ./nextjs-blank.tar.gz
+
+  deploy:
+    name: Deploy to CDN
+    runs-on: ubuntu-latest
+    needs: [ 'docker-build' ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download nextjs-blank
+        uses: actions/download-artifact@v4
+        with:
+          name: nextjs-blank.tar.gz
+          path: out/templates
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Deploy to Juno
+        uses: junobuild/juno-action@main
+        with:
+          args: deploy
+        env:
+          JUNO_TOKEN: ${{ secrets.JUNO_TOKEN }}
