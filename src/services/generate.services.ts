@@ -3,6 +3,7 @@ import {red} from 'kleur';
 import path from 'node:path';
 import prompts from 'prompts';
 import {populate} from '../utils/populate.utils';
+import {assertAnswerCtrlC} from '../utils/prompts.utils';
 
 interface Template {
   key: string;
@@ -24,6 +25,8 @@ export const promptTemplate = async (type: 'app' | 'website'): Promise<Template>
     message: 'Which template do you want to use?',
     choices: collection.map(({title, key}) => ({title, value: key}))
   });
+
+  assertAnswerCtrlC(template);
 
   const item = collection.find(({key}) => key === template);
 
@@ -51,15 +54,21 @@ export const promptStarter = async () => {
       }
     ]
   });
+
+  assertAnswerCtrlC(starter);
+
   return starter;
 };
 
-export const promptProjectName = async () => {
+export const promptProjectName = async (): Promise<string> => {
   const {name}: {name: string} = await prompts({
     type: 'text',
     name: 'name',
     message: 'What is the name of your project?'
   });
+
+  assertAnswerCtrlC(name);
+
   return name;
 };
 

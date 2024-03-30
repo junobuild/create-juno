@@ -49,6 +49,7 @@ const getGitHubFiles = async (templatePath: string): Promise<FileDescriptor[]> =
 };
 
 const createDirectory = async (where: string | null) => {
+  // Where equals null means "create in current directory"
   if (where === null) {
     return;
   }
