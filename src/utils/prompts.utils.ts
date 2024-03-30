@@ -1,6 +1,7 @@
 // In case an answer is replaced by control+c
 import {red} from 'kleur';
 
+// TODO: cli-tools
 export const assertAnswerCtrlC: (
   answer: null | undefined | '' | string,
   message?: string

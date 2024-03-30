@@ -1,44 +1,29 @@
-import {mkdirSync} from 'fs';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
-import {existsSync} from 'node:fs';
 import {mkdir, writeFile} from 'node:fs/promises';
-import {dirname, join, relative} from 'node:path';
+import {join, relative} from 'node:path';
 import ora from 'ora';
+import {JUNO_CDN_URL} from '../constants/constants';
 import type {GeneratorInput} from '../types/generator';
-import type {GitHubTreeEntry} from '../types/github';
-import {files, getLocalTemplatePath, getRelativeTemplatePath} from './fs.utils';
+import {gunzipFile, untarFile, type UntarOutputFile} from './compress.utils';
+import {downloadFromURL} from './download.utils';
+import {
+  createParentFolders,
+  files,
+  getLocalTemplatePath,
+  getRelativeTemplatePath,
+  getTemplateName
+} from './fs.utils';
 
-interface FileDescriptor {
+interface LocalFileDescriptor {
+  relativePath: string;
   path: string;
-  url: string;
 }
 
-const REPOSITORY = 'junobuild/create-juno';
-
-const getLocalFiles = async (templatePath: string): Promise<FileDescriptor[]> =>
+const getLocalFiles = async (templatePath: string): Promise<LocalFileDescriptor[]> =>
   files(templatePath)
     .flat()
-    .map((p) => ({path: relative(templatePath, p), url: `file://${p}`}));
-
-const getGitHubFiles = async (templatePath: string): Promise<FileDescriptor[]> => {
-  const res = await fetch(`https://api.github.com/repos/${REPOSITORY}/git/trees/main?recursive=1`);
-  const {tree, message}: {tree: GitHubTreeEntry[]; message?: string} = await res.json();
-
-  if (tree === undefined) {
-    console.log(
-      `${red(`No files can be found on GitHub.${message !== undefined ? ` ${message}` : ''}`)}`
-    );
-    process.exit(1);
-  }
-
-  return tree
-    .filter(({type, path: p}) => type === 'blob' && p.startsWith(templatePath))
-    .map(({path}) => ({
-      path,
-      url: `https://raw.githubusercontent.com/${REPOSITORY}/main/${path}`
-    }));
-};
+    .map((p) => ({relativePath: relative(templatePath, p), path: p}));
 
 const createDirectory = async (where: string | null) => {
   // Where equals null means "create in current directory"
@@ -61,49 +46,75 @@ type PopulateInput = {
   where: string | null;
 } & Omit<GeneratorInput, 'name'>;
 
-export const populate = async ({where, ...rest}: PopulateInput) => {
+export const populate = async (input: PopulateInput) => {
   const spinner = ora(`Creating example...`).start();
 
-  const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
-  const templatePath = useLocalFiles ? getLocalTemplatePath(rest) : getRelativeTemplatePath(rest);
-
   try {
-    const files = await (useLocalFiles
-      ? getLocalFiles(templatePath)
-      : getGitHubFiles(templatePath));
+    const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
 
-    if (files.length === 0) {
-      console.log(`${red("No files to download. That's unexpected.")}`);
-      process.exit(1);
+    if (!useLocalFiles) {
+      await populateFromCDN(input);
+      return;
     }
-    await createDirectory(where);
 
-    const downloadFile = async (url: string): Promise<ArrayBuffer> => {
-      if (url.startsWith('file://')) {
-        return await readFile(url.replace('file://', ''));
-      }
-      const res = await fetch(url);
-
-      if (!res.ok) {
-        throw new Error(`Something went wrong: ${res.statusText} | ${url}`);
-      }
-
-      return await res.arrayBuffer();
-    };
-
-    const createFile = async ({path: p, url}: FileDescriptor) => {
-      const file = await downloadFile(url);
-      const target = join(where ?? '', p.replace(templatePath, ''));
-      const folder = dirname(target);
-      if (!existsSync(folder)) {
-        mkdirSync(folder, {recursive: true});
-      }
-
-      await writeFile(target, Buffer.from(file));
-    };
-
-    await Promise.all(files.map(createFile));
+    await populateFromLocal(input);
   } finally {
     spinner.stop();
   }
+};
+
+const populateFromCDN = async ({where, ...rest}: PopulateInput) => {
+  const templatePath = getRelativeTemplatePath(rest);
+
+  const {hostname} = new URL(JUNO_CDN_URL);
+
+  const buffer = await downloadFromURL({
+    hostname,
+    path: `/${templatePath}.tar.gz`,
+    headers: {
+      'Accept-Encoding': 'gzip, deflate, br'
+    }
+  });
+
+  const uncompressedBuffer = await gunzipFile({source: buffer});
+
+  const files = await untarFile({source: uncompressedBuffer});
+
+  await createDirectory(where);
+
+  const templateName = getTemplateName(rest);
+
+  const createFile = async ({name, content}: UntarOutputFile) => {
+    const target = join(process.cwd(), where ?? '', name.replace(templateName, ''));
+
+    createParentFolders(target);
+
+    await writeFile(target, Buffer.concat(content));
+  };
+
+  await Promise.all(files.filter(({content}) => content.length !== 0).map(createFile));
+};
+
+const populateFromLocal = async ({where, ...rest}: PopulateInput) => {
+  const templatePath = getLocalTemplatePath(rest);
+
+  const files = await getLocalFiles(templatePath);
+
+  if (files.length === 0) {
+    console.log(`${red("No files to download. That's unexpected.")}`);
+    process.exit(1);
+  }
+
+  await createDirectory(where);
+
+  const createFile = async ({relativePath: p, path}: LocalFileDescriptor) => {
+    const file = await readFile(path);
+    const target = join(where ?? '', p.replace(templatePath, ''));
+
+    createParentFolders(target);
+
+    await writeFile(target, Buffer.from(file));
+  };
+
+  await Promise.all(files.map(createFile));
 };
