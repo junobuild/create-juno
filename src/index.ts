@@ -1,12 +1,8 @@
 import {red} from 'kleur';
 import prompts from 'prompts';
-import {
-  generate,
-  promptProjectName,
-  promptStarter,
-  promptTemplate
-} from './services/generate.services';
-import {installCliIfNecessary} from './services/install.services';
+import {installCliIfNecessary} from './services/cli.services';
+import {generate} from './services/generate.services';
+import {promptProjectName, promptStarter, promptTemplate} from './services/prompt.services';
 import type {GeneratorInput} from './types/generator';
 import {checkNodeVersion} from './utils/env.utils';
 import {assertAnswerCtrlC} from './utils/prompts.utils';
@@ -47,6 +43,7 @@ export const run = async () => {
     template,
     starter
   });
+
   await installCliIfNecessary();
 };
 
