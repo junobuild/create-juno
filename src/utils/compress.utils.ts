@@ -42,10 +42,9 @@ export const untarFile = async ({source}: {source: Buffer}): Promise<UntarOutput
           content: chunks
         });
 
-        next(); // Move to the next entry
+        next();
       });
 
-      // Important: You must consume the stream, even if you do nothing with it.
       stream.resume();
     });
 
