@@ -49,13 +49,10 @@ export const untarFile = async ({source}: {source: Buffer}): Promise<UntarOutput
     });
 
     extractor.on('finish', () => {
-      console.log('Extraction complete');
       resolve(output);
     });
 
-    // Handle any errors during extraction
     extractor.on('error', (error) => {
-      console.error('Extraction error:', error);
       reject(error);
     });
 
