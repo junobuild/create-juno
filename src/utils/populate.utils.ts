@@ -1,16 +1,20 @@
-import {mkdirSync} from 'fs';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
-import {existsSync} from 'node:fs';
 import {mkdir, writeFile} from 'node:fs/promises';
-import {dirname, join, relative} from 'node:path';
+import {join, relative} from 'node:path';
 import ora from 'ora';
 import {JUNO_CDN_URL} from '../constants/constants';
 import type {GeneratorInput} from '../types/generator';
 import type {GitHubTreeEntry} from '../types/github';
 import {UntarOutputFile, gunzipFile, untarFile} from './compress.utils';
 import {downloadFromURL} from './download.utils';
-import {files, getLocalTemplatePath, getRelativeTemplatePath, getTemplateName} from './fs.utils';
+import {
+  createParentFolders,
+  files,
+  getLocalTemplatePath,
+  getRelativeTemplatePath,
+  getTemplateName
+} from './fs.utils';
 
 interface FileDescriptor {
   path: string;
@@ -93,17 +97,12 @@ export const populate = async ({where, ...rest}: PopulateInput) => {
       const createFile = async ({name, content}: UntarOutputFile) => {
         const target = join(process.cwd(), where ?? '', name.replace(templateName, ''));
 
-        const folder = dirname(target);
-        if (!existsSync(folder)) {
-          mkdirSync(folder, {recursive: true});
-        }
+        createParentFolders(target);
 
         await writeFile(target, Buffer.concat(content));
       };
 
-      await Promise.all(
-        files.filter(({content}) => content.length !== 0).map(createFile)
-      );
+      await Promise.all(files.filter(({content}) => content.length !== 0).map(createFile));
 
       return;
     }
@@ -134,10 +133,8 @@ export const populate = async ({where, ...rest}: PopulateInput) => {
     const createFile = async ({path: p, url}: FileDescriptor) => {
       const file = await downloadFile(url);
       const target = join(where ?? '', p.replace(templatePath, ''));
-      const folder = dirname(target);
-      if (!existsSync(folder)) {
-        mkdirSync(folder, {recursive: true});
-      }
+
+      createParentFolders(target);
 
       await writeFile(target, Buffer.from(file));
     };
