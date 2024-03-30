@@ -26,7 +26,7 @@ export interface UntarOutputFile {
 }
 
 export const untarFile = async ({source}: {source: Buffer}): Promise<UntarOutputFile[]> =>
-  new Promise((resolve, reject) => {
+  await new Promise<UntarOutputFile[]>((resolve, reject) => {
     // Create an extract stream
     const extractor = tar.extract();
 
@@ -34,7 +34,7 @@ export const untarFile = async ({source}: {source: Buffer}): Promise<UntarOutput
 
     extractor.on('entry', ({name}, stream, next) => {
       const chunks: Uint8Array[] = [];
-      stream.on('data', (chunk) => chunks.push(chunk));
+      stream.on('data', (chunk: Uint8Array) => chunks.push(chunk));
 
       stream.on('end', () => {
         output.push({

@@ -5,7 +5,7 @@ import {join, relative} from 'node:path';
 import ora from 'ora';
 import {JUNO_CDN_URL} from '../constants/constants';
 import type {GeneratorInput} from '../types/generator';
-import {UntarOutputFile, gunzipFile, untarFile} from './compress.utils';
+import {gunzipFile, untarFile, type UntarOutputFile} from './compress.utils';
 import {downloadFromURL} from './download.utils';
 import {
   createParentFolders,
