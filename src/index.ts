@@ -2,7 +2,7 @@ import {red} from 'kleur';
 import prompts from 'prompts';
 import {installCliIfNecessary} from './services/cli.services';
 import {generate} from './services/generate.services';
-import {promptProjectName, promptStarter, promptTemplate} from './services/prompt.services';
+import {promptProjectDestination, promptStarter, promptTemplate} from './services/prompt.services';
 import type {GeneratorInput} from './types/generator';
 import {checkNodeVersion} from './utils/env.utils';
 import {assertAnswerCtrlC} from './utils/prompts.utils';
@@ -27,6 +27,8 @@ export const run = async () => {
 
   console.log(WELCOME);
 
+  const destination = await promptProjectDestination();
+
   const {action}: Pick<GeneratorInput, 'action'> = await prompts({
     type: 'select',
     name: 'action',
@@ -42,15 +44,14 @@ export const run = async () => {
   if (action === 'website') {
     console.warn('🚧 This feature is not yet implemented. Please try again later.');
     return;
-  }
 
+  }
   const template = await promptTemplate(action);
   const starter = action === 'app' ? await promptStarter() : null;
-  const name = await promptProjectName();
 
   await generate({
     action,
-    name,
+    destination,
     template,
     starter
   });

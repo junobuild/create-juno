@@ -52,14 +52,17 @@ export const promptStarter = async () => {
   return starter;
 };
 
-export const promptProjectName = async (): Promise<string> => {
-  const {name}: {name: string} = await prompts({
+export const promptProjectDestination = async (): Promise<string | ""> => {
+  const {destination}: {destination?: string} = await prompts({
     type: 'text',
-    name: 'name',
-    message: 'What is the name of your project?'
+    name: 'destination',
+    message: 'Where should we create your project?'
   });
 
-  assertAnswerCtrlC(name);
+  // We do not use assertAnswerCtrlC here because we allow Return
+  if (isNullish(destination)) {
+    process.exit(1);
+  }
 
-  return name;
+  return destination;
 };
