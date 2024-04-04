@@ -27,8 +27,6 @@ export const run = async () => {
 
   console.log(WELCOME);
 
-  // TODO: Welcome text "Hey 👋! Welcome to Juno blahblahblah..."
-
   const {action}: Pick<GeneratorInput, 'action'> = await prompts({
     type: 'select',
     name: 'action',
