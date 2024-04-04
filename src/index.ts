@@ -2,12 +2,7 @@ import {grey, red} from 'kleur';
 import {version} from '../package.json';
 import {installCliIfNecessary} from './services/cli.services';
 import {generate} from './services/generate.services';
-import {
-  promptDestination,
-  promptKind,
-  promptStarter,
-  promptTemplate
-} from './services/prompt.services';
+import {promptDestination, promptProjectKind, promptTemplate} from './services/prompt.services';
 import {checkNodeVersion} from './utils/env.utils';
 
 const JUNO_LOGO = `  __  __ __  __  _  ____ 
@@ -30,20 +25,13 @@ export const run = async () => {
 
   const {destination} = await promptDestination();
 
-  const {kind} = await promptKind();
+  const projectKind = await promptProjectKind();
 
-  if (kind === 'website') {
-    console.warn('🚧 This feature is not yet implemented. Please try again later.');
-    return;
-  }
-  const template = await promptTemplate(kind);
-  const starter = kind === 'app' ? await promptStarter() : null;
+  const template = await promptTemplate(projectKind);
 
   await generate({
-    kind,
     destination,
-    template,
-    starter
+    template
   });
 
   await installCliIfNecessary();

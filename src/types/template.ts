@@ -1,6 +1,10 @@
 export interface Template {
   key: string;
-  title: string;
+  framework: TemplateFramework;
+  type: TemplateType;
+  description: string;
 }
 
-export type TemplateStarter = 'blank' | 'tutorial';
+export type TemplateFramework = 'Next.js' | 'Astro';
+
+export type TemplateType = 'Starter' | 'Demo';
