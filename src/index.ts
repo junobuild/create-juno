@@ -27,12 +27,12 @@ export const run = async () => {
 
   console.log(WELCOME);
 
-  const destination = await promptProjectDestination();
+  const {destination} = await promptProjectDestination();
 
   const {action}: Pick<GeneratorInput, 'action'> = await prompts({
     type: 'select',
     name: 'action',
-    message: 'What type of project do you want to initiate?',
+    message: 'What kind of project are you starting?',
     choices: [
       {title: `A static website`, value: `website`},
       {title: `An application`, value: `app`}
