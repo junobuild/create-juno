@@ -1,56 +1,72 @@
 import {isNullish} from '@junobuild/utils';
 import {red} from 'kleur';
 import prompts from 'prompts';
-import type {GeneratorInput} from '../types/generator';
+import {GeneratorInput, ProjectKind} from '../types/generator';
 import type {Template} from '../types/template';
 import {assertAnswerCtrlC} from '../utils/prompts.utils';
 
-const WEBSITE_TEMPLATES: Template[] = [];
+const WEBSITE_TEMPLATES: Template[] = [
+  {
+    framework: `Astro`,
+    key: `astro-starter`,
+    type: 'Starter',
+    description: 'Opt for a barebones scaffolding to kickstart your website'
+  }
+];
 
-const APP_TEMPLATES: Template[] = [{title: `Next.js`, key: `nextjs`}];
+const APP_TEMPLATES: Template[] = [
+  {
+    framework: `Next.js`,
+    key: `nextjs-starter`,
+    type: 'Starter',
+    description: 'Opt for a barebones scaffolding to kickstart your app'
+  }
+];
 
-export const promptTemplate = async (type: 'app' | 'website'): Promise<Template> => {
-  const collection = type === 'app' ? APP_TEMPLATES : WEBSITE_TEMPLATES;
+export const promptTemplate = async (kind: ProjectKind): Promise<Template> => {
+  const allTemplates = Object.groupBy(
+    kind === 'app' ? APP_TEMPLATES : WEBSITE_TEMPLATES,
+    ({framework}) => framework
+  );
 
-  const {template}: {template: string} = await prompts({
+  const frameworks = Object.keys(allTemplates);
+
+  const {framework}: Pick<Template, 'framework'> = await prompts({
     type: 'select',
-    name: 'template',
-    message: 'Which template do you want to use?',
-    choices: collection.map(({title, key}) => ({title, value: key}))
+    name: 'framework',
+    message: 'Which framework do you want to use?',
+    choices: frameworks.map((framework) => ({title: framework, value: framework}))
   });
 
-  assertAnswerCtrlC(template);
+  assertAnswerCtrlC(framework);
 
-  const item = collection.find(({key}) => key === template);
+  const templates = allTemplates[framework];
 
-  if (isNullish(item)) {
-    console.log(red(`Invalid ${type} template: ${template}`));
+  if (isNullish(templates) || templates.length === 0) {
+    console.log(`No template(s) found for ${red(framework)}. This is unexpected.`);
     process.exit(1);
   }
 
-  return item;
-};
+  if (templates.length === 1) {
+    return templates[0];
+  }
 
-export const promptStarter = async () => {
-  const {starter}: {starter: 'blank' | 'tutorial'} = await prompts({
+  const {template}: {template: Template | undefined} = await prompts({
     type: 'select',
-    name: 'starter',
-    message: 'Which starter template would you like to use?',
-    choices: [
-      {
-        title: 'Blank (A blank starter with "just" a customized index page)',
-        value: 'blank'
-      },
-      {
-        title: 'Tutorial (the "diary" example app)',
-        value: 'tutorial'
-      }
-    ]
+    name: 'template',
+    message: 'Choose your starting point?',
+    choices: templates.map((value) => ({
+      title: value.type,
+      description: value.description,
+      value
+    }))
   });
 
-  assertAnswerCtrlC(starter);
+  if (isNullish(template)) {
+    process.exit(1);
+  }
 
-  return starter;
+  return template;
 };
 
 export const promptDestination = async (): Promise<Pick<GeneratorInput, 'destination'>> => {
@@ -68,8 +84,8 @@ export const promptDestination = async (): Promise<Pick<GeneratorInput, 'destina
   return {destination};
 };
 
-export const promptKind = async (): Promise<Pick<GeneratorInput, 'kind'>> => {
-  const {kind}: Pick<GeneratorInput, 'kind'> = await prompts({
+export const promptProjectKind = async (): Promise<ProjectKind> => {
+  const {kind}: {kind: ProjectKind | undefined} = await prompts({
     type: 'select',
     name: 'kind',
     message: 'What kind of project are you starting?',
@@ -81,5 +97,5 @@ export const promptKind = async (): Promise<Pick<GeneratorInput, 'kind'>> => {
 
   assertAnswerCtrlC(kind);
 
-  return {kind};
+  return kind;
 };

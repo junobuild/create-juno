@@ -10,8 +10,7 @@ import {downloadFromURL} from '../utils/download.utils';
 import {
   createParentFolders,
   getLocalTemplatePath,
-  getRelativeTemplatePath,
-  getTemplateName
+  getRelativeTemplatePath
 } from '../utils/fs.utils';
 import {createDirectory, getLocalFiles, type LocalFileDescriptor} from '../utils/populate.utils';
 
@@ -43,8 +42,8 @@ export const populate = async (input: PopulateInput) => {
   }
 };
 
-const populateFromCDN = async ({where, ...rest}: PopulateInput) => {
-  const templatePath = getRelativeTemplatePath(rest);
+const populateFromCDN = async ({where, template}: PopulateInput) => {
+  const templatePath = getRelativeTemplatePath(template);
 
   const {hostname} = new URL(JUNO_CDN_URL);
 
@@ -62,7 +61,7 @@ const populateFromCDN = async ({where, ...rest}: PopulateInput) => {
 
   await createDirectory(where);
 
-  const templateName = getTemplateName(rest);
+  const {key: templateName} = template;
 
   const createFile = async ({name, content}: UntarOutputFile) => {
     const target = join(process.cwd(), where ?? '', name.replace(templateName, ''));
@@ -75,8 +74,8 @@ const populateFromCDN = async ({where, ...rest}: PopulateInput) => {
   await Promise.all(files.filter(({content}) => content.length !== 0).map(createFile));
 };
 
-const populateFromLocal = async ({where, ...rest}: PopulateInput) => {
-  const templatePath = getLocalTemplatePath(rest);
+const populateFromLocal = async ({where, template}: PopulateInput) => {
+  const templatePath = getLocalTemplatePath(template);
 
   const files = await getLocalFiles(templatePath);
 

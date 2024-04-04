@@ -1,36 +1,16 @@
-import {nonNullish} from '@junobuild/utils';
 import {existsSync, lstatSync, mkdirSync, readdirSync} from 'node:fs';
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import type {GeneratorInput} from '../types/generator';
-import type {Template, TemplateStarter} from '../types/template';
+import type {Template} from '../types/template';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const TEMPLATE_PATH = 'templates';
 
-export const getTemplateName = ({
-  template: {key},
-  starter
-}: {
-  template: Template;
-  starter: TemplateStarter | null;
-}): string => `${key}${nonNullish(starter) ? `-${starter}` : ''}`;
+export const getRelativeTemplatePath = ({key}: Pick<Template, 'key'>) => join(TEMPLATE_PATH, key);
 
-export const getRelativeTemplatePath = (params: {
-  template: Template;
-  starter: TemplateStarter | null;
-}) => join(TEMPLATE_PATH, getTemplateName(params));
-
-export const getLocalTemplatePath = ({
-  kind,
-  ...rest
-}: {
-  template: Template;
-  starter: TemplateStarter | null;
-} & Pick<GeneratorInput, 'kind'>) =>
-  join(__dirname, '..', TEMPLATE_PATH, kind, getTemplateName(rest));
+export const getLocalTemplatePath = ({key}: Pick<Template, 'key'>) => join(__dirname, '..', TEMPLATE_PATH, key);
 
 export const createParentFolders = (target: string) => {
   const folder = dirname(target);
