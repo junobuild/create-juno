@@ -1,0 +1,78 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Background from "../components/Background.astro";
+import Article from "../components/Article.astro";
+import Hero from "../components/Hero.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="bg-white dark:bg-black">
+    <div class="relative isolate min-h-[100dvh]">
+      <main
+        class="mx-auto max-w-screen-2xl py-16 px-8 md:px-24 tall:min-h-[calc(100dvh-128px)]"
+      >
+        <h1
+          class="dark:text-white text-5xl md:text-6xl font-extrabold md:pt-16"
+        >
+          Welcome to Juno
+        </h1>
+
+        <div class="w-full max-w-2xl mt-8 grid grid-cols-2 gap-8">
+          <Hero
+            href="https://juno.build/docs/add-juno-to-an-app/create-a-satellite"
+            ariaLabel="Discover how to create a Satellite and deploy your project to production"
+          >
+            Not yet in orbit? Launch your Satellite
+          </Hero>
+
+          <Article
+            href="https://juno.build/docs/guides/astro"
+            ariaLabel="Open quickstart guides on Juno's website"
+          >
+            <Fragment slot="title">Quickstart</Fragment>
+
+            Discover how to deploy and enhance your newly created Juno project.
+          </Article>
+
+          <Article
+            href="https://juno.build/docs/category/build"
+            ariaLabel="Open the list of features for building apps on Juno's website"
+          >
+            <Fragment slot="title">Documentation</Fragment>
+
+            Learn how Juno works and explore the official docs.
+          </Article>
+
+          <Article
+            href="https://juno.build/docs/miscellaneous/github_actions"
+            ariaLabel="Open the guide to setting up GitHub Actions for Juno"
+          >
+            <Fragment slot="title">Continuous Integration</Fragment>
+
+            Automate your deployment with GitHub Actions.
+          </Article>
+
+          <Article
+            href="https://discord.gg/wHZ57Z2RAG"
+            ariaLabel="Join Juno's Discord channel for questions or to share the fun"
+          >
+            <Fragment slot="title">Community</Fragment>
+
+            Come say hi to our amazing Discord community. ❤
+          </Article>
+        </div>
+      </main>
+
+      <Footer />
+
+      <Background />
+    </div>
+  </body>
+</html>
