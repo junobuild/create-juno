@@ -67,3 +67,19 @@ export const promptDestination = async (): Promise<Pick<GeneratorInput, 'destina
 
   return {destination};
 };
+
+export const promptKind = async (): Promise<Pick<GeneratorInput, 'kind'>> => {
+  const {kind}: Pick<GeneratorInput, 'kind'> = await prompts({
+    type: 'select',
+    name: 'kind',
+    message: 'What kind of project are you starting?',
+    choices: [
+      {title: `Website`, value: `website`},
+      {title: `Application`, value: `app`}
+    ]
+  });
+
+  assertAnswerCtrlC(kind);
+
+  return {kind};
+};

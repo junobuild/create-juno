@@ -24,12 +24,12 @@ export const getRelativeTemplatePath = (params: {
 }) => join(TEMPLATE_PATH, getTemplateName(params));
 
 export const getLocalTemplatePath = ({
-  action,
+  kind,
   ...rest
 }: {
   template: Template;
   starter: TemplateStarter | null;
-} & Pick<GeneratorInput, 'action'>) =>
+} & Pick<GeneratorInput, 'kind'>) =>
   join(__dirname, '..', TEMPLATE_PATH, action, getTemplateName(rest));
 
 export const createParentFolders = (target: string) => {
