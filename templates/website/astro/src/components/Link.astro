@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+  arialLabel: string;
+}
+
+const { href, arialLabel } = Astro.props;
+---
+
+<a
+  {href}
+  rel="noreferrer noopener"
+  target="_blank"
+  aria-label={arialLabel}
+  class="flex flex-col py-3 px-4 border-black border-[3px] rounded bg-white transition-all shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:bg-lavender-blue-200 active:bg-lavender-blue-400 active:shadow-none active:translate-x-[8px] active:translate-y-[8px]"
+>
+  <h4 class="text-lg font-extrabold mb-1"><slot name="title" /></h4>
+
+  <p class="mb-2"><slot /></p>
+</a>

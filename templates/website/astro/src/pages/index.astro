@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Background from "../components/Background.astro";
+import Link from "../components/Link.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
@@ -15,7 +16,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       <main
         class="mx-auto max-w-screen-2xl py-16 px-8 md:px-24 tall:min-h-[calc(100dvh-128px)]"
       >
-        <h1 class="text-5xl md:text-6xl font-bold tracking-tight md:pt-24">
+        <h1 class="text-5xl md:text-6xl font-extrabold md:pt-24">
           Welcome to Juno
         </h1>
 
@@ -26,49 +27,41 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
             <h4>Documentation</h4>
           </article>
 
-          <article
-            class="flex flex-col p-3 border-black border-[3px] rounded bg-white shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+          <Link
+            href="https://juno.build/docs/guides/astro"
+            aria-label="Open quickstarted guides on Juno's website"
           >
-            <h4>Documentation</h4>
+            <Fragment slot="title">Quickstart</Fragment>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque ac eros ut massa suscipit tempus.
-            </p>
-          </article>
+            Discover how to deploy and enhance your newly created Juno project.
+          </Link>
 
-          <article
-            class="flex flex-col p-3 border-black border-[3px] rounded bg-white shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+          <Link
+            href="https://juno.build/docs/category/build"
+            aria-label="Open the list of features to build apps on Juno's website"
           >
-            <h4>Documentation</h4>
+            <Fragment slot="title">Documentation</Fragment>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque ac eros ut massa suscipit tempus.
-            </p>
-          </article>
+            Learn how Juno works and explore the official docs.
+          </Link>
 
-          <article
-            class="flex flex-col p-3 border-black border-[3px] rounded bg-white shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+          <Link
+            href="https://juno.build/docs/miscellaneous/github_actions"
+            aria-label="Open the guide on setting up GitHub Actions for Juno"
           >
-            <h4>Documentation</h4>
+            <Fragment slot="title">Continuous Integration</Fragment>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque ac eros ut massa suscipit tempus.
-            </p>
-          </article>
+            Automate your deployment with GitHub Actions.
+          </Link>
 
-          <article
-            class="flex flex-col p-3 border-black border-[3px] rounded bg-white shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+          <Link
+            href="https://discord.gg/wHZ57Z2RAG"
+            aria-label="Open Juno's Discord channel for questions or to share the fun"
           >
-            <h4>Documentation</h4>
+            <Fragment slot="title">Community</Fragment>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque ac eros ut massa suscipit tempus.
-            </p>
-          </article>
+            Come say hi to our amazing Discord community. ❤
+          </Link>
         </div>
       </main>
 
