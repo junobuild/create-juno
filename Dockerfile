@@ -16,9 +16,14 @@ COPY --chown=apprunner:apprunner . /prepare
 # Create output directory
 RUN mkdir -p ./target
 
-FROM deps as build_nextjs_blank
+FROM deps as build_nextjs_starter
+RUN ./docker/compress nextjs-starter
 
-RUN ./docker/compress app/nextjs-blank
+FROM deps as build_astro_starter
+RUN ./docker/compress astro-starter
 
-FROM scratch AS scratch_nextjs_blank
-COPY --from=build_nextjs_blank ./prepare/target/nextjs-blank.tar.gz /
+FROM scratch AS scratch_nextjs_starter
+COPY --from=build_nextjs_starter ./prepare/target/nextjs-starter.tar.gz /
+
+FROM scratch AS scratch_astro_starter
+COPY --from=build_astro_starter ./prepare/target/astro-starter.tar.gz /
