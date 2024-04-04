@@ -2,7 +2,7 @@ import type {Template, TemplateStarter} from './template';
 
 export interface GeneratorInput {
   action: 'website' | 'app';
-  name: string;
+  destination: string | "";
   template: Template;
   starter: TemplateStarter | null;
 }

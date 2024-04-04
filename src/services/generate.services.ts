@@ -17,11 +17,11 @@ import {createDirectory, getLocalFiles, type LocalFileDescriptor} from '../utils
 
 type PopulateInput = {
   where: string | null;
-} & Omit<GeneratorInput, 'name'>;
+} & Omit<GeneratorInput, 'destination'>;
 
-export const generate = async ({name, ...rest}: GeneratorInput) => {
+export const generate = async ({destination, ...rest}: GeneratorInput) => {
   await populate({
-    where: ['.', ''].includes(name) ? null : name,
+    where: ['.', ''].includes(destination) ? null : destination,
     ...rest
   });
 };
