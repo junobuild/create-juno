@@ -52,7 +52,7 @@ export const untarFile = async ({source}: {source: Buffer}): Promise<UntarOutput
       resolve(output);
     });
 
-    extractor.on('error', (error) => {
+    extractor.on('error', (error: Error) => {
       reject(error);
     });
 
