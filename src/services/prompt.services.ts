@@ -1,7 +1,7 @@
 import {isNullish} from '@junobuild/utils';
 import {red} from 'kleur';
 import prompts from 'prompts';
-import {GeneratorInput} from '../types/generator';
+import type {GeneratorInput} from '../types/generator';
 import type {Template} from '../types/template';
 import {assertAnswerCtrlC} from '../utils/prompts.utils';
 

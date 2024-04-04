@@ -30,7 +30,7 @@ export const getLocalTemplatePath = ({
   template: Template;
   starter: TemplateStarter | null;
 } & Pick<GeneratorInput, 'kind'>) =>
-  join(__dirname, '..', TEMPLATE_PATH, action, getTemplateName(rest));
+  join(__dirname, '..', TEMPLATE_PATH, kind, getTemplateName(rest));
 
 export const createParentFolders = (target: string) => {
   const folder = dirname(target);

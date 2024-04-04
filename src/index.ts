@@ -40,7 +40,7 @@ export const run = async () => {
   const starter = kind === 'app' ? await promptStarter() : null;
 
   await generate({
-    kind: kind,
+    kind,
     destination,
     template,
     starter
