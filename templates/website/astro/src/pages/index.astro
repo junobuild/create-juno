@@ -2,7 +2,9 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Background from "../components/Background.astro";
-import Link from "../components/Link.astro";
+import Article from "../components/Article.astro";
+import Hero from "../components/Hero.astro";
+
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
@@ -16,52 +18,53 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       <main
         class="mx-auto max-w-screen-2xl py-16 px-8 md:px-24 tall:min-h-[calc(100dvh-128px)]"
       >
-        <h1 class="text-5xl md:text-6xl font-extrabold md:pt-24">
+        <h1 class="text-5xl md:text-6xl font-extrabold md:pt-16">
           Welcome to Juno
         </h1>
 
         <div class="w-full max-w-2xl mt-8 grid grid-cols-2 gap-8">
-          <article
-            class="col-span-2 text-center p-3 border-black border-[3px] rounded bg-white shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+          <Hero
+            href="https://juno.build/docs/add-juno-to-an-app/create-a-satellite"
+            ariaLabel="Discover how to create a Satellite and deploy your project to production"
           >
-            <h4>Documentation</h4>
-          </article>
+            Not yet in orbit? Launch your Satellite
+          </Hero>
 
-          <Link
+          <Article
             href="https://juno.build/docs/guides/astro"
-            aria-label="Open quickstarted guides on Juno's website"
+            aria-label="Open quickstart guides on Juno's website"
           >
             <Fragment slot="title">Quickstart</Fragment>
 
             Discover how to deploy and enhance your newly created Juno project.
-          </Link>
+          </Article>
 
-          <Link
+          <Article
             href="https://juno.build/docs/category/build"
-            aria-label="Open the list of features to build apps on Juno's website"
+            aria-label="Open the list of features for building apps on Juno's website"
           >
             <Fragment slot="title">Documentation</Fragment>
 
             Learn how Juno works and explore the official docs.
-          </Link>
+          </Article>
 
-          <Link
+          <Article
             href="https://juno.build/docs/miscellaneous/github_actions"
-            aria-label="Open the guide on setting up GitHub Actions for Juno"
+            aria-label="Open the guide to setting up GitHub Actions for Juno"
           >
             <Fragment slot="title">Continuous Integration</Fragment>
 
             Automate your deployment with GitHub Actions.
-          </Link>
+          </Article>
 
-          <Link
+          <Article
             href="https://discord.gg/wHZ57Z2RAG"
-            aria-label="Open Juno's Discord channel for questions or to share the fun"
+            aria-label="Join Juno's Discord channel for questions or to share the fun"
           >
             <Fragment slot="title">Community</Fragment>
 
             Come say hi to our amazing Discord community. ❤
-          </Link>
+          </Article>
         </div>
       </main>
 
