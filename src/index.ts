@@ -2,7 +2,7 @@ import {red} from 'kleur';
 import prompts from 'prompts';
 import {installCliIfNecessary} from './services/cli.services';
 import {generate} from './services/generate.services';
-import {promptProjectDestination, promptStarter, promptTemplate} from './services/prompt.services';
+import {promptDestination, promptStarter, promptTemplate} from './services/prompt.services';
 import type {GeneratorInput} from './types/generator';
 import {checkNodeVersion} from './utils/env.utils';
 import {assertAnswerCtrlC} from './utils/prompts.utils';
@@ -27,7 +27,7 @@ export const run = async () => {
 
   console.log(WELCOME);
 
-  const {destination} = await promptProjectDestination();
+  const {destination} = await promptDestination();
 
   const {action}: Pick<GeneratorInput, 'action'> = await prompts({
     type: 'select',

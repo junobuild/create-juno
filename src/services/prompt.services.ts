@@ -53,7 +53,7 @@ export const promptStarter = async () => {
   return starter;
 };
 
-export const promptProjectDestination = async (): Promise<Pick<GeneratorInput, 'destination'>> => {
+export const promptDestination = async (): Promise<Pick<GeneratorInput, 'destination'>> => {
   const {destination}: {destination?: string} = await prompts({
     type: 'text',
     name: 'destination',
