@@ -6,6 +6,17 @@ import {promptProjectName, promptStarter, promptTemplate} from './services/promp
 import type {GeneratorInput} from './types/generator';
 import {checkNodeVersion} from './utils/env.utils';
 import {assertAnswerCtrlC} from './utils/prompts.utils';
+import {grey} from 'kleur';
+import {version} from '../package.json';
+
+const JUNO_LOGO = `  __  __ __  __  _  ____ 
+__) ||  |  ||  \\| |/    \\
+\\___/ \\___/ |_|\\__|\\____/`;
+
+const WELCOME = `${JUNO_LOGO} CLI ${grey(`v${version}`)}
+
+Welcome 👋
+`;
 
 export const run = async () => {
   const {valid} = checkNodeVersion();
@@ -13,6 +24,8 @@ export const run = async () => {
   if (!valid) {
     return;
   }
+
+  console.log(WELCOME);
 
   // TODO: Welcome text "Hey 👋! Welcome to Juno blahblahblah..."
 
