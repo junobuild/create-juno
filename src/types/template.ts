@@ -5,6 +5,6 @@ export interface Template {
   description: string;
 }
 
-export type TemplateFramework = "Next.js" | "Astro"
+export type TemplateFramework = 'Next.js' | 'Astro';
 
 export type TemplateType = 'Starter' | 'Demo';

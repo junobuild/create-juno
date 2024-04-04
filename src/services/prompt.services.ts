@@ -1,33 +1,26 @@
 import {isNullish} from '@junobuild/utils';
 import {red} from 'kleur';
 import prompts from 'prompts';
-import {GeneratorInput, ProjectKind} from '../types/generator';
-import type {Template} from '../types/template';
+import {APP_TEMPLATES, WEBSITE_TEMPLATES} from '../constants/templates';
+import type {GeneratorInput, ProjectKind} from '../types/generator';
+import type {Template, TemplateFramework} from '../types/template';
 import {assertAnswerCtrlC} from '../utils/prompts.utils';
 
-const WEBSITE_TEMPLATES: Template[] = [
-  {
-    framework: `Astro`,
-    key: `astro-starter`,
-    type: 'Starter',
-    description: 'Opt for a barebones scaffolding to kickstart your website'
-  }
-];
-
-const APP_TEMPLATES: Template[] = [
-  {
-    framework: `Next.js`,
-    key: `nextjs-starter`,
-    type: 'Starter',
-    description: 'Opt for a barebones scaffolding to kickstart your app'
-  }
-];
-
 export const promptTemplate = async (kind: ProjectKind): Promise<Template> => {
-  const allTemplates = Object.groupBy(
-    kind === 'app' ? APP_TEMPLATES : WEBSITE_TEMPLATES,
-    ({framework}) => framework
-  );
+  const allTemplates = (kind === 'app' ? APP_TEMPLATES : WEBSITE_TEMPLATES).reduce<
+    Partial<Record<TemplateFramework, Template[]>>
+  >((acc, {framework, ...rest}) => {
+    return {
+      ...acc,
+      [framework]: [
+        ...(acc[framework] ?? []),
+        {
+          framework,
+          ...rest
+        }
+      ]
+    };
+  }, {});
 
   const frameworks = Object.keys(allTemplates);
 

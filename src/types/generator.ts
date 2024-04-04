@@ -1,4 +1,4 @@
-import {Template} from './template';
+import type {Template} from './template';
 
 export interface GeneratorInput {
   destination: string | '';

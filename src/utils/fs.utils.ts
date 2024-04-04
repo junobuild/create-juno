@@ -10,7 +10,8 @@ const TEMPLATE_PATH = 'templates';
 
 export const getRelativeTemplatePath = ({key}: Pick<Template, 'key'>) => join(TEMPLATE_PATH, key);
 
-export const getLocalTemplatePath = ({key}: Pick<Template, 'key'>) => join(__dirname, '..', TEMPLATE_PATH, key);
+export const getLocalTemplatePath = ({key}: Pick<Template, 'key'>) =>
+  join(__dirname, '..', TEMPLATE_PATH, key);
 
 export const createParentFolders = (target: string) => {
   const folder = dirname(target);
