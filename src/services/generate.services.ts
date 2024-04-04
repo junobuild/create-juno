@@ -32,12 +32,12 @@ export const populate = async (input: PopulateInput) => {
   try {
     const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
 
-    if (!useLocalFiles) {
-      await populateFromCDN(input);
+    if (useLocalFiles) {
+      await populateFromLocal(input);
       return;
     }
 
-    await populateFromLocal(input);
+    await populateFromCDN(input);
   } finally {
     spinner.stop();
   }
