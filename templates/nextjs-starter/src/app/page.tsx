@@ -1,3 +1,5 @@
+'use client';
+
 import {Article} from '@/components/article';
 import {Background} from '@/components/background';
 import {Footer} from '@/components/footer';
