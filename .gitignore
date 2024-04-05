@@ -34,3 +34,5 @@ UserInterfaceState.xcuserstate
 dist/
 
 out/
+
+templates/**/package-lock.json
