@@ -20,17 +20,17 @@ export default function Home() {
             </Hero>
 
             <Article
-              href="https://juno.build/docs/guides/astro"
-              ariaLabel="Open quickstart guides on Juno's website"
-              title="Quickstart">
-              Discover how to deploy and enhance your newly created Juno project.
-            </Article>
-
-            <Article
               href="https://juno.build/docs/category/build"
               ariaLabel="Open the list of features for building apps on Juno's website"
               title="Documentation">
               Learn how Juno works and explore the official docs.
+            </Article>
+
+            <Article
+              href="https://juno.build/docs/miscellaneous/local-development"
+              ariaLabel="Open Juno's documentation for guidance on setting up local development"
+              title="Local Development">
+              Set up your environment and start building locally.
             </Article>
 
             <Article
