@@ -1,50 +1,74 @@
-import {cyan} from 'kleur';
 import ora from 'ora';
-import prompts from 'prompts';
+import {CLI_PACKAGE} from '../constants/constants';
 import {spawn} from '../utils/cmd.utils';
+import {whichPMRuns} from '../utils/pm.utils';
+import {confirm, NEW_CMD_LINE} from '../utils/prompts.utils';
 
-const CLI_PACKAGE = '@junobuild/cli';
+const detectCliAlreadyInstalled = async (): Promise<boolean> => {
+  const pm = whichPMRuns();
 
-const detectIfCliIsInstalled = async () => {
-  const exitCode = await spawn({
-    command: 'npm',
-    args: ['list', '--depth', '0', '--global', CLI_PACKAGE],
+  // Bun does not support list. For simplicity reason, we return false given that next question is "just" asking if developer want to install the cli.
+  if (!['npm', 'pnpm', 'yarn'].includes(pm)) {
+    return false;
+  }
+
+  const args =
+    pm === 'yarn' ? ['global', 'list', '--depth=0'] : ['list', '--depth', '0', '--global'];
+
+  let stdout = '';
+
+  await spawn({
+    command: pm,
+    args,
+    stdout: (output: string) => (stdout += output),
     silentOut: true
   });
-  return exitCode === 0;
+
+  return stdout.includes(CLI_PACKAGE);
 };
 
-// Run this ahead of time in parallel of other choices
-const pCliInstalled = detectIfCliIsInstalled();
-
-const installCli = async () => {
-  const spinner = ora(`Installing CLI...`).start();
+const install = async () => {
+  const spinner = ora('Installing CLI (this may take a minute or so, hold tight 🤙)...').start();
 
   try {
-    await spawn({
-      command: 'npm',
-      args: ['i', '--g', '--silent', '@junobuild/cli']
-    });
+    const pm = whichPMRuns();
+
+    switch (pm) {
+      case 'yarn': {
+        await spawn({
+          command: pm,
+          args: ['global', 'add', CLI_PACKAGE],
+          silentOut: true
+        });
+        break;
+      }
+      default: {
+        await spawn({
+          command: pm,
+          args: ['install', '--global', CLI_PACKAGE],
+          silentOut: true
+        });
+      }
+    }
   } finally {
     spinner.stop();
   }
-
-  console.log(`\n✅ CLI installed. Run ${cyan('juno --help')} to display more information.`);
 };
 
-export const installCliIfNecessary = async () => {
-  const isCliInstalled = await pCliInstalled;
-  if (isCliInstalled) {
-    console.info('The Juno CLI is already installed.');
+export const installCli = async () => {
+  const cliInstalled = await detectCliAlreadyInstalled();
+
+  if (cliInstalled) {
     return;
   }
-  const {performInstall}: {performInstall: boolean} = await prompts({
-    name: 'performInstall',
-    type: 'confirm',
-    message: 'Install the Juno CLI?'
-  });
+
+  const performInstall = await confirm(
+    `Do you want to install the Juno CLI now?${NEW_CMD_LINE}It's handy for tasks like deploying or starting your development environment.`
+  );
+
   if (!performInstall) {
     return;
   }
-  await installCli();
+
+  await install();
 };

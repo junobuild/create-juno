@@ -2,6 +2,9 @@ import {red} from 'kleur';
 import prompts from 'prompts';
 
 // TODO: cli-tools
+
+export const NEW_CMD_LINE = '\n  ';
+
 // In case an answer is replaced by control+c
 export const assertAnswerCtrlC: (
   answer: null | undefined | '' | string,

@@ -1,6 +1,6 @@
 import {grey, red} from 'kleur';
 import {version} from '../package.json';
-import {installCliIfNecessary} from './services/cli.services';
+import {installCli} from './services/cli.services';
 import {dependencies} from './services/deps.services';
 import {generate} from './services/generate.services';
 import {promptDestination, promptProjectKind, promptTemplate} from './services/prompt.services';
@@ -37,7 +37,7 @@ export const run = async () => {
 
   await dependencies();
 
-  await installCliIfNecessary();
+  await installCli();
 };
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
