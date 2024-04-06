@@ -1,6 +1,7 @@
 import {grey, red} from 'kleur';
 import {version} from '../package.json';
 import {installCliIfNecessary} from './services/cli.services';
+import {dependencies} from './services/deps.services';
 import {generate} from './services/generate.services';
 import {promptDestination, promptProjectKind, promptTemplate} from './services/prompt.services';
 import {checkNodeVersion} from './utils/env.utils';
@@ -33,6 +34,8 @@ export const run = async () => {
     destination,
     template
   });
+
+  await dependencies();
 
   await installCliIfNecessary();
 };
