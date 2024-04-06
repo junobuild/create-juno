@@ -3,7 +3,8 @@ import {version} from '../package.json';
 import {installCli} from './services/cli.services';
 import {dependencies} from './services/deps.services';
 import {generate} from './services/generate.services';
-import {promptDestination, promptProjectKind, promptTemplate} from './services/prompt.services';
+import {promptDestination} from './services/prompt.services';
+import {initTemplate} from './services/template.services';
 import {checkNodeVersion} from './utils/env.utils';
 
 const JUNO_LOGO = `  __  __ __  __  _  ____ 
@@ -24,11 +25,11 @@ export const run = async () => {
 
   console.log(WELCOME);
 
+  const [_cmd, ...args] = process.argv.slice(2);
+
   const {destination} = await promptDestination();
 
-  const projectKind = await promptProjectKind();
-
-  const template = await promptTemplate(projectKind);
+  const template = await initTemplate(args);
 
   await generate({
     destination,
