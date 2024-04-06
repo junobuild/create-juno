@@ -9,7 +9,7 @@ const detectIfCliIsInstalled = async () => {
   const exitCode = await spawn({
     command: 'npm',
     args: ['list', '--depth', '0', '--global', CLI_PACKAGE],
-    stdout: () => {} // Silent output
+    silentOut: true
   });
   return exitCode === 0;
 };
