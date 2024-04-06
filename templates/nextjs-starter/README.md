@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Juno: Next.js Starter Kit
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```sh
+npm create juno@latest -- --template nextjs-starter
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+A starter kit developer for [Juno](https://juno.build) using [Next.js](https://nextjs.org/docs).
 
-## Learn More
+## ✨ Links & Resources
 
-To learn more about Next.js, take a look at the following resources:
+- Looking to get started with Juno? Check out the [documentation](https://juno.build).
+- Have a look at [Next.js](https://nextjs.org/docs) for question regarding the templates.
+- Got questions, comments or feedback? [Join our discord](https://discord.gg/wHZ57Z2RAG) or [OpenChat](https://oc.app/community/vxgpi-nqaaa-aaaar-ar4lq-cai/?ref=xanzv-uaaaa-aaaaf-aneba-cai).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧞 Commands
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+All commands are run from the root of the project, from a terminal:
 
-## Deploy on Vercel
+| Command          | Action                                      |
+|:-----------------|:--------------------------------------------|
+| `npm install`    | Installs dependencies                       |
+| `npm run dev`    | Starts local dev server at `localhost:3000` |
+| `npm run build`  | Build your production site to `./out/`      |
+| `juno deploy`    | Deploy your project to a Satellite          |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Launch
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Explore this [guide](https://juno.build/docs/add-juno-to-an-app/create-a-satellite) to launch your Satellite into orbit via Juno's [administration console](https://console.juno.build).
