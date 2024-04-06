@@ -26,7 +26,7 @@ export const generate = async ({destination, ...rest}: GeneratorInput) => {
 };
 
 export const populate = async (input: PopulateInput) => {
-  const spinner = ora(`Creating example...`).start();
+  const spinner = ora(`Creating project...`).start();
 
   try {
     const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
