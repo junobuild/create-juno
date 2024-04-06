@@ -1,4 +1,4 @@
-# Create Juno
+# create-juno
 
 A CLI for creating new [Juno] projects. Just run...
 
