@@ -56,7 +56,7 @@ export const promptTemplate = async (kind: ProjectKind): Promise<Template> => {
   });
 
   if (isNullish(template)) {
-    process.exit(1);
+    process.exit(0);
   }
 
   return template;
@@ -71,7 +71,7 @@ export const promptDestination = async (): Promise<Pick<GeneratorInput, 'destina
 
   // We do not use assertAnswerCtrlC here because we allow Return
   if (isNullish(destination)) {
-    process.exit(1);
+    process.exit(0);
   }
 
   return {destination};
