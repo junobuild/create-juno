@@ -14,12 +14,15 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: nextjs-starter
-            target: scratch_nextjs_starter
-            out: nextjs-starter.tar.gz
           - name: astro-starter
             target: scratch_astro_starter
             out: astro-starter.tar.gz
+          - name: nextjs-starter
+            target: scratch_nextjs_starter
+            out: nextjs-starter.tar.gz
+          - name: nextjs-example
+            target: scratch_nextjs_example
+            out: nextjs-example.tar.gz
 
     steps:
       - uses: actions/checkout@v4
@@ -53,16 +56,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download astro-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: astro-starter.tar.gz
+          path: .
+
       - name: Download nextjs-starter
         uses: actions/download-artifact@v4
         with:
           name: nextjs-starter.tar.gz
           path: .
 
-      - name: Download astro-starter
+      - name: Download nextjs-example
         uses: actions/download-artifact@v4
         with:
-          name: astro-starter.tar.gz
+          name: nextjs-example.tar.gz
           path: .
 
       - name: Release
@@ -70,8 +79,9 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
+            ./astro-starter.tar.gz |
             ./nextjs-starter.tar.gz |
-            ./astro-starter.tar.gz
+            ./nextjs-example.tar.gz
 
   deploy:
     name: Deploy to CDN
@@ -80,16 +90,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download astro-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: astro-starter.tar.gz
+          path: out/templates
+
       - name: Download nextjs-starter
         uses: actions/download-artifact@v4
         with:
           name: nextjs-starter.tar.gz
           path: out/templates
 
-      - name: Download astro-starter
+      - name: Download nextjs-example
         uses: actions/download-artifact@v4
         with:
-          name: astro-starter.tar.gz
+          name: nextjs-example.tar.gz
           path: out/templates
 
       - uses: actions/setup-node@v4
