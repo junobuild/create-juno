@@ -65,7 +65,7 @@ export const promptTemplate = async (kind: ProjectKind): Promise<Template> => {
 export const promptDestination = async (
   args?: string[]
 ): Promise<Pick<GeneratorInput, 'destination'>> => {
-  if (nonNullish(args) && args?.[0] !== '--' && !args?.[0]?.startsWith('--')) {
+  if (nonNullish(args) && args?.length > 0 && args?.[0] !== '--' && !args?.[0]?.startsWith('--')) {
     const [destination, _] = args;
     return {destination};
   }
