@@ -43,7 +43,7 @@ const onState = (state: PromptState) => {
 };
 
 // Source: https://github.com/terkelg/prompts/issues/252
-export const promptConfirm = async (message: string): Promise<boolean> => {
+const promptConfirm = async (message: string): Promise<boolean> => {
   const {answer}: {answer: boolean} = await prompts([
     {
       type: 'toggle',

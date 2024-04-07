@@ -1,6 +1,6 @@
 import {isNullish} from '@junobuild/utils';
 import {APP_TEMPLATES, WEBSITE_TEMPLATES} from '../constants/templates';
-import {Template} from '../types/template';
+import type {Template} from '../types/template';
 import {nextArg} from '../utils/args.utils';
 import {promptProjectKind, promptTemplate} from './prompt.services';
 
