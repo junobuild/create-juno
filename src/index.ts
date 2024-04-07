@@ -5,7 +5,7 @@ import {initArgs} from './services/args.services';
 import {installCli} from './services/cli.services';
 import {dependencies} from './services/deps.services';
 import {generate} from './services/generate.services';
-import {promptDestination} from './services/prompt.services';
+import {promptDestination, promptGitHubAction} from './services/prompt.services';
 import {initTemplate} from './services/template.services';
 import {checkNodeVersion} from './utils/env.utils';
 
@@ -37,9 +37,12 @@ export const run = async () => {
 
   const template = nonNullish(userInputs.template) ? userInputs.template : await initTemplate();
 
+  const gitHubAction = await promptGitHubAction();
+
   await generate({
     destination,
-    template
+    template,
+    gitHubAction
   });
 
   await dependencies();

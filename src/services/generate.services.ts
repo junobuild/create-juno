@@ -4,6 +4,7 @@ import {writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
 import ora from 'ora';
 import {JUNO_CDN_URL} from '../constants/constants';
+import {GITHUB_ACTION_DEPLOY} from '../templates/github-actions';
 import type {GeneratorInput} from '../types/generator';
 import {gunzipFile, untarFile, type UntarOutputFile} from '../utils/compress.utils';
 import {downloadFromURL} from '../utils/download.utils';
@@ -25,24 +26,25 @@ export const generate = async ({destination, ...rest}: GeneratorInput) => {
   });
 };
 
-export const populate = async (input: PopulateInput) => {
+const populate = async ({gitHubAction, ...rest}: PopulateInput) => {
   const spinner = ora(`Creating project...`).start();
 
   try {
     const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
 
-    if (useLocalFiles) {
-      await populateFromLocal(input);
-      return;
-    }
+    const populateFn = useLocalFiles ? populateFromLocal : populateFromCDN;
 
-    await populateFromCDN(input);
+    await populateFn(rest);
+
+    if (gitHubAction) {
+      await populateGitHubAction(rest);
+    }
   } finally {
     spinner.stop();
   }
 };
 
-const populateFromCDN = async ({where, template}: PopulateInput) => {
+const populateFromCDN = async ({where, template}: Omit<PopulateInput, 'gitHubAction'>) => {
   const templatePath = getRelativeTemplatePath(template);
 
   const {hostname} = new URL(JUNO_CDN_URL);
@@ -74,7 +76,7 @@ const populateFromCDN = async ({where, template}: PopulateInput) => {
   await Promise.all(files.filter(({content}) => content.length !== 0).map(createFile));
 };
 
-const populateFromLocal = async ({where, template}: PopulateInput) => {
+const populateFromLocal = async ({where, template}: Omit<PopulateInput, 'gitHubAction'>) => {
   const templatePath = getLocalTemplatePath(template);
 
   const files = await getLocalFiles(templatePath);
@@ -96,4 +98,12 @@ const populateFromLocal = async ({where, template}: PopulateInput) => {
   };
 
   await Promise.all(files.map(createFile));
+};
+
+const populateGitHubAction = async ({where}: Omit<PopulateInput, 'gitHubAction'>) => {
+  const target = join(where ?? '', '.github', 'workflows', 'deploy.yaml');
+
+  createParentFolders(target);
+
+  await writeFile(target, GITHUB_ACTION_DEPLOY);
 };
