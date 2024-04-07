@@ -1,5 +1,7 @@
+import {nonNullish} from '@junobuild/utils';
 import {grey, red} from 'kleur';
 import {version} from '../package.json';
+import {initArgs} from './services/args.services';
 import {installCli} from './services/cli.services';
 import {dependencies} from './services/deps.services';
 import {generate} from './services/generate.services';
@@ -27,9 +29,13 @@ export const run = async () => {
 
   const args = process.argv.slice(2);
 
-  const {destination} = await promptDestination(args);
+  const userInputs = initArgs(args);
 
-  const template = await initTemplate(args);
+  const {destination} = nonNullish(userInputs?.destination)
+    ? {destination: userInputs.destination}
+    : await promptDestination();
+
+  const template = nonNullish(userInputs.template) ? userInputs.template : await initTemplate();
 
   await generate({
     destination,

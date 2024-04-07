@@ -1,5 +1,5 @@
 import {readFile} from 'fs/promises';
-import {cyan, red} from 'kleur';
+import {red} from 'kleur';
 import {writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
 import ora from 'ora';
@@ -26,14 +26,7 @@ export const generate = async ({destination, ...rest}: GeneratorInput) => {
 };
 
 export const populate = async (input: PopulateInput) => {
-  const {
-    where,
-    template: {key}
-  } = input;
-
-  const spinner = ora(
-    `Creating project with template ${cyan(key)} in ${cyan(where ?? 'current folder')}...`
-  ).start();
+  const spinner = ora(`Creating project...`).start();
 
   try {
     const useLocalFiles = process.env.USE_LOCAL_TEMPLATES === 'true';
