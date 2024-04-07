@@ -25,9 +25,9 @@ export const run = async () => {
 
   console.log(WELCOME);
 
-  const [_cmd, ...args] = process.argv.slice(2);
+  const args = process.argv.slice(2);
 
-  const {destination} = await promptDestination();
+  const {destination} = await promptDestination(args);
 
   const template = await initTemplate(args);
 

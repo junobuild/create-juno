@@ -1,4 +1,4 @@
-import {isNullish} from '@junobuild/utils';
+import {isNullish, nonNullish} from '@junobuild/utils';
 import {red} from 'kleur';
 import prompts from 'prompts';
 import {APP_TEMPLATES, WEBSITE_TEMPLATES} from '../constants/templates';
@@ -62,7 +62,14 @@ export const promptTemplate = async (kind: ProjectKind): Promise<Template> => {
   return template;
 };
 
-export const promptDestination = async (): Promise<Pick<GeneratorInput, 'destination'>> => {
+export const promptDestination = async (
+  args?: string[]
+): Promise<Pick<GeneratorInput, 'destination'>> => {
+  if (nonNullish(args) && args?.[0] !== '--' && !args?.[0].startsWith('--')) {
+    const [destination, _] = args;
+    return {destination};
+  }
+
   const {destination}: {destination?: string} = await prompts({
     type: 'text',
     name: 'destination',
