@@ -18,7 +18,8 @@ export const assertAnswerCtrlC: (
       console.log(`${red(message)}`);
     }
 
-    process.exit(1);
+    // TODO: change 1 to 0
+    process.exit(0);
   }
 };
 
