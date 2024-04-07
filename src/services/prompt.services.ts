@@ -101,7 +101,8 @@ export const promptProjectKind = async (): Promise<ProjectKind> => {
   return kind;
 };
 
-export const promptGitHubAction = (): Promise<boolean> =>
-  confirm(
+export const promptGitHubAction = async (): Promise<boolean> => {
+  return await confirm(
     `Would you like to set up a GitHub Action for deployment?${NEW_CMD_LINE}${grey("Remember, you'll need to configure a controller afterward. Check our documentation for more details")}`
   );
+};
