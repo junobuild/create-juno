@@ -7,4 +7,4 @@ export interface Template {
 
 export type TemplateFramework = 'Next.js' | 'Astro';
 
-export type TemplateType = 'Starter' | 'Demo';
+export type TemplateType = 'Starter' | 'Example';
