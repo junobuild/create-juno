@@ -10,7 +10,8 @@ export interface LocalFileDescriptor {
 export const getLocalFiles = async (templatePath: string): Promise<LocalFileDescriptor[]> =>
   files(templatePath)
     .flat()
-    .map((p) => ({relativePath: relative(templatePath, p), path: p}));
+    .map((p) => ({relativePath: relative(templatePath, p), path: p}))
+    .filter(({path}) => !path.includes('node_modules'));
 
 export const createDirectory = async (where: string | null) => {
   // Where equals null means "create in current directory"
