@@ -1,13 +1,13 @@
 import {isNullish} from '@junobuild/utils';
 import {grey, red} from 'kleur';
 import prompts from 'prompts';
-import {APP_TEMPLATES, WEBSITE_TEMPLATES} from '../constants/templates';
+import {TEMPLATES} from '../constants/templates';
 import type {GeneratorInput, ProjectKind} from '../types/generator';
 import type {Template, TemplateFramework} from '../types/template';
 import {NEW_CMD_LINE, assertAnswerCtrlC, confirm} from '../utils/prompts.utils';
 
-export const promptTemplate = async (kind: ProjectKind): Promise<Template> => {
-  const allTemplates = (kind === 'app' ? APP_TEMPLATES : WEBSITE_TEMPLATES).reduce<
+export const promptTemplate = async (projectKind: ProjectKind): Promise<Template> => {
+  const allTemplates = TEMPLATES.filter(({kind}) => kind === projectKind).reduce<
     Partial<Record<TemplateFramework, Template[]>>
   >((acc, {framework, ...rest}) => {
     return {

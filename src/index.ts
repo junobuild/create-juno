@@ -1,7 +1,9 @@
-import {grey, red} from 'kleur';
+import {isNullish, nonNullish} from '@junobuild/utils';
+import {cyan, green, grey, magenta, red, yellow} from 'kleur';
 import {version} from '../package.json';
 import {installCli} from './services/cli.services';
 import {checkForExistingProject, initNewProject} from './services/project.services';
+import {GeneratorInput} from './types/generator';
 import {checkNodeVersion} from './utils/env.utils';
 
 const JUNO_LOGO = `  __  __ __  __  _  ____ 
@@ -12,6 +14,37 @@ const WELCOME = `${JUNO_LOGO} CLI ${grey(`v${version}`)}
 
 Welcome 👋
 `;
+
+const outro = ({
+  input: {
+    destination,
+    template: {kind}
+  }
+}: {
+  input: GeneratorInput;
+}) => {
+  const withLocalDev = kind !== 'website';
+  const emptyDestination = isNullish(destination) || destination === '';
+
+  const startDevServer = `Run ${cyan('npm run dev')} to start your frontend dev server. CTRL+C to stop.`;
+
+  const nonEmptyDestinationNext = `1. Enter your project directory using ${cyan(`cd ${destination}`)}
+2. ${startDevServer}`;
+
+  console.log(`\n✅ ${green('Project initialized.')} Ready to explore !
+
+${emptyDestination ? startDevServer : nonEmptyDestinationNext}
+
+In another terminal:
+
+• Run ${yellow('juno init')} to configure your satellite.${withLocalDev ? `\n• Alternatively, launch ${yellow('juno dev start')} for local development.` : ''}
+
+Stuck? Join us at ${magenta('https://discord.gg/wHZ57Z2RAG')}
+
+⭐️⭐️⭐️ stars are also much appreciated: visit ${magenta('https://github.com/junobuild/juno')} and show your support!
+
+Have fun building 🚀`);
+};
 
 export const run = async () => {
   const {valid} = checkNodeVersion();
@@ -24,9 +57,12 @@ export const run = async () => {
 
   const {initProject} = await checkForExistingProject();
 
+  let input: GeneratorInput | undefined;
+
   if (initProject) {
     const args = process.argv.slice(2);
-    await initNewProject(args);
+
+    input = await initNewProject(args);
   }
 
   const {installed} = await installCli();
@@ -34,6 +70,10 @@ export const run = async () => {
   if (!initProject && !installed) {
     console.log('');
     console.log(grey('All set, coolio. 👍'));
+  }
+
+  if (initProject && nonNullish(input)) {
+    outro({input});
   }
 };
 

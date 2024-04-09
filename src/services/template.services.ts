@@ -1,5 +1,5 @@
 import {isNullish} from '@junobuild/utils';
-import {APP_TEMPLATES, WEBSITE_TEMPLATES} from '../constants/templates';
+import {TEMPLATES} from '../constants/templates';
 import type {Template} from '../types/template';
 import {nextArg} from '../utils/args.utils';
 import {promptProjectKind, promptTemplate} from './prompt.services';
@@ -11,7 +11,7 @@ export const argsTemplate = (args: string[]): Template | undefined => {
     return undefined;
   }
 
-  return [...WEBSITE_TEMPLATES, ...APP_TEMPLATES].find(({key}) => key === template);
+  return TEMPLATES.find(({key}) => key === template);
 };
 
 export const initTemplate = async (): Promise<Template> => {

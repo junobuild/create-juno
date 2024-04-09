@@ -1,5 +1,6 @@
 import {nonNullish} from '@junobuild/utils';
 import {join} from 'node:path';
+import type {GeneratorInput} from '../types/generator';
 import {fileExists} from '../utils/fs.utils';
 import {confirm} from '../utils/prompts.utils';
 import {initArgs} from './args.services';
@@ -22,7 +23,7 @@ export const checkForExistingProject = async (): Promise<{initProject: boolean}>
   return {initProject};
 };
 
-export const initNewProject = async (args: string[]) => {
+export const initNewProject = async (args: string[]): Promise<GeneratorInput> => {
   const userInputs = initArgs(args);
 
   const {destination} = nonNullish(userInputs?.destination)
@@ -33,11 +34,15 @@ export const initNewProject = async (args: string[]) => {
 
   const gitHubAction = await promptGitHubAction();
 
-  await generate({
+  const input = {
     destination,
     template,
     gitHubAction
-  });
+  };
+
+  await generate(input);
 
   await dependencies();
+
+  return input;
 };
