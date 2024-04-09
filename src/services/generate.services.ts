@@ -1,7 +1,7 @@
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
 import {writeFile} from 'node:fs/promises';
-import {join} from 'node:path';
+import {basename, join} from 'node:path';
 import ora from 'ora';
 import {JUNO_CDN_URL} from '../constants/constants';
 import {GITHUB_ACTION_DEPLOY} from '../templates/github-actions';
@@ -39,6 +39,8 @@ const populate = async ({gitHubAction, ...rest}: PopulateInput) => {
     if (gitHubAction) {
       await populateGitHubAction(rest);
     }
+
+    await updatePackageJson(rest);
   } finally {
     spinner.stop();
   }
@@ -106,4 +108,18 @@ const populateGitHubAction = async ({where}: Omit<PopulateInput, 'gitHubAction'>
   createParentFolders(target);
 
   await writeFile(target, GITHUB_ACTION_DEPLOY);
+};
+
+const updatePackageJson = async ({where, template}: Omit<PopulateInput, 'gitHubAction'>) => {
+  const pkgJson = join(process.cwd(), where ?? '', 'package.json');
+
+  const data = await readFile(pkgJson, 'utf8');
+
+  const regex = new RegExp(`"${template.key}"`, 'gi');
+
+  const directory = where ?? basename(process.cwd());
+
+  const result = data.replace(regex, `"${directory}"`);
+
+  await writeFile(pkgJson, result, 'utf8');
 };
