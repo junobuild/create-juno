@@ -5,8 +5,18 @@ import {Background} from '@/components/background';
 import {Footer} from '@/components/footer';
 import {Modal} from '@/components/modal';
 import {Table} from '@/components/table';
+import {initJuno} from '@junobuild/core-peer';
+import {useEffect} from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    (async () =>
+      await initJuno({
+        satelliteId: process.env.NEXT_PUBLIC_SATELLITE_ID as string,
+        container: process.env.NEXT_PUBLIC_CONTAINER
+      }))();
+  }, []);
+
   return (
     <>
       <div className="relative isolate min-h-[100dvh]">
