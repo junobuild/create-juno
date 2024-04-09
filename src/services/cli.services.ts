@@ -56,10 +56,16 @@ const install = async () => {
 };
 
 export const installCli = async (): Promise<{installed: boolean}> => {
-  const cliInstalled = await detectCliAlreadyInstalled();
+  const spinner = ora('Scanning for CLI...').start();
 
-  if (cliInstalled) {
-    return {installed: false};
+  try {
+    const cliInstalled = await detectCliAlreadyInstalled();
+
+    if (cliInstalled) {
+      return {installed: false};
+    }
+  } finally {
+    spinner.stop();
   }
 
   const performInstall = await confirm(
