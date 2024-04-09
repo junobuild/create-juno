@@ -6,7 +6,7 @@ npm create juno@latest -- --template nextjs-starter
 
 > 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
 
-![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
+![A screenshot of the example](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-example.png)
 
 An example developed for [Juno](https://juno.build) using [Next.js](https://nextjs.org/docs).
 
