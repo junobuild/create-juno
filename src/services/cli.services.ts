@@ -55,11 +55,11 @@ const install = async () => {
   }
 };
 
-export const installCli = async () => {
+export const installCli = async (): Promise<{installed: boolean}> => {
   const cliInstalled = await detectCliAlreadyInstalled();
 
   if (cliInstalled) {
-    return;
+    return {installed: false};
   }
 
   const performInstall = await confirm(
@@ -67,8 +67,10 @@ export const installCli = async () => {
   );
 
   if (!performInstall) {
-    return;
+    return {installed: false};
   }
 
   await install();
+
+  return {installed: true};
 };

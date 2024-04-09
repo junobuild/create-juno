@@ -1,12 +1,7 @@
-import {nonNullish} from '@junobuild/utils';
 import {grey, red} from 'kleur';
 import {version} from '../package.json';
-import {initArgs} from './services/args.services';
 import {installCli} from './services/cli.services';
-import {dependencies} from './services/deps.services';
-import {generate} from './services/generate.services';
-import {promptDestination, promptGitHubAction} from './services/prompt.services';
-import {initTemplate} from './services/template.services';
+import {checkForExistingProject, initNewProject} from './services/project.services';
 import {checkNodeVersion} from './utils/env.utils';
 
 const JUNO_LOGO = `  __  __ __  __  _  ____ 
@@ -27,27 +22,19 @@ export const run = async () => {
 
   console.log(WELCOME);
 
-  const args = process.argv.slice(2);
+  const {initProject} = await checkForExistingProject();
 
-  const userInputs = initArgs(args);
+  if (initProject) {
+    const args = process.argv.slice(2);
+    await initNewProject(args);
+  }
 
-  const {destination} = nonNullish(userInputs?.destination)
-    ? {destination: userInputs.destination}
-    : await promptDestination();
+  const {installed} = await installCli();
 
-  const template = nonNullish(userInputs.template) ? userInputs.template : await initTemplate();
-
-  const gitHubAction = await promptGitHubAction();
-
-  await generate({
-    destination,
-    template,
-    gitHubAction
-  });
-
-  await dependencies();
-
-  await installCli();
+  if (!initProject && !installed) {
+    console.log('');
+    console.log(grey('All set, coolio. 👍'));
+  }
 };
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
