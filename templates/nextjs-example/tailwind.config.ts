@@ -1,5 +1,4 @@
 import type {Config} from 'tailwindcss';
-import {fontFamily} from 'tailwindcss/defaultTheme';
 
 const config: Config = {
   content: [
@@ -8,9 +7,6 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
-    fontFamily: {
-      sans: ['JetBrains Mono', 'sans-serif', ...fontFamily.sans]
-    },
     extend: {
       screens: {
         tall: {raw: '(min-height: 800px)'}
