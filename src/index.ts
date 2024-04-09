@@ -10,23 +10,15 @@ const JUNO_LOGO = `  __  __ __  __  _  ____
 __) ||  |  ||  \\| |/    \\
 \\___/ \\___/ |_|\\__|\\____/`;
 
-const WELCOME = `${JUNO_LOGO} CLI ${grey(`v${version}`)}
+const WELCOME = `${JUNO_LOGO} ${grey(`v${version}`)}
 
 Welcome 👋
 `;
 
-const outro = ({
-  input: {
-    destination,
-    template: {kind}
-  }
-}: {
-  input: GeneratorInput;
-}) => {
-  const withLocalDev = kind !== 'website';
+const outro = ({input: {destination}}: {input: GeneratorInput}) => {
   const emptyDestination = isNullish(destination) || destination === '';
 
-  const startDevServer = `Run ${cyan('npm run dev')} to start your frontend dev server. CTRL+C to stop.`;
+  const startDevServer = `Run ${cyan('npm run dev')} to start your frontend dev server (CTRL+C to stop)`;
 
   const nonEmptyDestinationNext = `1. Enter your project directory using ${cyan(`cd ${destination}`)}
 2. ${startDevServer}`;
@@ -35,15 +27,14 @@ const outro = ({
 
 ${emptyDestination ? startDevServer : nonEmptyDestinationNext}
 
-In another terminal:
-
-• Run ${yellow('juno init')} to configure your satellite.${withLocalDev ? `\n• Alternatively, launch ${yellow('juno dev start')} for local development.` : ''}
+• In another terminal, run ${yellow('juno dev start')} to quickstart the local development emulator
+  When you are ready to launch your satellite, execute ${yellow('juno deploy')}
 
 Stuck? Join us at ${magenta('https://discord.gg/wHZ57Z2RAG')}
 
 ⭐️⭐️⭐️ stars are also much appreciated: visit ${magenta('https://github.com/junobuild/juno')} and show your support!
 
-Have fun building 🚀`);
+Have fun building! 🚀`);
 };
 
 export const run = async () => {
