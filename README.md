@@ -19,7 +19,7 @@ npm create juno@latest
 With Yarn:
 
 ```bash
-npm create juno
+yarn create juno
 ```
 
 With PNPM:
