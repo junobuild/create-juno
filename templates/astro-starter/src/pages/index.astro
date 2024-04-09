@@ -5,13 +5,13 @@ import Background from "../components/Background.astro";
 import Article from "../components/Article.astro";
 import Hero from "../components/Hero.astro";
 
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_SOCIAL_IMAGE } from "../consts";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={SITE_SOCIAL_IMAGE} />
   </head>
   <body class="bg-white dark:bg-black">
     <div class="relative isolate min-h-[100dvh]">

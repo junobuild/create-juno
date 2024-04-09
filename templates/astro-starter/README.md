@@ -8,7 +8,7 @@ npm create juno@latest -- --template astro-starter
 
 ![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
 
-A starter kit developer for [Juno](https://juno.build) using [Astro](https://docs.astro.build).
+A starter kit developed for [Juno](https://juno.build) using [Astro](https://docs.astro.build).
 
 ## ✨ Links & Resources
 

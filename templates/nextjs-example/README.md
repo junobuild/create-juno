@@ -8,7 +8,7 @@ npm create juno@latest -- --template nextjs-starter
 
 ![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
 
-A starter kit developer for [Juno](https://juno.build) using [Next.js](https://nextjs.org/docs).
+An example developed for [Juno](https://juno.build) using [Next.js](https://nextjs.org/docs).
 
 ## ✨ Links & Resources
 
