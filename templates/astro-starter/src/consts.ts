@@ -3,4 +3,5 @@
 
 export const SITE_TITLE = "Juno: Astro Starter Kit";
 export const SITE_DESCRIPTION = "Welcome to my website!";
-export const SITE_SOCIAL_IMAGE = "https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png";
+export const SITE_SOCIAL_IMAGE =
+  "https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png";
