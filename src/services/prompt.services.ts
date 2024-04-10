@@ -106,3 +106,9 @@ export const promptGitHubAction = async (): Promise<boolean> => {
     `Would you like to set up a GitHub Action for deployment?${NEW_CMD_LINE}${grey("Remember, you'll need to configure a controller afterward. Check our documentation for more details")}`
   );
 };
+
+export const promptLocalDevelopment = async (): Promise<boolean> => {
+  return await confirm(
+      `Do you want to configure the project to use the local development emulator?`
+  );
+};
