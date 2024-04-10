@@ -43,7 +43,7 @@ const populate = async ({gitHubAction, ...rest}: PopulateInput) => {
     const {localDevelopment} = rest;
 
     if (!localDevelopment) {
-      // TODO:
+      await removeLocalConfig(rest);
     }
 
     await updatePackageJson(rest);
@@ -154,4 +154,23 @@ const updatePackageJson = async ({where, template}: PopulateInputFn) => {
   const result = data.replace(regex, `"${directory}"`);
 
   await writeFile(pkgJson, result, 'utf8');
+};
+
+const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
+  const config = join(
+    process.cwd(),
+    where ?? '',
+    template.framework === 'Astro' ? 'astro.config.mjs' : 'next.config.mjs'
+  );
+
+  const data = await readFile(config, 'utf8');
+
+  const regex =
+    template.framework === 'Astro'
+      ? /{\s*container:\s*true\s*}/g
+      : /{\s*juno:\s*{\s*container:\s*true\s*}\s*}/g;
+
+  const result = data.replace(regex, '');
+
+  await writeFile(config, result, 'utf8');
 };

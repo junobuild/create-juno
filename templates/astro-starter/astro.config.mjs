@@ -9,11 +9,7 @@ export default defineConfig({
   site: "https://example.com",
   integrations: [mdx(), sitemap(), tailwind()],
   vite: {
-    plugins: [
-      juno({
-        container: true,
-      }),
-    ],
+    plugins: [juno({ container: true })],
   },
   devToolbar: {
     enabled: false,
