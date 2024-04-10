@@ -15,7 +15,7 @@ const WELCOME = `${JUNO_LOGO} ${grey(`v${version}`)}
 Welcome 👋
 `;
 
-const outro = ({input: {destination}}: {input: GeneratorInput}) => {
+const outro = ({input: {destination, localDevelopment}}: {input: GeneratorInput}) => {
   const emptyDestination = isNullish(destination) || destination === '';
 
   const startDevServer = `Run ${cyan('npm run dev')} to start your frontend dev server (CTRL+C to stop)`;
@@ -23,12 +23,15 @@ const outro = ({input: {destination}}: {input: GeneratorInput}) => {
   const nonEmptyDestinationNext = `1. Enter your project directory using ${cyan(`cd ${destination}`)}
 2. ${startDevServer}`;
 
+  const localDev = `In another terminal, run ${yellow('juno dev start')} to quickstart the local development emulator`;
+
+  const mainnetDev = `To connect your satellite with the project, run ${yellow('juno init')}`;
+
   console.log(`\n✅ ${green('Project initialized.')} Ready to explore !
 
 ${emptyDestination ? startDevServer : nonEmptyDestinationNext}
 
-• In another terminal, run ${yellow('juno dev start')} to quickstart the local development emulator
-  When you are ready to launch your satellite, execute ${yellow('juno deploy')}
+• ${localDevelopment ? localDev : mainnetDev}
 
 Stuck? Join us at ${magenta('https://discord.gg/wHZ57Z2RAG')}
 
