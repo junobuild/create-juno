@@ -1,6 +1,6 @@
 {
   "name": "nextjs-example",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,6 +17,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@junobuild/config": "^0.0.5",
     "@junobuild/nextjs-plugin": "^0.0.3",
     "@next/eslint-plugin-next": "^14.1.4",
     "@types/node": "^20",
