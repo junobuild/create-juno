@@ -1,4 +1,4 @@
-import {ProjectKind} from './generator';
+import type {ProjectKind} from './generator';
 
 export interface Template {
   key: string;

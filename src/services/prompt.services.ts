@@ -109,6 +109,6 @@ export const promptGitHubAction = async (): Promise<boolean> => {
 
 export const promptLocalDevelopment = async (): Promise<boolean> => {
   return await confirm(
-      `Do you want to configure the project to use the local development emulator?`
+    `Do you want to configure the project to use the local development emulator?`
   );
 };

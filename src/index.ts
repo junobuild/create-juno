@@ -3,7 +3,7 @@ import {cyan, green, grey, magenta, red, yellow} from 'kleur';
 import {version} from '../package.json';
 import {installCli} from './services/cli.services';
 import {checkForExistingProject, initNewProject} from './services/project.services';
-import {GeneratorInput} from './types/generator';
+import type {GeneratorInput} from './types/generator';
 import {checkNodeVersion} from './utils/env.utils';
 
 const JUNO_LOGO = `  __  __ __  __  _  ____ 
