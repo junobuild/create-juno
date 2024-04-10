@@ -11,7 +11,7 @@ export const getLocalFiles = async (templatePath: string): Promise<LocalFileDesc
   files(templatePath)
     .flat()
     .map((p) => ({relativePath: relative(templatePath, p), path: p}))
-    .filter(({path}) => !path.includes('node_modules'));
+    .filter(({path}) => !path.includes('node_modules') && !path.includes('dist'));
 
 export const createDirectory = async (where: string | null) => {
   // Where equals null means "create in current directory"

@@ -6,7 +6,7 @@ import {confirm} from '../utils/prompts.utils';
 import {initArgs} from './args.services';
 import {dependencies} from './deps.services';
 import {generate} from './generate.services';
-import {promptDestination, promptGitHubAction} from './prompt.services';
+import {promptDestination, promptGitHubAction, promptLocalDevelopment} from './prompt.services';
 import {initTemplate} from './template.services';
 
 export const checkForExistingProject = async (): Promise<{initProject: boolean}> => {
@@ -34,10 +34,13 @@ export const initNewProject = async (args: string[]): Promise<GeneratorInput> =>
 
   const gitHubAction = await promptGitHubAction();
 
+  const localDevelopment = await promptLocalDevelopment();
+
   const input = {
     destination,
     template,
-    gitHubAction
+    gitHubAction,
+    localDevelopment
   };
 
   await generate(input);

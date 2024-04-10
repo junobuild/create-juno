@@ -1,7 +1,7 @@
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
 import {writeFile} from 'node:fs/promises';
-import {basename, join} from 'node:path';
+import {basename, join, parse} from 'node:path';
 import ora from 'ora';
 import {JUNO_CDN_URL} from '../constants/constants';
 import {GITHUB_ACTION_DEPLOY} from '../templates/github-actions';
@@ -40,13 +40,21 @@ const populate = async ({gitHubAction, ...rest}: PopulateInput) => {
       await populateGitHubAction(rest);
     }
 
+    const {localDevelopment} = rest;
+
+    if (!localDevelopment) {
+      await removeLocalConfig(rest);
+    }
+
     await updatePackageJson(rest);
   } finally {
     spinner.stop();
   }
 };
 
-const populateFromCDN = async ({where, template}: Omit<PopulateInput, 'gitHubAction'>) => {
+type PopulateInputFn = Omit<PopulateInput, 'gitHubAction'>;
+
+const populateFromCDN = async ({where, template, localDevelopment}: PopulateInputFn) => {
   const templatePath = getRelativeTemplatePath(template);
 
   const {hostname} = new URL(JUNO_CDN_URL);
@@ -70,6 +78,10 @@ const populateFromCDN = async ({where, template}: Omit<PopulateInput, 'gitHubAct
   const createFile = async ({name, content}: UntarOutputFile) => {
     const target = join(process.cwd(), where ?? '', name.replace(templateName, ''));
 
+    if (!shouldCopyFile({target, localDevelopment})) {
+      return;
+    }
+
     createParentFolders(target);
 
     await writeFile(target, Buffer.concat(content));
@@ -78,7 +90,23 @@ const populateFromCDN = async ({where, template}: Omit<PopulateInput, 'gitHubAct
   await Promise.all(files.filter(({content}) => content.length !== 0).map(createFile));
 };
 
-const populateFromLocal = async ({where, template}: Omit<PopulateInput, 'gitHubAction'>) => {
+const shouldCopyFile = ({
+  localDevelopment,
+  target
+}: Pick<PopulateInputFn, 'localDevelopment'> & {target: string}): boolean => {
+  const filenameWithExtension = basename(target);
+  const {name: filenameWithoutExtension} = parse(target);
+
+  if (['.ds_store', 'thumbs.db'].includes(filenameWithExtension)) {
+    return false;
+  }
+
+  return (
+    localDevelopment || !['docker-compose', 'juno.dev.config'].includes(filenameWithoutExtension)
+  );
+};
+
+const populateFromLocal = async ({where, template, localDevelopment}: PopulateInputFn) => {
   const templatePath = getLocalTemplatePath(template);
 
   const files = await getLocalFiles(templatePath);
@@ -94,6 +122,10 @@ const populateFromLocal = async ({where, template}: Omit<PopulateInput, 'gitHubA
     const file = await readFile(path);
     const target = join(where ?? '', p.replace(templatePath, ''));
 
+    if (!shouldCopyFile({target, localDevelopment})) {
+      return;
+    }
+
     createParentFolders(target);
 
     await writeFile(target, Buffer.from(file));
@@ -102,7 +134,7 @@ const populateFromLocal = async ({where, template}: Omit<PopulateInput, 'gitHubA
   await Promise.all(files.map(createFile));
 };
 
-const populateGitHubAction = async ({where}: Omit<PopulateInput, 'gitHubAction'>) => {
+const populateGitHubAction = async ({where}: PopulateInputFn) => {
   const target = join(where ?? '', '.github', 'workflows', 'deploy.yaml');
 
   createParentFolders(target);
@@ -110,7 +142,7 @@ const populateGitHubAction = async ({where}: Omit<PopulateInput, 'gitHubAction'>
   await writeFile(target, GITHUB_ACTION_DEPLOY);
 };
 
-const updatePackageJson = async ({where, template}: Omit<PopulateInput, 'gitHubAction'>) => {
+const updatePackageJson = async ({where, template}: PopulateInputFn) => {
   const pkgJson = join(process.cwd(), where ?? '', 'package.json');
 
   const data = await readFile(pkgJson, 'utf8');
@@ -122,4 +154,23 @@ const updatePackageJson = async ({where, template}: Omit<PopulateInput, 'gitHubA
   const result = data.replace(regex, `"${directory}"`);
 
   await writeFile(pkgJson, result, 'utf8');
+};
+
+const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
+  const config = join(
+    process.cwd(),
+    where ?? '',
+    template.framework === 'Astro' ? 'astro.config.mjs' : 'next.config.mjs'
+  );
+
+  const data = await readFile(config, 'utf8');
+
+  const regex =
+    template.framework === 'Astro'
+      ? /{\s*container:\s*true\s*}/g
+      : /{\s*juno:\s*{\s*container:\s*true\s*}\s*}/g;
+
+  const result = data.replace(regex, '');
+
+  await writeFile(config, result, 'utf8');
 };
