@@ -50,7 +50,7 @@ const install = async () => {
       default: {
         await spawn({
           command: pm,
-          args: ['install', '--global', CLI_PACKAGE],
+          args: ['install', '-g', CLI_PACKAGE],
           silentOut: true
         });
       }
