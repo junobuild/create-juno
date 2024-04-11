@@ -55,7 +55,7 @@ const populate = async ({gitHubAction, ...rest}: PopulateInput) => {
 type PopulateInputFn = Omit<PopulateInput, 'gitHubAction'>;
 
 const populateFromCDN = async ({where, template, localDevelopment}: PopulateInputFn) => {
-  const templatePath = getRelativeTemplatePath(template);
+  const templatePath = getRelativeTemplatePath(template).replace(/\\/g, '/');
 
   console.log("DEBUG ----> ", templatePath);
 
@@ -65,7 +65,7 @@ const populateFromCDN = async ({where, template, localDevelopment}: PopulateInpu
     hostname,
     path: `/${templatePath}.tar.gz`,
     headers: {
-      'Accept-Encoding': 'identity'
+      'Accept-Encoding': 'gzip, deflate, br'
     }
   });
 
