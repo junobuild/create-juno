@@ -29,7 +29,7 @@ export const spawn = async ({
     });
 
     process.stdout.on('data', (data) => {
-      if (stdout !== null && stdout !== undefined) {
+      if (nonNullish(stdout)) {
         stdout(`${data}`);
         return;
       }

@@ -5,7 +5,7 @@ import {spawn} from '../utils/cmd.utils';
 import {whichPMRuns} from '../utils/pm.utils';
 import {confirm} from '../utils/prompts.utils';
 
-export const dependencies = async ({where}: PopulateInput) => {
+export const dependencies = async ({where, verbose}: PopulateInput) => {
   const install = await confirm('Install dependencies?');
 
   if (!install) {
@@ -20,7 +20,7 @@ export const dependencies = async ({where}: PopulateInput) => {
     await spawn({
       command: pm,
       args: ['install'],
-      silentOut: true,
+      silentOut: verbose !== true,
       ...(nonNullish(where) && where !== '' && {cwd: where})
     });
   } finally {

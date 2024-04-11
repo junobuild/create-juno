@@ -1,10 +1,11 @@
 import ora from 'ora';
 import {CLI_PACKAGE} from '../constants/constants';
+import {hasArgs} from '../utils/args.utils';
 import {spawn} from '../utils/cmd.utils';
 import {whichPMRuns} from '../utils/pm.utils';
 import {confirm, NEW_CMD_LINE} from '../utils/prompts.utils';
 
-const detectCliAlreadyInstalled = async (): Promise<boolean> => {
+const detectCliAlreadyInstalled = async (verbose: boolean): Promise<boolean> => {
   const pm = whichPMRuns();
 
   // Bun does not support list. For simplicity reason, we return false given that next question is "just" asking if developer want to install the cli.
@@ -22,7 +23,7 @@ const detectCliAlreadyInstalled = async (): Promise<boolean> => {
       command: pm,
       args,
       stdout: (output: string) => (stdout += output),
-      silentOut: true
+      silentOut: !verbose
     });
 
     return stdout.includes(CLI_PACKAGE);
@@ -32,7 +33,7 @@ const detectCliAlreadyInstalled = async (): Promise<boolean> => {
   }
 };
 
-const install = async () => {
+const install = async (verbose: boolean) => {
   const spinner = ora('Installing CLI (this may take a minute or so, hold tight 🤙)...').start();
 
   try {
@@ -43,7 +44,7 @@ const install = async () => {
         await spawn({
           command: pm,
           args: ['global', 'add', CLI_PACKAGE],
-          silentOut: true
+          silentOut: !verbose
         });
         break;
       }
@@ -51,7 +52,7 @@ const install = async () => {
         await spawn({
           command: pm,
           args: ['install', '--global', CLI_PACKAGE],
-          silentOut: true
+          silentOut: !verbose
         });
       }
     }
@@ -60,11 +61,13 @@ const install = async () => {
   }
 };
 
-export const installCli = async (): Promise<{installed: boolean}> => {
+export const installCli = async (args: string[]): Promise<{installed: boolean}> => {
   const spinner = ora('Scanning for CLI...').start();
 
+  const verbose = hasArgs({args, options: ['-v', '--verbose']});
+
   try {
-    const cliInstalled = await detectCliAlreadyInstalled();
+    const cliInstalled = await detectCliAlreadyInstalled(verbose);
 
     if (cliInstalled) {
       return {installed: false};
@@ -81,7 +84,7 @@ export const installCli = async (): Promise<{installed: boolean}> => {
     return {installed: false};
   }
 
-  await install();
+  await install(verbose);
 
   return {installed: true};
 };

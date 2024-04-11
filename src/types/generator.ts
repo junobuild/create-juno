@@ -5,6 +5,7 @@ export interface GeneratorInput {
   template: Template;
   gitHubAction: boolean;
   localDevelopment: boolean;
+  verbose?: boolean;
 }
 
 export type ProjectKind = 'website' | 'app';

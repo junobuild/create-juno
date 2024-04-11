@@ -1,6 +1,7 @@
 import {nonNullish} from '@junobuild/utils';
 import {join} from 'node:path';
 import type {GeneratorInput} from '../types/generator';
+import {hasArgs} from '../utils/args.utils';
 import {fileExists} from '../utils/fs.utils';
 import {confirm} from '../utils/prompts.utils';
 import {initArgs} from './args.services';
@@ -51,7 +52,8 @@ export const initNewProject = async (args: string[]): Promise<GeneratorInput> =>
     destination,
     template,
     gitHubAction,
-    localDevelopment
+    localDevelopment,
+    verbose: hasArgs({args, options: ['-v', '--verbose']})
   };
 
   await generateProject(input);

@@ -51,15 +51,15 @@ export const run = async () => {
 
   const {initProject} = await checkForExistingProject();
 
+  const args = process.argv.slice(2);
+
   let input: GeneratorInput | undefined;
 
   if (initProject) {
-    const args = process.argv.slice(2);
-
     input = await initNewProject(args);
   }
 
-  const {installed} = await installCli();
+  const {installed} = await installCli(args);
 
   if (!initProject && !installed) {
     console.log('');
