@@ -35,7 +35,7 @@ export const Table = () => {
   }, [user]);
 
   return (
-    <div className="w-full max-w-2xl mt-8" role="table">
+    <div className="w-full max-w-2xl mt-8 dark:text-white" role="table">
       <div role="row">
         <span role="columnheader" aria-sort="none">
           Entries
