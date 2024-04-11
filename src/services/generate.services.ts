@@ -55,7 +55,8 @@ const populate = async ({gitHubAction, ...rest}: PopulateInput) => {
 type PopulateInputFn = Omit<PopulateInput, 'gitHubAction'>;
 
 const populateFromCDN = async ({where, template, localDevelopment}: PopulateInputFn) => {
-  const templatePath = getRelativeTemplatePath(template);
+  // Windows uses backslash, we cannot build the URL path without replacing those with slash.
+  const templatePath = getRelativeTemplatePath(template).replace(/\\/g, '/');
 
   const {hostname} = new URL(JUNO_CDN_URL);
 
