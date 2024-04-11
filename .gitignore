@@ -32,7 +32,8 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 dist/
-
+target/
 out/
+
 
 templates/**/package-lock.json
