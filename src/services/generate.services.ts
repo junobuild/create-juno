@@ -5,7 +5,7 @@ import {basename, join, parse} from 'node:path';
 import ora from 'ora';
 import {JUNO_CDN_URL} from '../constants/constants';
 import {GITHUB_ACTION_DEPLOY} from '../templates/github-actions';
-import type {GeneratorInput} from '../types/generator';
+import type {GeneratorInput, PopulateInput} from '../types/generator';
 import {gunzipFile, untarFile, type UntarOutputFile} from '../utils/compress.utils';
 import {downloadFromURL} from '../utils/download.utils';
 import {
@@ -15,18 +15,7 @@ import {
 } from '../utils/fs.utils';
 import {createDirectory, getLocalFiles, type LocalFileDescriptor} from '../utils/populate.utils';
 
-type PopulateInput = {
-  where: string | null;
-} & Omit<GeneratorInput, 'destination'>;
-
-export const generate = async ({destination, ...rest}: GeneratorInput) => {
-  await populate({
-    where: ['.', ''].includes(destination) ? null : destination,
-    ...rest
-  });
-};
-
-const populate = async ({gitHubAction, ...rest}: PopulateInput) => {
+export const generate = async ({gitHubAction, ...rest}: PopulateInput) => {
   const spinner = ora(`Creating project...`).start();
 
   try {

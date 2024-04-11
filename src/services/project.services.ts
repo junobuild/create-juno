@@ -23,6 +23,17 @@ export const checkForExistingProject = async (): Promise<{initProject: boolean}>
   return {initProject};
 };
 
+const generateProject = async ({destination, ...rest}: GeneratorInput) => {
+  const input = {
+    where: ['.', ''].includes(destination) ? null : destination,
+    ...rest
+  };
+
+  await generate(input);
+
+  await dependencies(input);
+};
+
 export const initNewProject = async (args: string[]): Promise<GeneratorInput> => {
   const userInputs = initArgs(args);
 
@@ -43,9 +54,7 @@ export const initNewProject = async (args: string[]): Promise<GeneratorInput> =>
     localDevelopment
   };
 
-  await generate(input);
-
-  await dependencies();
+  await generateProject(input);
 
   return input;
 };
