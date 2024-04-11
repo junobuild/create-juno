@@ -1,10 +1,11 @@
 import {isNullish, nonNullish} from '@junobuild/utils';
-import {cyan, green, grey, magenta, red, yellow} from 'kleur';
+import {cyan, green, grey, magenta, red} from 'kleur';
 import {version} from '../package.json';
 import {installCli} from './services/cli.services';
 import {checkForExistingProject, initNewProject} from './services/project.services';
 import type {GeneratorInput} from './types/generator';
 import {checkNodeVersion} from './utils/env.utils';
+import {whichPMRuns} from './utils/pm.utils';
 
 const JUNO_LOGO = `  __  __ __  __  _  ____ 
 __) ||  |  ||  \\| |/    \\
@@ -18,20 +19,28 @@ Welcome 👋
 const outro = ({input: {destination, localDevelopment}}: {input: GeneratorInput}) => {
   const emptyDestination = isNullish(destination) || destination === '';
 
-  const startDevServer = `Run ${cyan('npm run dev')} to start your frontend dev server (CTRL+C to stop)`;
+  const pm = whichPMRuns();
 
-  const nonEmptyDestinationNext = `1. Enter your project directory using ${cyan(`cd ${destination}`)}
-2. ${startDevServer}`;
+  const enterYourProjectDirectory = `Enter your project directory by running ${cyan(`cd ${destination}`)}`;
+  const startDevServer = `Run ${cyan(`${pm} run dev`)} to start your frontend dev server (CTRL+C to stop)`;
+  const runJunoInit = `Connect your satellite to the project by executing ${cyan('juno init')}`;
+  const runJunoDevStart = `In another terminal, run ${cyan('juno dev start')} to quickstart the local development emulator`;
 
-  const localDev = `In another terminal, run ${yellow('juno dev start')} to quickstart the local development emulator`;
+  const runs = (index: number): string =>
+    localDevelopment
+      ? `${index}. ${startDevServer}
+${index + 1}. ${runJunoDevStart}`
+      : `${index}. ${runJunoInit}
+${index + 1}. ${startDevServer}`;
 
-  const mainnetDev = `To connect your satellite with the project, run ${yellow('juno init')}`;
+  const commands = emptyDestination
+    ? runs(1)
+    : `1. ${enterYourProjectDirectory}
+${runs(2)}`;
 
   console.log(`\n✅ ${green('Project initialized.')} Ready to explore !
 
-${emptyDestination ? startDevServer : nonEmptyDestinationNext}
-
-• ${localDevelopment ? localDev : mainnetDev}
+${commands}
 
 Stuck? Join us at ${magenta('https://discord.gg/wHZ57Z2RAG')}
 
