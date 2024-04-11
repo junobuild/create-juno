@@ -21,7 +21,7 @@ export const whichPMRuns = (): PM => {
     case 'bun':
       return 'bun';
     default:
-      return npm();
+      return "npm";
   }
 };
 
