@@ -1,6 +1,6 @@
 import {isNullish} from '@junobuild/utils';
 
-export type PM = 'npm' | 'yarn' | 'pnpm' | 'bun';
+export type PM = 'npm' | 'npm.cmd' | 'yarn' | 'pnpm' | 'bun';
 
 export const whichPMRuns = (): PM => {
   const {
@@ -21,7 +21,7 @@ export const whichPMRuns = (): PM => {
     case 'bun':
       return 'bun';
     default:
-      return 'npm';
+      return npm();
   }
 };
 
@@ -37,3 +37,6 @@ const pmFromUserAgent = (userAgent: string): {name: string; version: string} => 
     version: pmSpec.substring(separatorPos + 1)
   };
 };
+
+// Windows requires npm.cmd
+const npm = (): 'npm' | 'npm.cmd' => (/^win/.test(process.platform) ? 'npm.cmd' : 'npm');

@@ -8,7 +8,7 @@ const detectCliAlreadyInstalled = async (): Promise<boolean> => {
   const pm = whichPMRuns();
 
   // Bun does not support list. For simplicity reason, we return false given that next question is "just" asking if developer want to install the cli.
-  if (!['npm', 'pnpm', 'yarn'].includes(pm)) {
+  if (!['npm', 'npm.cmd', 'pnpm', 'yarn'].includes(pm)) {
     return false;
   }
 
