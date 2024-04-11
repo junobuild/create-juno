@@ -22,6 +22,8 @@ export const dependencies = async ({where}: PopulateInput) => {
       ...(nonNullish(where) && where !== '' ? ['--prefix', where ?? ''] : [])
     ];
 
+    console.log(pm, args);
+
     await spawn({
       command: pm,
       args,
