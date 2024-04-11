@@ -55,9 +55,8 @@ const populate = async ({gitHubAction, ...rest}: PopulateInput) => {
 type PopulateInputFn = Omit<PopulateInput, 'gitHubAction'>;
 
 const populateFromCDN = async ({where, template, localDevelopment}: PopulateInputFn) => {
+  // Windows uses backslash, we cannot build the URL path without replacing those with slash.
   const templatePath = getRelativeTemplatePath(template).replace(/\\/g, '/');
-
-  console.log("DEBUG ----> ", templatePath);
 
   const {hostname} = new URL(JUNO_CDN_URL);
 
@@ -68,11 +67,6 @@ const populateFromCDN = async ({where, template, localDevelopment}: PopulateInpu
       'Accept-Encoding': 'gzip, deflate, br'
     }
   });
-
-  console.log("DEBUG ----> ", buffer);
-
-  // TODO: just for test
-  await writeFile(join(process.cwd(), `${template.key}-${new Date().getTime()}.tar.gz`), buffer);
 
   const uncompressedBuffer = await gunzipFile({source: buffer});
 
