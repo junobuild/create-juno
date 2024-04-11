@@ -17,17 +17,11 @@ export const dependencies = async ({where}: PopulateInput) => {
   try {
     const pm = whichPMRuns();
 
-    const args = [
-      'install',
-      ...(nonNullish(where) && where !== '' ? ['--prefix', where ?? ''] : [])
-    ];
-
-    console.log(pm, args);
-
     await spawn({
       command: pm,
-      args,
-      silentOut: true
+      args: ['install'],
+      silentOut: true,
+      ...(nonNullish(where) && where !== '' && {cwd: where})
     });
   } finally {
     spinner.stop();
