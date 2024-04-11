@@ -9,11 +9,19 @@ export const downloadFromURL = async (url: string | RequestOptions): Promise<Buf
         await downloadFromURL(res.headers.location!).then(resolve, reject);
       }
 
+      const expectedLength = res.headers['content-length'];
+
       const data: any[] = [];
 
       res.on('data', (chunk) => data.push(chunk));
       res.on('end', () => {
-        resolve(Buffer.concat(data));
+        const buffer = Buffer.concat(data);
+
+        if(expectedLength && buffer.length.toString() !== expectedLength) {
+          reject(new Error('Downloaded data size does not match the expected data size.'));
+        } else {
+          resolve(buffer);
+        }
       });
       res.on('error', reject);
     });
