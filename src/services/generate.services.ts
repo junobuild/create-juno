@@ -150,15 +150,19 @@ const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
   const config = join(
     process.cwd(),
     where ?? '',
-    template.framework === 'Astro' ? 'astro.config.mjs' : 'next.config.mjs'
+    template.framework === 'Astro'
+      ? 'astro.config.mjs'
+      : template.framework === 'React'
+        ? 'vite.config.js'
+        : 'next.config.mjs'
   );
 
   const data = await readFile(config, 'utf8');
 
   const regex =
-    template.framework === 'Astro'
-      ? /{\s*container:\s*true\s*}/g
-      : /{\s*juno:\s*{\s*container:\s*true\s*}\s*}/g;
+    template.framework === 'Next.js'
+      ? /{\s*juno:\s*{\s*container:\s*true\s*}\s*}/g
+      : /{\s*container:\s*true\s*}/g;
 
   const result = data.replace(regex, '');
 

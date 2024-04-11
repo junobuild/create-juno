@@ -22,5 +22,13 @@ export const TEMPLATES: Template[] = [
     description:
       'Begin with an example app featuring authentication, document storage, and image handling',
     kind: 'app'
+  },
+  {
+    framework: `React`,
+    key: `react-example`,
+    type: 'Example',
+    description:
+      'Begin with an example app featuring authentication, document storage, and image handling',
+    kind: 'app'
   }
 ];
