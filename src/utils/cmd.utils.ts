@@ -20,7 +20,7 @@ export const spawn = async ({
   silentErrors?: boolean;
 }): Promise<number | null> => {
   return await new Promise<number | null>((resolve, reject) => {
-    const process: ChildProcessWithoutNullStreams = spawnCommand(command, args);
+    const process: ChildProcessWithoutNullStreams = spawnCommand(command, args, { shell: true });
 
     process.stdout.on('data', (data) => {
       if (stdout !== null && stdout !== undefined) {
