@@ -57,6 +57,8 @@ type PopulateInputFn = Omit<PopulateInput, 'gitHubAction'>;
 const populateFromCDN = async ({where, template, localDevelopment}: PopulateInputFn) => {
   const templatePath = getRelativeTemplatePath(template);
 
+  console.log("DEBUG ----> ", templatePath);
+
   const {hostname} = new URL(JUNO_CDN_URL);
 
   const buffer = await downloadFromURL({
@@ -66,6 +68,8 @@ const populateFromCDN = async ({where, template, localDevelopment}: PopulateInpu
       'Accept-Encoding': 'gzip, deflate, br'
     }
   });
+
+  console.log("DEBUG ----> ", buffer);
 
   const uncompressedBuffer = await gunzipFile({source: buffer});
 
