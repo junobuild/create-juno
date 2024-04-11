@@ -12,19 +12,24 @@ const detectCliAlreadyInstalled = async (): Promise<boolean> => {
     return false;
   }
 
-  const args =
-    pm === 'yarn' ? ['global', 'list', '--depth=0'] : ['list', '--depth', '0', '--global'];
+  try {
+    const args =
+        pm === 'yarn' ? ['global', 'list', '--depth=0'] : ['list', '--depth', '0', '--global'];
 
-  let stdout = '';
+    let stdout = '';
 
-  await spawn({
-    command: pm,
-    args,
-    stdout: (output: string) => (stdout += output),
-    silentOut: true
-  });
+    await spawn({
+      command: pm,
+      args,
+      stdout: (output: string) => (stdout += output),
+      silentOut: true
+    });
 
-  return stdout.includes(CLI_PACKAGE);
+    return stdout.includes(CLI_PACKAGE);
+  } catch (_err: unknown) {
+    // According to our tests, on Windows, npm might just throw an error if there are no global lib installed yet. Therefore, we consider here an error as the CLI not being installed yet.
+    return false;
+  }
 };
 
 const install = async () => {
