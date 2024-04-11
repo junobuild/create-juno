@@ -65,7 +65,7 @@ const populateFromCDN = async ({where, template, localDevelopment}: PopulateInpu
     hostname,
     path: `/${templatePath}.tar.gz`,
     headers: {
-      'Accept-Encoding': 'gzip, deflate, br'
+      'Accept-Encoding': 'identity'
     }
   });
 
