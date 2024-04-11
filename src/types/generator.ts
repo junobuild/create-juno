@@ -8,3 +8,7 @@ export interface GeneratorInput {
 }
 
 export type ProjectKind = 'website' | 'app';
+
+export type PopulateInput = {
+  where: string | null;
+} & Omit<GeneratorInput, 'destination'>;

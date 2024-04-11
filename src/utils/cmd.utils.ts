@@ -1,3 +1,4 @@
+import {nonNullish} from '@junobuild/utils';
 import {
   spawn as spawnCommand,
   type ChildProcess,
@@ -11,16 +12,21 @@ export const spawn = async ({
   args,
   stdout,
   silentOut = false,
-  silentErrors = false
+  silentErrors = false,
+  cwd
 }: {
   command: string;
+  cwd?: string;
   args?: readonly string[];
   stdout?: (output: string) => void;
   silentOut?: boolean;
   silentErrors?: boolean;
 }): Promise<number | null> => {
   return await new Promise<number | null>((resolve, reject) => {
-    const process: ChildProcessWithoutNullStreams = spawnCommand(command, args);
+    const process: ChildProcessWithoutNullStreams = spawnCommand(command, args, {
+      shell: true,
+      ...(nonNullish(cwd) && {cwd})
+    });
 
     process.stdout.on('data', (data) => {
       if (stdout !== null && stdout !== undefined) {
