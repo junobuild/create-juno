@@ -5,7 +5,7 @@ import './globals.css';
 const jetBrainsMono = JetBrains_Mono({subsets: ['latin']});
 
 export const metadata: Metadata = {
-  title: 'Juno: Next.js Example',
+  title: 'Juno / Next.js Example',
   description: 'Welcome to my app!'
 };
 
