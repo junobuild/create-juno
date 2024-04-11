@@ -71,6 +71,9 @@ const populateFromCDN = async ({where, template, localDevelopment}: PopulateInpu
 
   console.log("DEBUG ----> ", buffer);
 
+  // TODO: just for test
+  await writeFile(join(process.cwd(), `${template.key}-${new Date().getTime()}.tar.gz`), buffer);
+
   const uncompressedBuffer = await gunzipFile({source: buffer});
 
   const files = await untarFile({source: uncompressedBuffer});
