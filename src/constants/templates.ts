@@ -39,5 +39,12 @@ export const TEMPLATES: Template[] = [
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
+  },
+  {
+    framework: `Vue`,
+    key: `vue-starter`,
+    type: 'Starter',
+    description: APP_DESCRIPTION_STARTER,
+    kind: 'app'
   }
 ];
