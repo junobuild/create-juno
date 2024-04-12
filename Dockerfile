@@ -31,6 +31,12 @@ RUN ./docker/compress react-starter
 FROM deps as build_react_example
 RUN ./docker/compress react-example
 
+FROM deps as build_vue_starter
+RUN ./docker/compress vue-starter
+
+FROM deps as build_vue_example
+RUN ./docker/compress vue-example
+
 FROM scratch AS scratch_astro_starter
 COPY --from=build_astro_starter ./prepare/target/astro-starter.tar.gz /
 
@@ -45,3 +51,9 @@ COPY --from=build_react_starter ./prepare/target/react-starter.tar.gz /
 
 FROM scratch AS scratch_react_example
 COPY --from=build_react_example ./prepare/target/react-example.tar.gz /
+
+FROM scratch AS scratch_vue_starter
+COPY --from=build_vue_starter ./prepare/target/vue-starter.tar.gz /
+
+FROM scratch AS scratch_vue_example
+COPY --from=build_vue_example ./prepare/target/vue-example.tar.gz /

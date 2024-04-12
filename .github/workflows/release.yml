@@ -29,6 +29,12 @@ jobs:
           - name: react-example
             target: scratch_react_example
             out: react-example.tar.gz
+          - name: vue-starter
+            target: scratch_vue_starter
+            out: vue-starter.tar.gz
+          - name: vue-example
+            target: scratch_vue_example
+            out: vue-example.tar.gz
 
     steps:
       - uses: actions/checkout@v4
@@ -92,6 +98,18 @@ jobs:
           name: react-example.tar.gz
           path: .
 
+      - name: Download vue-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: vue-starter.tar.gz
+          path: .
+
+      - name: Download vue-example
+        uses: actions/download-artifact@v4
+        with:
+          name: vue-example.tar.gz
+          path: .
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -102,6 +120,8 @@ jobs:
             ./nextjs-example.tar.gz
             ./react-starter.tar.gz
             ./react-example.tar.gz
+            ./vue-starter.tar.gz
+            ./vue-example.tar.gz
 
   deploy:
     name: Deploy to CDN
@@ -138,6 +158,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: react-example.tar.gz
+          path: out/templates
+
+      - name: Download vue-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: vue-starter.tar.gz
+          path: out/templates
+
+      - name: Download vue-example
+        uses: actions/download-artifact@v4
+        with:
+          name: vue-example.tar.gz
           path: out/templates
 
       - uses: actions/setup-node@v4
