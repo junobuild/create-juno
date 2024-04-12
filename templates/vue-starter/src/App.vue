@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { initJuno } from '@junobuild/core-peer'
+import { initJuno } from '@junobuild/core'
 import Hero from './components/Hero.vue'
 import Article from './components/Article.vue'
 import Background from './components/Background.vue'
