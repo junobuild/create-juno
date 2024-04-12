@@ -1,11 +1,8 @@
-import type {Config} from 'tailwindcss';
-import {fontFamily} from 'tailwindcss/defaultTheme';
+import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config: Config = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
       sans: ['JetBrains Mono', 'sans-serif', ...fontFamily.sans]
@@ -30,5 +27,5 @@ const config: Config = {
       }
     }
   }
-};
-export default config;
+}
+export default config

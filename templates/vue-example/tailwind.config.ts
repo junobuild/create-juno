@@ -1,18 +1,15 @@
-import type {Config} from 'tailwindcss';
-import {fontFamily} from 'tailwindcss/defaultTheme';
+import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config: Config = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
       sans: ['JetBrains Mono', 'sans-serif', ...fontFamily.sans]
     },
     extend: {
       screens: {
-        tall: {raw: '(min-height: 800px)'}
+        tall: { raw: '(min-height: 800px)' }
       },
       animation: {
         fade: 'fadeIn .25s ease-in-out'
@@ -20,8 +17,8 @@ const config: Config = {
 
       keyframes: {
         fadeIn: {
-          from: {opacity: '0'},
-          to: {opacity: '1'}
+          from: { opacity: '0' },
+          to: { opacity: '1' }
         }
       }
     },
@@ -45,5 +42,5 @@ const config: Config = {
       }
     }
   }
-};
-export default config;
+}
+export default config

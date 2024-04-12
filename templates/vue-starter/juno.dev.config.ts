@@ -1,4 +1,4 @@
-import {defineDevConfig} from '@junobuild/config';
+import { defineDevConfig } from '@junobuild/config'
 
 export default defineDevConfig(() => ({
   satellite: {
@@ -23,4 +23,4 @@ export default defineDevConfig(() => ({
       ]
     }
   }
-}));
+}))
