@@ -8,6 +8,6 @@ export interface Template {
   kind: ProjectKind;
 }
 
-export type TemplateFramework = 'Astro' | 'Next.js' | 'React' | 'Vue';
+export type TemplateFramework = 'Angular' | 'Astro' | 'Next.js' | 'React' | 'Vue';
 
 export type TemplateType = 'Starter' | 'Example';

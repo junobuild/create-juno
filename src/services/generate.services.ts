@@ -147,6 +147,11 @@ const updatePackageJson = async ({where, template}: PopulateInputFn) => {
 };
 
 const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
+  // We do not provide plugins for Angular.
+  if (template.framework === 'Angular') {
+    return;
+  }
+
   const config = join(
     process.cwd(),
     where ?? '',
