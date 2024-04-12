@@ -6,7 +6,7 @@
       src="/juno_illustration.svg"
       role="presentation"
       loading="lazy"
-      aria-label="An astronaut floating in space around planet Juno orbited by satellites, stars in the background."
+      alt="An astronaut floating in space around planet Juno orbited by satellites, stars in the background."
     />
   </div>
 </template>
