@@ -12,7 +12,7 @@ export const dependencies = async ({where, verbose}: PopulateInput) => {
     return;
   }
 
-  const spinner = ora(`Installing dependencies...`).start();
+  const spinner = ora(`Installing dependencies (this may take a minute or so 🤖)...`).start();
 
   try {
     const pm = whichPMRuns();
