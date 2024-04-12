@@ -37,6 +37,12 @@ RUN ./docker/compress vue-starter
 FROM deps as build_vue_example
 RUN ./docker/compress vue-example
 
+FROM deps as build_angular_starter
+RUN ./docker/compress angular-starter
+
+FROM deps as build_angular_example
+RUN ./docker/compress angular-example
+
 FROM scratch AS scratch_astro_starter
 COPY --from=build_astro_starter ./prepare/target/astro-starter.tar.gz /
 
@@ -57,3 +63,9 @@ COPY --from=build_vue_starter ./prepare/target/vue-starter.tar.gz /
 
 FROM scratch AS scratch_vue_example
 COPY --from=build_vue_example ./prepare/target/vue-example.tar.gz /
+
+FROM scratch AS scratch_angular_starter
+COPY --from=build_angular_starter ./prepare/target/angular-starter.tar.gz /
+
+FROM scratch AS scratch_angular_example
+COPY --from=build_angular_example ./prepare/target/angular-example.tar.gz /

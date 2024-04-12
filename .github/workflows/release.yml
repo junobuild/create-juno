@@ -35,6 +35,12 @@ jobs:
           - name: vue-example
             target: scratch_vue_example
             out: vue-example.tar.gz
+          - name: angular-starter
+            target: scratch_angular_starter
+            out: angular-starter.tar.gz
+          - name: angular-example
+            target: scratch_angular_example
+            out: angular-example.tar.gz
 
     steps:
       - uses: actions/checkout@v4
@@ -110,6 +116,18 @@ jobs:
           name: vue-example.tar.gz
           path: .
 
+      - name: Download angular-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-starter.tar.gz
+          path: .
+
+      - name: Download angular-example
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-example.tar.gz
+          path: .
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -122,6 +140,8 @@ jobs:
             ./react-example.tar.gz
             ./vue-starter.tar.gz
             ./vue-example.tar.gz
+            ./angular-starter.tar.gz
+            ./angular-example.tar.gz
 
   deploy:
     name: Deploy to CDN
@@ -170,6 +190,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: vue-example.tar.gz
+          path: out/templates
+
+      - name: Download angular-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-starter.tar.gz
+          path: out/templates
+
+      - name: Download angular-example
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-example.tar.gz
           path: out/templates
 
       - uses: actions/setup-node@v4
