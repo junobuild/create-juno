@@ -84,7 +84,7 @@ export const promptProjectKind = async (): Promise<ProjectKind> => {
     message: 'What kind of project are you starting?',
     choices: [
       {
-        title: `Static website`,
+        title: `Static website and blog`,
         value: `website`,
         description: 'Ideal for blogs, portfolios, and informational websites'
       },
