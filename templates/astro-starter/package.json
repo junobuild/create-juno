@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@junobuild/config": "^0.0.5",
-    "@junobuild/vite-plugin": "^0.0.10",
+    "@junobuild/vite-plugin": "^0.0.11",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0"
   }
