@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {ReactNode} from 'react';
 
 interface ButtonProps {
@@ -16,10 +15,4 @@ export const Button = ({children, onClick, disabled = false}: ButtonProps) => {
       {children}
     </button>
   );
-};
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool
 };
