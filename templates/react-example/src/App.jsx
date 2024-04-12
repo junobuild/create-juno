@@ -1,10 +1,10 @@
 import {initJuno} from '@junobuild/core';
 import {useEffect} from 'react';
-import {Auth} from './Auth';
-import {Background} from './Background';
-import {Footer} from './Footer';
-import {Modal} from './Modal';
-import {Table} from './Table';
+import {Auth} from './components/Auth';
+import {Background} from './components/Background';
+import {Footer} from './components/Footer';
+import {Modal} from './components/Modal';
+import {Table} from './components/Table';
 
 function App() {
   useEffect(() => {
