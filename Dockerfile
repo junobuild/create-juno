@@ -25,6 +25,12 @@ RUN ./docker/compress nextjs-starter
 FROM deps as build_nextjs_example
 RUN ./docker/compress nextjs-example
 
+FROM deps as build_react_starter
+RUN ./docker/compress react-starter
+
+FROM deps as build_react_example
+RUN ./docker/compress react-example
+
 FROM scratch AS scratch_astro_starter
 COPY --from=build_astro_starter ./prepare/target/astro-starter.tar.gz /
 
@@ -33,3 +39,9 @@ COPY --from=build_nextjs_starter ./prepare/target/nextjs-starter.tar.gz /
 
 FROM scratch AS scratch_nextjs_example
 COPY --from=build_nextjs_example ./prepare/target/nextjs-example.tar.gz /
+
+FROM scratch AS scratch_react_starter
+COPY --from=build_react_starter ./prepare/target/react-starter.tar.gz /
+
+FROM scratch AS scratch_react_example
+COPY --from=build_react_example ./prepare/target/react-example.tar.gz /

@@ -23,6 +23,12 @@ jobs:
           - name: nextjs-example
             target: scratch_nextjs_example
             out: nextjs-example.tar.gz
+          - name: react-starter
+            target: scratch_react_starter
+            out: react-starter.tar.gz
+          - name: react-example
+            target: scratch_react_example
+            out: react-example.tar.gz
 
     steps:
       - uses: actions/checkout@v4
@@ -74,6 +80,18 @@ jobs:
           name: nextjs-example.tar.gz
           path: .
 
+      - name: Download react-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: react-starter.tar.gz
+          path: .
+
+      - name: Download react-example
+        uses: actions/download-artifact@v4
+        with:
+          name: react-example.tar.gz
+          path: .
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -82,6 +100,8 @@ jobs:
             ./astro-starter.tar.gz
             ./nextjs-starter.tar.gz
             ./nextjs-example.tar.gz
+            ./react-starter.tar.gz
+            ./react-example.tar.gz
 
   deploy:
     name: Deploy to CDN
@@ -106,6 +126,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: nextjs-example.tar.gz
+          path: out/templates
+
+      - name: Download react-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: react-starter.tar.gz
+          path: out/templates
+
+      - name: Download react-example
+        uses: actions/download-artifact@v4
+        with:
+          name: react-example.tar.gz
           path: out/templates
 
       - uses: actions/setup-node@v4
