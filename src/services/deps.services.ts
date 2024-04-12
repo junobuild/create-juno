@@ -6,7 +6,7 @@ import {whichPMRuns} from '../utils/pm.utils';
 import {confirm} from '../utils/prompts.utils';
 
 export const dependencies = async ({where, verbose}: PopulateInput) => {
-  const install = await confirm('Install dependencies?');
+  const install = await confirm("Install your project's dependencies now?");
 
   if (!install) {
     return;
