@@ -1,4 +1,4 @@
-# Juno: Next.js Starter Kit
+# Juno: Next.js Example
 
 ```sh
 npm create juno@latest -- --template nextjs-starter
@@ -20,12 +20,13 @@ An example developed for [Juno](https://juno.build) using [Next.js](https://next
 
 All commands are run from the root of the project, from a terminal:
 
-| Command         | Action                                      |
-| :-------------- | :------------------------------------------ |
-| `npm install`   | Installs dependencies                       |
-| `npm run dev`   | Starts local dev server at `localhost:3000` |
-| `npm run build` | Build your production site to `./out/`      |
-| `juno deploy`   | Deploy your project to a Satellite          |
+| Command          | Action                                                      |
+|:-----------------|:------------------------------------------------------------|
+| `npm install`    | Installs dependencies                                       |
+| `npm run dev`    | Starts frontend dev server at `localhost:3000`              |
+| `juno dev start` | Quickstart the local development emulator (requires Docker) |
+| `npm run build`  | Build your production site to `./out/`                      |
+| `juno deploy`    | Deploy your project to a Satellite                          |
 
 ## 🚀 Launch
 
