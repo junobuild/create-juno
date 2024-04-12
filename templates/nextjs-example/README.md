@@ -21,7 +21,7 @@ An example developed for [Juno](https://juno.build) using [Next.js](https://next
 All commands are run from the root of the project, from a terminal:
 
 | Command          | Action                                                      |
-|:-----------------|:------------------------------------------------------------|
+| :--------------- | :---------------------------------------------------------- |
 | `npm install`    | Installs dependencies                                       |
 | `npm run dev`    | Starts frontend dev server at `localhost:3000`              |
 | `juno dev start` | Quickstart the local development emulator (requires Docker) |
