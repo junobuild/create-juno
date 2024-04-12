@@ -1,7 +1,7 @@
 # Juno: Vue Example
 
 ```sh
-npm create juno@latest -- --template react-starter
+npm create juno@latest -- --template vue-starter
 ```
 
 > 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
