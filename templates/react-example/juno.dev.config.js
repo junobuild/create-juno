@@ -22,7 +22,6 @@ export default defineDevConfig(() => ({
           mutablePermissions: true
         }
       ]
-    },
-    controllers: []
+    }
   }
 }));

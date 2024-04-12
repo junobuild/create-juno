@@ -6,7 +6,6 @@ export default defineDevConfig(() => ({
     collections: {
       db: [],
       storage: [],
-    },
-    controllers: [],
+    }
   },
 }));
