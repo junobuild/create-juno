@@ -1,39 +1,33 @@
-# vue-starter
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+# Juno: Vue Starter Kit
 
 ```sh
-npm install
+npm create juno@latest -- --template vue-starter
 ```
 
-### Compile and Hot-Reload for Development
+> 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
 
-```sh
-npm run dev
-```
+![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
 
-### Type-Check, Compile and Minify for Production
+A starter kit developed for [Juno](https://juno.build) using [Vue](https://vuejs.org/).
 
-```sh
-npm run build
-```
+## ✨ Links & Resources
 
-### Lint with [ESLint](https://eslint.org/)
+- Looking to get started with Juno? Check out the [documentation](https://juno.build).
+- Have a look at [Vue](https://vuejs.org/) for question regarding the templates.
+- Got questions, comments or feedback? [Join our discord](https://discord.gg/wHZ57Z2RAG) or [OpenChat](https://oc.app/community/vxgpi-nqaaa-aaaar-ar4lq-cai/?ref=xanzv-uaaaa-aaaaf-aneba-cai).
 
-```sh
-npm run lint
-```
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command          | Action                                                      |
+|:-----------------|:------------------------------------------------------------|
+| `npm install`    | Installs dependencies                                       |
+| `npm run dev`    | Starts frontend dev server at `localhost:5173`              |
+| `juno dev start` | Quickstart the local development emulator (requires Docker) |
+| `npm run build`  | Build your production site to `./dist/`                     |
+| `juno deploy`    | Deploy your project to a Satellite                          |
+
+## 🚀 Launch
+
+Explore this [guide](https://juno.build/docs/add-juno-to-an-app/create-a-satellite) to launch your Satellite into orbit via Juno's [administration console](https://console.juno.build).
