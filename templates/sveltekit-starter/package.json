@@ -4,12 +4,14 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "tsc --noEmit && vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"postinstall:copy-auth": "node -e \"require('fs').cpSync('node_modules/@junobuild/core-peer/dist/workers/', './static/workers', {recursive: true});\"",
+		"postinstall": "npm run postinstall:copy-auth"
 	},
 	"devDependencies": {
 		"@junobuild/config": "^0.0.5",

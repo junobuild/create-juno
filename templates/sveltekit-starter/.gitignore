@@ -1,4 +1,12 @@
+# Various IDEs and Editors
+.vscode/
+.idea/
+**/*~
+
+# Mac OSX temporary files
 .DS_Store
+**/.DS_Store
+
 node_modules
 /build
 /.svelte-kit
@@ -8,3 +16,5 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+static/workers
