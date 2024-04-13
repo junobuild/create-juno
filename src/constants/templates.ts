@@ -41,6 +41,20 @@ export const TEMPLATES: Template[] = [
     kind: 'app'
   },
   {
+    framework: `SvelteKit`,
+    key: `sveltekit-starter`,
+    type: 'Starter',
+    description: APP_DESCRIPTION_STARTER,
+    kind: 'app'
+  },
+  {
+    framework: `SvelteKit`,
+    key: `sveltekit-example`,
+    type: 'Example',
+    description: APP_DESCRIPTION_EXAMPLE,
+    kind: 'app'
+  },
+  {
     framework: `Vue`,
     key: `vue-starter`,
     type: 'Starter',

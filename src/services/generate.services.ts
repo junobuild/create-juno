@@ -157,9 +157,9 @@ const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
     where ?? '',
     template.framework === 'Astro'
       ? 'astro.config.mjs'
-      : ['React', 'Vue'].includes(template.framework)
-        ? 'vite.config.js'
-        : 'next.config.mjs'
+      : template.framework === 'Next.js'
+        ? 'next.config.mjs'
+        : 'vite.config.js'
   );
 
   const data = await readFile(config, 'utf8');
