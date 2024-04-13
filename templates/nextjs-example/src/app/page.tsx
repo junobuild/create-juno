@@ -10,11 +10,16 @@ import {useEffect} from 'react';
 
 export default function Home() {
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     (async () =>
-      await initJuno({
-        satelliteId: process.env.NEXT_PUBLIC_SATELLITE_ID as string,
-        container: process.env.NEXT_PUBLIC_CONTAINER
-      }))();
+        await initJuno({
+          // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+          satelliteId: process.env.NEXT_PUBLIC_SATELLITE_ID as string,
+          container: process.env.NEXT_PUBLIC_CONTAINER,
+          workers: {
+            auth: true
+          }
+        }))();
   }, []);
 
   return (

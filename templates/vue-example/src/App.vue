@@ -11,7 +11,10 @@ onMounted(
   async () =>
     await initJuno({
       satelliteId: import.meta.env.VITE_SATELLITE_ID,
-      container: import.meta.env.VITE_CONTAINER
+      container: import.meta.env.VITE_CONTAINER,
+      workers: {
+        auth: true
+      }
     })
 )
 </script>

@@ -16,7 +16,10 @@ export class AppComponent {
   async ngOnInit() {
     await initJuno({
       satelliteId: environment.satelliteId,
-      container: environment.container
+      container: environment.container,
+      workers: {
+        auth: './assets/workers/auth.worker.js'
+      }
     });
   }
 }
