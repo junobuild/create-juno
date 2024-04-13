@@ -20,5 +20,6 @@ export const Article = ({href, ariaLabel, children, title}) => {
 Article.propTypes = {
   href: PropTypes.string.isRequired,
   ariaLabel: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };

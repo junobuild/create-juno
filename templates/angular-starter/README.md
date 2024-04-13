@@ -21,7 +21,7 @@ A starter kit developed for [Juno](https://juno.build) using [Angular](https://a
 All commands are run from the root of the project, from a terminal:
 
 | Command          | Action                                                         |
-| :--------------- |:---------------------------------------------------------------|
+| :--------------- | :------------------------------------------------------------- |
 | `npm install`    | Installs dependencies                                          |
 | `npm run start`  | Starts frontend dev server at `localhost:4200`                 |
 | `juno dev start` | Quickstart the local development emulator (requires Docker)    |

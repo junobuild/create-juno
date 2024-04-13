@@ -15,5 +15,6 @@ export const Hero = ({href, ariaLabel, children}) => {
 
 Hero.propTypes = {
   href: PropTypes.string.isRequired,
-  ariaLabel: PropTypes.string.isRequired
+  ariaLabel: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };

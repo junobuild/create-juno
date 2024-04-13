@@ -1,6 +1,6 @@
 import {AuthContext} from '@/components/auth';
 import {Delete} from '@/components/delete';
-import {Note, NoteData} from '@/types/note';
+import type {Note, NoteData} from '@/types/note';
 import {listDocs} from '@junobuild/core-peer';
 import {useContext, useEffect, useState} from 'react';
 
@@ -31,6 +31,7 @@ export const Table = () => {
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     (async () => await list())();
   }, [user]);
 

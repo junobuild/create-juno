@@ -20,7 +20,7 @@ export const Modal = () => {
   }, [showModal, inputText, user]);
 
   const reload = () => {
-    let event = new Event('reload');
+    const event = new CustomEvent('reload');
     window.dispatchEvent(event);
   };
 

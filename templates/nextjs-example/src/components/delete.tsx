@@ -1,5 +1,5 @@
 import {Backdrop} from '@/components/backdrop';
-import {Note} from '@/types/note';
+import type {Note} from '@/types/note';
 import {deleteAsset, deleteDoc} from '@junobuild/core-peer';
 import {useState} from 'react';
 

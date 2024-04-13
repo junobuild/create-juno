@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
+import {initJuno} from '@junobuild/core';
+import {environment} from '../environments/environment';
 import {HomeComponent} from './components/home/home.component';
-import {initJuno} from "@junobuild/core";
-import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
