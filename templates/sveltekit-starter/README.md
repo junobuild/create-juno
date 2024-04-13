@@ -1,4 +1,4 @@
-# Juno: SvelteKit Example
+# Juno: SvelteKit Starter Kit
 
 ```sh
 npm create juno@latest -- --template sveltekit-starter
@@ -6,9 +6,9 @@ npm create juno@latest -- --template sveltekit-starter
 
 > 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
 
-![A screenshot of the example](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-example.png)
+![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
 
-An example developed for [Juno](https://juno.build) using [SvelteKit](https://kit.svelte.dev/).
+A starter kit developed for [Juno](https://juno.build) using [SvelteKit](https://kit.svelte.dev/).
 
 ## ✨ Links & Resources
 

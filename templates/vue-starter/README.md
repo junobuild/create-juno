@@ -1,4 +1,4 @@
-# Juno: Vue Example
+# Juno: Vue Starter Kit
 
 ```sh
 npm create juno@latest -- --template vue-starter
@@ -6,9 +6,9 @@ npm create juno@latest -- --template vue-starter
 
 > 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
 
-![A screenshot of the example](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-example.png)
+![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
 
-An example developed for [Juno](https://juno.build) using [Vue](https://vuejs.org/).
+A starter kit developed for [Juno](https://juno.build) using [Vue](https://vuejs.org/).
 
 ## ✨ Links & Resources
 
