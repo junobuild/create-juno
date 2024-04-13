@@ -43,6 +43,12 @@ RUN ./docker/compress angular-starter
 FROM deps as build_angular_example
 RUN ./docker/compress angular-example
 
+FROM deps as build_sveltekit_starter
+RUN ./docker/compress sveltekit-starter
+
+FROM deps as build_sveltekit_example
+RUN ./docker/compress sveltekit-example
+
 FROM scratch AS scratch_astro_starter
 COPY --from=build_astro_starter ./prepare/target/astro-starter.tar.gz /
 
@@ -69,3 +75,9 @@ COPY --from=build_angular_starter ./prepare/target/angular-starter.tar.gz /
 
 FROM scratch AS scratch_angular_example
 COPY --from=build_angular_example ./prepare/target/angular-example.tar.gz /
+
+FROM scratch AS scratch_sveltekit_starter
+COPY --from=build_sveltekit_starter ./prepare/target/sveltekit-starter.tar.gz /
+
+FROM scratch AS scratch_sveltekit_example
+COPY --from=build_sveltekit_example ./prepare/target/sveltekit-example.tar.gz /

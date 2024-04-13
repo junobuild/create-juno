@@ -41,6 +41,12 @@ jobs:
           - name: angular-example
             target: scratch_angular_example
             out: angular-example.tar.gz
+          - name: sveltekit-starter
+            target: scratch_sveltekit_starter
+            out: sveltekit-starter.tar.gz
+          - name: sveltekit-example
+            target: scratch_sveltekit_example
+            out: sveltekit-example.tar.gz
 
     steps:
       - uses: actions/checkout@v4
@@ -128,6 +134,18 @@ jobs:
           name: angular-example.tar.gz
           path: .
 
+      - name: Download sveltekit-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: sveltekit-starter.tar.gz
+          path: .
+
+      - name: Download sveltekit-example
+        uses: actions/download-artifact@v4
+        with:
+          name: sveltekit-example.tar.gz
+          path: .
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -142,6 +160,8 @@ jobs:
             ./vue-example.tar.gz
             ./angular-starter.tar.gz
             ./angular-example.tar.gz
+            ./sveltekit-starter.tar.gz
+            ./sveltekit-example.tar.gz
 
   deploy:
     name: Deploy to CDN
@@ -202,6 +222,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: angular-example.tar.gz
+          path: out/templates
+
+      - name: Download sveltekit-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: sveltekit-starter.tar.gz
+          path: out/templates
+
+      - name: Download sveltekit-example
+        uses: actions/download-artifact@v4
+        with:
+          name: sveltekit-example.tar.gz
           path: out/templates
 
       - uses: actions/setup-node@v4
