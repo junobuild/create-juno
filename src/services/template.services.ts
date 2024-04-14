@@ -1,7 +1,7 @@
+import {nextArg} from '@junobuild/cli-tools';
 import {isNullish} from '@junobuild/utils';
 import {TEMPLATES} from '../constants/templates';
 import type {Template} from '../types/template';
-import {nextArg} from '../utils/args.utils';
 import {promptProjectKind, promptTemplate} from './prompt.services';
 
 export const argsTemplate = (args: string[]): Template | undefined => {

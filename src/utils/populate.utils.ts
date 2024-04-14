@@ -1,6 +1,6 @@
+import {files} from '@junobuild/cli-tools';
 import {mkdir} from 'node:fs/promises';
 import {relative} from 'node:path';
-import {files} from './fs.utils';
 
 export interface LocalFileDescriptor {
   relativePath: string;

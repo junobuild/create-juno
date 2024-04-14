@@ -1,3 +1,4 @@
+import {downloadFromURL, gunzipFile} from '@junobuild/cli-tools';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
 import {writeFile} from 'node:fs/promises';
@@ -6,8 +7,7 @@ import ora from 'ora';
 import {JUNO_CDN_URL} from '../constants/constants';
 import {GITHUB_ACTION_DEPLOY} from '../templates/github-actions';
 import type {PopulateInput} from '../types/generator';
-import {gunzipFile, untarFile, type UntarOutputFile} from '../utils/compress.utils';
-import {downloadFromURL} from '../utils/download.utils';
+import {untarFile, type UntarOutputFile} from '../utils/compress.utils';
 import {
   createParentFolders,
   getLocalTemplatePath,

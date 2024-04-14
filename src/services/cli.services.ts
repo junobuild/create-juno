@@ -1,9 +1,8 @@
+import {hasArgs, spawn} from '@junobuild/cli-tools';
 import ora from 'ora';
 import {CLI_PACKAGE} from '../constants/constants';
-import {hasArgs} from '../utils/args.utils';
-import {spawn} from '../utils/cmd.utils';
 import {whichPMRuns} from '../utils/pm.utils';
-import {confirm, NEW_CMD_LINE} from '../utils/prompts.utils';
+import {NEW_CMD_LINE, confirm} from '../utils/prompts.utils';
 
 const detectCliAlreadyInstalled = async (verbose: boolean): Promise<boolean> => {
   const pm = whichPMRuns();

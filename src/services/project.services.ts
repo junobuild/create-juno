@@ -1,8 +1,7 @@
+import {fileExists, hasArgs} from '@junobuild/cli-tools';
 import {nonNullish} from '@junobuild/utils';
 import {join} from 'node:path';
 import type {GeneratorInput} from '../types/generator';
-import {hasArgs} from '../utils/args.utils';
-import {fileExists} from '../utils/fs.utils';
 import {confirm} from '../utils/prompts.utils';
 import {initArgs} from './args.services';
 import {dependencies} from './deps.services';
