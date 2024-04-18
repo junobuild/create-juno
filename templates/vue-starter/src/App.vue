@@ -28,7 +28,7 @@ onMounted(
           href="https://juno.build/docs/add-juno-to-an-app/create-a-satellite"
           ariaLabel="Discover how to create a Satellite and deploy your project to production"
         >
-          Not yet in orbit? Launch your Satellite
+          Not yet live? Launch your Satellite
         </Hero>
 
         <Article
