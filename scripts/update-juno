@@ -72,7 +72,7 @@ done
 
 ASTRO=astro-starter
 
-for template in $(echo $ASTRO  "s/,/ /g"); do
+for template in $(echo $ASTRO | "s/,/ /g"); do
   update_astro "$template"
 done
 
