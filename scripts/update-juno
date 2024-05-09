@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+
+function update_angular() {
+  local template=$1
+
+  cd templates/"$template" || exit
+
+  npm rm @junobuild/core && npm i @junobuild/core
+
+  cd ../../ || exit
+}
+
+function update_astro() {
+  local template=$1
+
+  cd templates/"$template" || exit
+
+  npm rm @junobuild/config @junobuild/vite-plugin && npm i @junobuild/config @junobuild/vite-plugin -D
+
+  cd ../../ || exit
+}
+
+function update_next() {
+  local template=$1
+
+  cd templates/"$template" || exit
+
+  npm rm @junobuild/core-peer && npm i @junobuild/core-peer
+  npm rm @junobuild/config @junobuild/nextjs-plugin && npm i @junobuild/config @junobuild/nextjs-plugin -D
+
+  cd ../../ || exit
+}
+
+function update_react() {
+  local template=$1
+
+  cd templates/"$template" || exit
+
+  npm rm @junobuild/core && npm i @junobuild/core
+  npm rm @junobuild/config @junobuild/vite-plugin && npm i @junobuild/config @junobuild/vite-plugin -D
+
+  cd ../../ || exit
+}
+
+function update_svelte() {
+  local template=$1
+
+  cd templates/"$template" || exit
+
+  npm rm @junobuild/core-peer && npm i @junobuild/core-peer
+  npm rm @junobuild/config @junobuild/vite-plugin && npm i @junobuild/config @junobuild/vite-plugin -D
+
+  cd ../../ || exit
+}
+
+function update_vue() {
+  local template=$1
+
+  cd templates/"$template" || exit
+
+  npm rm @junobuild/core && npm i @junobuild/core
+  npm rm @junobuild/config @junobuild/vite-plugin && npm i @junobuild/config @junobuild/vite-plugin -D
+
+  cd ../../ || exit
+}
+
+ANGULAR=angular-example,angular-starter
+
+for template in $(echo $ANGULAR | sed "s/,/ /g"); do
+  update_angular "$template"
+done
+
+ASTRO=astro-starter
+
+for template in $(echo $ASTRO  "s/,/ /g"); do
+  update_astro "$template"
+done
+
+NEXT=nextjs-example,nextjs-starter
+
+for template in $(echo $NEXT | sed "s/,/ /g"); do
+  update_next "$template"
+done
+
+REACT=react-example,react-starter
+
+for template in $(echo $REACT | sed "s/,/ /g"); do
+  update_react "$template"
+done
+
+SVELTE=sveltekit-example,sveltekit-starter
+
+for template in $(echo $SVELTE | sed "s/,/ /g"); do
+  update_svelte "$template"
+done
+
+VUE=vue-example,vue-starter
+
+for template in $(echo $VUE | sed "s/,/ /g"); do
+  update_vue "$template"
+done
