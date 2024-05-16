@@ -8,6 +8,13 @@ export interface Template {
   kind: ProjectKind;
 }
 
-export type TemplateFramework = 'Angular' | 'Astro' | 'Next.js' | 'React' | 'SvelteKit' | 'Vue';
+export type TemplateFramework =
+  | 'Angular'
+  | 'Astro'
+  | 'Next.js'
+  | 'React'
+  | 'SvelteKit'
+  | 'Vue'
+  | 'Vanilla JavaScript';
 
 export type TemplateType = 'Starter' | 'Example';

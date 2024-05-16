@@ -159,7 +159,7 @@ const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
       ? 'astro.config.mjs'
       : template.framework === 'Next.js'
         ? 'next.config.mjs'
-        : template.framework === 'React'
+        : ['React', 'Vanilla JavaScript'].includes(template.framework)
           ? 'vite.config.js'
           : 'vite.config.ts'
   );
