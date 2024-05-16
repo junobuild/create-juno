@@ -1,24 +1,34 @@
-import javascriptLogo from '../public/javascript.svg';
-import viteLogo from '../public/vite.svg';
-import {setupCounter} from './counter.js';
+import {authSubscribe, initJuno} from '@junobuild/core';
+import {renderLogin} from './components/login';
+import {renderLogout} from './components/logout';
 import './style.css';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank" class="text-6xl">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card" class="text-6xl">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="text-6xl">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`;
+/**
+ * Global listener. When the user sign-in or sign-out, we re-render the app.
+ */
+authSubscribe((user) => {
+  const app = document.querySelector('#app');
 
-setupCounter(document.querySelector('#counter'));
+  if (user === null || user === undefined) {
+    renderLogin(app);
+    return;
+  }
+
+  renderLogout(app);
+});
+
+/**
+ * When the app starts, we initialize Juno.
+ * @returns {Promise<void>}
+ */
+const onAppInit = async () => {
+  await initJuno({
+    satelliteId: import.meta.env.VITE_SATELLITE_ID,
+    container: import.meta.env.VITE_CONTAINER,
+    workers: {
+      auth: true
+    }
+  });
+};
+
+document.addEventListener('DOMContentLoaded', onAppInit, {once: true});
