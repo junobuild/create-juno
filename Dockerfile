@@ -49,6 +49,9 @@ RUN ./docker/compress sveltekit-starter
 FROM deps as build_sveltekit_example
 RUN ./docker/compress sveltekit-example
 
+FROM deps as build_vanilla_js_example
+RUN ./docker/compress vanilla-js-example
+
 FROM scratch AS scratch_astro_starter
 COPY --from=build_astro_starter ./prepare/target/astro-starter.tar.gz /
 
@@ -81,3 +84,6 @@ COPY --from=build_sveltekit_starter ./prepare/target/sveltekit-starter.tar.gz /
 
 FROM scratch AS scratch_sveltekit_example
 COPY --from=build_sveltekit_example ./prepare/target/sveltekit-example.tar.gz /
+
+FROM scratch AS scratch_vanilla_js_example
+COPY --from=build_vanilla_js_example ./prepare/target/vanilla-js-example.tar.gz /

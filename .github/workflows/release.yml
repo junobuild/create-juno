@@ -47,6 +47,9 @@ jobs:
           - name: sveltekit-example
             target: scratch_sveltekit_example
             out: sveltekit-example.tar.gz
+          - name: vanilla-js-example
+            target: scratch_vanilla_js_example
+            out: vanilla-js-example.tar.gz
 
     steps:
       - uses: actions/checkout@v4
@@ -146,6 +149,12 @@ jobs:
           name: sveltekit-example.tar.gz
           path: .
 
+      - name: Download vanilla-js-example
+        uses: actions/download-artifact@v4
+        with:
+          name: vanilla-js-example.tar.gz
+          path: .
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -162,6 +171,7 @@ jobs:
             ./angular-example.tar.gz
             ./sveltekit-starter.tar.gz
             ./sveltekit-example.tar.gz
+            ./vanilla-js-example.tar.gz
 
   deploy:
     name: Deploy to CDN
@@ -234,6 +244,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: sveltekit-example.tar.gz
+          path: out/templates
+
+      - name: Download vanilla-js-example
+        uses: actions/download-artifact@v4
+        with:
+          name: vanilla-js-example.tar.gz
           path: out/templates
 
       - uses: actions/setup-node@v4
