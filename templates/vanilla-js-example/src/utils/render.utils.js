@@ -5,9 +5,9 @@
  * @param fn The function to trigger on click.
  */
 export const addEventClick = ({target, selector, fn}) => {
-    const observer = new MutationObserver(() => {
-        observer.disconnect();
-        document.querySelector(selector)?.addEventListener('click', fn, {passive: true});
-    });
-    observer.observe(target, {childList: true, subtree: true});
-}
+  const observer = new MutationObserver(() => {
+    observer.disconnect();
+    document.querySelector(selector)?.addEventListener('click', fn, {passive: true});
+  });
+  observer.observe(target, {childList: true, subtree: true});
+};

@@ -1,6 +1,6 @@
 import {authSubscribe, initJuno} from '@junobuild/core';
+import {renderContent} from './components/content';
 import {renderLogin} from './components/login';
-import {renderLogout} from './components/logout';
 import './style.css';
 
 /**
@@ -14,7 +14,7 @@ authSubscribe((user) => {
     return;
   }
 
-  renderLogout(app);
+  renderContent(app);
 });
 
 /**

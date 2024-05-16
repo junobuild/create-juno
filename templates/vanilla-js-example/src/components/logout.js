@@ -8,7 +8,7 @@ export const renderLogout = (app) => {
     fn: signOut
   });
 
-  app.innerHTML = `<button
+  return `<button
     id="logout"
     type="button"
     class="dark:text-white flex items-center gap-2 mt-24 hover:text-lavender-blue-500 active:text-lavender-blue-400">
