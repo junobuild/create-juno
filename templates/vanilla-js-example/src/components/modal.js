@@ -1,6 +1,6 @@
 import {authSubscribe, setDoc, uploadFile} from '@junobuild/core';
 import {nanoid} from 'nanoid';
-import {addEventClick} from '../utils/render.utils';
+import {addEventClick, reload} from '../utils/utils';
 
 let user;
 authSubscribe((u) => (user = u));
@@ -46,11 +46,6 @@ const submitEntry = async (modal) => {
     });
 
     closeModal(modal);
-
-    const reload = () => {
-      const event = new Event('reload');
-      window.dispatchEvent(event);
-    };
 
     reload();
   } catch (err) {

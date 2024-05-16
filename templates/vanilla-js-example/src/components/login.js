@@ -1,5 +1,5 @@
 import {signIn} from '@junobuild/core';
-import {addEventClick} from '../utils/render.utils';
+import {addEventClick} from '../utils/utils';
 
 export const renderLogin = (app) => {
   addEventClick({

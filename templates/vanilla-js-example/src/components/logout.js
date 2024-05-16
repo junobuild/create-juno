@@ -1,5 +1,5 @@
 import {signOut} from '@junobuild/core';
-import {addEventClick} from '../utils/render.utils';
+import {addEventClick} from '../utils/utils';
 
 export const renderLogout = (app) => {
   addEventClick({

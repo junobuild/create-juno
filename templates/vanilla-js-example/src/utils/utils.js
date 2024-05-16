@@ -11,3 +11,8 @@ export const addEventClick = ({target, selector, fn}) => {
   });
   observer.observe(target, {childList: true, subtree: true});
 };
+
+export const reload = () => {
+  const event = new Event('reload');
+  window.dispatchEvent(event);
+};
