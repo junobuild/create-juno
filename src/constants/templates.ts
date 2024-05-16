@@ -81,5 +81,12 @@ export const TEMPLATES: Template[] = [
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
+  },
+  {
+    framework: `Vanilla JavaScript`,
+    key: `vanilla-js-example`,
+    type: 'Example',
+    description: APP_DESCRIPTION_EXAMPLE,
+    kind: 'app'
   }
 ];
