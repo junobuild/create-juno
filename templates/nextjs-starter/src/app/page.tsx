@@ -4,14 +4,14 @@ import {Article} from '@/components/article';
 import {Background} from '@/components/background';
 import {Footer} from '@/components/footer';
 import {Hero} from '@/components/hero';
-import {initJuno} from '@junobuild/core-peer';
+import {initSatellite} from '@junobuild/core-peer';
 import {useEffect} from 'react';
 
 export default function Home() {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     (async () =>
-      await initJuno({
+      await initSatellite({
         // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
         satelliteId: process.env.NEXT_PUBLIC_SATELLITE_ID as string,
         container: process.env.NEXT_PUBLIC_CONTAINER,

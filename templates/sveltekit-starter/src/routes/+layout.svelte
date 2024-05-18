@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { initJuno } from '@junobuild/core-peer';
+	import { initSatellite } from '@junobuild/core-peer';
 	import Footer from '$lib/components/Footer.svelte';
 	import Background from '$lib/components/Background.svelte';
 	import '../app.css';
 
 	onMount(
 		async () =>
-			await initJuno({
+			await initSatellite({
 				satelliteId: import.meta.env.VITE_SATELLITE_ID,
 				container: import.meta.env.VITE_CONTAINER,
 				workers: {

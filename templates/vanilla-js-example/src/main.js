@@ -1,4 +1,4 @@
-import {authSubscribe, initJuno} from '@junobuild/core';
+import {authSubscribe, initSatellite} from '@junobuild/core';
 import {renderContent} from './components/content';
 import {renderLogin} from './components/login';
 import './style.css';
@@ -22,7 +22,7 @@ authSubscribe((user) => {
  * @returns {Promise<void>}
  */
 const onAppInit = async () => {
-  await initJuno({
+  await initSatellite({
     satelliteId: import.meta.env.VITE_SATELLITE_ID,
     container: import.meta.env.VITE_CONTAINER,
     workers: {

@@ -4,12 +4,12 @@ import Background from './components/Background.vue'
 import Table from '@/components/Table.vue'
 import Footer from '@/components/Footer.vue'
 import { onMounted } from 'vue'
-import { initJuno } from '@junobuild/core'
+import { initSatellite } from '@junobuild/core'
 import Modal from '@/components/Modal.vue'
 
 onMounted(
   async () =>
-    await initJuno({
+    await initSatellite({
       satelliteId: import.meta.env.VITE_SATELLITE_ID,
       container: import.meta.env.VITE_CONTAINER,
       workers: {

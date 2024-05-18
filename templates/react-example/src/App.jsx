@@ -1,4 +1,4 @@
-import {initJuno} from '@junobuild/core';
+import {initSatellite} from '@junobuild/core';
 import {useEffect} from 'react';
 import {Auth} from './components/Auth';
 import {Background} from './components/Background';
@@ -9,7 +9,7 @@ import {Table} from './components/Table';
 function App() {
   useEffect(() => {
     (async () =>
-      await initJuno({
+      await initSatellite({
         satelliteId: import.meta.env.VITE_SATELLITE_ID,
         container: import.meta.env.VITE_CONTAINER,
         workers: {

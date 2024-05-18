@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {initJuno} from '@junobuild/core';
+import {initSatellite} from '@junobuild/core';
 import {environment} from '../environments/environment';
 import {HomeComponent} from './components/home/home.component';
 
@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'Juno / Angular Starter';
 
   async ngOnInit() {
-    await initJuno({
+    await initSatellite({
       satelliteId: environment.satelliteId,
       container: environment.container,
       workers: {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { initJuno } from '@junobuild/core'
+import { initSatellite } from '@junobuild/core'
 import Hero from './components/Hero.vue'
 import Article from './components/Article.vue'
 import Background from './components/Background.vue'
@@ -8,7 +8,7 @@ import Footer from './components/Footer.vue'
 
 onMounted(
   async () =>
-    await initJuno({
+    await initSatellite({
       satelliteId: import.meta.env.VITE_SATELLITE_ID,
       container: import.meta.env.VITE_CONTAINER,
       workers: {
