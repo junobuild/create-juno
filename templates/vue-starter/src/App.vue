@@ -9,8 +9,6 @@ import Footer from './components/Footer.vue'
 onMounted(
   async () =>
     await initSatellite({
-      satelliteId: import.meta.env.VITE_SATELLITE_ID,
-      container: import.meta.env.VITE_CONTAINER,
       workers: {
         auth: true
       }

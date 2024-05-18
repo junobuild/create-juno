@@ -13,9 +13,6 @@ export default function Home() {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     (async () =>
       await initSatellite({
-        // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
-        satelliteId: process.env.NEXT_PUBLIC_SATELLITE_ID as string,
-        container: process.env.NEXT_PUBLIC_CONTAINER,
         workers: {
           auth: true
         }
