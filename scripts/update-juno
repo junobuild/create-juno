@@ -64,6 +64,17 @@ function update_vue() {
   cd ../../ || exit
 }
 
+function update_vanilla() {
+  local template=$1
+
+  cd templates/"$template" || exit
+
+  npm rm @junobuild/core && npm i @junobuild/core
+  npm rm @junobuild/config @junobuild/vite-plugin && npm i @junobuild/config @junobuild/vite-plugin -D
+
+  cd ../../ || exit
+}
+
 ANGULAR=angular-example,angular-starter
 
 for template in $(echo $ANGULAR | sed "s/,/ /g"); do
@@ -97,5 +108,11 @@ done
 VUE=vue-example,vue-starter
 
 for template in $(echo $VUE | sed "s/,/ /g"); do
+  update_vue "$template"
+done
+
+VANILLA=vanilla-js-example
+
+for template in $(echo $VANILLA | sed "s/,/ /g"); do
   update_vue "$template"
 done
