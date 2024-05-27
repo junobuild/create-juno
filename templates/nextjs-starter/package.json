@@ -18,7 +18,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@junobuild/config": "^0.0.7",
+    "@junobuild/config": "^0.0.8",
     "@junobuild/nextjs-plugin": "^0.0.7",
     "@next/eslint-plugin-next": "^14.1.4",
     "@types/node": "^20",
