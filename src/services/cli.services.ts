@@ -42,7 +42,7 @@ const install = async (verbose: boolean) => {
       case 'yarn': {
         await spawn({
           command: pm,
-          args: ['global', 'add', CLI_PACKAGE],
+          args: ['--silent', 'global', 'add', CLI_PACKAGE],
           silentOut: !verbose
         });
         break;
@@ -50,7 +50,7 @@ const install = async (verbose: boolean) => {
       default: {
         await spawn({
           command: pm,
-          args: ['install', '--global', CLI_PACKAGE],
+          args: ['install', '--global', CLI_PACKAGE, '--silent'],
           silentOut: !verbose
         });
       }
