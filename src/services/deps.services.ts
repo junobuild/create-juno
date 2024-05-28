@@ -19,7 +19,7 @@ export const dependencies = async ({where, verbose}: PopulateInput) => {
 
     await spawn({
       command: pm,
-      args: ['install'],
+      args: ['--silent', 'install'],
       silentOut: verbose !== true,
       ...(nonNullish(where) && where !== '' && {cwd: where})
     });
