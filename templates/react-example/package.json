@@ -13,13 +13,13 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "dependencies": {
-    "@junobuild/core": "^0.0.52",
+    "@junobuild/core": "^0.0.53",
     "nanoid": "^5.0.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@junobuild/config": "^0.0.8",
+    "@junobuild/config": "^0.0.10",
     "@junobuild/vite-plugin": "^0.0.14",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

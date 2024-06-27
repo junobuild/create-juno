@@ -15,13 +15,13 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "dependencies": {
-    "@junobuild/core": "^0.0.52",
+    "@junobuild/core": "^0.0.53",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@junobuild/config": "^0.0.8",
+    "@junobuild/config": "^0.0.10",
     "@junobuild/vite-plugin": "^0.0.14",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
