@@ -3,7 +3,7 @@ import {defineDevConfig} from '@junobuild/config';
 export default defineDevConfig(() => ({
   satellite: {
     collections: {
-      db: [
+      datastore: [
         {
           collection: 'notes',
           read: 'managed' as const,
