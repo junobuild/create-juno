@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@junobuild/config": "^0.0.14",
-    "@junobuild/vite-plugin": "^0.0.17",
+    "@junobuild/vite-plugin": "^0.0.18",
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.12.5",

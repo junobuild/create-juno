@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@junobuild/config": "^0.0.14",
-    "@junobuild/nextjs-plugin": "^0.0.11",
+    "@junobuild/nextjs-plugin": "^0.0.12",
     "@next/eslint-plugin-next": "^14.2.7",
     "@types/node": "^20",
     "@types/react": "^18",
