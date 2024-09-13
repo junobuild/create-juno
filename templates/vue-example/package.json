@@ -15,7 +15,7 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "dependencies": {
-    "@junobuild/core": "^0.0.60",
+    "@junobuild/core": "^0.0.61",
     "nanoid": "^5.0.7",
     "pinia": "^2.2.2",
     "vue": "^3.4.38",
