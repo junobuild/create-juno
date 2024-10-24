@@ -19,7 +19,7 @@
 	let valid = $derived(inputText !== '' && $userSignedIn);
 
 	const reload = () => {
-		const event = new CustomEvent('exampleReload');
+		const event = new CustomEvent('junoExampleReload');
 		window.dispatchEvent(event);
 	};
 
