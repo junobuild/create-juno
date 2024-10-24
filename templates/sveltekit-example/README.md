@@ -1,7 +1,7 @@
 # Juno: SvelteKit Example
 
 ```sh
-npm create juno@latest -- --template sveltekit-starter
+npm create juno@latest -- --template sveltekit-example
 ```
 
 > 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
