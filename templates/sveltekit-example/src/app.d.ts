@@ -7,17 +7,17 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
-}
 
-/* eslint-disable */
+	/* eslint-disable */
 
-declare namespace svelteHTML {
-	interface HTMLAttributes<T> {
-		onjunoSignOutAuthTimer?: (event: CustomEvent<any>) => void;
-		onexampleReload?: (event: CustomEvent<any>) => void;
+	declare namespace svelteHTML {
+		interface HTMLAttributes<T> {
+			onjunoSignOutAuthTimer?: (event: CustomEvent<any>) => void;
+			onjunoExampleReload?: (event: CustomEvent<any>) => void;
+		}
 	}
-}
 
-/* eslint-enable */
+	/* eslint-enable */
+}
 
 export {};

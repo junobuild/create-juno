@@ -12,15 +12,17 @@
 
 	let { children }: Props = $props();
 
-	$effect(
-		(async () => {
-			await initSatellite({
-				workers: {
-					auth: true
-				}
-			});
-		})()
-	);
+	const init = async () => {
+		await initSatellite({
+			workers: {
+				auth: true
+			}
+		});
+	};
+
+	$effect(() => {
+		init();
+	});
 </script>
 
 <div class="relative isolate min-h-[100dvh]">

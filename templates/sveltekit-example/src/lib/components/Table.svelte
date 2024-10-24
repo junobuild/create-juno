@@ -20,12 +20,14 @@
 		items = data;
 	};
 
+	const reload = async () => await list($userNotSignedIn);
+
 	$effect(() => {
 		list($userNotSignedIn);
 	});
 </script>
 
-<svelte:window onexampleReload={list} />
+<svelte:window onjunoExampleReload={reload} />
 
 <div class="w-full max-w-2xl mt-8 dark:text-white" role="table">
 	<div role="row">
@@ -67,7 +69,7 @@
 						</a>
 					{/if}
 
-					<Delete doc={item} ondeleted={list} />
+					<Delete doc={item} ondeleted={reload} />
 				</div>
 			</div>
 		{/each}
