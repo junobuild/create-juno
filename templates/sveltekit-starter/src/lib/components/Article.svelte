@@ -1,7 +1,14 @@
 <script lang="ts">
-	export let href: string;
-	export let ariaLabel: string;
-	export let title: string;
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		href: string;
+		ariaLabel: string;
+		title: string;
+		children: Snippet;
+	}
+
+	let { href, ariaLabel, title, children }: Props = $props();
 </script>
 
 <a
@@ -17,5 +24,5 @@
 		{title}
 	</h4>
 
-	<p class="mb-2"><slot /></p>
+	<p class="mb-2">{@render children()}</p>
 </a>
