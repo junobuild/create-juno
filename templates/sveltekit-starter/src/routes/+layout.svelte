@@ -1,9 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 	import { initSatellite } from '@junobuild/core-peer';
 	import Footer from '$lib/components/Footer.svelte';
 	import Background from '$lib/components/Background.svelte';
 	import '../app.css';
+
+	interface Props {
+		children?: Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	onMount(
 		async () =>
@@ -20,7 +26,7 @@
 		<h1 class="dark:text-white text-5xl md:text-6xl font-extrabold md:pt-16">Welcome to Juno</h1>
 
 		<div class="w-full max-w-2xl mt-8 grid grid-cols-2 gap-8">
-			<slot />
+			{@render children?.()}
 		</div>
 	</main>
 

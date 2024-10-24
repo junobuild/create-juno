@@ -2,12 +2,12 @@
 	import type { Note } from '$lib/types/note';
 	import { type Doc, listDocs } from '@junobuild/core-peer';
 	import Delete from '$lib/components/Delete.svelte';
-	import { userNotSignedIn, userSignedIn } from '$lib/derived/user.derived';
+	import { userNotSignedIn } from '$lib/derived/user.derived';
 
-	let items: Doc<Note>[] = [];
+	let items: Doc<Note>[] = $state([]);
 
-	const list = async () => {
-		if ($userNotSignedIn) {
+	const list = async (userNotSignedIn: boolean) => {
+		if (userNotSignedIn) {
 			items = [];
 			return;
 		}
@@ -20,10 +20,14 @@
 		items = data;
 	};
 
-	$: $userSignedIn, (async () => await list())();
+	const reload = async () => await list($userNotSignedIn);
+
+	$effect(() => {
+		list($userNotSignedIn);
+	});
 </script>
 
-<svelte:window on:exampleReload={list} />
+<svelte:window onjunoExampleReload={reload} />
 
 <div class="w-full max-w-2xl mt-8 dark:text-white" role="table">
 	<div role="row">
@@ -65,7 +69,7 @@
 						</a>
 					{/if}
 
-					<Delete doc={item} on:deleted={list} />
+					<Delete doc={item} ondeleted={reload} />
 				</div>
 			</div>
 		{/each}

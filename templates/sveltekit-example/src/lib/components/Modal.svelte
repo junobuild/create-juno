@@ -7,20 +7,19 @@
 	import type { Note } from '$lib/types/note';
 	import { userStore } from '$lib/stores/user.store';
 
-	let showModal = false;
+	let showModal = $state(false);
 
-	let inputText = '';
-	let file: File | undefined = undefined;
+	let inputText = $state('');
+	let file: File | undefined = $state(undefined);
 
-	let inputFile: HTMLInputElement | null = null;
+	let inputFile: HTMLInputElement | null = $state(null);
 
-	let progress = false;
+	let progress = $state(false);
 
-	let valid = false;
-	$: valid = inputText !== '' && $userSignedIn;
+	let valid = $derived(inputText !== '' && $userSignedIn);
 
 	const reload = () => {
-		const event = new CustomEvent('exampleReload');
+		const event = new CustomEvent('junoExampleReload');
 		window.dispatchEvent(event);
 	};
 
@@ -74,9 +73,13 @@
 		(file = ($event as unknown as { target: EventTarget & HTMLInputElement }).target?.files?.[0]);
 
 	const openSelectFile = () => inputFile?.click();
+
+	const openModal = async () => {
+		showModal = true;
+	};
 </script>
 
-<Button on:click={() => (showModal = true)}>
+<Button onclick={openModal}>
 	Add an entry
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +108,7 @@
 					<button
 						aria-label="Attach a file to the entry"
 						class="flex gap-2 items-center hover:text-lavender-blue-600 active:text-lavender-blue-400"
-						on:click={openSelectFile}
+						onclick={openSelectFile}
 					>
 						<svg
 							width="20"
@@ -128,7 +131,7 @@
 					<input
 						type="file"
 						class="fixed right-0 -bottom-24 opacity-0"
-						on:change={onChangeFile}
+						onchange={onChangeFile}
 						disabled={progress}
 						bind:this={inputFile}
 					/>
@@ -147,12 +150,12 @@
 						<button
 							class="py-1 px-8 hover:text-lavender-blue-600 active:text-lavender-blue-400"
 							type="button"
-							on:click={() => (showModal = false)}
+							onclick={() => (showModal = false)}
 						>
 							Close
 						</button>
 
-						<Button on:click={add} disabled={!valid}>Submit</Button>
+						<Button onclick={add} disabled={!valid}>Submit</Button>
 					</div>
 				{/if}
 			</div>
