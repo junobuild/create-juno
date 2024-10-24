@@ -1,19 +1,28 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import type { Snippet } from 'svelte';
 	import { initSatellite } from '@junobuild/core-peer';
 	import Footer from '$lib/components/Footer.svelte';
 	import Background from '$lib/components/Background.svelte';
 	import '../app.css';
 	import Auth from '$lib/components/Auth.svelte';
 
-	onMount(
-		async () =>
-			await initSatellite({
-				workers: {
-					auth: true
-				}
-			})
-	);
+	interface Props {
+		children: Snippet;
+	}
+
+	let { children }: Props = $props();
+
+	const init = async () => {
+		await initSatellite({
+			workers: {
+				auth: true
+			}
+		});
+	};
+
+	$effect(() => {
+		init();
+	});
 </script>
 
 <div class="relative isolate min-h-[100dvh]">
@@ -29,7 +38,7 @@
 		</p>
 
 		<Auth>
-			<slot />
+			{@render children()}
 		</Auth>
 	</main>
 
