@@ -17,4 +17,4 @@ export type TemplateFramework =
   | 'Vue'
   | 'Vanilla JavaScript';
 
-export type TemplateType = 'Starter' | 'Example';
+export type TemplateType = 'Starter' | 'Example' | 'Workshop';

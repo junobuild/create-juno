@@ -1,15 +1,15 @@
 import type {Template} from '../types/template';
 
-const APP_DESCRIPTION_STARTER = 'Opt for a barebones scaffolding to kickstart your app';
+const APP_DESCRIPTION_STARTER = 'Barebones scaffolding for your new app';
 const APP_DESCRIPTION_EXAMPLE =
-  'Begin with an example app featuring authentication, document storage, and image handling';
+  'An example featuring authentication, data persistence, and image storage';
 
 export const TEMPLATES: Template[] = [
   {
     framework: `Astro`,
     key: `astro-starter`,
     type: 'Starter',
-    description: 'Opt for a barebones scaffolding to kickstart your website',
+    description: 'Barebones scaffolding for your new website',
     kind: 'website'
   },
   {
@@ -38,6 +38,13 @@ export const TEMPLATES: Template[] = [
     key: `react-example`,
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
+    kind: 'app'
+  },
+  {
+    framework: `React`,
+    key: `react-workshop`,
+    type: 'Workshop',
+    description: 'Explore Juno in an interactive workshop',
     kind: 'app'
   },
   {
