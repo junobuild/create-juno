@@ -29,6 +29,9 @@ jobs:
           - name: react-example
             target: scratch_react_example
             out: react-example.tar.gz
+          - name: react-workshop
+            target: scratch_react_workshop
+            out: react-workshop.tar.gz
           - name: vue-starter
             target: scratch_vue_starter
             out: vue-starter.tar.gz
@@ -113,6 +116,12 @@ jobs:
           name: react-example.tar.gz
           path: .
 
+      - name: Download react-workshop
+        uses: actions/download-artifact@v4
+        with:
+          name: react-workshop.tar.gz
+          path: .
+
       - name: Download vue-starter
         uses: actions/download-artifact@v4
         with:
@@ -165,6 +174,7 @@ jobs:
             ./nextjs-example.tar.gz
             ./react-starter.tar.gz
             ./react-example.tar.gz
+            ./react-workshop.tar.gz
             ./vue-starter.tar.gz
             ./vue-example.tar.gz
             ./angular-starter.tar.gz
@@ -208,6 +218,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: react-example.tar.gz
+          path: out/templates
+
+      - name: Download react-workshop
+        uses: actions/download-artifact@v4
+        with:
+          name: react-workshop.tar.gz
           path: out/templates
 
       - name: Download vue-starter
