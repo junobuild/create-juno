@@ -33,7 +33,8 @@ export const promptTemplate = async (projectKind: ProjectKind): Promise<Template
 
   assertAnswerCtrlC(framework);
 
-  const templates = allTemplates[framework];
+  // We exclude workshop which is a material that serves a particular use case
+  const templates = allTemplates[framework]?.filter(({type}) => type !== 'Workshop');
 
   if (isNullish(templates) || templates.length === 0) {
     console.log(`No template(s) found for ${red(framework)}. This is unexpected.`);
