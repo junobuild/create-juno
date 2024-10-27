@@ -1,10 +1,10 @@
 import {isNullish} from '@junobuild/utils';
-import {grey, red} from 'kleur';
+import {red} from 'kleur';
 import prompts from 'prompts';
 import {TEMPLATES} from '../constants/templates';
 import type {GeneratorInput, ProjectKind} from '../types/generator';
 import type {Template, TemplateFramework} from '../types/template';
-import {NEW_CMD_LINE, assertAnswerCtrlC, confirm} from '../utils/prompts.utils';
+import {assertAnswerCtrlC, confirm} from '../utils/prompts.utils';
 
 export const promptTemplate = async (projectKind: ProjectKind): Promise<Template> => {
   const allTemplates = TEMPLATES.filter(({kind}) => kind === projectKind).reduce<
@@ -103,9 +103,7 @@ export const promptProjectKind = async (): Promise<ProjectKind> => {
 };
 
 export const promptGitHubAction = async (): Promise<boolean> => {
-  return await confirm(
-    `Would you like to set up a GitHub Action for deployment?${NEW_CMD_LINE}${grey("Remember, you'll need to configure a controller afterward. Check our documentation for more details")}`
-  );
+  return await confirm(`Would you like to set up a GitHub Action for deployment?`);
 };
 
 export const promptLocalDevelopment = async (): Promise<boolean> => {
