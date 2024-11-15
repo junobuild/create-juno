@@ -21,7 +21,7 @@
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
-    "@junobuild/config": "^0.0.14",
+    "@junobuild/config": "^0.0.16",
     "@junobuild/vite-plugin": "^0.0.18",
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node20": "^20.1.4",

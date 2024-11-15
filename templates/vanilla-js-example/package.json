@@ -12,7 +12,7 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "devDependencies": {
-    "@junobuild/config": "^0.0.14",
+    "@junobuild/config": "^0.0.16",
     "@junobuild/vite-plugin": "^0.0.18",
     "autoprefixer": "^10.4.20",
     "prettier": "^3.3.3",
