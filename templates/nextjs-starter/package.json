@@ -12,14 +12,14 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "dependencies": {
-    "@junobuild/core-peer": "^0.0.28",
+    "@junobuild/core-peer": "^0.0.29",
     "next": "14.2.7",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@junobuild/config": "^0.0.16",
-    "@junobuild/nextjs-plugin": "^0.0.12",
+    "@junobuild/config": "^0.0.17",
+    "@junobuild/nextjs-plugin": "^0.0.13",
     "@next/eslint-plugin-next": "^14.2.7",
     "@types/node": "^20",
     "@types/react": "^18",
