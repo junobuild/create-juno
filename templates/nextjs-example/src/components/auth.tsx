@@ -13,9 +13,13 @@ export const Auth = ({children}: AuthProps) => {
   const [user, setUser] = useState<User | undefined | null>(undefined);
 
   useEffect(() => {
-    const sub = authSubscribe((user) => setUser(user));
+    const sub = authSubscribe((user) => {
+      setUser(user);
+    });
 
-    return () => sub();
+    return () => {
+      sub();
+    };
   }, []);
 
   return (

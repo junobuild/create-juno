@@ -72,7 +72,10 @@ export const Modal = () => {
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)}>
+      <Button
+        onClick={() => {
+          setShowModal(true);
+        }}>
         Add an entry{' '}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +117,9 @@ export const Modal = () => {
                 <div>
                   <button
                     aria-label="Attach a file to the entry"
-                    onClick={() => uploadElement?.current?.click()}
+                    onClick={() => {
+                      uploadElement?.current?.click();
+                    }}
                     className="flex gap-2 items-center hover:text-lavender-blue-600 active:text-lavender-blue-400">
                     <svg
                       width="20"
@@ -135,7 +140,9 @@ export const Modal = () => {
                     ref={uploadElement}
                     type="file"
                     className="fixed right-0 -bottom-24 opacity-0"
-                    onChange={(event) => setFile(event.target.files?.[0])}
+                    onChange={(event) => {
+                      setFile(event.target.files?.[0]);
+                    }}
                     disabled={progress}
                   />
                 </div>
@@ -152,7 +159,9 @@ export const Modal = () => {
                     <button
                       className="py-1 px-8 hover:text-lavender-blue-600 active:text-lavender-blue-400"
                       type="button"
-                      onClick={() => setShowModal(false)}>
+                      onClick={() => {
+                        setShowModal(false);
+                      }}>
                       Close
                     </button>
 

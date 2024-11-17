@@ -32,7 +32,9 @@ export const Table = () => {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    (async () => await list())();
+    (async () => {
+      await list();
+    })();
   }, [user]);
 
   return (
