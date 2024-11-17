@@ -1,4 +1,3 @@
-import {setDoc, uploadFile} from '@junobuild/core';
 import {nanoid} from 'nanoid';
 import {useContext, useEffect, useRef, useState} from 'react';
 import {AuthContext} from './Auth';

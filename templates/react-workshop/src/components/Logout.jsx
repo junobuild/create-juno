@@ -1,5 +1,3 @@
-import {signOut} from '@junobuild/core';
-
 export const Logout = () => {
   //TODO: STEP_5_AUTH_SIGN_OUT
   // onClick={signOut}

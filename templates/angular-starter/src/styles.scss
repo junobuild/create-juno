@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: 'JetBrains Mono';
   font-style: normal;
   font-weight: 400;
-  src: url("/assets/fonts/jetbrainsmono-regular.woff2") format("woff2");
+  src: url('/assets/fonts/jetbrainsmono-regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: 'JetBrains Mono';
   font-style: normal;
   font-weight: 800;
-  src: url("/assets/fonts/jetbrainsmono-bold.woff2") format("woff2");
+  src: url('/assets/fonts/jetbrainsmono-bold.woff2') format('woff2');
 }

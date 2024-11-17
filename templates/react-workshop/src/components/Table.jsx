@@ -1,4 +1,3 @@
-import {listDocs} from '@junobuild/core';
 import {useContext, useEffect, useState} from 'react';
 import {AuthContext} from './Auth';
 import {Delete} from './Delete';
