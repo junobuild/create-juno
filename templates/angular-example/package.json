@@ -23,26 +23,26 @@
     "@angular/platform-browser-dynamic": "^19.0.3",
     "@angular/router": "^19.0.3",
     "@junobuild/core": "^0.0.63",
-    "nanoid": "^5.0.7",
+    "nanoid": "^5.0.9",
     "rxjs": "~7.8.1",
-    "tslib": "^2.7.0",
+    "tslib": "^2.8.1",
     "zone.js": "^0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.0.4",
     "@angular/cli": "^19.0.4",
     "@angular/compiler-cli": "^19.0.3",
-    "@types/jasmine": "~5.1.4",
+    "@types/jasmine": "~5.1.5",
     "autoprefixer": "^10.4.20",
-    "jasmine-core": "~5.2.0",
+    "jasmine-core": "~5.5.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "postcss": "^8.4.41",
-    "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.10",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^3.4.16",
     "typescript": "~5.6.3"
   }
 }
