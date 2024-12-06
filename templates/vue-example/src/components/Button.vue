@@ -11,7 +11,7 @@ defineProps<{
     :class="{
       'opacity-25': disabled === true,
       'hover:bg-lavender-blue-600 dark:hover:bg-lavender-blue-300 dark:hover:text-black active:bg-lavender-blue-400 dark:active:bg-lavender-blue-500 active:shadow-none active:translate-x-[5px] active:translate-y-[5px]':
-        disabled !== true
+        disabled !== true,
     }"
   >
     <slot />

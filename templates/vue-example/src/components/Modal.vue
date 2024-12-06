@@ -44,7 +44,7 @@ const add = async () => {
       const { downloadUrl } = await uploadFile({
         collection: 'images',
         data: file.value,
-        filename
+        filename,
       })
 
       url = downloadUrl
@@ -58,9 +58,9 @@ const add = async () => {
         key,
         data: {
           text: inputText.value,
-          ...(url !== undefined && { url })
-        }
-      }
+          ...(url !== undefined && { url }),
+        },
+      },
     })
 
     setShowModal(false)

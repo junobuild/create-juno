@@ -9,8 +9,8 @@ export default defineDevConfig(() => ({
           read: 'managed' as const,
           write: 'managed' as const,
           memory: 'stable' as const,
-          mutablePermissions: true
-        }
+          mutablePermissions: true,
+        },
       ],
       storage: [
         {
@@ -18,9 +18,9 @@ export default defineDevConfig(() => ({
           read: 'managed' as const,
           write: 'managed' as const,
           memory: 'stable' as const,
-          mutablePermissions: true
-        }
-      ]
-    }
-  }
+          mutablePermissions: true,
+        },
+      ],
+    },
+  },
 }))
