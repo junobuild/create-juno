@@ -3,7 +3,6 @@ import {signOut} from '@junobuild/core';
 
 @Component({
   selector: 'app-logout',
-  standalone: true,
   imports: [],
   templateUrl: './logout.component.html'
 })

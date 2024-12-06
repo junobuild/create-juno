@@ -3,7 +3,6 @@ import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-backdrop',
-  standalone: true,
   imports: [NgIf, NgClass],
   templateUrl: './backdrop.component.html'
 })

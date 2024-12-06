@@ -10,7 +10,6 @@ import {ButtonComponent} from '../button/button.component';
 
 @Component({
   selector: 'app-modal',
-  standalone: true,
   imports: [NgIf, BackdropComponent, ReactiveFormsModule, ButtonComponent],
   templateUrl: './modal.component.html'
 })

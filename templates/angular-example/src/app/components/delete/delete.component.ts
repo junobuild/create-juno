@@ -7,7 +7,6 @@ import {BackdropComponent} from '../backdrop/backdrop.component';
 
 @Component({
   selector: 'app-delete',
-  standalone: true,
   imports: [BackdropComponent, NgIf],
   templateUrl: './delete.component.html'
 })
