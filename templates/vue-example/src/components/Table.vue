@@ -9,7 +9,7 @@ const items = ref<Doc<Note>[]>([])
 const list = async () => {
   const { items: data } = await listDocs<Note>({
     collection: 'notes',
-    filter: {}
+    filter: {},
   })
 
   items.value = data

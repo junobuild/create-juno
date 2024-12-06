@@ -8,7 +8,7 @@ defineProps<{
   <div
     :class="{
       'backdrop-blur-sm': spinner === true,
-      'backdrop-blur-xl': spinner !== true
+      'backdrop-blur-xl': spinner !== true,
     }"
     class="fixed inset-0 z-40 bg-white/30 flex items-center justify-center"
   >

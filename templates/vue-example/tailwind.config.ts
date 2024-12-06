@@ -5,22 +5,22 @@ const config: Config = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
-      sans: ['JetBrains Mono', 'sans-serif', ...fontFamily.sans]
+      sans: ['JetBrains Mono', 'sans-serif', ...fontFamily.sans],
     },
     extend: {
       screens: {
-        tall: { raw: '(min-height: 800px)' }
+        tall: { raw: '(min-height: 800px)' },
       },
       animation: {
-        fade: 'fadeIn .25s ease-in-out'
+        fade: 'fadeIn .25s ease-in-out',
       },
 
       keyframes: {
         fadeIn: {
           from: { opacity: '0' },
-          to: { opacity: '1' }
-        }
-      }
+          to: { opacity: '1' },
+        },
+      },
     },
     colors: {
       inherit: 'inherit',
@@ -38,9 +38,9 @@ const config: Config = {
         600: '#606dcc',
         700: '#485299',
         800: '#303666',
-        900: '#181b33'
-      }
-    }
-  }
+        900: '#181b33',
+      },
+    },
+  },
 }
 export default config

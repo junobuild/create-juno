@@ -16,7 +16,7 @@ const delItem = async () => {
 
   try {
     const {
-      data: { url }
+      data: { url },
     } = doc
 
     if (url !== undefined) {
@@ -24,13 +24,13 @@ const delItem = async () => {
 
       await deleteAsset({
         collection: 'images',
-        fullPath
+        fullPath,
       })
     }
 
     await deleteDoc({
       collection: 'notes',
-      doc
+      doc,
     })
 
     await reload()
