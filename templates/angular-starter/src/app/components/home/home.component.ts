@@ -6,7 +6,6 @@ import {HeroComponent} from '../hero/hero.component';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   imports: [HeroComponent, ArticleComponent, FooterComponent, BackgroundComponent],
   templateUrl: './home.component.html'
 })

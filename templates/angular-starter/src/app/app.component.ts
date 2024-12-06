@@ -1,13 +1,11 @@
 import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
 import {initSatellite} from '@junobuild/core';
 import {environment} from '../environments/environment';
 import {HomeComponent} from './components/home/home.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HomeComponent],
+  imports: [HomeComponent],
   templateUrl: './app.component.html'
 })
 export class AppComponent {

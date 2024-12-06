@@ -6,7 +6,6 @@ import {LogoutComponent} from '../logout/logout.component';
 
 @Component({
   selector: 'app-auth',
-  standalone: true,
   imports: [LoginComponent, LogoutComponent, NgIf],
   templateUrl: './auth.component.html'
 })

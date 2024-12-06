@@ -7,7 +7,6 @@ import {DeleteComponent} from '../delete/delete.component';
 
 @Component({
   selector: 'app-table',
-  standalone: true,
   imports: [NgForOf, NgIf, DeleteComponent],
   templateUrl: './table.component.html'
 })
