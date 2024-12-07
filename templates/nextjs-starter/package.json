@@ -8,11 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "postinstall:copy-auth": "node -e \"require('fs').cpSync('node_modules/@junobuild/core-peer/dist/workers/', './public/workers', {recursive: true});\"",
+    "postinstall:copy-auth": "node -e \"require('fs').cpSync('node_modules/@junobuild/core/dist/workers/', './public/workers', {recursive: true});\"",
     "postinstall": "npm run postinstall:copy-auth"
   },
   "dependencies": {
-    "@junobuild/core-peer": "^0.0.29",
+    "@junobuild/core": "^0.1.0",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"

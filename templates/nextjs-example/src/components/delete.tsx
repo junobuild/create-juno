@@ -1,6 +1,6 @@
 import {Backdrop} from '@/components/backdrop';
 import type {Note} from '@/types/note';
-import {deleteAsset, deleteDoc} from '@junobuild/core-peer';
+import {deleteAsset, deleteDoc} from '@junobuild/core';
 import {useState} from 'react';
 
 interface DeleteProps {

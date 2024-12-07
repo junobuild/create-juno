@@ -1,7 +1,7 @@
 import {AuthContext} from '@/components/auth';
 import {Delete} from '@/components/delete';
 import type {Note, NoteData} from '@/types/note';
-import {listDocs} from '@junobuild/core-peer';
+import {listDocs} from '@junobuild/core';
 import {useContext, useEffect, useState} from 'react';
 
 export const Table = () => {
