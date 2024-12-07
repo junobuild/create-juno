@@ -1,6 +1,6 @@
 {
   "name": "create-juno",
-  "version": "0.0.33",
+  "version": "0.1.0",
   "description": "A CLI for creating new Juno projects",
   "author": "David Dal Busco (https://daviddalbusco.com)",
   "license": "MIT",
