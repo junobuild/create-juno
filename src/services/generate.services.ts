@@ -99,10 +99,10 @@ const shouldCopyFile = ({
 const populateFromLocal = async ({where, template, localDevelopment}: PopulateInputFn) => {
   const templatePath = getLocalTemplatePath(template);
 
-  const files = await getLocalFiles(templatePath);
+  const files = getLocalFiles(templatePath);
 
   if (files.length === 0) {
-    console.log(`${red("No files to download. That's unexpected.")}`);
+    console.log(red("No files to download. That's unexpected."));
     process.exit(1);
   }
 

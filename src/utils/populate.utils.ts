@@ -7,7 +7,7 @@ export interface LocalFileDescriptor {
   path: string;
 }
 
-export const getLocalFiles = async (templatePath: string): Promise<LocalFileDescriptor[]> =>
+export const getLocalFiles = (templatePath: string): LocalFileDescriptor[] =>
   files(templatePath)
     .flat()
     .map((p) => ({relativePath: relative(templatePath, p), path: p}))
@@ -26,6 +26,8 @@ export const createDirectory = async (where: string | null) => {
     if (err.code === 'EEXIST') {
       return;
     }
+
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw err;
   }
 };

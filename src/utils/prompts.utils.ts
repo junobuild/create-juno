@@ -13,7 +13,7 @@ export const assertAnswerCtrlC: (
 ): void => {
   if (answer === undefined || answer === '' || answer === null) {
     if (message !== undefined) {
-      console.log(`${red(message)}`);
+      console.log(red(message));
     }
 
     process.exit(0);

@@ -62,7 +62,7 @@ export const run = async () => {
 
   const args = process.argv.slice(2);
 
-  let input: GeneratorInput | undefined;
+  let input: GeneratorInput | undefined = undefined;
 
   if (initProject) {
     input = await initNewProject(args);
@@ -85,6 +85,6 @@ export const run = async () => {
   try {
     await run();
   } catch (err: unknown) {
-    console.log(`${red('An unexpected error happened 😫.')}`, err);
+    console.log(red('An unexpected error happened 😫.'), err);
   }
 })();
