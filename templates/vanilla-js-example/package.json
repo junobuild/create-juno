@@ -20,7 +20,7 @@
     "vite": "^6.0.3"
   },
   "dependencies": {
-    "@junobuild/core": "^0.0.63",
+    "@junobuild/core": "^0.1.0",
     "nanoid": "^5.0.9"
   }
 }
