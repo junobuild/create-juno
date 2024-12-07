@@ -5,7 +5,7 @@ import {NEW_CMD_LINE} from '../utils/prompts.utils';
 import {argsTemplate} from './template.services';
 
 const argsDestination = (args: string[]): Pick<GeneratorInput, 'destination'> | undefined => {
-  if (nonNullish(args) && args?.length > 0 && args?.[0] !== '--' && !args?.[0]?.startsWith('--')) {
+  if (nonNullish(args) && args.length > 0 && args[0] !== '--' && !args[0]?.startsWith('--')) {
     const [destination, _] = args;
     return {destination};
   }
@@ -26,7 +26,7 @@ export const initArgs = (args: string[]): Partial<GeneratorInput> => {
       console.log(grey(`• Using ${cyan(userTemplate.key)} as project template`));
     }
 
-    console.log(`${NEW_CMD_LINE}`);
+    console.log(NEW_CMD_LINE);
   }
 
   return {

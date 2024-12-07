@@ -37,7 +37,7 @@ const generateProject = async ({destination, ...rest}: GeneratorInput) => {
 export const initNewProject = async (args: string[]): Promise<GeneratorInput> => {
   const userInputs = initArgs(args);
 
-  const {destination} = nonNullish(userInputs?.destination)
+  const {destination} = nonNullish(userInputs.destination)
     ? {destination: userInputs.destination}
     : await promptDestination();
 

@@ -29,6 +29,7 @@ export const whichPMRuns = (): PM => {
  * Source: https://github.com/zkochan/packages/tree/main/which-pm-runs
  */
 const pmFromUserAgent = (userAgent: string): {name: string; version: string} => {
+  // eslint-disable-next-line @typescript-eslint/prefer-destructuring
   const pmSpec = userAgent.split(' ')[0];
   const separatorPos = pmSpec.lastIndexOf('/');
   const name = pmSpec.substring(0, separatorPos);
