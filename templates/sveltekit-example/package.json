@@ -40,5 +40,8 @@
 	"dependencies": {
 		"@junobuild/core": "^0.1.0",
 		"nanoid": "^5.0.9"
+	},
+	"overrides": {
+		"cookie": "^0.7.0"
 	}
 }
