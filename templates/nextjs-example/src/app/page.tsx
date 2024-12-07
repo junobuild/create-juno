@@ -5,7 +5,7 @@ import {Background} from '@/components/background';
 import {Footer} from '@/components/footer';
 import {Modal} from '@/components/modal';
 import {Table} from '@/components/table';
-import {initSatellite} from '@junobuild/core-peer';
+import {initSatellite} from '@junobuild/core';
 import {useEffect} from 'react';
 
 export default function Home() {

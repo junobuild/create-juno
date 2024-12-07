@@ -4,7 +4,7 @@ import {Article} from '@/components/article';
 import {Background} from '@/components/background';
 import {Footer} from '@/components/footer';
 import {Hero} from '@/components/hero';
-import {initSatellite} from '@junobuild/core-peer';
+import {initSatellite} from '@junobuild/core';
 import {useEffect} from 'react';
 
 export default function Home() {

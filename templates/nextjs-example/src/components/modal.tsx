@@ -1,7 +1,7 @@
 import {AuthContext} from '@/components/auth';
 import {Backdrop} from '@/components/backdrop';
 import {Button} from '@/components/button';
-import {setDoc, uploadFile} from '@junobuild/core-peer';
+import {setDoc, uploadFile} from '@junobuild/core';
 import {nanoid} from 'nanoid';
 import {useContext, useEffect, useRef, useState} from 'react';
 
