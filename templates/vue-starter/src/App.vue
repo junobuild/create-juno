@@ -10,9 +10,9 @@ onMounted(
   async () =>
     await initSatellite({
       workers: {
-        auth: true
-      }
-    })
+        auth: true,
+      },
+    }),
 )
 </script>
 
