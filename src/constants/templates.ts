@@ -42,6 +42,13 @@ export const TEMPLATES: Template[] = [
   },
   {
     framework: `React`,
+    key: `react-ts-starter`,
+    type: 'Starter',
+    description: APP_DESCRIPTION_STARTER,
+    kind: 'app'
+  },
+  {
+    framework: `React`,
     key: `react-workshop`,
     type: 'Workshop',
     description: 'Explore Juno in an interactive workshop',
