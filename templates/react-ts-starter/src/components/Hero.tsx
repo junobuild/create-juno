@@ -1,13 +1,11 @@
 import { FC, PropsWithChildren } from 'react'
 
-// Build-time props.
 interface HeroProps extends PropsWithChildren {
   href: string,
   ariaLabel: string,
 }
 
 export const Hero: FC<HeroProps> = (props) => {
-  // Destructure props.
   const { href, ariaLabel, children } = props
   return (
     <a

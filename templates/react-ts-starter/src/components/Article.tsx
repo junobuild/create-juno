@@ -1,6 +1,5 @@
 import { FC, PropsWithChildren } from 'react'
 
-// Build-time props.
 interface ArticleProps extends PropsWithChildren {
   href: string,
   ariaLabel: string,
@@ -8,7 +7,6 @@ interface ArticleProps extends PropsWithChildren {
 }
 
 export const Article: FC<ArticleProps> = (props) => {
-  // Destructure props.
   const { href, ariaLabel, children, title } = props
   return (
     <a
