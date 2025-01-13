@@ -1,4 +1,4 @@
-# Juno: React Starter Kit
+# Juno: React Starter Kit - JavaScript
 
 ```sh
 npm create juno@latest -- --template react-starter

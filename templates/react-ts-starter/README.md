@@ -1,14 +1,14 @@
-# Juno: React Starter Kit
+# Juno: React Starter Kit - TypeScript
 
 ```sh
-npm create juno@latest -- --template react-starter
+npm create juno@latest -- --template react-ts-starter
 ```
 
 > 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
 
 ![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
 
-A starter kit developed for [Juno](https://juno.build) using [React](https://react.dev/).
+A starter kit developed for [Juno](https://juno.build) using [React](https://react.dev/) and TypeScript.
 
 ## ✨ Links & Resources
 
