@@ -28,6 +28,9 @@ RUN ./docker/compress nextjs-example
 FROM deps as build_react_starter
 RUN ./docker/compress react-starter
 
+FROM deps as build_react_ts_starter
+RUN ./docker/compress react-ts-starter
+
 FROM deps as build_react_example
 RUN ./docker/compress react-example
 
@@ -66,6 +69,9 @@ COPY --from=build_nextjs_example ./prepare/target/nextjs-example.tar.gz /
 
 FROM scratch AS scratch_react_starter
 COPY --from=build_react_starter ./prepare/target/react-starter.tar.gz /
+
+FROM scratch AS scratch_react_ts_starter
+COPY --from=build_react_ts_starter ./prepare/target/react-ts-starter.tar.gz /
 
 FROM scratch AS scratch_react_example
 COPY --from=build_react_example ./prepare/target/react-example.tar.gz /

@@ -26,6 +26,9 @@ jobs:
           - name: react-starter
             target: scratch_react_starter
             out: react-starter.tar.gz
+          - name: react-ts-starter
+            target: scratch_react_ts_starter
+            out: react-ts-starter.tar.gz
           - name: react-example
             target: scratch_react_example
             out: react-example.tar.gz
@@ -110,6 +113,12 @@ jobs:
           name: react-starter.tar.gz
           path: .
 
+      - name: Download react-ts-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: react-ts-starter.tar.gz
+          path: .
+
       - name: Download react-example
         uses: actions/download-artifact@v4
         with:
@@ -173,6 +182,7 @@ jobs:
             ./nextjs-starter.tar.gz
             ./nextjs-example.tar.gz
             ./react-starter.tar.gz
+            ./react-ts-starter.tar.gz
             ./react-example.tar.gz
             ./react-workshop.tar.gz
             ./vue-starter.tar.gz
@@ -212,6 +222,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: react-starter.tar.gz
+          path: out/templates
+
+      - name: Download react-ts-starter
+        uses: actions/download-artifact@v4
+        with:
+          name: react-ts-starter.tar.gz
           path: out/templates
 
       - name: Download react-example
