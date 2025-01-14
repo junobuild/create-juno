@@ -23,7 +23,7 @@ const setShowModal = (value: boolean) => (showModal.value = value)
 const setFile = (f: File | undefined) => (file.value = f)
 
 const reload = () => {
-  let event = new Event('reload')
+  const event = new Event('reload')
   window.dispatchEvent(event)
 }
 

@@ -1,13 +1,13 @@
-import { FC, PropsWithChildren } from 'react'
+import {FC, PropsWithChildren} from 'react';
 
 interface ArticleProps extends PropsWithChildren {
-  href: string,
-  ariaLabel: string,
-  title: string
+  href: string;
+  ariaLabel: string;
+  title: string;
 }
 
 export const Article: FC<ArticleProps> = (props) => {
-  const { href, ariaLabel, children, title } = props
+  const {href, ariaLabel, children, title} = props;
   return (
     <a
       href={href}
@@ -21,5 +21,5 @@ export const Article: FC<ArticleProps> = (props) => {
 
       <p className="mb-2">{children}</p>
     </a>
-  )
-}
+  );
+};

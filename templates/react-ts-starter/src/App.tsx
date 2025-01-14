@@ -1,9 +1,9 @@
-import { initSatellite } from '@junobuild/core'
-import { useEffect } from 'react'
-import { Article } from './components/Article'
-import { Background } from './components/Background'
-import { Footer } from './components/Footer'
-import { Hero } from './components/Hero'
+import {initSatellite} from '@junobuild/core';
+import {useEffect} from 'react';
+import {Article} from './components/Article';
+import {Background} from './components/Background';
+import {Footer} from './components/Footer';
+import {Hero} from './components/Hero';
 
 function App() {
   useEffect(() => {
@@ -12,8 +12,8 @@ function App() {
         workers: {
           auth: true
         }
-      }))()
-  }, [])
+      }))();
+  }, []);
 
   return (
     <div className="relative isolate min-h-[100dvh]">
@@ -63,7 +63,7 @@ function App() {
 
       <Background />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

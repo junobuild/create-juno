@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import {FC} from 'react';
 
 export const Background: FC = () => {
   return (
@@ -10,5 +10,5 @@ export const Background: FC = () => {
         alt="An astronaut floating in space around planet Juno orbited by satellites, stars in the background."
       />
     </div>
-  )
-}
+  );
+};
