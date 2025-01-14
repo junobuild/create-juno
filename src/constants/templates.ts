@@ -7,98 +7,160 @@ const APP_DESCRIPTION_EXAMPLE =
 export const TEMPLATES: Template[] = [
   {
     framework: `Astro`,
-    key: `astro-starter`,
+    keys: [
+      {
+        key: 'astro-starter',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Starter',
     description: 'Barebones scaffolding for your new website',
     kind: 'website'
   },
   {
     framework: `Next.js`,
-    key: `nextjs-starter`,
+    keys: [
+      {
+        key: 'nextjs-starter',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Starter',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
   {
     framework: `Next.js`,
-    key: `nextjs-example`,
+    keys: [
+      {
+        key: 'nextjs-example',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
   {
     framework: `React`,
-    key: `react-starter`,
+    keys: [
+      {
+        key: 'react-starter',
+        language: 'JavaScript'
+      },
+      {
+        key: 'react-ts-starter',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Starter',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
   {
     framework: `React`,
-    key: `react-example`,
+    keys: [
+      {
+        key: 'react-example',
+        language: 'JavaScript'
+      }
+    ],
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
   {
     framework: `React`,
-    key: `react-ts-starter`,
-    type: 'Starter',
-    description: APP_DESCRIPTION_STARTER,
-    kind: 'app'
-  },
-  {
-    framework: `React`,
-    key: `react-workshop`,
+    keys: [
+      {
+        key: 'react-workshop',
+        language: 'JavaScript'
+      }
+    ],
     type: 'Workshop',
     description: 'Explore Juno in an interactive workshop',
     kind: 'app'
   },
   {
     framework: `SvelteKit`,
-    key: `sveltekit-starter`,
+    keys: [
+      {
+        key: 'sveltekit-starter',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Starter',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
   {
     framework: `SvelteKit`,
-    key: `sveltekit-example`,
+    keys: [
+      {
+        key: 'sveltekit-example',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
   {
     framework: `Vue`,
-    key: `vue-starter`,
+    keys: [
+      {
+        key: 'vue-starter',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Starter',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
   {
     framework: `Vue`,
-    key: `vue-example`,
+    keys: [
+      {
+        key: 'vue-example',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
   {
     framework: `Angular`,
-    key: `angular-starter`,
+    keys: [
+      {
+        key: 'angular-starter',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Starter',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
   {
     framework: `Angular`,
-    key: `angular-example`,
+    keys: [
+      {
+        key: 'angular-example',
+        language: 'TypeScript'
+      }
+    ],
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
   {
     framework: `Vanilla JavaScript`,
-    key: `vanilla-js-example`,
+    keys: [
+      {
+        key: 'vanilla-js-example',
+        language: 'JavaScript'
+      }
+    ],
     type: 'Example',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'

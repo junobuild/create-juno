@@ -2,11 +2,11 @@ import {isNullish} from '@junobuild/utils';
 import {red} from 'kleur';
 import prompts from 'prompts';
 import {TEMPLATES} from '../constants/templates';
-import type {GeneratorInput, ProjectKind} from '../types/generator';
-import type {Template, TemplateFramework} from '../types/template';
+import type {GeneratorInput, PopulateTemplate, ProjectKind} from '../types/generator';
+import type {Template, TemplateFramework, TemplateKeyOption} from '../types/template';
 import {assertAnswerCtrlC, confirm} from '../utils/prompts.utils';
 
-export const promptTemplate = async (projectKind: ProjectKind): Promise<Template> => {
+export const promptTemplate = async (projectKind: ProjectKind): Promise<PopulateTemplate> => {
   const allTemplates = TEMPLATES.filter(({kind}) => kind === projectKind).reduce<
     Partial<Record<TemplateFramework, Template[]>>
   >((acc, {framework, ...rest}) => {
@@ -42,7 +42,7 @@ export const promptTemplate = async (projectKind: ProjectKind): Promise<Template
   }
 
   if (templates.length === 1) {
-    return templates[0];
+    return await promptLanguage(templates[0]);
   }
 
   const {template}: {template: Template | undefined} = await prompts({
@@ -60,7 +60,39 @@ export const promptTemplate = async (projectKind: ProjectKind): Promise<Template
     process.exit(0);
   }
 
-  return template;
+  return await promptLanguage(template);
+};
+
+export const promptLanguage = async ({
+  keys,
+  ...templateRest
+}: Template): Promise<PopulateTemplate> => {
+  // If the template is provided with a sole language, we can auto select it.
+  if (keys.length === 1) {
+    return {
+      ...templateRest,
+      ...keys[0]
+    };
+  }
+
+  const {key}: {key: TemplateKeyOption | undefined} = await prompts({
+    type: 'select',
+    name: 'key',
+    message: 'Which language do you prefer?',
+    choices: keys.map((key) => ({
+      title: key.language,
+      value: key
+    }))
+  });
+
+  if (isNullish(key)) {
+    process.exit(0);
+  }
+
+  return {
+    ...templateRest,
+    ...key
+  };
 };
 
 export const promptDestination = async (): Promise<Pick<GeneratorInput, 'destination'>> => {

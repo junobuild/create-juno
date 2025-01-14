@@ -1,7 +1,16 @@
 import type {ProjectKind} from './generator';
 
+export type TemplateKey = string;
+
+export interface TemplateKeyOption {
+  key: TemplateKey;
+  language: TemplateLanguage;
+}
+
+export type TemplateKeys = TemplateKeyOption[];
+
 export interface Template {
-  key: string;
+  keys: TemplateKeys;
   framework: TemplateFramework;
   type: TemplateType;
   description: string;
@@ -18,3 +27,5 @@ export type TemplateFramework =
   | 'Vanilla JavaScript';
 
 export type TemplateType = 'Starter' | 'Example' | 'Workshop';
+
+export type TemplateLanguage = 'JavaScript' | 'TypeScript';
