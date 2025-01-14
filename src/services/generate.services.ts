@@ -152,6 +152,7 @@ const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
     return;
   }
 
+  // TODO: this is verbose and difficult to maintain. We should probably introduce those options in some ways in the templates' definition.
   const config = join(
     process.cwd(),
     where ?? '',
@@ -159,9 +160,13 @@ const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
       ? 'astro.config.mjs'
       : template.framework === 'Next.js'
         ? 'next.config.mjs'
-        : ['React', 'Vanilla JavaScript'].includes(template.framework)
-          ? 'vite.config.js'
-          : 'vite.config.ts'
+        : template.framework === 'React'
+          ? template.language === 'TypeScript'
+            ? 'vite.config.ts'
+            : 'vite.config.js'
+          : template.framework === 'Vanilla JavaScript'
+            ? 'vite.config.js'
+            : 'vite.config.ts'
   );
 
   const data = await readFile(config, 'utf8');
