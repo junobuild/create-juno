@@ -11,7 +11,7 @@ export default [
 
   {
     name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
+    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/public/workers/**'],
   },
 
   ...pluginVue.configs['flat/essential'],
@@ -22,4 +22,9 @@ export default [
     files: ['src/**/__tests__/*'],
   },
   skipFormatting,
+  {
+    rules: {
+      "vue/multi-word-component-names": "off"
+    }
+  },
 ]
