@@ -37,10 +37,10 @@
 		"vite": "^6.0.3"
 	},
 	"type": "module",
-	"dependencies": {
-		"@junobuild/core": "^0.1.0"
-	},
 	"overrides": {
 		"cookie": "^0.7.0"
+	},
+	"dependencies": {
+		"@junobuild/core": "^0.1.0"
 	}
 }
