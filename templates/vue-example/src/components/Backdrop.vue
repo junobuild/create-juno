@@ -6,11 +6,7 @@ defineProps<{
 
 <template>
   <div
-    :class="{
-      'backdrop-blur-sm': spinner === true,
-      'backdrop-blur-xl': spinner !== true,
-    }"
-    class="fixed inset-0 z-40 bg-white/30 flex items-center justify-center"
+    class="fixed inset-0 z-40 bg-white/30 dark:bg-lavender-blue-200/40 flex items-center justify-center backdrop-blur-xl"
   >
     <div
       v-if="spinner"
