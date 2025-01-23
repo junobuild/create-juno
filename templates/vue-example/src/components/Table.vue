@@ -32,7 +32,7 @@ onUnmounted(() => window.removeEventListener('reload', list))
     <div class="py-2" role="rowgroup">
       <div
         v-bind:key="index"
-        class="flex items-center gap-2 px-3 mb-4 border-black dark:border-lavender-blue-500 border-[3px] rounded bg-white dark:bg-black dark:text-white transition-all shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_#7888FF]"
+        class="flex items-center gap-2 px-3 mb-4 border-black dark:border-lavender-blue-500 border-[3px] rounded-sm bg-white dark:bg-black dark:text-white transition-all shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_#7888FF]"
         role="row"
         v-for="(item, index) in items"
       >

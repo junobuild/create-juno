@@ -100,7 +100,7 @@ const openSelectFile = () => inputFile.value?.click()
   >
     <div class="relative w-full max-w-xl">
       <textarea
-        class="form-control block w-full px-3 py-1.5 text-base font-normal m-0 resize-none border-black border-[3px] rounded-sm bg-white shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-none"
+        class="form-control block w-full px-3 py-1.5 text-base font-normal m-0 resize-none border-black border-[3px] rounded-xs bg-white shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-hidden"
         rows="{7}"
         placeholder="Your diary entry"
         v-model="inputText"

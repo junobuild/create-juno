@@ -2,14 +2,14 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import juno from "@junobuild/vite-plugin";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [mdx(), sitemap()],
   vite: {
-    plugins: [juno({ container: true })],
+    plugins: [tailwindcss(), juno({ container: true })],
   },
   devToolbar: {
     enabled: false,

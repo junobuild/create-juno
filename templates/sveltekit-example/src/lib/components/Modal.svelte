@@ -96,7 +96,7 @@
 	<div class="fixed inset-0 z-50 p-16 md:px-24 md:py-44 animate-fade" role="dialog">
 		<div class="relative w-full max-w-xl">
 			<textarea
-				class="form-control block w-full px-3 py-1.5 text-base font-normal m-0 resize-none border-black border-[3px] rounded-sm bg-white shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-none"
+				class="form-control block w-full px-3 py-1.5 text-base font-normal m-0 resize-none border-black border-[3px] rounded-xs bg-white shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-hidden"
 				rows={7}
 				placeholder="Your diary entry"
 				bind:value={inputText}

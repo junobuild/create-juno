@@ -1,5 +1,5 @@
 <footer
-	class="mx-auto max-w-screen-2xl py-16 px-8 md:px-24 h-24 flex items-center justify-between md:justify-start md:gap-24 md:mt-12 dark:text-white"
+	class="mx-auto max-w-(--breakpoint-2xl) py-16 md:pt-0 px-8 md:px-24 h-24 flex items-center justify-between md:justify-start md:gap-24 md:mt-12 dark:text-white"
 >
 	<span class="flex gap-2 items-baseline">
 		<svg

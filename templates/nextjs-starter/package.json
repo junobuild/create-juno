@@ -20,14 +20,14 @@
   "devDependencies": {
     "@junobuild/config": "^0.0.17",
     "@junobuild/nextjs-plugin": "^0.0.13",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "^15.0.0-canary.134",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5"
   }
 }
