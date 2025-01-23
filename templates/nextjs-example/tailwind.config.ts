@@ -8,13 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      screens: {
-        tall: {raw: '(min-height: 800px)'}
-      },
       animation: {
         fade: 'fadeIn .25s ease-in-out'
       },
-
       keyframes: {
         fadeIn: {
           from: {opacity: '0'},
