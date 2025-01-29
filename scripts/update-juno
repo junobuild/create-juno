@@ -3,6 +3,8 @@
 function update_angular() {
   local template=$1
 
+  echo -e "\n***** Update Angular *****\n"
+
   cd templates/"$template" || exit
 
   npm rm @junobuild/core && npm i @junobuild/core
@@ -13,6 +15,8 @@ function update_angular() {
 function update_astro() {
   local template=$1
 
+  echo -e "\n***** Update Astro *****\n"
+
   cd templates/"$template" || exit
 
   npm rm @junobuild/config @junobuild/vite-plugin && npm i @junobuild/config @junobuild/vite-plugin -D
@@ -22,6 +26,8 @@ function update_astro() {
 
 function update_next() {
   local template=$1
+
+  echo -e "\n***** Update Next *****\n"
 
   cd templates/"$template" || exit
 
@@ -34,6 +40,8 @@ function update_next() {
 function update_react() {
   local template=$1
 
+  echo -e "\n***** Update React *****\n"
+
   cd templates/"$template" || exit
 
   npm rm @junobuild/core && npm i @junobuild/core
@@ -44,6 +52,8 @@ function update_react() {
 
 function update_svelte() {
   local template=$1
+
+  echo -e "\n***** Update Svelte *****\n"
 
   cd templates/"$template" || exit
 
@@ -56,6 +66,8 @@ function update_svelte() {
 function update_vue() {
   local template=$1
 
+  echo -e "\n***** Update Vue *****\n"
+
   cd templates/"$template" || exit
 
   npm rm @junobuild/core && npm i @junobuild/core
@@ -66,6 +78,8 @@ function update_vue() {
 
 function update_vanilla() {
   local template=$1
+
+  echo -e "\n***** Update Vanilla *****\n"
 
   cd templates/"$template" || exit
 
