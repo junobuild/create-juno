@@ -7,6 +7,7 @@ export interface UntarOutputFile {
 }
 
 export const untarFile = async ({source}: {source: Buffer}): Promise<UntarOutputFile[]> =>
+  // eslint-disable-next-line promise/avoid-new
   await new Promise<UntarOutputFile[]>((resolve, reject) => {
     // Create an extract stream
     const extractor = tar.extract();

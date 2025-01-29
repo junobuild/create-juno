@@ -1,4 +1,4 @@
-import {nonNullish} from '@junobuild/utils';
+import {nonNullish} from '@dfinity/utils';
 import {cyan, grey} from 'kleur';
 import type {GeneratorInput} from '../types/generator';
 import {NEW_CMD_LINE} from '../utils/prompts.utils';

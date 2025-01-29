@@ -1,5 +1,5 @@
+import {nonNullish} from '@dfinity/utils';
 import {fileExists, hasArgs} from '@junobuild/cli-tools';
-import {nonNullish} from '@junobuild/utils';
 import {join} from 'node:path';
 import type {GeneratorInput} from '../types/generator';
 import {confirm} from '../utils/prompts.utils';

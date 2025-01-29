@@ -1,4 +1,4 @@
-import {isNullish} from '@junobuild/utils';
+import {isNullish} from '@dfinity/utils';
 import {red} from 'kleur';
 import prompts from 'prompts';
 import {TEMPLATES} from '../constants/templates';

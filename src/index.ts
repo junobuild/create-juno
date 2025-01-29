@@ -1,4 +1,4 @@
-import {isNullish, nonNullish} from '@junobuild/utils';
+import {isNullish, nonNullish} from '@dfinity/utils';
 import {cyan, green, grey, magenta, red} from 'kleur';
 import {version} from '../package.json';
 import {installCli} from './services/cli.services';

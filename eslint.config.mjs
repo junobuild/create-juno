@@ -48,6 +48,7 @@ export default [
       '@typescript-eslint/no-redundant-type-constituents': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       'eslint-comments/require-description': 'off',
+      'no-console': 'off',
       complexity: 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',

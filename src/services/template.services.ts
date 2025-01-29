@@ -1,5 +1,5 @@
+import {isNullish} from '@dfinity/utils';
 import {nextArg} from '@junobuild/cli-tools';
-import {isNullish} from '@junobuild/utils';
 import {TEMPLATES} from '../constants/templates';
 import type {PopulateTemplate} from '../types/generator';
 import {promptProjectKind, promptTemplate} from './prompt.services';
