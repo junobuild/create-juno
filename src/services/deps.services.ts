@@ -1,5 +1,5 @@
-import {spawn} from '@junobuild/cli-tools';
 import {nonNullish} from '@dfinity/utils';
+import {spawn} from '@junobuild/cli-tools';
 import ora from 'ora';
 import type {PopulateInput} from '../types/generator';
 import {whichPMRuns} from '../utils/pm.utils';
