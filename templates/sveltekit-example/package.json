@@ -14,7 +14,7 @@
 		"postinstall": "npm run postinstall:copy-auth"
 	},
 	"devDependencies": {
-		"@junobuild/config": "^0.0.17",
+		"@junobuild/config": "^0.1.0",
 		"@junobuild/vite-plugin": "^0.0.19",
 		"@sveltejs/adapter-static": "^3.0.6",
 		"@sveltejs/kit": "^2.9.0",
@@ -38,7 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@junobuild/core": "^0.1.0",
+		"@junobuild/core": "^0.1.1",
 		"nanoid": "^5.0.9"
 	},
 	"overrides": {
