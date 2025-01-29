@@ -1,6 +1,7 @@
 export const GITHUB_ACTION_DEPLOY = `name: Deploy to Juno
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
 
