@@ -42,6 +42,6 @@
 		"cookie": "^0.7.0"
 	},
 	"dependencies": {
-		"@junobuild/core": "^0.1.1"
+		"@junobuild/core": "^0.1.3"
 	}
 }
