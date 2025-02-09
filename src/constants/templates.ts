@@ -63,6 +63,10 @@ export const TEMPLATES: Template[] = [
       {
         key: 'react-example',
         language: 'JavaScript'
+      },
+      {
+        key: 'react-ts-example',
+        language: 'TypeScript'
       }
     ],
     type: 'Example',
