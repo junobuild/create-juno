@@ -1,10 +1,10 @@
-import { FC, useEffect } from 'react'
-import { initSatellite } from '@junobuild/core'
-import { Auth } from './components/Auth'
-import { Background } from './components/Background'
-import { Footer } from './components/Footer'
-import { Modal } from './components/Modal'
-import { Table } from './components/Table'
+import {initSatellite} from '@junobuild/core';
+import {FC, useEffect} from 'react';
+import {Auth} from './components/Auth';
+import {Background} from './components/Background';
+import {Footer} from './components/Footer';
+import {Modal} from './components/Modal';
+import {Table} from './components/Table';
 
 const App: FC = () => {
   useEffect(() => {
@@ -13,8 +13,8 @@ const App: FC = () => {
         workers: {
           auth: true
         }
-      }))()
-  }, [])
+      }))();
+  }, []);
 
   return (
     <>
@@ -47,7 +47,7 @@ const App: FC = () => {
         <Background />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import {FC} from 'react';
 
 export const Footer: FC = () => {
   return (
@@ -120,5 +120,5 @@ export const Footer: FC = () => {
         </a>
       </div>
     </footer>
-  )
-}
+  );
+};

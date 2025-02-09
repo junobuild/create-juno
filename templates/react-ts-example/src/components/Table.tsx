@@ -1,38 +1,38 @@
-import { FC, useContext, useEffect, useState } from 'react'
-import { listDocs, Doc } from '@junobuild/core'
-import { AuthContext } from './Auth'
-import { Delete } from './Delete'
-import { NoteData } from '../types/note'
+import {Doc, listDocs} from '@junobuild/core';
+import {FC, useContext, useEffect, useState} from 'react';
+import {NoteData} from '../types/note';
+import {AuthContext} from './Auth';
+import {Delete} from './Delete';
 
 export const Table: FC = () => {
-  const { user } = useContext(AuthContext)
-  const [items, setItems] = useState<Doc<NoteData>[]>([])
+  const {user} = useContext(AuthContext);
+  const [items, setItems] = useState<Doc<NoteData>[]>([]);
 
   useEffect(() => {
-    window.addEventListener('reload', list)
+    window.addEventListener('reload', list);
 
     return () => {
-      window.removeEventListener('reload', list)
-    }
-  }, [])
+      window.removeEventListener('reload', list);
+    };
+  }, []);
 
   const list = async () => {
-    const { items } = await listDocs<NoteData>({
+    const {items} = await listDocs<NoteData>({
       collection: 'notes',
       filter: {}
-    })
+    });
 
-    setItems(items)
-  }
+    setItems(items);
+  };
 
   useEffect(() => {
     if (user === null || user === undefined) {
-      setItems([])
-      return
+      setItems([]);
+      return;
     }
 
-    (async () => await list())()
-  }, [user])
+    (async () => await list())();
+  }, [user]);
 
   return (
     <div className="w-full max-w-2xl mt-8 dark:text-white" role="table">
@@ -46,8 +46,8 @@ export const Table: FC = () => {
         {items.map((item, index) => {
           const {
             key,
-            data: { text, url }
-          } = item
+            data: {text, url}
+          } = item;
 
           return (
             <div
@@ -84,9 +84,9 @@ export const Table: FC = () => {
                 <Delete item={item} reload={list} />
               </div>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};

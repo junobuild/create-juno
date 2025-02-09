@@ -1,8 +1,8 @@
-import type { Doc } from '@junobuild/core'
+import type {Doc} from '@junobuild/core';
 
 export interface NoteData {
-  text: string
-  url?: string
+  text: string;
+  url?: string;
 }
 
-export type Note = Doc<NoteData> 
+export type Note = Doc<NoteData>;

@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import { signOut } from '@junobuild/core'
+import {signOut} from '@junobuild/core';
+import {FC} from 'react';
 
 export const Logout: FC = () => {
   return (
@@ -19,5 +19,5 @@ export const Logout: FC = () => {
         <small>Logout</small>
       </span>
     </button>
-  )
-}
+  );
+};

@@ -1,11 +1,11 @@
-import { FC } from 'react'
+import {FC} from 'react';
 
 interface BackdropProps {
-  spinner?: boolean
+  spinner?: boolean;
 }
 
 export const Backdrop: FC<BackdropProps> = (props) => {
-  const { spinner = false } = props
+  const {spinner = false} = props;
 
   return (
     <div
@@ -16,5 +16,5 @@ export const Backdrop: FC<BackdropProps> = (props) => {
           border-[3px] border-solid border-lavender-blue-600 border-t-transparent"></div>
       )}
     </div>
-  )
-}
+  );
+};
