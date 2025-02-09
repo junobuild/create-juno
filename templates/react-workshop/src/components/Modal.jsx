@@ -19,8 +19,8 @@ export const Modal = () => {
   }, [showModal, inputText, user]);
 
   const reload = () => {
-    let event = new Event('reload');
-    window.dispatchEvent(event);
+    const $event = new Event('reload');
+    window.dispatchEvent($event);
   };
 
   const add = async () => {
