@@ -8,7 +8,9 @@ interface DeleteProps {
   reload: () => void;
 }
 
-export const Delete: FC<DeleteProps> = ({item, reload}) => {
+export const Delete: FC<DeleteProps> = (props) => {
+  const {item, reload} = props;
+
   const [inProgress, setInProgress] = useState(false);
 
   const delItem = async (doc: Note) => {
