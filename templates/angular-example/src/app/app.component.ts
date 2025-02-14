@@ -9,7 +9,7 @@ import {HomeComponent} from './components/home/home.component';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'Juno / Angular Starter';
+  title = 'Juno / Angular Example';
 
   async ngOnInit() {
     await initSatellite({
