@@ -22,7 +22,7 @@
     "@junobuild/config": "^0.1.0",
     "@junobuild/vite-plugin": "^0.0.19",
     "@tailwindcss/postcss": "^4.0.0",
-    "@tailwindcss/vite": "^4.0.5",
+    "@tailwindcss/vite": "^4.0.6",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
     "@vitejs/plugin-react": "^4.3.4",

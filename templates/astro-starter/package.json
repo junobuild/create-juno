@@ -17,7 +17,7 @@
     "@astrojs/sitemap": "^3.2.1",
     "@junobuild/config": "^0.1.0",
     "@junobuild/vite-plugin": "^0.0.19",
-    "@tailwindcss/vite": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.6",
     "astro": "^5.0.3",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
