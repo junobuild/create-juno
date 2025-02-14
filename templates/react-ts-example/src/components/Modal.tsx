@@ -100,7 +100,7 @@ export const Modal: FC = () => {
         m-0
         resize-none
         border-black border-[3px] rounded-sm bg-white shadow-[5px_5px_0px_rgba(0,0,0,1)]
-        focus:outline-none
+        focus:outline-hidden
       "
                 rows={7}
                 placeholder="Your diary entry"
