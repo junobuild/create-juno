@@ -73,6 +73,9 @@ COPY --from=build_react_starter ./prepare/target/react-starter.tar.gz /
 FROM scratch AS scratch_react_ts_starter
 COPY --from=build_react_ts_starter ./prepare/target/react-ts-starter.tar.gz /
 
+FROM scratch AS scratch_react_ts_example
+COPY --from=build_react_ts_example ./prepare/target/react-ts-example.tar.gz /
+
 FROM scratch AS scratch_react_example
 COPY --from=build_react_example ./prepare/target/react-example.tar.gz /
 
