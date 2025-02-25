@@ -1,4 +1,4 @@
-import {Button} from './Button';
+import { Button } from "./Button";
 
 export const Login = () => {
   //TODO: STEP_3_AUTH_SIGN_IN

@@ -1,17 +1,17 @@
-import {NgIf} from '@angular/common';
-import {Component, ElementRef, inject, ViewChild} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
-import {setDoc, uploadFile, User} from '@junobuild/core';
-import {nanoid} from 'nanoid';
-import {AuthService} from '../../services/auth.service';
-import {DocsService} from '../../services/docs.service';
-import {BackdropComponent} from '../backdrop/backdrop.component';
-import {ButtonComponent} from '../button/button.component';
+import { NgIf } from '@angular/common';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { setDoc, uploadFile, User } from '@junobuild/core';
+import { nanoid } from 'nanoid';
+import { AuthService } from '../../services/auth.service';
+import { DocsService } from '../../services/docs.service';
+import { BackdropComponent } from '../backdrop/backdrop.component';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-modal',
   imports: [NgIf, BackdropComponent, ReactiveFormsModule, ButtonComponent],
-  templateUrl: './modal.component.html'
+  templateUrl: './modal.component.html',
 })
 export class ModalComponent {
   private readonly authService = inject(AuthService);
@@ -22,7 +22,7 @@ export class ModalComponent {
   #formBuilder = inject(FormBuilder);
 
   diaryForm = this.#formBuilder.group({
-    entry: ''
+    entry: '',
   });
 
   showModal = false;
@@ -64,10 +64,10 @@ export class ModalComponent {
     if (this.file !== undefined) {
       const filename = `${user.key}-${this.file.name}`;
 
-      const {downloadUrl} = await uploadFile({
+      const { downloadUrl } = await uploadFile({
         collection: 'images',
         data: this.file,
-        filename
+        filename,
       });
 
       url = downloadUrl;
@@ -81,9 +81,9 @@ export class ModalComponent {
         key,
         data: {
           text: this.diaryForm.value.entry,
-          ...(url !== undefined && {url})
-        }
-      }
+          ...(url !== undefined && { url }),
+        },
+      },
     });
   }
 

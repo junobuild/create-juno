@@ -93,21 +93,21 @@
 </Button>
 
 {#if showModal}
-	<div class="fixed inset-0 z-50 p-16 md:px-24 md:py-44 animate-fade" role="dialog">
+	<div class="animate-fade fixed inset-0 z-50 p-16 md:px-24 md:py-44" role="dialog">
 		<div class="relative w-full max-w-xl">
 			<textarea
-				class="form-control block w-full px-3 py-1.5 text-base font-normal m-0 resize-none border-black border-[3px] rounded-xs bg-white shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-hidden"
+				class="form-control m-0 block w-full resize-none rounded-xs border-[3px] border-black bg-white px-3 py-1.5 text-base font-normal shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-hidden"
 				rows={7}
 				placeholder="Your diary entry"
 				bind:value={inputText}
 				disabled={progress}
 			></textarea>
 
-			<div role="toolbar" class="flex justify-between items-center">
+			<div role="toolbar" class="flex items-center justify-between">
 				<div>
 					<button
 						aria-label="Attach a file to the entry"
-						class="flex gap-2 items-center hover:text-lavender-blue-600 active:text-lavender-blue-400"
+						class="hover:text-lavender-blue-600 active:text-lavender-blue-400 flex items-center gap-2"
 						onclick={openSelectFile}
 					>
 						<svg
@@ -123,7 +123,7 @@
 								/>
 							</g>
 						</svg>
-						<span class="truncate max-w-48">
+						<span class="max-w-48 truncate">
 							<small>{file !== undefined ? file.name : 'Attach file'}</small>
 						</span>
 					</button>
@@ -139,16 +139,16 @@
 
 				{#if progress}
 					<div
-						class="my-8 animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-indigo-600 rounded-full"
+						class="my-8 inline-block h-6 w-6 animate-spin rounded-full border-[3px] border-current border-t-transparent text-indigo-600"
 						role="status"
 						aria-label="loading"
 					>
 						<span class="sr-only">Loading...</span>
 					</div>
 				{:else}
-					<div class="flex my-4">
+					<div class="my-4 flex">
 						<button
-							class="py-1 px-8 hover:text-lavender-blue-600 active:text-lavender-blue-400"
+							class="hover:text-lavender-blue-600 active:text-lavender-blue-400 px-8 py-1"
 							type="button"
 							onclick={() => (showModal = false)}
 						>

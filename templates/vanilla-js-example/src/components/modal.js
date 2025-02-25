@@ -1,6 +1,6 @@
-import {authSubscribe, setDoc, uploadFile} from '@junobuild/core';
-import {nanoid} from 'nanoid';
-import {addEventClick, reload} from '../utils/utils';
+import { authSubscribe, setDoc, uploadFile } from "@junobuild/core";
+import { nanoid } from "nanoid";
+import { addEventClick, reload } from "../utils/utils";
 
 let user;
 authSubscribe((u) => (user = u));
@@ -11,8 +11,8 @@ const submitEntry = async (modal) => {
     return;
   }
 
-  const textarea = modal.querySelector('#entryText');
-  const input = modal.querySelector('#fileEntry');
+  const textarea = modal.querySelector("#entryText");
+  const input = modal.querySelector("#fileEntry");
 
   const inputText = textarea.value;
   const file = input.files[0];
@@ -23,10 +23,10 @@ const submitEntry = async (modal) => {
     if (file !== undefined) {
       const filename = `${user.key}-${file.name}`;
 
-      const {downloadUrl} = await uploadFile({
-        collection: 'images',
+      const { downloadUrl } = await uploadFile({
+        collection: "images",
         data: file,
-        filename
+        filename,
       });
 
       url = downloadUrl;
@@ -35,14 +35,14 @@ const submitEntry = async (modal) => {
     const key = nanoid();
 
     await setDoc({
-      collection: 'notes',
+      collection: "notes",
       doc: {
         key,
         data: {
           text: inputText,
-          ...(url !== undefined && {url})
-        }
-      }
+          ...(url !== undefined && { url }),
+        },
+      },
     });
 
     closeModal(modal);
@@ -53,21 +53,21 @@ const submitEntry = async (modal) => {
   }
 };
 
-const closeModal = (modal) => (modal.innerHTML = '');
+const closeModal = (modal) => (modal.innerHTML = "");
 
 const showModal = () => {
-  const modal = document.querySelector('#modal');
+  const modal = document.querySelector("#modal");
 
   addEventClick({
     target: modal,
-    selector: '#closeModal',
-    fn: () => closeModal(modal)
+    selector: "#closeModal",
+    fn: () => closeModal(modal),
   });
 
   addEventClick({
     target: modal,
-    selector: '#submitEntry',
-    fn: async () => await submitEntry(modal)
+    selector: "#submitEntry",
+    fn: async () => await submitEntry(modal),
   });
 
   modal.innerHTML = `<div class="fixed inset-0 z-50 p-16 md:px-24 md:py-44 animate-fade" role="dialog">
@@ -121,8 +121,8 @@ const showModal = () => {
 export const renderModal = (app) => {
   addEventClick({
     target: app,
-    selector: '#addEntry',
-    fn: showModal
+    selector: "#addEntry",
+    fn: showModal,
   });
 
   return `<button

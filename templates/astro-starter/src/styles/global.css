@@ -15,7 +15,7 @@
 }
 
 @theme {
-  --font-display: 'JetBrains Mono', sans-serif;
+  --font-display: "JetBrains Mono", sans-serif;
 
   --color-*: initial;
   --color-inherit: inherit;

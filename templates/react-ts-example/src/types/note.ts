@@ -1,4 +1,4 @@
-import type {Doc} from '@junobuild/core';
+import type { Doc } from "@junobuild/core";
 
 export interface NoteData {
   text: string;

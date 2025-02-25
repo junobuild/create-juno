@@ -1,20 +1,25 @@
 <div class="relative isolate min-h-[100dvh]">
   <main
-    class="mx-auto max-w-(--breakpoint-2xl) py-16 px-8 md:px-24 [@media(min-height:800px)]:min-h-[calc(100dvh-128px)]">
-    <h1 class="dark:text-white text-5xl md:text-6xl font-extrabold md:pt-16">Welcome to Juno</h1>
+    class="mx-auto max-w-(--breakpoint-2xl) px-8 py-16 md:px-24 [@media(min-height:800px)]:min-h-[calc(100dvh-128px)]"
+  >
+    <h1 class="text-5xl font-extrabold md:pt-16 md:text-6xl dark:text-white">
+      Welcome to Juno
+    </h1>
 
-    <div class="w-full max-w-2xl mt-8 grid grid-cols-2 gap-8">
+    <div class="mt-8 grid w-full max-w-2xl grid-cols-2 gap-8">
       <app-hero
         class="contents"
         href="https://juno.build/docs/add-juno-to-an-app/create-a-satellite"
-        ariaLabel="Discover how to create a Satellite and deploy your project to production">
+        ariaLabel="Discover how to create a Satellite and deploy your project to production"
+      >
         Not yet live? Launch your Satellite
       </app-hero>
 
       <app-article
         class="contents"
         href="https://juno.build/docs/guides/astro"
-        ariaLabel="Open quickstart guides on Juno's website">
+        ariaLabel="Open quickstart guides on Juno's website"
+      >
         <span class="title">Quickstart</span>
 
         Discover how to deploy and enhance your newly created Juno project.
@@ -23,7 +28,8 @@
       <app-article
         class="contents"
         href="https://juno.build/docs/category/build"
-        ariaLabel="Open the list of features for building apps on Juno's website">
+        ariaLabel="Open the list of features for building apps on Juno's website"
+      >
         <span class="title">Documentation</span>
 
         Learn how Juno works and explore the official docs.
@@ -32,7 +38,8 @@
       <app-article
         class="contents"
         href="https://juno.build/docs/miscellaneous/github_actions"
-        ariaLabel="Open the guide to setting up GitHub Actions for Juno">
+        ariaLabel="Open the guide to setting up GitHub Actions for Juno"
+      >
         <span class="title">Continuous Integration</span>
 
         Automate your deployment with GitHub Actions.
@@ -41,7 +48,8 @@
       <app-article
         class="contents"
         href="https://discord.gg/wHZ57Z2RAG"
-        ariaLabel="Join Juno's Discord channel for questions or to share the fun">
+        ariaLabel="Join Juno's Discord channel for questions or to share the fun"
+      >
         <span class="title">Community</span>
 
         Come say hi to our amazing Discord community. ❤️

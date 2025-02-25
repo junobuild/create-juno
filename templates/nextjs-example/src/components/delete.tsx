@@ -1,14 +1,14 @@
-import {Backdrop} from '@/components/backdrop';
-import type {Note} from '@/types/note';
-import {deleteAsset, deleteDoc} from '@junobuild/core';
-import {useState} from 'react';
+import { Backdrop } from "@/components/backdrop";
+import type { Note } from "@/types/note";
+import { deleteAsset, deleteDoc } from "@junobuild/core";
+import { useState } from "react";
 
 interface DeleteProps {
   item: Note;
   reload: () => Promise<void>;
 }
 
-export const Delete = ({item, reload}: DeleteProps) => {
+export const Delete = ({ item, reload }: DeleteProps) => {
   const [inProgress, setInProgress] = useState(false);
 
   const delItem = async (doc: Note) => {
@@ -16,21 +16,21 @@ export const Delete = ({item, reload}: DeleteProps) => {
 
     try {
       const {
-        data: {url}
+        data: { url },
       } = doc;
 
       if (url !== undefined) {
-        const {pathname: fullPath} = new URL(url);
+        const { pathname: fullPath } = new URL(url);
 
         await deleteAsset({
-          collection: 'images',
-          fullPath
+          collection: "images",
+          fullPath,
         });
       }
 
       await deleteDoc({
-        collection: 'notes',
-        doc
+        collection: "notes",
+        doc,
       });
 
       await reload();
@@ -48,8 +48,14 @@ export const Delete = ({item, reload}: DeleteProps) => {
         className="hover:text-lavender-blue-500 active:text-lavender-blue-400"
         onClick={async () => {
           await delItem(item);
-        }}>
-        <svg width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" fill="currentColor">
+        }}
+      >
+        <svg
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 29 29"
+          fill="currentColor"
+        >
           <g>
             <rect fill="none" className="opacity-25" width="29" height="29" />
             <path
