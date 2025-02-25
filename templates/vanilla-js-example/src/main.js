@@ -1,13 +1,13 @@
-import {authSubscribe, initSatellite} from '@junobuild/core';
-import {renderContent} from './components/content';
-import {renderLogin} from './components/login';
-import './style.css';
+import { authSubscribe, initSatellite } from "@junobuild/core";
+import { renderContent } from "./components/content";
+import { renderLogin } from "./components/login";
+import "./style.css";
 
 /**
  * Global listener. When the user sign-in or sign-out, we re-render the app.
  */
 authSubscribe((user) => {
-  const app = document.querySelector('#app');
+  const app = document.querySelector("#app");
 
   if (user === null || user === undefined) {
     renderLogin(app);
@@ -24,9 +24,9 @@ authSubscribe((user) => {
 const onAppInit = async () => {
   await initSatellite({
     workers: {
-      auth: true
-    }
+      auth: true,
+    },
   });
 };
 
-document.addEventListener('DOMContentLoaded', onAppInit, {once: true});
+document.addEventListener("DOMContentLoaded", onAppInit, { once: true });

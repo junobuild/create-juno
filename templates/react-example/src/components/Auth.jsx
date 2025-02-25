@@ -1,12 +1,12 @@
-import {authSubscribe} from '@junobuild/core';
-import PropTypes from 'prop-types';
-import {createContext, useEffect, useState} from 'react';
-import {Login} from './Login';
-import {Logout} from './Logout';
+import { authSubscribe } from "@junobuild/core";
+import PropTypes from "prop-types";
+import { createContext, useEffect, useState } from "react";
+import { Login } from "./Login";
+import { Logout } from "./Logout";
 
 export const AuthContext = createContext();
 
-export const Auth = ({children}) => {
+export const Auth = ({ children }) => {
   const [user, setUser] = useState(undefined);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const Auth = ({children}) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{user}}>
+    <AuthContext.Provider value={{ user }}>
       {user !== undefined && user !== null ? (
         <div>
           {children}
@@ -31,5 +31,5 @@ export const Auth = ({children}) => {
 };
 
 Auth.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };

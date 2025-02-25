@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-background',
   imports: [],
-  templateUrl: './background.component.html'
+  templateUrl: './background.component.html',
 })
 export class BackgroundComponent {}

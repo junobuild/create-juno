@@ -1,11 +1,11 @@
-import {signIn} from '@junobuild/core';
-import {addEventClick} from '../utils/utils';
+import { signIn } from "@junobuild/core";
+import { addEventClick } from "../utils/utils";
 
 export const renderLogin = (app) => {
   addEventClick({
     target: app,
-    selector: '#login',
-    fn: signIn
+    selector: "#login",
+    fn: signIn,
   });
 
   app.innerHTML = `<button id="login"

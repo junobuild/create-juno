@@ -1,24 +1,24 @@
-import {deleteAsset, deleteDoc} from '@junobuild/core';
-import {addEventClick, reload} from '../utils/utils';
+import { deleteAsset, deleteDoc } from "@junobuild/core";
+import { addEventClick, reload } from "../utils/utils";
 
 const deleteItem = async (item) => {
   try {
     const {
-      data: {url}
+      data: { url },
     } = item;
 
     if (url !== undefined) {
-      const {pathname: fullPath} = new URL(url);
+      const { pathname: fullPath } = new URL(url);
 
       await deleteAsset({
-        collection: 'images',
-        fullPath
+        collection: "images",
+        fullPath,
       });
     }
 
     await deleteDoc({
-      collection: 'notes',
-      doc: item
+      collection: "notes",
+      doc: item,
     });
 
     reload();
@@ -27,11 +27,11 @@ const deleteItem = async (item) => {
   }
 };
 
-export const renderDelete = ({table, item, index}) => {
+export const renderDelete = ({ table, item, index }) => {
   addEventClick({
     target: table,
     selector: `#deleteItem${index}`,
-    fn: async () => await deleteItem(item)
+    fn: async () => await deleteItem(item),
   });
 
   return `<button

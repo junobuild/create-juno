@@ -1,9 +1,9 @@
-import {deleteAsset, deleteDoc} from '@junobuild/core';
-import PropTypes from 'prop-types';
-import {useState} from 'react';
-import {Backdrop} from './Backdrop';
+import { deleteAsset, deleteDoc } from "@junobuild/core";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { Backdrop } from "./Backdrop";
 
-export const Delete = ({item, reload}) => {
+export const Delete = ({ item, reload }) => {
   const [inProgress, setInProgress] = useState(false);
 
   const delItem = async (doc) => {
@@ -11,21 +11,21 @@ export const Delete = ({item, reload}) => {
 
     try {
       const {
-        data: {url}
+        data: { url },
       } = doc;
 
       if (url !== undefined) {
-        const {pathname: fullPath} = new URL(url);
+        const { pathname: fullPath } = new URL(url);
 
         await deleteAsset({
-          collection: 'images',
-          fullPath
+          collection: "images",
+          fullPath,
         });
       }
 
       await deleteDoc({
-        collection: 'notes',
-        doc
+        collection: "notes",
+        doc,
       });
 
       await reload();
@@ -41,8 +41,14 @@ export const Delete = ({item, reload}) => {
       <button
         role="cell"
         className="hover:text-lavender-blue-500 active:text-lavender-blue-400"
-        onClick={async () => await delItem(item)}>
-        <svg width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" fill="currentColor">
+        onClick={async () => await delItem(item)}
+      >
+        <svg
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 29 29"
+          fill="currentColor"
+        >
           <g>
             <rect fill="none" className="opacity-25" width="29" height="29" />
             <path
@@ -69,5 +75,5 @@ export const Delete = ({item, reload}) => {
 
 Delete.propTypes = {
   item: PropTypes.object.isRequired,
-  reload: PropTypes.func.isRequired
+  reload: PropTypes.func.isRequired,
 };

@@ -1,14 +1,20 @@
-import {computed, Injectable, Signal, signal, WritableSignal} from '@angular/core';
-import {authSubscribe, User} from '@junobuild/core';
+import {
+  computed,
+  Injectable,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
+import { authSubscribe, User } from '@junobuild/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   user: WritableSignal<User | undefined | null> = signal(undefined);
 
   readonly signedIn: Signal<boolean> = computed(
-    () => this.user() !== null && this.user() !== undefined
+    () => this.user() !== null && this.user() !== undefined,
   );
 
   constructor() {

@@ -40,15 +40,15 @@ First, configure the satellite ID in the `juno.config.mjs` file.
 > TODO: find and replace STEP_1_CONFIGURATION
 
 ```javascript
-import {defineConfig} from '@junobuild/config';
+import { defineConfig } from "@junobuild/config";
 
 /** @type {import('@junobuild/config').JunoConfig} */
 export default defineConfig({
   satellite: {
     // TODO: STEP_1_CONFIGURATION
-    id: 'replace-satellite-id',
-    source: 'dist'
-  }
+    id: "replace-satellite-id",
+    source: "dist",
+  },
 });
 ```
 
@@ -69,7 +69,7 @@ To securely identify users anonymously, they will need to sign in.
 > TODO: find and replace STEP_3_AUTH_SIGN_IN
 
 ```javascript
-import {signIn} from '@junobuild/core';
+import { signIn } from "@junobuild/core";
 
 await signIn();
 ```
@@ -79,7 +79,7 @@ To get to know the user’s state, Juno provides an observable function called `
 > TODO: find and replace STEP_4_AUTH_SUBSCRIBE
 
 ```typescript
-import {authSubscribe, type User} from '@junobuild/core';
+import { authSubscribe, type User } from "@junobuild/core";
 
 const sub = authSubscribe((user: User | null) => console.log(user));
 ```
@@ -89,7 +89,7 @@ Users should obviously also be able to sign out.
 > TODO: find and replace STEP_5_AUTH_SIGN_OUT
 
 ```javascript
-import {signOut} from '@junobuild/core';
+import { signOut } from "@junobuild/core";
 
 await signOut();
 ```
@@ -106,13 +106,13 @@ Once our collection is created, we can persist data on the blockchain using the 
 
 ```javascript
 await setDoc({
-  collection: 'notes',
+  collection: "notes",
   doc: {
     key,
     data: {
-      text: inputText
-    }
-  }
+      text: inputText,
+    },
+  },
 });
 ```
 
@@ -125,8 +125,8 @@ To fetch the list of documents saved on the blockchain, we can use the `listDocs
 > TODO: find and replace STEP_7_LIST_DOCS
 
 ```javascript
-const {items} = await listDocs({
-  collection: 'notes'
+const { items } = await listDocs({
+  collection: "notes",
 });
 ```
 
@@ -141,10 +141,10 @@ Once our collection is set, we can upload a file on chain using the `uploadFile`
 > TODO: find and replace STEP_8_UPLOAD_FILE
 
 ```javascript
-const {downloadUrl} = await uploadFile({
-  collection: 'images',
+const { downloadUrl } = await uploadFile({
+  collection: "images",
   data: file,
-  filename
+  filename,
 });
 ```
 
@@ -154,14 +154,14 @@ In this particular workshop, we also want to save a reference within the documen
 
 ```javascript
 await setDoc({
-  collection: 'notes',
+  collection: "notes",
   doc: {
     key,
     data: {
       text: inputText,
-      ...(url !== undefined && {url}) // <--- We add this reference
-    }
-  }
+      ...(url !== undefined && { url }), // <--- We add this reference
+    },
+  },
 });
 ```
 

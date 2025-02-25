@@ -1,13 +1,13 @@
-import {listDocs} from '@junobuild/core';
-import {renderDelete} from './delete';
+import { listDocs } from "@junobuild/core";
+import { renderDelete } from "./delete";
 
 const list = async () => {
-  const {items} = await listDocs({
-    collection: 'notes',
-    filter: {}
+  const { items } = await listDocs({
+    collection: "notes",
+    filter: {},
   });
 
-  const table = document.querySelector('#table');
+  const table = document.querySelector("#table");
 
   table.innerHTML = `<div class="w-full max-w-2xl mt-8 dark:text-white" role="table">
       <div role="row">
@@ -21,7 +21,7 @@ const list = async () => {
           .map((item, index) => {
             const {
               key,
-              data: {text, url}
+              data: { text, url },
             } = item;
 
             return `<div
@@ -54,14 +54,14 @@ const list = async () => {
                     </svg>
                   </a>
                     `
-                    : ''
+                    : ""
                 }
                 
-                ${renderDelete({table, item, index})}
+                ${renderDelete({ table, item, index })}
               </div>
             </div>`;
           })
-          .join('')}
+          .join("")}
       </div>
 </div>`;
 };
@@ -72,9 +72,9 @@ export const renderTable = (app) => {
 
     await list();
   });
-  observer.observe(app, {childList: true, subtree: true});
+  observer.observe(app, { childList: true, subtree: true });
 
   return `<div id="table" class="contents"></div>`;
 };
 
-window.addEventListener('reload', list);
+window.addEventListener("reload", list);

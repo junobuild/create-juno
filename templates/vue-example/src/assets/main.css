@@ -14,7 +14,6 @@
   src: url('/fonts/jetbrainsmono-bold.woff2') format('woff2');
 }
 
-
 @theme {
   --font-display: 'JetBrains Mono', sans-serif;
 

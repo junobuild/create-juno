@@ -1,19 +1,18 @@
-import {FC} from 'react';
+import { FC } from "react";
 
 interface BackdropProps {
   spinner?: boolean;
 }
 
 export const Backdrop: FC<BackdropProps> = (props) => {
-  const {spinner = false} = props;
+  const { spinner = false } = props;
 
   return (
     <div
-      className={`fixed inset-0 z-40 ${spinner ? 'backdrop-blur-xs' : 'backdrop-blur-xl'} bg-white/30 flex items-center justify-center`}>
+      className={`fixed inset-0 z-40 ${spinner ? "backdrop-blur-xs" : "backdrop-blur-xl"} flex items-center justify-center bg-white/30`}
+    >
       {spinner && (
-        <div
-          className="w-12 h-12 rounded-full animate-spin
-          border-[3px] border-solid border-lavender-blue-600 border-t-transparent"></div>
+        <div className="border-lavender-blue-600 h-12 w-12 animate-spin rounded-full border-[3px] border-solid border-t-transparent"></div>
       )}
     </div>
   );

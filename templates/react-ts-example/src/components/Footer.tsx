@@ -1,21 +1,35 @@
-import {FC} from 'react';
+import { FC } from "react";
 
 export const Footer: FC = () => {
   return (
-    <footer className="mx-auto max-w-(--breakpoint-2xl) py-16 px-8 md:px-24 h-24 flex items-center justify-between md:justify-start md:gap-24 dark:text-white">
-      <span className="flex gap-2 items-baseline">
+    <footer className="mx-auto flex h-24 max-w-(--breakpoint-2xl) items-center justify-between px-8 py-16 md:justify-start md:gap-24 md:px-24 dark:text-white">
+      <span className="flex items-baseline gap-2">
         <svg
           id="Layer_2"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1000 220.39"
           width="80"
-          fill="currentColor">
+          fill="currentColor"
+        >
           <g>
             <path d="m238.29,0h220.39v110.19c0,60.82-49.38,110.19-110.19,110.19h0c-60.82,0-110.19-49.38-110.19-110.19V0h0Z"></path>
             <path d="m487.36,214.99h220.39v-104.8c0-60.86-49.34-110.19-110.19-110.19h-110.19s0,214.99,0,214.99Z"></path>
-            <rect x="725.65" y="0" width="220.39" height="220.39" rx="110.19" ry="110.19"></rect>
+            <rect
+              x="725.65"
+              y="0"
+              width="220.39"
+              height="220.39"
+              rx="110.19"
+              ry="110.19"
+            ></rect>
             <path d="m101.31,0c0,55.96-45.36,101.32-101.31,101.32v119.07C121.72,220.39,220.39,121.72,220.39,0h0s-119.07,0-119.07,0Z"></path>
-            <circle className="cls-1" cx="931.86" cy="68.14" r="68.14" fill="#7888ff"></circle>
+            <circle
+              className="cls-1"
+              cx="931.86"
+              cy="68.14"
+              r="68.14"
+              fill="#7888ff"
+            ></circle>
           </g>
         </svg>
         <small className="hidden md:block">Blockchainless Platform</small>
@@ -27,12 +41,14 @@ export const Footer: FC = () => {
           aria-label="Go to Juno website and documentation"
           className="hover:text-lavender-blue-500 active:text-lavender-blue-400"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           <svg
             width="32"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 49 49"
-            fill="currentColor">
+            fill="currentColor"
+          >
             <g>
               <path d="M18.56,33.53h0c-1.07.48-2.08,1.09-3.01,1.81,1.97,1.69,4.38,2.8,6.95,3.19-1.59-1.43-2.92-3.12-3.93-5Z"></path>
               <path d="M16.31,25.43h-5.69c.17,3.3,1.52,6.44,3.79,8.84,1.06-.85,2.23-1.56,3.46-2.11-.94-2.12-1.48-4.41-1.57-6.73Z"></path>
@@ -60,12 +76,14 @@ export const Footer: FC = () => {
           aria-label="Juno is open source on GitHub"
           className="hover:text-lavender-blue-500 active:text-lavender-blue-400"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           <svg
             width="32"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 49 49"
-            fill="currentColor">
+            fill="currentColor"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 47.47">
               <g>
                 <g>
@@ -83,12 +101,14 @@ export const Footer: FC = () => {
           aria-label="Join our channel on Discord to chat or ask questions"
           className="hover:text-lavender-blue-500 active:text-lavender-blue-400"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           <svg
             width="32"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 49 49"
-            fill="currentColor">
+            fill="currentColor"
+          >
             <g>
               <g>
                 <g>
@@ -106,12 +126,14 @@ export const Footer: FC = () => {
           aria-label="Follow Juno on X/Twitter"
           className="hover:text-lavender-blue-500 active:text-lavender-blue-400"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           <svg
             width="32"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 49 49"
-            fill="currentColor">
+            fill="currentColor"
+          >
             <g>
               <path d="M24.5,0C10.97,0,0,10.97,0,24.5s10.97,24.5,24.5,24.5,24.5-10.97,24.5-24.5S38.03,0,24.5,0ZM28.56,37.35l-6.35-8.87-8.29,8.87h-3.77l10.42-11.15-10.42-14.56h10.29l5.96,8.32,7.78-8.32h3.76l-9.91,10.6,10.82,15.1h-10.29Z"></path>
               <polygon points="15.46 14.38 29.96 34.62 33.55 34.62 19.05 14.38 15.46 14.38"></polygon>
