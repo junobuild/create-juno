@@ -31,6 +31,9 @@ RUN ./docker/compress react-starter
 FROM deps as build_react_ts_starter
 RUN ./docker/compress react-ts-starter
 
+FROM deps as build_react_ts_example
+RUN ./docker/compress react-ts-example
+
 FROM deps as build_react_example
 RUN ./docker/compress react-example
 
