@@ -30,7 +30,7 @@ jobs:
             target: scratch_react_ts_starter
             out: react-ts-starter.tar.gz
           - name: react-ts-example
-            target: scratch_example_ts_starter
+            target: scratch_react_ts_example
             out: react-ts-example.tar.gz
           - name: react-example
             target: scratch_react_example
