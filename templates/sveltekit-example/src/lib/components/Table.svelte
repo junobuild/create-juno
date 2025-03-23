@@ -35,7 +35,7 @@
 	</div>
 
 	<div class="py-2" role="rowgroup">
-		{#each items as item, index}
+		{#each items as item, index (index)}
 			<div
 				class="dark:border-lavender-blue-500 mb-4 flex items-center gap-2 rounded-sm border-[3px] border-black bg-white px-3 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all dark:bg-black dark:text-white dark:shadow-[8px_8px_0px_#7888FF]"
 				role="row"
