@@ -1,9 +1,9 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-backdrop',
-  imports: [NgIf, NgClass],
+  imports: [NgIf],
   templateUrl: './backdrop.component.html',
 })
 export class BackdropComponent {
