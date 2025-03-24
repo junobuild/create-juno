@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+TEST_TYPE=${1:-e2e}
+
+function run_test() {
+  local template=$1
+
+  echo -e "\n***** $TEST_TYPE for $template *****\n"
+
+  TEMPLATE=$template npm run "$TEST_TYPE"
+}
+
+STARTERS=angular-starter,astro-starter,nextjs-starter,react-starter,react-ts-starter,sveltekit-starter,vue-starter
+
+for template in $(echo $STARTERS | sed "s/,/ /g"); do
+  run_test "$template"
+done

@@ -18,7 +18,11 @@
     "build": "tsc --noEmit && node rmdir.mjs && node esbuild.mjs",
     "dev": "node rmdir.mjs && NODE_ENV=development node esbuild.mjs",
     "lint": "eslint --max-warnings 0 \"src/**/*\"",
-    "update:juno": "./scripts/update-juno"
+    "update:juno": "./scripts/update-juno",
+    "e2e": "NODE_ENV=development playwright test",
+    "e2e:snapshots": "NODE_ENV=development playwright test --update-snapshots --reporter=list",
+    "e2e:ci": "playwright test --reporter=html",
+    "e2e:ci:snapshots": "playwright test --update-snapshots --reporter=html"
   },
   "repository": {
     "type": "git",
@@ -42,6 +46,7 @@
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.20.0",
     "@junobuild/config": "^0.1.0",
+    "@playwright/test": "^1.51.1",
     "@types/node": "^22.13.4",
     "@types/prompts": "^2.4.9",
     "@types/tar-stream": "^3.1.3",

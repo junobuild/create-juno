@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function install_deps() {
+  local template=$1
+
+  echo -e "\n***** Install dependencies for $template *****\n"
+
+  npm i --prefix "templates/$template"
+}
+
+STARTERS=angular-starter,astro-starter,nextjs-starter,react-starter,react-ts-starter,sveltekit-starter,vue-starter
+
+for template in $(echo $STARTERS | sed "s/,/ /g"); do
+  install_deps "$template"
+done
