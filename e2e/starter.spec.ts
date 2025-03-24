@@ -9,7 +9,7 @@ const TEMPLATE = process.env.TEMPLATE ?? '';
     test('match screenshot', async ({page}) => {
       await page.goto('/');
 
-      await expect(page.getByText("Welcome to Juno")).toBeVisible();
+      await expect(page.getByText('Welcome to Juno')).toBeVisible();
 
       await expect(page).toHaveScreenshot(`${mode}-mode.png`, {fullPage: true});
     });
