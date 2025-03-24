@@ -24,7 +24,6 @@ jobs:
 
       - name: Run tests and update Snapshots
         run: |
-          cd demo
           juno dev start --headless &
           cd ..
           ./scripts/e2e-starter e2e:ci:snapshots
