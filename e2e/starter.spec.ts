@@ -9,6 +9,8 @@ const TEMPLATE = process.env.TEMPLATE ?? '';
     test('match screenshot', async ({page}) => {
       await page.goto('/');
 
+      await expect(page.getByText("Welcome to Juno")).toBeVisible();
+
       await expect(page).toHaveScreenshot(`${mode}-mode.png`, {fullPage: true});
     });
   });
@@ -21,7 +23,7 @@ test('has title', async ({page}) => {
   const mapTemplateToTitle = (s: string): string =>
     s
       .replaceAll('-ts-', '-')
-      .replaceAll('kit ', 'Kit ')
+      .replaceAll('kit', 'Kit')
       .replaceAll('Nextjs', 'Next.js')
       .replaceAll('-', ' ')
       .split(' ')
