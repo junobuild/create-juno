@@ -9,7 +9,7 @@ export default defineConfig({
       command: 'npm run dev --prefix templates/angular-starter',
       reuseExistingServer: true,
       port: 4200
-    },
+    }
   ],
   testDir: 'e2e',
   testMatch: ['**/*.e2e.ts', '**/*.spec.ts'],
@@ -19,7 +19,7 @@ export default defineConfig({
     trace: 'on',
     ...(DEV && {headless: false}),
     screenshot: 'only-on-failure',
-    baseURL: 'http://localhost:4200',
+    baseURL: 'http://localhost:4200'
   },
   projects: [
     {
@@ -28,5 +28,5 @@ export default defineConfig({
     }
   ],
   workers: process.env.CI ? 1 : undefined,
-  snapshotPathTemplate: `{testDir}/__screenshots__/${TEMPLATE}/{testFilePath}/{arg}{ext}`,
+  snapshotPathTemplate: `{testDir}/__screenshots__/${TEMPLATE}/{testFilePath}/{arg}{ext}`
 });
