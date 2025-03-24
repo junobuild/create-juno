@@ -1,12 +1,14 @@
 <script setup lang="ts">
 defineProps<{
   disabled?: boolean
+  testId?: string
 }>()
 </script>
 
 <template>
   <button
     :disabled="disabled"
+    :data-tid="testId"
     class="dark:border-lavender-blue-500 bg-lavender-blue-500 my-2 flex items-center gap-2 rounded-xs border-[3px] border-black px-8 py-1 font-semibold text-white shadow-[5px_5px_0px_rgba(0,0,0,1)] transition-all dark:bg-black dark:shadow-[5px_5px_0px_#7888ff]"
     :class="{
       'opacity-25': disabled === true,

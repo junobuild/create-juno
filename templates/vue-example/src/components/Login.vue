@@ -8,5 +8,5 @@ const login = async () => {
 </script>
 
 <template>
-  <Button @click="login">Sign in</Button>
+  <Button @click="login" test-id="login-button">Sign in</Button>
 </template>

@@ -4,8 +4,24 @@ import {defineDevConfig} from '@junobuild/config';
 export default defineDevConfig(() => ({
   satellite: {
     collections: {
-      datastore: [],
-      storage: []
-    }
-  }
+      datastore: [
+        {
+          collection: "notes",
+          read: "managed",
+          write: "managed",
+          memory: "stable",
+          mutablePermissions: true,
+        },
+      ],
+      storage: [
+        {
+          collection: "images",
+          read: "managed",
+          write: "managed",
+          memory: "stable",
+          mutablePermissions: true,
+        },
+      ],
+    },
+  },
 }));
