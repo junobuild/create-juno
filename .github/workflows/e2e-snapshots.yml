@@ -16,16 +16,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare Demo
+      - name: Prepare
         uses: ./.github/actions/prepare
 
       - name: Setup E2E Environment
         uses: ./.github/actions/setup-e2e-env
 
+      - name: Install Templates Dependencies
+        run: ./scripts/install-deps
+
       - name: Run tests and update Snapshots
         run: |
           juno dev start --headless &
-          cd ..
           ./scripts/e2e-starter e2e:ci:snapshots
 
       - name: Commit Playwright updated snapshots

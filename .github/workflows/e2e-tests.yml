@@ -18,10 +18,12 @@ jobs:
       - name: Setup E2E Environment
         uses: ./.github/actions/setup-e2e-env
 
+      - name: Install Templates Dependencies
+        run: ./scripts/install-deps
+
       - name: Run tests
         run: |
           juno dev start --headless &
-          cd ..
           ./scripts/e2e-starter e2e:ci
 
       - name: Upload Playwright report on failure
