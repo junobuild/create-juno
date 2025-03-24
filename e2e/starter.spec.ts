@@ -24,7 +24,7 @@ test('has title', async ({page}) => {
     s
       .replaceAll('-ts-', '-')
       .replaceAll('kit', 'Kit')
-      .replaceAll('Nextjs', 'Next.js')
+      .replaceAll('nextjs', 'next.js')
       .replaceAll('-', ' ')
       .split(' ')
       .map(capitalize)
