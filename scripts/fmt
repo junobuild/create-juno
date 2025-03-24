@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function format_template() {
+  local template=$1
+
+  echo -e "\n***** Format $template *****\n"
+
+  npm run format --prefix "templates/$template"
+}
+
+STARTERS=angular-example,nextjs-starter,react-ts-starter,vanilla-js-example,angular-starter,react-example,react-workshop,vue-example,astro-starter,react-starter,sveltekit-example,vue-starter,nextjs-example,react-ts-example,sveltekit-starter
+
+for template in $(echo $STARTERS | sed "s/,/ /g"); do
+  format_template "$template"
+done
