@@ -47,7 +47,7 @@ function App() {
           </Article>
 
           <Article
-            href="https://juno.build/docs/miscellaneous/github_actions"
+            href="https://juno.build/docs/guides/github-actions"
             ariaLabel="Open the guide to setting up GitHub Actions for Juno"
             title="Continuous Integration"
           >
