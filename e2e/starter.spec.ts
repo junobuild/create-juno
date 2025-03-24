@@ -20,8 +20,9 @@ test('has title', async ({page}) => {
   const capitalize = (s: string): string => s[0].toUpperCase() + s.slice(1);
   const mapTemplateToTitle = (s: string): string =>
     s
-      .replace('-ts-', '-')
-      .replace('kit ', 'Kit ')
+      .replaceAll('-ts-', '-')
+      .replaceAll('kit ', 'Kit ')
+      .replaceAll('Nextjs', 'Next.js')
       .replaceAll('-', ' ')
       .split(' ')
       .map(capitalize)
