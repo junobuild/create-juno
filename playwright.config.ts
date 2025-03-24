@@ -3,7 +3,13 @@ import {defineConfig, devices} from '@playwright/test';
 const DEV = (process.env.NODE_ENV ?? 'production') === 'development';
 const TEMPLATE = process.env.TEMPLATE ?? 'test';
 
-const PORT = TEMPLATE.includes('angular') ? 4200 : TEMPLATE.includes('astro') ? 4321 : 5173;
+const PORT = TEMPLATE.includes('angular')
+  ? 4200
+  : TEMPLATE.includes('astro')
+    ? 4321
+    : TEMPLATE.includes('next')
+      ? 3000
+      : 5173;
 
 export default defineConfig({
   webServer: [
