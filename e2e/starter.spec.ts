@@ -18,10 +18,16 @@ test('has title', async ({page}) => {
   await page.goto('/');
 
   const capitalize = (s: string): string => s[0].toUpperCase() + s.slice(1);
-  const capitalizeAll = (s: string): string =>
-    s.replaceAll('-', ' ').split(' ').map(capitalize).join(' ');
+  const mapTemplateToTitle = (s: string): string =>
+    s
+      .replace('-ts-', '-')
+      .replace('kit ', 'Kit ')
+      .replaceAll('-', ' ')
+      .split(' ')
+      .map(capitalize)
+      .join(' ');
 
-  await expect(page).toHaveTitle(`Juno / ${capitalizeAll(TEMPLATE)}`);
+  await expect(page).toHaveTitle(`Juno / ${mapTemplateToTitle(TEMPLATE)}`);
 });
 
 test('get quickstart link', async ({page}) => {
@@ -29,7 +35,7 @@ test('get quickstart link', async ({page}) => {
 
   const link = page.locator('a[aria-label="Open quickstart guides on Juno\'s website"]');
 
-  const framework = TEMPLATE.split("-")[0];
+  const framework = TEMPLATE.split('-')[0];
 
   await expect(link).toHaveAttribute('href', `https://juno.build/docs/guides/${framework}`);
 });
@@ -49,10 +55,7 @@ test('get ci link', async ({page}) => {
 
   const link = page.locator('a[aria-label="Open the guide to setting up GitHub Actions for Juno"]');
 
-  await expect(link).toHaveAttribute(
-    'href',
-    'https://juno.build/docs/guides/github-actions'
-  );
+  await expect(link).toHaveAttribute('href', 'https://juno.build/docs/guides/github-actions');
 });
 
 test('get discord link', async ({page}) => {

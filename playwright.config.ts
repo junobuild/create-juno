@@ -3,12 +3,14 @@ import {defineConfig, devices} from '@playwright/test';
 const DEV = (process.env.NODE_ENV ?? 'production') === 'development';
 const TEMPLATE = process.env.TEMPLATE ?? 'test';
 
+const PORT = TEMPLATE.includes('angular') ? 4200 : TEMPLATE.includes('astro') ? 4321 : 5173;
+
 export default defineConfig({
   webServer: [
     {
-      command: 'npm run dev --prefix templates/angular-starter',
+      command: `npm run dev --prefix templates/${TEMPLATE}`,
       reuseExistingServer: true,
-      port: 4200
+      port: PORT
     }
   ],
   testDir: 'e2e',
@@ -19,7 +21,7 @@ export default defineConfig({
     trace: 'on',
     ...(DEV && {headless: false}),
     screenshot: 'only-on-failure',
-    baseURL: 'http://localhost:4200'
+    baseURL: `http://localhost:${PORT}`
   },
   projects: [
     {

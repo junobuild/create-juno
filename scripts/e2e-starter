@@ -10,7 +10,7 @@ function run_test() {
   TEMPLATE=$template npm run "$TEST_TYPE"
 }
 
-STARTERS=angular-starter
+STARTERS=angular-starter,astro-starter,nextjs-starter,react-starter,react-ts-starter,sveltekit-starter,vue-starter
 
 for template in $(echo $STARTERS | sed "s/,/ /g"); do
   run_test "$template"
