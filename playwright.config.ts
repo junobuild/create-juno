@@ -36,5 +36,5 @@ export default defineConfig({
     }
   ],
   workers: process.env.CI ? 1 : undefined,
-  snapshotPathTemplate: `{testDir}/__screenshots__/${TEMPLATE}/${process.env.NODE_ENV}/{testFilePath}/{arg}{ext}`
+  snapshotPathTemplate: `{testDir}/__screenshots__/${TEMPLATE}/${process.env.NODE_ENV ?? 'production'}/{testFilePath}/{arg}{ext}`
 });
