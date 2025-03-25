@@ -28,8 +28,7 @@ jobs:
       - name: Run tests and update Snapshots
         run: |
           juno dev start --headless &
-          ./scripts/e2e-starter e2e:ci:snapshots &
-          ./scripts/e2e-example e2e:ci:snapshots
+          ./scripts/e2e e2e:ci
 
       - name: Commit Playwright updated snapshots
         uses: EndBug/add-and-commit@v9
