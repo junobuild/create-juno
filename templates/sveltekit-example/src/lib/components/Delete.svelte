@@ -44,7 +44,7 @@
 </script>
 
 <button
-	aria-label="Delete document"
+	aria-label="Delete entry"
 	role="cell"
 	class="hover:text-lavender-blue-500 active:text-lavender-blue-400"
 	onclick={delItem}

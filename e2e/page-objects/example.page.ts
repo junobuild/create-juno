@@ -68,4 +68,11 @@ export class ExamplePage extends IdentityPage {
     const row = this.page.locator('[role="row"]', {hasText: text});
     await expect(row).toBeVisible();
   }
+
+  async deleteLastEntry(text: string): Promise<void> {
+    const buttons = this.page.locator('button[aria-label="Delete entry"]');
+    await buttons.last().click();
+
+    await expect(this.page.locator('[role="row"]', { hasText: 'text' })).toHaveCount(0);
+  }
 }

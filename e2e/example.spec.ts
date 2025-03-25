@@ -15,10 +15,18 @@ testWithII('should add an entry', async () => {
   await examplePage.addEntry('My notes.');
 });
 
+const lastEntryText = "My last note.";
+
 testWithII('should add another entry', async () => {
   const examplePage = getExamplePage();
 
-  await examplePage.addEntry('My other notes.');
+  await examplePage.addEntry(lastEntryText);
+});
+
+testWithII('should delete entry', async () => {
+  const examplePage = getExamplePage();
+
+  await examplePage.deleteLastEntry(lastEntryText);
 });
 
 testWithII('should sign-out', async () => {
