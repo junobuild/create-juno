@@ -10,7 +10,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'astro-starter',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Starter',
@@ -22,7 +22,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'nextjs-starter',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Starter',
@@ -34,7 +34,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'nextjs-example',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Example',
@@ -46,11 +46,11 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'react-starter',
-        language: 'JavaScript'
+        typeChecking: false
       },
       {
         key: 'react-ts-starter',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Starter',
@@ -62,11 +62,11 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'react-example',
-        language: 'JavaScript'
+        typeChecking: false
       },
       {
         key: 'react-ts-example',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Example',
@@ -78,7 +78,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'react-workshop',
-        language: 'JavaScript'
+        typeChecking: false
       }
     ],
     type: 'Workshop',
@@ -90,7 +90,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'sveltekit-starter',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Starter',
@@ -102,7 +102,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'sveltekit-example',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Example',
@@ -114,7 +114,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'vue-starter',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Starter',
@@ -126,7 +126,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'vue-example',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Example',
@@ -138,7 +138,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'angular-starter',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Starter',
@@ -150,7 +150,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'angular-example',
-        language: 'TypeScript'
+        typeChecking: true
       }
     ],
     type: 'Example',
@@ -162,7 +162,7 @@ export const TEMPLATES: Template[] = [
     keys: [
       {
         key: 'vanilla-js-example',
-        language: 'JavaScript'
+        typeChecking: false
       }
     ],
     type: 'Example',
