@@ -1,12 +1,19 @@
 import {testWithII} from '@dfinity/internet-identity-playwright';
 import {initTestSuite} from "./utils/init.utils";
+import {expect} from "@playwright/test";
 
 const getExamplePage = initTestSuite();
 
-testWithII('should sign-in with a new user', async () => {
+testWithII('should sign-in', async () => {
   const examplePage = getExamplePage();
+
+  await examplePage.assertSignedIn();
 });
 
-testWithII('should sign-in with an existing user', async () => {
+testWithII('should sign-out', async () => {
   const examplePage = getExamplePage();
+
+  await examplePage.signOut();
+
+  await examplePage.assertSignedOut();
 });

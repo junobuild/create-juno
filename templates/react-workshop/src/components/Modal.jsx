@@ -76,7 +76,7 @@ export const Modal = () => {
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)}>
+      <Button onClick={() => setShowModal(true)} testId="add-entry-button">
         Add an entry{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"

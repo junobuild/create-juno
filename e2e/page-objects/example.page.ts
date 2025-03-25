@@ -1,4 +1,5 @@
 import {InternetIdentityPage} from '@dfinity/internet-identity-playwright';
+import {expect} from '@playwright/test';
 import {IdentityPage, IdentityPageParams} from './identity.page';
 
 export class ExamplePage extends IdentityPage {
@@ -26,6 +27,14 @@ export class ExamplePage extends IdentityPage {
    */
   async signOut(): Promise<void> {
     await this.page.getByTestId('logout-button').click();
+  }
+
+  async assertSignedIn(): Promise<void> {
+    await expect(this.page.getByTestId('logout-button')).toBeVisible();
+  }
+
+  async assertSignedOut(): Promise<void> {
+    await expect(this.page.getByTestId('login-button')).toBeVisible();
   }
 
   async waitReady(): Promise<void> {
