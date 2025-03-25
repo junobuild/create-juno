@@ -69,7 +69,15 @@ export class ExamplePage extends IdentityPage {
     await expect(row).toBeVisible();
   }
 
-  async addEntryWithFile({text, filePath, fileName}: {text: string, filePath: string, fileName: string}): Promise<void> {
+  async addEntryWithFile({
+    text,
+    filePath,
+    fileName
+  }: {
+    text: string;
+    filePath: string;
+    fileName: string;
+  }): Promise<void> {
     const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
     await expect(addEntryButton).toBeVisible();
 
@@ -87,13 +95,26 @@ export class ExamplePage extends IdentityPage {
     await button.click();
 
     const row = this.page.locator('[role="row"]', {hasText: text});
-    await expect(row).toBeVisible({ timeout: 60_000 });
+    await expect(row).toBeVisible({timeout: 60_000});
+  }
+
+  async assertUploadedImage(): Promise<void> {
+    const [imgPage] = await Promise.all([
+      this.page.context().waitForEvent('page'),
+      this.page.locator('a[aria-label="Open data"]').click()
+    ]);
+
+    await imgPage.waitForLoadState('load');
+
+    await expect(imgPage).toHaveScreenshot('uploaded-image.png', {
+      maxDiffPixelRatio: 0.1
+    });
   }
 
   async deleteLastEntry(text: string): Promise<void> {
     const buttons = this.page.locator('button[aria-label="Delete entry"]');
     await buttons.last().click();
 
-    await expect(this.page.locator('[role="row"]', { hasText: 'text' })).toHaveCount(0);
+    await expect(this.page.locator('[role="row"]', {hasText: 'text'})).toHaveCount(0);
   }
 }

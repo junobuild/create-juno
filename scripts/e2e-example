@@ -10,7 +10,7 @@ function run_test() {
   TEMPLATE=$template npm run "$TEST_TYPE" e2e/example.spec.ts
 }
 
-STARTERS=angular-example
+STARTERS=angular-example,astro-example,nextjs-example,react-example,react-ts-example,sveltekit-example,vue-example
 
 for template in $(echo $STARTERS | sed "s/,/ /g"); do
   run_test "$template"

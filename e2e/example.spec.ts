@@ -23,6 +23,8 @@ testWithII('should add an entry with file', async () => {
     filePath: 'e2e/data/dog.jpg',
     fileName: 'dog.jpg'
   });
+
+  await examplePage.assertUploadedImage();
 });
 
 const lastEntryText = 'My last note.';

@@ -70,10 +70,19 @@ export const Modal = () => {
     setProgress(false);
   };
 
+  const resetFileInput = () => {
+    if (uploadElement.current !== null) {
+      uploadElement.current.value = "";
+    }
+
+    setFile(undefined);
+  };
+
   return (
     <>
       <Button
         onClick={() => {
+          resetFileInput();
           setShowModal(true);
         }}
       >
