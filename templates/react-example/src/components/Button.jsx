@@ -16,5 +16,4 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  testId: PropTypes.string,
 };

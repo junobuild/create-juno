@@ -79,7 +79,7 @@
 	};
 </script>
 
-<Button onclick={openModal} testId="add-entry-button">
+<Button onclick={openModal}>
 	Add an entry
 	<svg
 		xmlns="http://www.w3.org/2000/svg"

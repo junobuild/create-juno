@@ -19,22 +19,27 @@ export class ExamplePage extends IdentityPage {
    * @override
    */
   async signIn(): Promise<void> {
-    this.identity = await this.#partyIIPage.signInWithNewIdentity();
+    this.identity = await this.#partyIIPage.signInWithNewIdentity({
+      selector: 'button:has-text("Sign in")'
+    });
   }
 
   /**
    * @override
    */
   async signOut(): Promise<void> {
-    await this.page.getByTestId('logout-button').click();
+    const button = this.page.locator('button', {hasText: 'Logout'});
+    await button.click();
   }
 
   async assertSignedIn(): Promise<void> {
-    await expect(this.page.getByTestId('logout-button')).toBeVisible();
+    const button = this.page.locator('button', {hasText: 'Logout'});
+    await expect(button).toBeVisible();
   }
 
   async assertSignedOut(): Promise<void> {
-    await expect(this.page.getByTestId('login-button')).toBeVisible();
+    const button = this.page.locator('button', {hasText: 'Sign in'});
+    await expect(button).toBeVisible();
   }
 
   async waitReady(): Promise<void> {
@@ -49,9 +54,10 @@ export class ExamplePage extends IdentityPage {
   }
 
   async addEntry(text: string): Promise<void> {
-    await expect(this.page.getByTestId('add-entry-button')).toBeVisible();
+    const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
+    await expect(addEntryButton).toBeVisible();
 
-    await this.page.getByTestId('add-entry-button').click();
+    await addEntryButton.click();
 
     const textarea = this.page.locator('textarea');
     await textarea.fill(text);

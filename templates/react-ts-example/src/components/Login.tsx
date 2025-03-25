@@ -3,9 +3,5 @@ import { FC } from "react";
 import { Button } from "./Button";
 
 export const Login: FC = () => {
-  return (
-    <Button onClick={signIn} testId="login-button">
-      Sign in
-    </Button>
-  );
+  return <Button onClick={signIn}>Sign in</Button>;
 };

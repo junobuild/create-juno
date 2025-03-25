@@ -6,7 +6,6 @@ export const Logout = () => {
     <button
       type="button"
       className="hover:text-lavender-blue-500 active:text-lavender-blue-400 mt-24 flex items-center gap-2 dark:text-white"
-      data-tid="logout-button"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
