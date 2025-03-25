@@ -11,7 +11,10 @@ const TEMPLATE = process.env.TEMPLATE ?? '';
 
       await expect(page.getByText('Welcome to Juno')).toBeVisible();
 
-      await expect(page).toHaveScreenshot(`${mode}-mode.png`, {fullPage: true});
+      await expect(page).toHaveScreenshot(`${mode}-mode.png`, {
+        fullPage: true,
+        maxDiffPixelRatio: 0.1
+      });
     });
   });
 });

@@ -77,10 +77,27 @@ const onChangeFile = ($event: Event) =>
   setFile(($event as unknown as { target: EventTarget & HTMLInputElement }).target?.files?.[0])
 
 const openSelectFile = () => inputFile.value?.click()
+
+const resetFileInput = () => {
+  if (inputFile !== null && inputFile.value !== null) {
+    inputFile.value.value = ''
+  }
+
+  file.value = undefined
+
+  setFile(undefined)
+}
 </script>
 
 <template>
-  <Button @click="() => setShowModal(true)">
+  <Button
+    @click="
+      () => {
+        resetFileInput()
+        setShowModal(true)
+      }
+    "
+  >
     Add an entry
     <svg
       xmlns="http://www.w3.org/2000/svg"

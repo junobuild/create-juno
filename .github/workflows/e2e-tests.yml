@@ -24,7 +24,7 @@ jobs:
       - name: Run tests
         run: |
           juno dev start --headless &
-          ./scripts/e2e-starter e2e:ci
+          ./scripts/e2e e2e:ci
 
       - name: Upload Playwright report on failure
         uses: actions/upload-artifact@v4

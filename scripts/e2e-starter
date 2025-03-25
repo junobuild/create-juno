@@ -7,7 +7,7 @@ function run_test() {
 
   echo -e "\n***** $TEST_TYPE for $template *****\n"
 
-  TEMPLATE=$template npm run "$TEST_TYPE"
+  TEMPLATE=$template npm run "$TEST_TYPE" e2e/starter.spec.ts
 }
 
 STARTERS=angular-starter,astro-starter,nextjs-starter,react-starter,react-ts-starter,sveltekit-starter,vue-starter
