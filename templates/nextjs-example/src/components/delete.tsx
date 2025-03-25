@@ -46,6 +46,7 @@ export const Delete = ({ item, reload }: DeleteProps) => {
       <button
         role="cell"
         className="hover:text-lavender-blue-500 active:text-lavender-blue-400"
+        aria-label="Delete entry"
         onClick={async () => {
           await delItem(item);
         }}

@@ -45,6 +45,7 @@ const delItem = async () => {
 <template>
   <button
     role="cell"
+    aria-label="Delete entry"
     class="hover:text-lavender-blue-500 active:text-lavender-blue-400"
     @click="delItem"
   >

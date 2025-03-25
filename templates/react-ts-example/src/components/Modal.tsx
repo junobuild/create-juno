@@ -70,9 +70,22 @@ export const Modal: FC = () => {
     setProgress(false);
   };
 
+  const resetFileInput = () => {
+    if (uploadElement.current !== null) {
+      uploadElement.current.value = "";
+    }
+
+    setFile(undefined);
+  };
+
   return (
     <>
-      <Button onClick={() => setShowModal(true)}>
+      <Button
+        onClick={() => {
+          resetFileInput();
+          setShowModal(true);
+        }}
+      >
         Add an entry{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"

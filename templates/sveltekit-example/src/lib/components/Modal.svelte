@@ -75,6 +75,12 @@
 	const openSelectFile = () => inputFile?.click();
 
 	const openModal = async () => {
+		if (inputFile !== null) {
+			inputFile.value = '';
+		}
+
+		file = undefined;
+
 		showModal = true;
 	};
 </script>

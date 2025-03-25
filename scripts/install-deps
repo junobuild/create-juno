@@ -8,7 +8,7 @@ function install_deps() {
   npm i --prefix "templates/$template"
 }
 
-STARTERS=angular-starter,astro-starter,nextjs-starter,react-starter,react-ts-starter,sveltekit-starter,vue-starter
+STARTERS=angular-starter,astro-starter,nextjs-starter,react-starter,react-ts-starter,sveltekit-starter,vue-starter,angular-example,nextjs-example,react-example,react-ts-example,sveltekit-example,vanilla-js-example,vue-example
 
 for template in $(echo $STARTERS | sed "s/,/ /g"); do
   install_deps "$template"
