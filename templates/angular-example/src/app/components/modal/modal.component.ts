@@ -29,7 +29,17 @@ export class ModalComponent {
 
   file: File | undefined;
 
+  resetInputFile(): void {
+    if (this.inputFile !== undefined) {
+      this.inputFile.nativeElement.value = '';
+    }
+
+    this.file = undefined;
+  }
+
   openModal() {
+    this.resetInputFile();
+
     this.showModal = true;
   }
 
