@@ -81,12 +81,10 @@ export class ExamplePage extends IdentityPage {
 
   async addEntryWithFile({
     text,
-    filePath,
-    fileName
+    filePath
   }: {
     text: string;
     filePath: string;
-    fileName: string;
   }): Promise<void> {
     const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
     await expect(addEntryButton).toBeVisible();

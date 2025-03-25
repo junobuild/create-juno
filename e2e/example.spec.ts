@@ -20,8 +20,7 @@ testWithII('should add an entry with file', async () => {
 
   await examplePage.addEntryWithFile({
     text: 'My file.',
-    filePath: 'e2e/data/dog.jpg',
-    fileName: 'dog.jpg'
+    filePath: 'e2e/data/dog.jpg'
   });
 
   await examplePage.assertUploadedImage();
@@ -74,7 +73,7 @@ testWithII('match modal screenshot', async () => {
 
   await examplePage.openAddEntry();
 
-  await examplePage.assertScreenshot({mode: 'current', name: 'login'});
+  await examplePage.assertScreenshot({mode: 'current', name: 'modal'});
 
   await examplePage.closeAddEntryModal();
 });
