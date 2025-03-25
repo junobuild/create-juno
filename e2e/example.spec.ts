@@ -1,20 +1,12 @@
 import {testWithII} from '@dfinity/internet-identity-playwright';
-import {assertNonNullish} from '@dfinity/utils';
+import {initTestSuite} from "./utils/init.utils";
 
-let identity: number | undefined = undefined;
+const getExamplePage = initTestSuite();
 
-testWithII('should sign-in with a new user', async ({page, iiPage}) => {
-  await page.goto('/');
-
-  identity = await iiPage.signInWithNewIdentity();
+testWithII('should sign-in with a new user', async () => {
+  const examplePage = getExamplePage();
 });
 
-testWithII('should sign-in with an existing user', async ({page, iiPage}) => {
-  await page.goto('/');
-
-  assertNonNullish(identity);
-
-  console.log(identity)
-
-  await iiPage.signInWithIdentity({identity});
+testWithII('should sign-in with an existing user', async () => {
+  const examplePage = getExamplePage();
 });
