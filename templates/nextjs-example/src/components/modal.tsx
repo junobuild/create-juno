@@ -73,7 +73,7 @@ export const Modal = () => {
   return (
     <>
       <Button
-          testId="add-entry-button"
+        testId="add-entry-button"
         onClick={() => {
           setShowModal(true);
         }}

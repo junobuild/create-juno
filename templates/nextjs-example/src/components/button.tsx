@@ -11,7 +11,7 @@ export const Button = ({
   children,
   onClick,
   disabled = false,
-    testId,
+  testId,
 }: ButtonProps) => {
   return (
     <button
