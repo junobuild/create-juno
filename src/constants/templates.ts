@@ -2,7 +2,7 @@ import type {Template} from '../types/template';
 
 const APP_DESCRIPTION_STARTER = 'Barebones scaffolding for your new app';
 const APP_DESCRIPTION_EXAMPLE =
-  'An example featuring authentication, data persistence, and image storage';
+  'A demo app showcasing authentication, data persistence, and image handling.';
 
 export const TEMPLATES: Template[] = [
   {
