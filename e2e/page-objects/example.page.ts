@@ -1,6 +1,7 @@
 import {InternetIdentityPage} from '@dfinity/internet-identity-playwright';
 import {expect} from '@playwright/test';
 import {IdentityPage, IdentityPageParams} from './identity.page';
+import {assertNonNullish} from "@dfinity/utils";
 
 export class ExamplePage extends IdentityPage {
   #partyIIPage: InternetIdentityPage;
@@ -20,6 +21,15 @@ export class ExamplePage extends IdentityPage {
    */
   async signIn(): Promise<void> {
     this.identity = await this.#partyIIPage.signInWithNewIdentity({
+      selector: 'button:has-text("Sign in")'
+    });
+  }
+
+  async signInWithIdentity(): Promise<void> {
+    assertNonNullish(this.identity);
+
+    await this.#partyIIPage.signInWithIdentity({
+      identity: this.identity,
       selector: 'button:has-text("Sign in")'
     });
   }
@@ -109,12 +119,35 @@ export class ExamplePage extends IdentityPage {
     await expect(imgPage).toHaveScreenshot('uploaded-image.png', {
       maxDiffPixelRatio: 0.1
     });
+
+    await imgPage.close();
   }
 
-  async deleteLastEntry(text: string): Promise<void> {
+  async deleteLastEntry(): Promise<void> {
     const buttons = this.page.locator('button[aria-label="Delete entry"]');
     await buttons.last().click();
 
     await expect(this.page.locator('[role="row"]', {hasText: 'text'})).toHaveCount(0);
+  }
+
+  async assertScreenshot({mode, name}: {mode: 'light' | 'dark' | 'current', name: string}): Promise<void> {
+    await expect(this.page).toHaveScreenshot(`${name}-${mode}-mode.png`, {fullPage: true});
+  }
+
+  async openAddEntry(): Promise<void> {
+    const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
+    await expect(addEntryButton).toBeVisible();
+
+    await addEntryButton.click();
+
+    const textarea = this.page.locator('textarea');
+    await expect(textarea).toBeVisible();
+  }
+
+  async closeAddEntryModal(): Promise<void> {
+    const closeAddEntryButton = this.page.locator('button', {hasText: 'Close'});
+    await expect(closeAddEntryButton).toBeVisible();
+
+    await closeAddEntryButton.click();
   }
 }
