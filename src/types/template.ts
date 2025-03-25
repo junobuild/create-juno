@@ -4,10 +4,22 @@ export type TemplateKey = string;
 
 export interface TemplateKeyOption {
   key: TemplateKey;
-  language: TemplateLanguage;
+  typeChecking: boolean;
 }
 
-export type TemplateKeys = TemplateKeyOption[];
+export interface TemplateKeyJavaScript extends Omit<TemplateKeyOption, 'typeChecking'> {
+  typeChecking: false;
+}
+
+export interface TemplateKeyTypeScript extends Omit<TemplateKeyOption, 'typeChecking'> {
+  typeChecking: true;
+}
+
+export type TemplateKeys =
+  | [TemplateKeyJavaScript]
+  | [TemplateKeyTypeScript]
+  | [TemplateKeyTypeScript, TemplateKeyJavaScript]
+  | [TemplateKeyJavaScript, TemplateKeyTypeScript];
 
 export interface Template {
   keys: TemplateKeys;
@@ -27,5 +39,3 @@ export type TemplateFramework =
   | 'Vanilla JavaScript';
 
 export type TemplateType = 'Starter' | 'Example' | 'Workshop';
-
-export type TemplateLanguage = 'JavaScript' | 'TypeScript';

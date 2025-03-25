@@ -161,7 +161,7 @@ const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
       : template.framework === 'Next.js'
         ? 'next.config.mjs'
         : template.framework === 'React'
-          ? template.language === 'TypeScript'
+          ? template.typeChecking
             ? 'vite.config.ts'
             : 'vite.config.js'
           : template.framework === 'Vanilla JavaScript'

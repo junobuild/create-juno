@@ -75,14 +75,23 @@ export const promptLanguage = async ({
     };
   }
 
+  const keyJavaScript = keys[0].typeChecking ? keys[1] : keys[0];
+  const keyTypeScript = keys[0].typeChecking ? keys[0] : keys[1];
+
   const {key}: {key: TemplateKeyOption | undefined} = await prompts({
     type: 'select',
     name: 'key',
-    message: 'Which language do you prefer?',
-    choices: keys.map((key) => ({
-      title: key.language,
-      value: key
-    }))
+    message: 'Add type checking?',
+    choices: [
+      {
+        title: 'Yes, using TypeScript syntax',
+        value: keyTypeScript
+      },
+      {
+        title: 'No',
+        value: keyJavaScript
+      }
+    ]
   });
 
   if (isNullish(key)) {
