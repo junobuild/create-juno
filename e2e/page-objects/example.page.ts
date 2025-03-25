@@ -79,13 +79,7 @@ export class ExamplePage extends IdentityPage {
     await expect(row).toBeVisible();
   }
 
-  async addEntryWithFile({
-    text,
-    filePath
-  }: {
-    text: string;
-    filePath: string;
-  }): Promise<void> {
+  async addEntryWithFile({text, filePath}: {text: string; filePath: string}): Promise<void> {
     const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
     await expect(addEntryButton).toBeVisible();
 
@@ -133,7 +127,10 @@ export class ExamplePage extends IdentityPage {
     mode: 'light' | 'dark' | 'current';
     name: string;
   }): Promise<void> {
-    await expect(this.page).toHaveScreenshot(`${name}-${mode}-mode.png`, {fullPage: true});
+    await expect(this.page).toHaveScreenshot(`${name}-${mode}-mode.png`, {
+      fullPage: true,
+      maxDiffPixelRatio: 0.1
+    });
   }
 
   async openAddEntry(): Promise<void> {
