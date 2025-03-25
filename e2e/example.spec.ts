@@ -15,7 +15,17 @@ testWithII('should add an entry', async () => {
   await examplePage.addEntry('My notes.');
 });
 
-const lastEntryText = "My last note.";
+testWithII('should add an entry with file', async () => {
+  const examplePage = getExamplePage();
+
+  await examplePage.addEntryWithFile({
+    text: 'My file.',
+    filePath: 'e2e/data/dog.jpg',
+    fileName: 'dog.jpg'
+  });
+});
+
+const lastEntryText = 'My last note.';
 
 testWithII('should add another entry', async () => {
   const examplePage = getExamplePage();

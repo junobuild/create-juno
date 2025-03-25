@@ -69,6 +69,27 @@ export class ExamplePage extends IdentityPage {
     await expect(row).toBeVisible();
   }
 
+  async addEntryWithFile({text, filePath, fileName}: {text: string, filePath: string, fileName: string}): Promise<void> {
+    const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
+    await expect(addEntryButton).toBeVisible();
+
+    await addEntryButton.click();
+
+    const textarea = this.page.locator('textarea');
+    await textarea.fill(text);
+
+    const fileInput = this.page.locator('input[type="file"]');
+    await fileInput.setInputFiles(filePath);
+
+    await expect(this.page.locator(`text=${fileName}`)).toBeVisible();
+
+    const button = this.page.locator('button', {hasText: 'Submit'});
+    await button.click();
+
+    const row = this.page.locator('[role="row"]', {hasText: text});
+    await expect(row).toBeVisible({ timeout: 60_000 });
+  }
+
   async deleteLastEntry(text: string): Promise<void> {
     const buttons = this.page.locator('button[aria-label="Delete entry"]');
     await buttons.last().click();
