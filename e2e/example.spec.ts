@@ -9,6 +9,18 @@ testWithII('should sign-in', async () => {
   await examplePage.assertSignedIn();
 });
 
+testWithII('should add an entry', async () => {
+  const examplePage = getExamplePage();
+
+  await examplePage.addEntry('My notes.');
+});
+
+testWithII('should add another entry', async () => {
+  const examplePage = getExamplePage();
+
+  await examplePage.addEntry('My other notes.');
+});
+
 testWithII('should sign-out', async () => {
   const examplePage = getExamplePage();
 

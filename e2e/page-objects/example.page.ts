@@ -47,4 +47,19 @@ export class ExamplePage extends IdentityPage {
   async goto(): Promise<void> {
     await this.page.goto('/');
   }
+
+  async addEntry(text: string): Promise<void> {
+    await expect(this.page.getByTestId('add-entry-button')).toBeVisible();
+
+    await this.page.getByTestId('add-entry-button').click();
+
+    const textarea = this.page.locator('textarea');
+    await textarea.fill(text);
+
+    const button = this.page.locator('button', {hasText: 'Submit'});
+    await button.click();
+
+    const row = this.page.locator('[role="row"]', {hasText: text});
+    await expect(row).toBeVisible();
+  }
 }
