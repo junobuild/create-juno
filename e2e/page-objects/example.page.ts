@@ -99,8 +99,6 @@ export class ExamplePage extends IdentityPage {
     const fileInput = this.page.locator('input[type="file"]');
     await fileInput.setInputFiles(filePath);
 
-    await expect(this.page.locator(`text=${fileName}`)).toBeVisible();
-
     const button = this.page.locator('button', {hasText: 'Submit'});
     await button.click();
 

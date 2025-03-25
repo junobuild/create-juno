@@ -37,6 +37,7 @@ export const renderDelete = ({ table, item, index }) => {
   return `<button
         id="deleteItem${index}"
         role="cell"
+        aria-label="Delete entry"
         class="hover:text-lavender-blue-500 active:text-lavender-blue-400">
         <svg width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" fill="currentColor">
           <g>
