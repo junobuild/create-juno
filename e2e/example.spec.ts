@@ -1,6 +1,5 @@
 import {testWithII} from '@dfinity/internet-identity-playwright';
 import {initTestSuite} from './utils/init.utils';
-import {test} from "@playwright/test";
 
 const getExamplePage = initTestSuite();
 

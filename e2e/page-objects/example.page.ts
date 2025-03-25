@@ -1,7 +1,7 @@
 import {InternetIdentityPage} from '@dfinity/internet-identity-playwright';
+import {assertNonNullish} from '@dfinity/utils';
 import {expect} from '@playwright/test';
 import {IdentityPage, IdentityPageParams} from './identity.page';
-import {assertNonNullish} from "@dfinity/utils";
 
 export class ExamplePage extends IdentityPage {
   #partyIIPage: InternetIdentityPage;
@@ -128,7 +128,13 @@ export class ExamplePage extends IdentityPage {
     await expect(this.page.locator('[role="row"]', {hasText: 'text'})).toHaveCount(0);
   }
 
-  async assertScreenshot({mode, name}: {mode: 'light' | 'dark' | 'current', name: string}): Promise<void> {
+  async assertScreenshot({
+    mode,
+    name
+  }: {
+    mode: 'light' | 'dark' | 'current';
+    name: string;
+  }): Promise<void> {
     await expect(this.page).toHaveScreenshot(`${name}-${mode}-mode.png`, {fullPage: true});
   }
 
