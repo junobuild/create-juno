@@ -152,7 +152,9 @@ export const promptGitHubAction = async (): Promise<boolean> => {
   return await confirm(`Would you like to set up a GitHub Action for deployment?`);
 };
 
-export const promptServerlessFunctions = async (): Promise<ServerlessFunctions | undefined> => {
+export const promptServerlessFunctions = async ({
+  typeChecking
+}: PopulateTemplate): Promise<ServerlessFunctions | undefined> => {
   const {type}: {type: ServerlessFunctions | 'none' | undefined} = await prompts({
     type: 'select',
     name: 'type',
@@ -162,14 +164,19 @@ export const promptServerlessFunctions = async (): Promise<ServerlessFunctions |
         title: 'Rust',
         value: 'rust'
       },
-      {
-        title: 'TypeScript (experimental)',
-        value: 'ts'
-      },
-      {
-        title: 'JavaScript (experimental)',
-        value: 'js'
-      },
+      ...(typeChecking
+        ? [
+            {
+              title: 'TypeScript (experimental)',
+              value: 'ts'
+            }
+          ]
+        : [
+            {
+              title: 'JavaScript (experimental)',
+              value: 'js'
+            }
+          ]),
       {
         title: 'None',
         value: 'none'
