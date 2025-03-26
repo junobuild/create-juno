@@ -16,7 +16,11 @@ const WELCOME = `${JUNO_LOGO} ${grey(`v${version}`)}
 Welcome 👋
 `;
 
-const outro = ({input: {destination, localDevelopment}}: {input: GeneratorInput}) => {
+const outro = ({
+  input: {destination, localDevelopment, serverlessFunctions}
+}: {
+  input: GeneratorInput;
+}) => {
   const emptyDestination = isNullish(destination) || destination === '';
 
   const pm = whichPMRuns();
@@ -24,7 +28,11 @@ const outro = ({input: {destination, localDevelopment}}: {input: GeneratorInput}
   const enterYourProjectDirectory = `Enter your project directory by running ${cyan(`cd ${destination}`)}`;
   const startDevServer = `Run ${cyan(`${pm} run dev`)} to start your frontend dev server (CTRL+C to stop)`;
   const runJunoInit = `Connect your satellite to the project by executing ${cyan('juno init')}`;
-  const runJunoDevStart = `In another terminal, run ${cyan('juno dev start')} to quickstart the local development emulator`;
+
+  const liveReload =
+    nonNullish(serverlessFunctions) && ['ts', 'js'].includes(serverlessFunctions) ? ' --watch' : '';
+  const startCmd = `juno dev start${liveReload}`;
+  const runJunoDevStart = `In another terminal, run ${cyan(startCmd)} to quickstart the local development emulator`;
 
   const runs = (index: number): string =>
     localDevelopment
