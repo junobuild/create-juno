@@ -168,7 +168,7 @@ export const promptServerlessFunctions = async (): Promise<ServerlessFunctions |
       },
       {
         title: 'JavaScript (experimental)',
-        value: 'ts'
+        value: 'js'
       },
       {
         title: 'None',
