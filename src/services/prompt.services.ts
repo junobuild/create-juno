@@ -146,9 +146,3 @@ export const promptProjectKind = async (): Promise<ProjectKind> => {
 export const promptGitHubAction = async (): Promise<boolean> => {
   return await confirm(`Would you like to set up a GitHub Action for deployment?`);
 };
-
-export const promptLocalDevelopment = async (): Promise<boolean> => {
-  return await confirm(
-    `Do you want to configure the project to use the local development emulator?`
-  );
-};
