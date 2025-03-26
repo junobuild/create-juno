@@ -123,7 +123,7 @@ export const promptProjectKind = async (): Promise<ProjectKind> => {
   const {kind}: {kind: ProjectKind | undefined} = await prompts({
     type: 'select',
     name: 'kind',
-    message: 'What kind of project are you starting?',
+    message: 'What are you building today?',
     choices: [
       {
         title: `Static website`,
