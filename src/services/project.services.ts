@@ -43,11 +43,13 @@ export const initNewProject = async (args: string[]): Promise<GeneratorInput> =>
 
   const template = nonNullish(userInputs.template) ? userInputs.template : await initTemplate();
 
-  const serverlessFunctions = await promptServerlessFunctions(template);
+  const localDevelopment = template.kind === 'app';
+
+  const serverlessFunctions = localDevelopment
+    ? await promptServerlessFunctions(template)
+    : undefined;
 
   const gitHubAction = await promptGitHubAction();
-
-  const localDevelopment = template.kind === 'app';
 
   const input = {
     destination,
