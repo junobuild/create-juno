@@ -1,4 +1,4 @@
-export const GITHUB_ACTION_DEPLOY = `name: Deploy to Juno
+name: Deploy to Juno
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -25,4 +25,4 @@ jobs:
         with:
           args: deploy
         env:
-          JUNO_TOKEN: $\{{ secrets.JUNO_TOKEN }}`
+          JUNO_TOKEN: ${{ secrets.JUNO_TOKEN }}
