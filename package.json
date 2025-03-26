@@ -24,8 +24,7 @@
     "e2e:snapshots": "NODE_ENV=development playwright test --update-snapshots --reporter=list",
     "e2e:ci": "playwright test --reporter=html",
     "e2e:ci:snapshots": "playwright test --update-snapshots --reporter=html",
-    "copy:boilerplate": "./scripts/cli-to-boilerplate.sh",
-    "prepublishOnly": "npm run copy:boilerplate"
+    "copy:boilerplate": "./scripts/cli-to-boilerplate.sh"
   },
   "repository": {
     "type": "git",
