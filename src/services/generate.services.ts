@@ -2,7 +2,7 @@ import {nonNullish} from '@dfinity/utils';
 import {downloadFromURL, gunzipFile} from '@junobuild/cli-tools';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
-import {cp, writeFile} from 'node:fs/promises';
+import {writeFile} from 'node:fs/promises';
 import {basename, join, parse} from 'node:path';
 import ora from 'ora';
 import {BOILERPLATE_PATH, JUNO_CDN_URL} from '../constants/constants';
@@ -10,6 +10,7 @@ import {GITHUB_ACTION_DEPLOY} from '../templates/github-actions';
 import type {PopulateInput, ServerlessFunctions} from '../types/generator';
 import {untarFile, type UntarOutputFile} from '../utils/compress.utils';
 import {
+  copyFiles,
   createParentFolders,
   getLocalTemplatePath,
   getRelativeTemplatePath
@@ -162,5 +163,5 @@ const populateServerlessFunctions = async ({
 
   const source = join(BOILERPLATE_PATH, 'functions', serverlessFunctionsSrc);
 
-  await cp(source, target, {recursive: true});
+  await copyFiles({source, target});
 };
