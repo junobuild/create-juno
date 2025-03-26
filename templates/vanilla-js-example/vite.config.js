@@ -5,5 +5,5 @@ import tailwindcss from "@tailwindcss/vite";
 
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
-  plugins: [nodePolyfills(), juno({ container: true }), tailwindcss()],
+  plugins: [nodePolyfills(), juno(), tailwindcss()],
 });
