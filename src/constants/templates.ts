@@ -2,7 +2,7 @@ import type {Template} from '../types/template';
 
 const APP_DESCRIPTION_STARTER = 'Barebones scaffolding for your new app';
 const APP_DESCRIPTION_EXAMPLE =
-  'A demo app showcasing authentication, data persistence, and image handling.';
+  'An example showcasing authentication, data persistence, and image handling.';
 
 export const TEMPLATES: Template[] = [
   {
@@ -13,7 +13,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Starter',
+    type: 'Minimal',
     description: 'Barebones scaffolding for your new website',
     kind: 'website'
   },
@@ -25,7 +25,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Starter',
+    type: 'Minimal',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
@@ -37,7 +37,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Example',
+    type: 'Demo',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
@@ -53,7 +53,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Starter',
+    type: 'Minimal',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
@@ -69,7 +69,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Example',
+    type: 'Demo',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
@@ -93,7 +93,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Starter',
+    type: 'Minimal',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
@@ -105,7 +105,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Example',
+    type: 'Demo',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
@@ -117,7 +117,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Starter',
+    type: 'Minimal',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
@@ -129,7 +129,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Example',
+    type: 'Demo',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
@@ -141,7 +141,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Starter',
+    type: 'Minimal',
     description: APP_DESCRIPTION_STARTER,
     kind: 'app'
   },
@@ -153,7 +153,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: true
       }
     ],
-    type: 'Example',
+    type: 'Demo',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   },
@@ -165,7 +165,7 @@ export const TEMPLATES: Template[] = [
         typeChecking: false
       }
     ],
-    type: 'Example',
+    type: 'Demo',
     description: APP_DESCRIPTION_EXAMPLE,
     kind: 'app'
   }
