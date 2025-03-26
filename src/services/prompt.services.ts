@@ -2,7 +2,12 @@ import {isNullish} from '@dfinity/utils';
 import {red} from 'kleur';
 import prompts from 'prompts';
 import {TEMPLATES} from '../constants/templates';
-import type {GeneratorInput, PopulateTemplate, ProjectKind} from '../types/generator';
+import type {
+  GeneratorInput,
+  PopulateTemplate,
+  ProjectKind,
+  ServerlessFunctions
+} from '../types/generator';
 import type {Template, TemplateFramework, TemplateKeyOption} from '../types/template';
 import {assertAnswerCtrlC, confirm} from '../utils/prompts.utils';
 
@@ -145,4 +150,34 @@ export const promptProjectKind = async (): Promise<ProjectKind> => {
 
 export const promptGitHubAction = async (): Promise<boolean> => {
   return await confirm(`Would you like to set up a GitHub Action for deployment?`);
+};
+
+export const promptServerlessFunctions = async (): Promise<ServerlessFunctions | undefined> => {
+  const {type}: {type: ServerlessFunctions | 'none' | undefined} = await prompts({
+    type: 'select',
+    name: 'type',
+    message: 'Would you like to include serverless functions in your project?',
+    choices: [
+      {
+        title: 'Rust',
+        value: 'rust'
+      },
+      {
+        title: 'TypeScript (experimental)',
+        value: 'ts'
+      },
+      {
+        title: 'JavaScript (experimental)',
+        value: 'ts'
+      },
+      {
+        title: 'None',
+        value: 'none'
+      }
+    ]
+  });
+
+  assertAnswerCtrlC(type);
+
+  return type === 'none' ? undefined : type;
 };

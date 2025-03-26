@@ -6,7 +6,7 @@ import {confirm} from '../utils/prompts.utils';
 import {initArgs} from './args.services';
 import {dependencies} from './deps.services';
 import {generate} from './generate.services';
-import {promptDestination, promptGitHubAction} from './prompt.services';
+import {promptDestination, promptGitHubAction, promptServerlessFunctions} from './prompt.services';
 import {initTemplate} from './template.services';
 
 export const checkForExistingProject = async (): Promise<{initProject: boolean}> => {
@@ -43,6 +43,8 @@ export const initNewProject = async (args: string[]): Promise<GeneratorInput> =>
 
   const template = nonNullish(userInputs.template) ? userInputs.template : await initTemplate();
 
+  const serverlessFunctions = await promptServerlessFunctions();
+
   const gitHubAction = await promptGitHubAction();
 
   const localDevelopment = template.kind === 'app';
@@ -52,6 +54,7 @@ export const initNewProject = async (args: string[]): Promise<GeneratorInput> =>
     template,
     gitHubAction,
     localDevelopment,
+    serverlessFunctions,
     verbose: hasArgs({args, options: ['-v', '--verbose']})
   };
 

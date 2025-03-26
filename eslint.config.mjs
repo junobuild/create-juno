@@ -15,7 +15,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/dist', '**/templates']
+    ignores: ['dist', 'templates', 'boilerplate']
   },
   {
     ...love,
