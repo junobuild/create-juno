@@ -5,10 +5,13 @@ export interface GeneratorInput {
   template: PopulateTemplate;
   gitHubAction: boolean;
   localDevelopment: boolean;
+  serverlessFunctions: ServerlessFunctions | undefined;
   verbose?: boolean;
 }
 
 export type ProjectKind = 'website' | 'app';
+
+export type ServerlessFunctions = 'rust' | 'ts' | 'js';
 
 export type PopulateInput = {
   where: string | null;

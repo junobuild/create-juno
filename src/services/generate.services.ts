@@ -1,21 +1,23 @@
+import {nonNullish} from '@dfinity/utils';
 import {downloadFromURL, gunzipFile} from '@junobuild/cli-tools';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
 import {writeFile} from 'node:fs/promises';
 import {basename, join, parse} from 'node:path';
 import ora from 'ora';
-import {JUNO_CDN_URL} from '../constants/constants';
+import {BOILERPLATE_PATH, JUNO_CDN_URL} from '../constants/constants';
 import {GITHUB_ACTION_DEPLOY} from '../templates/github-actions';
-import type {PopulateInput} from '../types/generator';
+import type {PopulateInput, ServerlessFunctions} from '../types/generator';
 import {untarFile, type UntarOutputFile} from '../utils/compress.utils';
 import {
+  copyFiles,
   createParentFolders,
   getLocalTemplatePath,
   getRelativeTemplatePath
 } from '../utils/fs.utils';
 import {createDirectory, getLocalFiles, type LocalFileDescriptor} from '../utils/populate.utils';
 
-export const generate = async ({gitHubAction, ...rest}: PopulateInput) => {
+export const generate = async ({gitHubAction, serverlessFunctions, ...rest}: PopulateInput) => {
   const spinner = ora(`Creating project...`).start();
 
   try {
@@ -24,6 +26,10 @@ export const generate = async ({gitHubAction, ...rest}: PopulateInput) => {
     const populateFn = useLocalFiles ? populateFromLocal : populateFromCDN;
 
     await populateFn(rest);
+
+    if (nonNullish(serverlessFunctions)) {
+      await populateServerlessFunctions({serverlessFunctions, ...rest});
+    }
 
     if (gitHubAction) {
       await populateGitHubAction(rest);
@@ -35,7 +41,7 @@ export const generate = async ({gitHubAction, ...rest}: PopulateInput) => {
   }
 };
 
-type PopulateInputFn = Omit<PopulateInput, 'gitHubAction'>;
+type PopulateInputFn = Omit<PopulateInput, 'gitHubAction' | 'serverlessFunctions'>;
 
 const populateFromCDN = async ({where, template, localDevelopment}: PopulateInputFn) => {
   // Windows uses backslash, we cannot build the URL path without replacing those with slash.
@@ -138,4 +144,27 @@ const updatePackageJson = async ({where, template}: PopulateInputFn) => {
   const result = data.replace(regex, `"${directory}"`);
 
   await writeFile(pkgJson, result, 'utf8');
+};
+
+const populateServerlessFunctions = async ({
+  where,
+  serverlessFunctions
+}: PopulateInputFn & {serverlessFunctions: ServerlessFunctions}) => {
+  const serverlessFunctionsSrc =
+    serverlessFunctions === 'ts'
+      ? 'typescript'
+      : serverlessFunctions === 'js'
+        ? 'javascript'
+        : serverlessFunctions;
+
+  const source = join(BOILERPLATE_PATH, 'functions', serverlessFunctionsSrc);
+
+  const target =
+    serverlessFunctions === 'rust' ? join(where ?? '') : join(where ?? '', 'src', 'satellite');
+
+  if (serverlessFunctions !== 'rust') {
+    createParentFolders(target);
+  }
+
+  await copyFiles({source, target});
 };

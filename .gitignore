@@ -43,3 +43,6 @@ templates/**/package-lock.json
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# We generate this on publish
+boilerplate

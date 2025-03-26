@@ -10,7 +10,8 @@
   "files": [
     "dist/index.js",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "boilerplate"
   ],
   "scripts": {
     "format": "prettier . --write",
@@ -22,7 +23,9 @@
     "e2e": "NODE_ENV=development playwright test",
     "e2e:snapshots": "NODE_ENV=development playwright test --update-snapshots --reporter=list",
     "e2e:ci": "playwright test --reporter=html",
-    "e2e:ci:snapshots": "playwright test --update-snapshots --reporter=html"
+    "e2e:ci:snapshots": "playwright test --update-snapshots --reporter=html",
+    "copy:boilerplate": "./scripts/cli-to-boilerplate.sh",
+    "prepublishOnly": "npm run copy:boilerplate"
   },
   "repository": {
     "type": "git",

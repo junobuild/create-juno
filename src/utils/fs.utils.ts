@@ -1,4 +1,5 @@
 import {existsSync, mkdirSync} from 'node:fs';
+import {cp} from 'node:fs/promises';
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import type {TemplateKey} from '../types/template';
@@ -19,4 +20,8 @@ export const createParentFolders = (target: string) => {
   if (!existsSync(folder)) {
     mkdirSync(folder, {recursive: true});
   }
+};
+
+export const copyFiles = async ({source, target}: {source: string; target: string}) => {
+  await cp(join(__dirname, source), target, {recursive: true});
 };
