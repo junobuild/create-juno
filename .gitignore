@@ -45,4 +45,4 @@ templates/**/package-lock.json
 /playwright/.cache/
 
 # We generate this on publish
-boilerplate
+boilerplate/functions

@@ -17,9 +17,15 @@ export const getLocalTemplatePath = ({key}: {key: TemplateKey}) =>
 export const createParentFolders = (target: string) => {
   const folder = dirname(target);
 
-  if (!existsSync(folder)) {
-    mkdirSync(folder, {recursive: true});
+  createFolders(folder);
+};
+
+export const createFolders = (folder: string) => {
+  if (existsSync(folder)) {
+    return;
   }
+
+  mkdirSync(folder, {recursive: true});
 };
 
 export const copyFiles = async ({source, target}: {source: string; target: string}) => {

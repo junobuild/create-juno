@@ -6,11 +6,11 @@ import {writeFile} from 'node:fs/promises';
 import {basename, join, parse} from 'node:path';
 import ora from 'ora';
 import {BOILERPLATE_PATH, JUNO_CDN_URL} from '../constants/constants';
-import {GITHUB_ACTION_DEPLOY} from '../templates/github-actions';
 import type {PopulateInput, ServerlessFunctions} from '../types/generator';
 import {untarFile, type UntarOutputFile} from '../utils/compress.utils';
 import {
   copyFiles,
+  createFolders,
   createParentFolders,
   getLocalTemplatePath,
   getRelativeTemplatePath
@@ -125,11 +125,13 @@ const populateFromLocal = async ({where, template, localDevelopment}: PopulateIn
 };
 
 const populateGitHubAction = async ({where}: PopulateInputFn) => {
-  const target = join(where ?? '', '.github', 'workflows', 'deploy.yaml');
+  const target = join(where ?? '', '.github', 'workflows');
 
-  createParentFolders(target);
+  createFolders(target);
 
-  await writeFile(target, GITHUB_ACTION_DEPLOY);
+  const source = join(BOILERPLATE_PATH, 'github');
+
+  await copyFiles({source, target});
 };
 
 const updatePackageJson = async ({
