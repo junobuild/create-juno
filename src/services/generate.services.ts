@@ -140,7 +140,8 @@ const updatePackageJson = async ({
 
   const data = await readFile(pkgJsonPath, 'utf8');
 
-  const pkgJson = JSON.parse(data);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+  const pkgJson = JSON.parse(data) as {dependencies?: Record<string, string>; name: string};
 
   // Imperative update for convenience reason in order to preserve the sorting of the fields easily.
 
