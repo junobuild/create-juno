@@ -35,7 +35,7 @@ export const generate = async ({gitHubAction, serverlessFunctions, ...rest}: Pop
       await populateGitHubAction(rest);
     }
 
-    await updatePackageJson(rest);
+    await updatePackageJson({serverlessFunctions, ...rest});
   } finally {
     spinner.stop();
   }
@@ -132,18 +132,39 @@ const populateGitHubAction = async ({where}: PopulateInputFn) => {
   await writeFile(target, GITHUB_ACTION_DEPLOY);
 };
 
-const updatePackageJson = async ({where, template}: PopulateInputFn) => {
-  const pkgJson = join(process.cwd(), where ?? '', 'package.json');
+const updatePackageJson = async ({
+  where,
+  serverlessFunctions
+}: Omit<PopulateInput, 'gitHubAction'>) => {
+  const pkgJsonPath = join(process.cwd(), where ?? '', 'package.json');
 
-  const data = await readFile(pkgJson, 'utf8');
+  const data = await readFile(pkgJsonPath, 'utf8');
 
-  const regex = new RegExp(`"${template.key}"`, 'gi');
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+  const pkgJson = JSON.parse(data) as {dependencies?: Record<string, string>; name: string};
 
-  const directory = where ?? basename(process.cwd());
+  // Imperative update for convenience reason in order to preserve the sorting of the fields easily.
 
-  const result = data.replace(regex, `"${directory}"`);
+  // Update withe project basename as title otherwise it remains equals to the template name.
+  pkgJson.name = where ?? basename(process.cwd());
 
-  await writeFile(pkgJson, result, 'utf8');
+  // Remove the functions if the project will not use the serverless functions in typescript or javascript
+  const withFunctions =
+    nonNullish(serverlessFunctions) && ['ts', 'js'].includes(serverlessFunctions);
+
+  pkgJson.dependencies = Object.entries(pkgJson.dependencies ?? {})
+    .filter(([key, _]) => key !== '@junobuild/functions' || withFunctions)
+    .reduce(
+      (acc, [key, value]) => ({
+        ...acc,
+        [key]: value
+      }),
+      {}
+    );
+
+  const result = JSON.stringify(pkgJson, null, 2);
+
+  await writeFile(pkgJsonPath, result, 'utf8');
 };
 
 const populateServerlessFunctions = async ({
