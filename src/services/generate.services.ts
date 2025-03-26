@@ -29,12 +29,6 @@ export const generate = async ({gitHubAction, ...rest}: PopulateInput) => {
       await populateGitHubAction(rest);
     }
 
-    const {localDevelopment} = rest;
-
-    if (!localDevelopment) {
-      await removeLocalConfig(rest);
-    }
-
     await updatePackageJson(rest);
   } finally {
     spinner.stop();
@@ -144,39 +138,4 @@ const updatePackageJson = async ({where, template}: PopulateInputFn) => {
   const result = data.replace(regex, `"${directory}"`);
 
   await writeFile(pkgJson, result, 'utf8');
-};
-
-const removeLocalConfig = async ({where, template}: PopulateInputFn) => {
-  // We do not provide plugins for Angular.
-  if (template.framework === 'Angular') {
-    return;
-  }
-
-  // TODO: this is verbose and difficult to maintain. We should probably introduce those options in some ways in the templates' definition.
-  const config = join(
-    process.cwd(),
-    where ?? '',
-    template.framework === 'Astro'
-      ? 'astro.config.mjs'
-      : template.framework === 'Next.js'
-        ? 'next.config.mjs'
-        : template.framework === 'React'
-          ? template.typeChecking
-            ? 'vite.config.ts'
-            : 'vite.config.js'
-          : template.framework === 'Vanilla JavaScript'
-            ? 'vite.config.js'
-            : 'vite.config.ts'
-  );
-
-  const data = await readFile(config, 'utf8');
-
-  const regex =
-    template.framework === 'Next.js'
-      ? /{\s*juno:\s*{\s*container:\s*true\s*}\s*}/g
-      : /{\s*container:\s*true\s*}/g;
-
-  const result = data.replace(regex, '');
-
-  await writeFile(config, result, 'utf8');
 };

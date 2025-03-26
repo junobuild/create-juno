@@ -6,5 +6,5 @@ import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), nodePolyfills(), juno({ container: true }), tailwindcss()],
+  plugins: [react(), nodePolyfills(), juno(), tailwindcss()],
 });
