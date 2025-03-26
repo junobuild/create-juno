@@ -150,10 +150,6 @@ const populateServerlessFunctions = async ({
   where,
   serverlessFunctions
 }: PopulateInputFn & {serverlessFunctions: ServerlessFunctions}) => {
-  const target = join(where ?? '', 'src', 'satellite');
-
-  createParentFolders(target);
-
   const serverlessFunctionsSrc =
     serverlessFunctions === 'ts'
       ? 'typescript'
@@ -162,6 +158,13 @@ const populateServerlessFunctions = async ({
         : serverlessFunctions;
 
   const source = join(BOILERPLATE_PATH, 'functions', serverlessFunctionsSrc);
+
+  const target =
+    serverlessFunctions === 'rust' ? join(where ?? '') : join(where ?? '', 'src', 'satellite');
+
+  if (serverlessFunctions !== 'rust') {
+    createParentFolders(target);
+  }
 
   await copyFiles({source, target});
 };
