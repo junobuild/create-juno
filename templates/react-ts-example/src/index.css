@@ -34,6 +34,18 @@
   --color-lavender-blue-700: #485299;
   --color-lavender-blue-800: #303666;
   --color-lavender-blue-900: #181b33;
+
+  --color-screamin-green-50: #eaffe5;
+  --color-screamin-green-100: #d0ffc8;
+  --color-screamin-green-200: #88ff78;
+  --color-screamin-green-300: #6bfb5b;
+  --color-screamin-green-400: #3bf229;
+  --color-screamin-green-500: #18d80a;
+  --color-screamin-green-600: #0cad03;
+  --color-screamin-green-700: #0c8308;
+  --color-screamin-green-800: #10670d;
+  --color-screamin-green-900: #105710;
+  --color-screamin-green-950: #023103;
 }
 
 @theme {
