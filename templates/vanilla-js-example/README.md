@@ -30,7 +30,7 @@ Your project needs a Satellite. Create one to connect your app for development.
 
 ### 3. Configure your project
 
-Set the Satellite ID in your `juno.config.ts` file:
+Set the Satellite ID in your `juno.config.mjs` file:
 
 ```ts
 import { defineConfig } from "@junobuild/config";
@@ -72,7 +72,7 @@ You only need to do this once. After that, you're ready to build 🚀
 
 Ready to go live?
 
-Just like for local development, you'll need to create a Satellite — but this time on the mainnet [Console](https://console.juno.build). Then, update your `juno.config.ts` with the new Satellite ID:
+Just like for local development, you'll need to create a Satellite — but this time on the mainnet [Console](https://console.juno.build). Then, update your `juno.config.mjs` with the new Satellite ID:
 
 ```ts
 import { defineConfig } from "@junobuild/config";
