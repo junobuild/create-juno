@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+SATELLITE_ID="jx5yt-yyaaa-aaaal-abzbq-cai"
+
+function prepare() {
+  local template=$1
+
+  echo -e "\n***** Prepare configuration $template *****\n"
+
+  for file in juno.config.ts juno.config.mjs; do
+    config_path="templates/$template/$file"
+
+    if [ -f "$config_path" ]; then
+      sed -i.bak "s/<DEV_SATELLITE_ID>/$SATELLITE_ID/g" "$config_path" && rm "$config_path.bak"
+      echo "✅ Updated $config_path"
+    else
+      echo "⚠️  $config_path not found, skipping."
+    fi
+  done
+
+  # Special case for Angular
+  if [ "$template" == "angular-example" ]; then
+    local env_path="templates/$template/src/environments/environment.ts"
+    if [ -f "$env_path" ]; then
+      sed -i.bak "s/<DEV_SATELLITE_ID>/$SATELLITE_ID/g" "$env_path" && rm "$env_path.bak"
+      echo "✅ Updated $env_path"
+    else
+      echo "⚠️  $env_path not found, skipping."
+    fi
+  fi
+}
+
+STARTERS=angular-example,nextjs-example,react-example,react-ts-example,sveltekit-example,vanilla-js-example,vue-example
+
+for template in $(echo $STARTERS | sed "s/,/ /g"); do
+  prepare "$template"
+done

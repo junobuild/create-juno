@@ -6,6 +6,7 @@ import Footer from '@/components/Footer.vue'
 import { onMounted } from 'vue'
 import { initSatellite } from '@junobuild/core'
 import Modal from '@/components/Modal.vue'
+import Banner from '@/components/Banner.vue'
 
 onMounted(
   async () =>
@@ -19,6 +20,8 @@ onMounted(
 
 <template>
   <div class="relative isolate min-h-[100dvh]">
+    <Banner />
+
     <main
       class="mx-auto max-w-(--breakpoint-2xl) px-8 py-16 md:px-24 [@media(min-height:800px)]:min-h-[calc(100dvh-128px)]"
     >

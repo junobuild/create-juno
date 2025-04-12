@@ -10,6 +10,90 @@ npm create juno@latest -- --template vue-example
 
 An example developed for [Juno](https://juno.build) using [Angular](https://angular.dev).
 
+## 🧭 Getting Started
+
+To start experimenting with Juno locally, follow these steps:
+
+### 1. Start the local development emulator
+
+This will spin up the Juno backend locally (requires Docker):
+
+```bash
+juno dev start
+```
+
+### 2. Create a Satellite
+
+Your project needs a Satellite. Create one to connect your app for development.
+
+👉 [Open the Juno Console](http://localhost:5866)
+
+### 3. Configure your project
+
+Set the Satellite ID in your `environment.ts` file:
+
+```ts
+export const environment = {
+  satelliteId: "<DEV_SATELLITE_ID>",
+  container: true,
+};
+```
+
+### 4. Start the frontend dev server
+
+In another terminal, start your app's dev server:
+
+```bash
+npm run dev
+```
+
+### 5. Create a Datastore collection
+
+This template is a note-taking app, so it needs a `notes` collection. Create it in the Datastore.
+
+👉 [Go to Datastore](http://localhost:5866/datastore)
+
+### 6. Create a Storage collection
+
+Likewise, it needs a collection named `images` to save assets. Create it in the Storage.
+
+👉 [Go to Storage](http://localhost:5866/storage)
+
+You only need to do this once. After that, you're ready to build 🚀
+
+## 🛰️ Production
+
+Ready to go live?
+
+Just like for local development, you'll need to create a Satellite — but this time on the mainnet [Console](https://console.juno.build). Then, update your `environment.prod.ts` file:
+
+```ts
+export const environment = {
+  satelliteId: undefined,
+  container: false,
+};
+```
+
+And the `juno.config.mjs` file with the new Satellite ID as well:
+
+```ts
+import { defineConfig } from "@junobuild/config";
+
+/** @type {import('@junobuild/config').JunoConfig} */
+export default defineConfig({
+  satellite: {
+    id: "<PROD_SATELLITE_ID>",
+    source: "dist/angular-example/browser",
+    predeploy: ["npm run build"],
+  },
+});
+```
+
+> [!TIP]
+> This setup is suboptimal, as the Satellite ID needs to be configured in two places. If you're interested in contributing to improve the DX, let us know, that would be awesome!
+
+Check out the full guides in the [docs](https://juno.build/docs/category/deployment).
+
 ## ✨ Links & Resources
 
 - Looking to get started with Juno? Check out the [documentation](https://juno.build).

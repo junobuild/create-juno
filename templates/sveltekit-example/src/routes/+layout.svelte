@@ -5,6 +5,7 @@
 	import Background from '$lib/components/Background.svelte';
 	import '../app.css';
 	import Auth from '$lib/components/Auth.svelte';
+	import Banner from '$lib/components/Banner.svelte';
 
 	interface Props {
 		children: Snippet;
@@ -26,6 +27,8 @@
 </script>
 
 <div class="relative isolate min-h-[100dvh]">
+	<Banner />
+
 	<main
 		class="mx-auto max-w-(--breakpoint-2xl) px-8 py-16 md:px-24 [@media(min-height:800px)]:min-h-[calc(100dvh-128px)]"
 	>

@@ -10,6 +10,87 @@ npm create juno@latest -- --template nextjs-example
 
 An example developed for [Juno](https://juno.build) using [Next.js](https://nextjs.org/docs).
 
+## 🧭 Getting Started
+
+To start experimenting with Juno locally, follow these steps:
+
+### 1. Start the local development emulator
+
+This will spin up the Juno backend locally (requires Docker):
+
+```bash
+juno dev start
+```
+
+### 2. Create a Satellite
+
+Your project needs a Satellite. Create one to connect your app for development.
+
+👉 [Open the Juno Console](http://localhost:5866)
+
+### 3. Configure your project
+
+Set the Satellite ID in your `juno.config.mjs` file:
+
+```ts
+import { defineConfig } from "@junobuild/config";
+
+export default defineConfig({
+  satellite: {
+    ids: {
+      development: "<DEV_SATELLITE_ID>",
+    },
+    source: "out",
+    predeploy: ["npm run build"],
+  },
+});
+```
+
+### 4. Start the frontend dev server
+
+In another terminal, start your app's dev server:
+
+```bash
+npm run dev
+```
+
+### 5. Create a Datastore collection
+
+This template is a note-taking app, so it needs a `notes` collection. Create it in the Datastore.
+
+👉 [Go to Datastore](http://localhost:5866/datastore)
+
+### 6. Create a Storage collection
+
+Likewise, it needs a collection named `images` to save assets. Create it in the Storage.
+
+👉 [Go to Storage](http://localhost:5866/storage)
+
+You only need to do this once. After that, you're ready to build 🚀
+
+## 🛰️ Production
+
+Ready to go live?
+
+Just like for local development, you'll need to create a Satellite — but this time on the mainnet [Console](https://console.juno.build). Then, update your `juno.config.mjs` with the new Satellite ID:
+
+```ts
+import { defineConfig } from "@junobuild/config";
+
+export default defineConfig({
+  satellite: {
+    ids: {
+      development: "<DEV_SATELLITE_ID>",
+      production: "<PROD_SATELLITE_ID>",
+    },
+    source: "out",
+    predeploy: ["npm run build"],
+  },
+});
+```
+
+Check out the full guides in the [docs](https://juno.build/docs/category/deployment).
+
 ## ✨ Links & Resources
 
 - Looking to get started with Juno? Check out the [documentation](https://juno.build).

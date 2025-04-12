@@ -1,4 +1,4 @@
-export const environment: { satelliteId: string; container: boolean } = {
-  satelliteId: 'jx5yt-yyaaa-aaaal-abzbq-cai',
+export const environment = {
+  satelliteId: '<DEV_SATELLITE_ID>',
   container: true,
 };
