@@ -68,12 +68,6 @@ Likewise, it needs a collection named `images` to save assets. Create it in the 
 
 You only need to do this once. After that, you're ready to build 🚀
 
-### 1. Create a Satellite
-
-Juno uses a dev canister called a **Satellite** to emulate your backend locally.
-
-👉 [Open the Juno Console](http://localhost:5866) to create a new Satellite for testing.
-
 ## 🛰️ Production
 
 Ready to go live?
