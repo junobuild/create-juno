@@ -1,7 +1,7 @@
 # Juno: React Example
 
 ```sh
-npm create juno@latest -- --template react-example
+npm create juno@latest -- --template react-ts-example
 ```
 
 > 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
