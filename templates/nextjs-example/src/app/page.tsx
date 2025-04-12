@@ -7,6 +7,7 @@ import { Modal } from "@/components/modal";
 import { Table } from "@/components/table";
 import { initSatellite } from "@junobuild/core";
 import { useEffect } from "react";
+import { Banner } from "@/components/banner";
 
 export default function Home() {
   useEffect(() => {
@@ -22,6 +23,8 @@ export default function Home() {
   return (
     <>
       <div className="relative isolate min-h-[100dvh]">
+        <Banner />
+
         <main className="mx-auto max-w-(--breakpoint-2xl) px-8 py-16 md:px-24 [@media(min-height:800px)]:min-h-[calc(100dvh-128px)]">
           <h1 className="text-5xl font-bold tracking-tight md:pt-24 md:text-6xl dark:text-white">
             Example App
