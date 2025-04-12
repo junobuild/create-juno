@@ -79,7 +79,7 @@ const onChangeFile = ($event: Event) =>
 const openSelectFile = () => inputFile.value?.click()
 
 const resetFileInput = () => {
-  if (inputFile !== null && inputFile.value !== null) {
+  if (inputFile.value !== null && inputFile.value !== null) {
     inputFile.value.value = ''
   }
 
