@@ -151,46 +151,51 @@ export const Onboarding: FC<OnboardingProps> = ({ onComplete }) => {
   }
 
   return (
-    <div className="mt-4 w-full max-w-2xl dark:text-white">
-      <p className="py-4 md:max-w-lg dark:text-white">
-        To get started with your Juno project, please complete the following
-        steps:
-      </p>
+    <>
+      <h1 className="text-5xl font-bold tracking-tight md:pt-24 md:text-6xl dark:text-white">
+        Getting Started
+      </h1>
 
-      <div className="flex flex-col items-start gap-2">
-        {Object.entries(uiSteps).map(([stepId, step]) => (
-          <label
-            key={stepId}
-            htmlFor={stepId}
-            className={`flex w-full max-w-2xl items-center gap-4 rounded-sm border-[3px] border-black bg-white py-2 transition-all dark:bg-black dark:text-white ${step.status === "pending" ? "opacity-25" : ""}`}
-          >
-            <input
-              type="checkbox"
-              className="accent-screamin-green-300 disabled:accent-screamin-green-300 size-5 min-w-6 rounded shadow-sm"
-              id={stepId}
-              checked={steps[stepId as StepId]}
-              onChange={() => toggleStep(stepId)}
-              disabled={step.status === "pending"}
-            />
+      <div className="mt-4 w-full max-w-2xl dark:text-white">
+        <p className="py-4 md:max-w-lg dark:text-white">
+          To start experimenting, please complete the following steps:
+        </p>
 
-            <div>
-              <p>
-                <span>{step.description}</span>
-                {step.action !== undefined && step.status === "todo" && (
-                  <a
-                    href={step.action.url}
-                    target="_blank"
-                    className={`ml-2 inline-block px-1 ${step.status === "todo" ? "bg-screamin-green-200 rounded-sm font-bold text-black underline" : ""}`}
-                    aria-label={step.action.label}
-                  >
-                    {step.action.description}
-                  </a>
-                )}
-              </p>
-            </div>
-          </label>
-        ))}
+        <div className="flex flex-col items-start gap-2">
+          {Object.entries(uiSteps).map(([stepId, step]) => (
+            <label
+              key={stepId}
+              htmlFor={stepId}
+              className={`flex w-full max-w-2xl items-center gap-4 rounded-sm border-[3px] border-black bg-white py-2 transition-all dark:bg-black dark:text-white ${step.status === "pending" ? "opacity-25" : ""}`}
+            >
+              <input
+                type="checkbox"
+                className="accent-screamin-green-300 disabled:accent-screamin-green-300 size-5 min-w-6 rounded shadow-sm"
+                id={stepId}
+                checked={steps[stepId as StepId]}
+                onChange={() => toggleStep(stepId)}
+                disabled={step.status === "pending"}
+              />
+
+              <div>
+                <p>
+                  <span>{step.description}</span>
+                  {step.action !== undefined && step.status === "todo" && (
+                    <a
+                      href={step.action.url}
+                      target="_blank"
+                      className={`ml-2 inline-block px-1 ${step.status === "todo" ? "bg-screamin-green-200 rounded-sm font-bold text-black underline" : ""}`}
+                      aria-label={step.action.label}
+                    >
+                      {step.action.description}
+                    </a>
+                  )}
+                </p>
+              </div>
+            </label>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
