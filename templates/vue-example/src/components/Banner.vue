@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const dev = import.meta.env.DEV
 const satelliteId = import.meta.env.VITE_SATELLITE_ID
-const satelliteMissing = !satelliteId || satelliteId === '<DEV_SATELLITE_ID>'
+const satelliteMissing = satelliteId === undefined || satelliteId === '<DEV_SATELLITE_ID>'
 const showBanner = dev && satelliteMissing
 </script>
 
