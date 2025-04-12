@@ -2,6 +2,7 @@ import { authSubscribe, initSatellite } from "@junobuild/core";
 import { renderContent } from "./components/content";
 import { renderLogin } from "./components/login";
 import "./style.css";
+import { renderBanner } from "./components/banner.js";
 
 /**
  * Global listener. When the user sign-in or sign-out, we re-render the app.
@@ -22,6 +23,8 @@ authSubscribe((user) => {
  * @returns {Promise<void>}
  */
 const onAppInit = async () => {
+  renderBanner();
+
   await initSatellite({
     workers: {
       auth: true,
