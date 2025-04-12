@@ -2,5 +2,7 @@
 
 TEST_TYPE=${1:-e2e}
 
+./scripts/e2e-prepare
+
 ./scripts/e2e-starter "$TEST_TYPE"
 ./scripts/e2e-example "$TEST_TYPE"
