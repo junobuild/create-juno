@@ -17,6 +17,7 @@ interface UiStep {
 }
 
 interface OnboardingProps {
+  // eslint-disable-next-line no-unused-vars
   onComplete: (completed: boolean) => void;
 }
 
@@ -80,6 +81,7 @@ export const Onboarding: FC<OnboardingProps> = ({ onComplete }) => {
 
   useEffect(() => {
     onComplete(allStepsCompleted);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allStepsCompleted]);
 
   useEffect(() => {
@@ -115,6 +117,8 @@ export const Onboarding: FC<OnboardingProps> = ({ onComplete }) => {
     };
 
     setUiSteps(updatedUiSteps);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [steps]);
 
   const toggleStep = (stepId: string) => {
