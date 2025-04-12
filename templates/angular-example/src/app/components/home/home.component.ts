@@ -4,6 +4,7 @@ import { BackgroundComponent } from '../background/background.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ModalComponent } from '../modal/modal.component';
 import { TableComponent } from '../table/table.component';
+import { BannerComponent } from '../banner/banner.component';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { TableComponent } from '../table/table.component';
     TableComponent,
     AuthComponent,
     ModalComponent,
+    BannerComponent,
   ],
   templateUrl: './home.component.html',
 })
