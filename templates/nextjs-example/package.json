@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@junobuild/core": "^0.1.11",
-    "@junobuild/functions": "^0.0.15",
+    "@junobuild/functions": "^0.1.0",
     "nanoid": "^5.1.5",
     "next": "15.2.3",
     "react": "19.0.0",
