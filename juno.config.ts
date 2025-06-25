@@ -16,10 +16,6 @@ export default defineConfig({
     gzip: false
   },
   emulator: {
-    runner: {
-      type: "docker",
-      platform: "linux/amd64"
-    },
     satellite: {}
   }
 });
