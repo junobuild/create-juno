@@ -23,6 +23,7 @@ jobs:
 
       - name: Run tests
         run: |
+          juno version --cli
           juno dev start --headless
 
   may-merge:
