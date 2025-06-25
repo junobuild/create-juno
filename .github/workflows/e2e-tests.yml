@@ -18,9 +18,6 @@ jobs:
       - name: Setup E2E Environment
         uses: ./.github/actions/setup-e2e-env
 
-      - name: Install Templates Dependencies
-        run: ./scripts/install-deps
-
       - name: Run tests
         run: |
           juno version --cli
