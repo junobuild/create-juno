@@ -14,5 +14,8 @@ export default defineConfig({
     },
     encoding: [['**/templates/*.tar.gz', 'identity']],
     gzip: false
+  },
+  emulator: {
+    satellite: {}
   }
 });
