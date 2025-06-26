@@ -1,5 +1,6 @@
 import {isNullish, nonNullish} from '@dfinity/utils';
 import {cyan, green, grey, magenta, red} from 'kleur';
+// eslint-disable-next-line import/no-relative-parent-imports
 import {version} from '../package.json';
 import {installCli} from './services/cli.services';
 import {checkForExistingProject, initNewProject} from './services/project.services';
@@ -88,7 +89,6 @@ export const run = async () => {
   }
 };
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
 (async () => {
   try {
     await run();

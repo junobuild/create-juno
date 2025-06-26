@@ -14,8 +14,8 @@ import {assertAnswerCtrlC, confirm} from '../utils/prompts.utils';
 export const promptTemplate = async (projectKind: ProjectKind): Promise<PopulateTemplate> => {
   const allTemplates = TEMPLATES.filter(({kind}) => kind === projectKind).reduce<
     Partial<Record<TemplateFramework, Template[]>>
-  >((acc, {framework, ...rest}) => {
-    return {
+  >(
+    (acc, {framework, ...rest}) => ({
       ...acc,
       [framework]: [
         ...(acc[framework] ?? []),
@@ -24,8 +24,9 @@ export const promptTemplate = async (projectKind: ProjectKind): Promise<Populate
           ...rest
         }
       ]
-    };
-  }, {});
+    }),
+    {}
+  );
 
   const frameworks = Object.keys(allTemplates);
 
@@ -148,9 +149,8 @@ export const promptProjectKind = async (): Promise<ProjectKind> => {
   return kind;
 };
 
-export const promptGitHubAction = async (): Promise<boolean> => {
-  return await confirm(`Would you like to set up a GitHub Action for deployment?`);
-};
+export const promptGitHubAction = async (): Promise<boolean> =>
+  await confirm(`Would you like to set up a GitHub Action for deployment?`);
 
 export const promptServerlessFunctions = async ({
   typeChecking

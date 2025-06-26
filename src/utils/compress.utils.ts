@@ -7,13 +7,13 @@ export interface UntarOutputFile {
 }
 
 export const untarFile = async ({source}: {source: Buffer}): Promise<UntarOutputFile[]> =>
-  // eslint-disable-next-line promise/avoid-new
   await new Promise<UntarOutputFile[]>((resolve, reject) => {
     // Create an extract stream
     const extractor = tar.extract();
 
     const output: UntarOutputFile[] = [];
 
+    // eslint-disable-next-line local-rules/prefer-object-params
     extractor.on('entry', ({name}, stream, next) => {
       const chunks: Uint8Array[] = [];
       stream.on('data', (chunk: Uint8Array) => chunks.push(chunk));

@@ -5,7 +5,7 @@ import {NODE_18} from '../constants/constants';
 export const checkNodeVersion = (): {valid: boolean} => {
   try {
     const {version} = process;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
     const nodeMajor = major(version);
 
     if (nodeMajor < NODE_18) {
