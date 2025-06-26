@@ -21,8 +21,8 @@ export const createDirectory = async (where: string | null) => {
 
   try {
     await mkdir(where);
-  } catch (err) {
-    // @ts-expect-error
+  } catch (err: unknown) {
+    // @ts-expect-error if the error contains EEXIST then the dir already exists
     if (err.code === 'EEXIST') {
       return;
     }
