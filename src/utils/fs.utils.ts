@@ -28,6 +28,18 @@ export const createFolders = (folder: string) => {
   mkdirSync(folder, {recursive: true});
 };
 
+export const copyFile = async ({
+  source,
+  target,
+  file
+}: {
+  source: string;
+  target: string;
+  file: string;
+}) => {
+  await cp(join(__dirname, source, file), join(target, file));
+};
+
 export const copyFiles = async ({source, target}: {source: string; target: string}) => {
   await cp(join(__dirname, source), target, {recursive: true});
 };

@@ -2,13 +2,14 @@ import {isNullish, nonNullish} from '@dfinity/utils';
 import {downloadFromURL, gunzipFile} from '@junobuild/cli-tools';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
-import {copyFile, writeFile} from 'node:fs/promises';
+import {writeFile} from 'node:fs/promises';
 import {basename, join, parse} from 'node:path';
 import ora from 'ora';
 import {BOILERPLATE_PATH, JUNO_CDN_URL} from '../constants/constants';
 import type {PopulateInput, ServerlessFunctions} from '../types/generator';
 import {untarFile, type UntarOutputFile} from '../utils/compress.utils';
 import {
+  copyFile,
   copyFiles,
   createFolders,
   createParentFolders,
@@ -133,9 +134,9 @@ const populateGitHubAction = async ({
   createFolders(target);
 
   if (isNullish(serverlessFunctions)) {
-    const source = join(BOILERPLATE_PATH, 'github', 'deploy.yml');
+    const source = join(BOILERPLATE_PATH, 'github');
 
-    await copyFile(source, target);
+    await copyFile({source, target, file: 'deploy.yml'});
     return;
   }
 
