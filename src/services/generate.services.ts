@@ -1,8 +1,8 @@
-import {nonNullish} from '@dfinity/utils';
+import {isNullish, nonNullish} from '@dfinity/utils';
 import {downloadFromURL, gunzipFile} from '@junobuild/cli-tools';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
-import {writeFile} from 'node:fs/promises';
+import {copyFile, writeFile} from 'node:fs/promises';
 import {basename, join, parse} from 'node:path';
 import ora from 'ora';
 import {BOILERPLATE_PATH, JUNO_CDN_URL} from '../constants/constants';
@@ -32,7 +32,7 @@ export const generate = async ({gitHubAction, serverlessFunctions, ...rest}: Pop
     }
 
     if (gitHubAction) {
-      await populateGitHubAction(rest);
+      await populateGitHubAction({serverlessFunctions, ...rest});
     }
 
     await updatePackageJson({serverlessFunctions, ...rest});
@@ -124,10 +124,20 @@ const populateFromLocal = async ({where, template, localDevelopment}: PopulateIn
   await Promise.all(files.map(createFile));
 };
 
-const populateGitHubAction = async ({where}: PopulateInputFn) => {
+const populateGitHubAction = async ({
+  where,
+  serverlessFunctions
+}: PopulateInputFn & Pick<PopulateInput, 'serverlessFunctions'>) => {
   const target = join(where ?? '', '.github', 'workflows');
 
   createFolders(target);
+
+  if (isNullish(serverlessFunctions)) {
+    const source = join(BOILERPLATE_PATH, 'github', 'deploy.yml');
+
+    await copyFile(source, target);
+    return;
+  }
 
   const source = join(BOILERPLATE_PATH, 'github');
 
