@@ -74,18 +74,6 @@ export const TEMPLATES: Template[] = [
     kind: 'app'
   },
   {
-    framework: `React`,
-    keys: [
-      {
-        key: 'react-workshop',
-        typeChecking: false
-      }
-    ],
-    type: 'Workshop',
-    description: 'Explore Juno in an interactive workshop',
-    kind: 'app'
-  },
-  {
     framework: `SvelteKit`,
     keys: [
       {
