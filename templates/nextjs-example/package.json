@@ -20,7 +20,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@junobuild/config": "^0.3.0",
+    "@junobuild/config": "^0.3.1",
     "@junobuild/nextjs-plugin": "^3.4.0",
     "@next/eslint-plugin-next": "^15.3.4",
     "@tailwindcss/postcss": "^4.1.10",
