@@ -111,7 +111,7 @@ for template in $(echo $NEXT | sed "s/,/ /g"); do
   update_next "$template"
 done
 
-REACT=react-example,react-starter,react-ts-starter,react-ts-example,react-workshop
+REACT=react-example,react-starter,react-ts-starter,react-ts-example
 
 for template in $(echo $REACT | sed "s/,/ /g"); do
   update_react "$template"
