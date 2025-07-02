@@ -1,7 +1,7 @@
 # Juno: Angular Example
 
 ```sh
-npm create juno@latest -- --template vue-example
+npm create juno@latest -- --template angular-example
 ```
 
 > 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
