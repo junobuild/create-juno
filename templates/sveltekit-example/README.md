@@ -16,7 +16,7 @@ To start experimenting with Juno locally, follow these steps:
 
 ### 1. Start the local development emulator
 
-This will spin up the Juno backend locally (requires Docker):
+This will spin up the Juno backend locally:
 
 ```bash
 juno dev start
@@ -105,7 +105,7 @@ All commands are run from the root of the project, from a terminal:
 | :--------------- | :---------------------------------------------------------- |
 | `npm install`    | Installs dependencies                                       |
 | `npm run dev`    | Starts frontend dev server at `localhost:5173`              |
-| `juno dev start` | Quickstart the local development emulator (requires Docker) |
+| `juno dev start` | Quickstart the local development emulator |
 | `npm run build`  | Build your production site to `./build/`                    |
 | `juno deploy`    | Deploy your project to a Satellite                          |
 

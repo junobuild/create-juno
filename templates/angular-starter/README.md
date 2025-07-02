@@ -24,7 +24,7 @@ All commands are run from the root of the project, from a terminal:
 | :--------------- | :------------------------------------------------------------- |
 | `npm install`    | Installs dependencies                                          |
 | `npm run start`  | Starts frontend dev server at `localhost:4200`                 |
-| `juno dev start` | Quickstart the local development emulator (requires Docker)    |
+| `juno dev start` | Quickstart the local development emulator    |
 | `npm run build`  | Build your production site to `./dist/angular-starter/browser` |
 | `juno deploy`    | Deploy your project to a Satellite                             |
 
