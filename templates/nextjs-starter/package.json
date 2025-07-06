@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@junobuild/config": "^0.4.0",
-    "@junobuild/nextjs-plugin": "^3.4.0",
+    "@junobuild/nextjs-plugin": "^4.0.0",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^24",
     "@types/react": "^19",
