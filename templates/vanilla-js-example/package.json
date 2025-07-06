@@ -20,7 +20,7 @@
     "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwindcss": "^4.1.10",
     "vite": "^6.3.5",
-    "vite-plugin-node-polyfills": "^0.23.0"
+    "vite-plugin-node-polyfills": "0.23.0"
   },
   "dependencies": {
     "@junobuild/core": "^0.1.16",
