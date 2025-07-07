@@ -23,8 +23,8 @@
     "vite-plugin-node-polyfills": "^0.24.0"
   },
   "dependencies": {
-    "@junobuild/core": "^0.1.16",
-    "@junobuild/functions": "^0.2.0",
+    "@junobuild/core": "^0.1.17",
+    "@junobuild/functions": "^0.2.1",
     "nanoid": "^5.1.5"
   }
 }
