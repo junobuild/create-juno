@@ -12,8 +12,8 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "dependencies": {
-    "@junobuild/core": "^0.1.16",
-    "@junobuild/functions": "^0.2.0",
+    "@junobuild/core": "^0.1.17",
+    "@junobuild/functions": "^0.2.1",
     "nanoid": "^5.1.5",
     "next": "15.3.4",
     "react": "19.1.0",
