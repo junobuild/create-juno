@@ -23,7 +23,11 @@ jobs:
 
       - name: Run tests
         run: |
+          set -e
           juno dev start --headless &
+          juno dev wait
+          juno login --emulator --mode development
+          juno config --mode development
           ./scripts/e2e e2e:ci
 
       - name: Upload Playwright report on failure
