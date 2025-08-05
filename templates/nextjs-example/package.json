@@ -12,16 +12,16 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "dependencies": {
-    "@junobuild/core": "^1.0.0",
-    "@junobuild/functions": "^0.2.1",
+    "@junobuild/core": "^1.0.3",
+    "@junobuild/functions": "^0.2.6",
     "nanoid": "^5.1.5",
     "next": "15.3.4",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@junobuild/config": "^0.4.0",
-    "@junobuild/nextjs-plugin": "^4.0.0",
+    "@junobuild/config": "^1.0.1",
+    "@junobuild/nextjs-plugin": "^4.1.2",
     "@next/eslint-plugin-next": "^15.3.4",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^24",
