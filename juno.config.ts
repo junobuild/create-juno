@@ -23,7 +23,8 @@ export default defineConfig({
           collection: 'notes',
           read: 'managed',
           write: 'managed',
-          memory: 'stable'
+          memory: 'stable',
+          mutablePermissions: true
         }
       ],
       storage: [
@@ -31,7 +32,8 @@ export default defineConfig({
           collection: 'images',
           read: 'managed',
           write: 'managed',
-          memory: 'stable'
+          memory: 'stable',
+          mutablePermissions: true
         }
       ]
     }
