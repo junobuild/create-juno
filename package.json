@@ -47,7 +47,7 @@
   "devDependencies": {
     "@dfinity/eslint-config-oisy-wallet": "^0.1.14",
     "@dfinity/internet-identity-playwright": "^2.0.0",
-    "@junobuild/config": "^0.4.0",
+    "@junobuild/config": "^1.0.1",
     "@playwright/test": "^1.53.2",
     "@types/node": "^24.0.10",
     "@types/prompts": "^2.4.9",
