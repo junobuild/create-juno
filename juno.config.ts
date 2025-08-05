@@ -4,7 +4,7 @@ export default defineConfig({
   satellite: {
     ids: {
       development: 'jx5yt-yyaaa-aaaal-abzbq-cai',
-      production: '<PROD_SATELLITE_ID>'
+      production: 'fmkjf-bqaaa-aaaal-acpza-cai'
     },
     source: 'out',
     storage: {
