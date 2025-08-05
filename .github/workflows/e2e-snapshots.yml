@@ -30,8 +30,8 @@ jobs:
           set -e
           juno dev start --headless &
           juno dev wait
-          juno login --emulator --mode development
-          juno config --mode development
+          juno login --emulator --mode development --headless
+          juno config --mode development --headless
 
       - name: Run tests and update Snapshots
         run: ./scripts/e2e e2e:ci:snapshots
