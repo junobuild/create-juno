@@ -21,10 +21,16 @@ jobs:
       - name: Install Templates Dependencies
         run: ./scripts/install-deps
 
-      - name: Run tests
+      - name: Run emulator
         run: |
+          set -e
           juno dev start --headless &
-          ./scripts/e2e e2e:ci
+          juno dev wait
+          juno login --emulator --mode development --headless
+          juno config --mode development --headless
+
+      - name: Run tests
+        run: ./scripts/e2e e2e:ci
 
       - name: Upload Playwright report on failure
         uses: actions/upload-artifact@v4
