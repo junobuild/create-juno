@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 TEST_TYPE=${1:-e2e}
 
 ./scripts/e2e-prepare
