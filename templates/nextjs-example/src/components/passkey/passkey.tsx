@@ -38,7 +38,7 @@ export const Passkey = () => {
             aria-labelledby="modalTitle"
           >
             <div className="w-full max-w-md rounded-sm border-[3px] border-black bg-white px-4 py-3 shadow-[5px_5px_0px_rgba(0,0,0,1)]">
-              <div className="flex items-start justify-between">
+              {progress === undefined && <div className="flex items-start justify-between">
                 <h2
                   id="modalTitle"
                   className="text-xl font-bold text-gray-900 sm:text-2xl"
@@ -68,7 +68,7 @@ export const Passkey = () => {
                     />
                   </svg>
                 </button>
-              </div>
+              </div>}
 
               <div className="mt-4">
                 <CreatePasskey onProgress={onProgress} progress={progress} />
