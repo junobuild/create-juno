@@ -1,10 +1,21 @@
 import {testWithII} from '@dfinity/internet-identity-playwright';
+import {AppPageParams} from '../page-objects/app.page';
+import {ExampleInternetIdentityPage} from '../page-objects/example.ii.page';
 import {ExamplePage} from '../page-objects/example.page';
+import {ExamplePasskeyPage} from '../page-objects/example.passkey.page';
 
-export const initTestSuite = (): (() => ExamplePage) => {
+export const initTestSuiteWithInternetIdentity = (): (() => ExampleInternetIdentityPage) =>
+  initTestSuite(ExampleInternetIdentityPage);
+
+export const initTestSuiteWithPasskey = (): (() => ExamplePasskeyPage) =>
+  initTestSuite(ExamplePasskeyPage);
+
+const initTestSuite = <T extends ExamplePage>(
+  classRef: new (params: AppPageParams) => T
+): (() => T) => {
   testWithII.describe.configure({mode: 'serial'});
 
-  let examplePage: ExamplePage;
+  let examplePage: T;
 
   testWithII.beforeAll(async ({playwright}) => {
     testWithII.setTimeout(120000);
@@ -14,13 +25,11 @@ export const initTestSuite = (): (() => ExamplePage) => {
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    examplePage = new ExamplePage({
+    examplePage = new classRef({
       page,
       context,
       browser
     });
-
-    await examplePage.waitReady();
 
     await examplePage.goto();
 
@@ -31,5 +40,5 @@ export const initTestSuite = (): (() => ExamplePage) => {
     await examplePage.close();
   });
 
-  return (): ExamplePage => examplePage;
+  return (): T => examplePage;
 };

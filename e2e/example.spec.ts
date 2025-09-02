@@ -1,7 +1,7 @@
 import {testWithII} from '@dfinity/internet-identity-playwright';
-import {initTestSuite} from './utils/init.utils';
+import {initTestSuiteWithInternetIdentity} from './utils/init.utils';
 
-const getExamplePage = initTestSuite();
+const getExamplePage = initTestSuiteWithInternetIdentity();
 
 testWithII('should sign-in', async () => {
   const examplePage = getExamplePage();
