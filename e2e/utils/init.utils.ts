@@ -5,15 +5,15 @@ import {ExamplePage} from '../page-objects/example.page';
 import {ExamplePasskeyPage} from '../page-objects/example.passkey.page';
 
 export const initTestSuiteWithInternetIdentity = (): (() => ExampleInternetIdentityPage) => {
-  return initTestSuite(ExampleInternetIdentityPage);
-}
+  return initTestSuite(ExampleInternetIdentityPage.create);
+};
 
 export const initTestSuiteWithPasskey = (): (() => ExamplePasskeyPage) => {
-  return initTestSuite(ExamplePasskeyPage);
-}
+  return initTestSuite(ExamplePasskeyPage.create);
+};
 
 const initTestSuite = <T extends ExamplePage>(
-  classRef: new (params: AppPageParams) => T
+  create: (params: AppPageParams) => Promise<T>
 ): (() => T) => {
   let examplePage: T;
 
@@ -25,13 +25,13 @@ const initTestSuite = <T extends ExamplePage>(
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    examplePage = new classRef({
+    examplePage = await create({
       page,
       context,
       browser
     });
 
-    await examplePage.waitReady();
+    await examplePage.waitReady?.();
 
     await examplePage.goto();
 
@@ -39,6 +39,8 @@ const initTestSuite = <T extends ExamplePage>(
   });
 
   testWithII.afterAll(async () => {
+    await examplePage.cleanUp?.();
+
     await examplePage.close();
   });
 

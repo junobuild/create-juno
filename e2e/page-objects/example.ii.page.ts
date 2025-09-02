@@ -1,6 +1,6 @@
 import {InternetIdentityPage} from '@dfinity/internet-identity-playwright';
 import {assertNonNullish} from '@dfinity/utils';
-import {AppPageParams} from './app.page';
+import type {AppPageParams} from './app.page';
 import {ExamplePage} from './example.page';
 
 export class ExampleInternetIdentityPage extends ExamplePage {
@@ -8,7 +8,7 @@ export class ExampleInternetIdentityPage extends ExamplePage {
 
   #iiPage: InternetIdentityPage;
 
-  constructor(params: AppPageParams) {
+  private constructor(params: AppPageParams) {
     super(params);
 
     this.#iiPage = new InternetIdentityPage({
@@ -16,6 +16,10 @@ export class ExampleInternetIdentityPage extends ExamplePage {
       context: this.context,
       browser: this.browser
     });
+  }
+
+  static async create(params: AppPageParams): Promise<ExampleInternetIdentityPage> {
+    return new ExampleInternetIdentityPage(params);
   }
 
   override async waitReady(): Promise<void> {
@@ -27,7 +31,7 @@ export class ExampleInternetIdentityPage extends ExamplePage {
 
   override async signUp(): Promise<void> {
     this.#identity = await this.#iiPage.signInWithNewIdentity({
-      selector: this.locators.sign_in_with_ii
+      selector: this.locators.internet_identity.sign_in
     });
   }
 
@@ -36,7 +40,7 @@ export class ExampleInternetIdentityPage extends ExamplePage {
 
     await this.#iiPage.signInWithIdentity({
       identity: this.#identity,
-      selector: this.locators.sign_in_with_ii
+      selector: this.locators.internet_identity.sign_in
     });
   }
 }
