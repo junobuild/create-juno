@@ -30,7 +30,8 @@ export class ExamplePasskeyPage extends ExamplePage {
         hasUserVerification: true,
         // The answer of the authenticator.
         isUserVerified: false,
-        // If set to true, authenticator always answer yes. Set to false delegates verification to test code.
+        // If set to true, the authenticator always answers "yes" whenever it is prompted.
+        // We set it to false so that it only triggers explicitly within the suite.
         automaticPresenceSimulation: false
       }
     });
