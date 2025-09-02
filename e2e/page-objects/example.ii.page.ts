@@ -18,20 +18,20 @@ export class ExampleInternetIdentityPage extends ExamplePage {
     });
   }
 
-  async waitReady(): Promise<void> {
+  override async waitReady(): Promise<void> {
     const REPLICA_URL = 'http://127.0.0.1:5987';
     const INTERNET_IDENTITY_ID = 'rdmx6-jaaaa-aaaaa-aaadq-cai';
 
     await this.#iiPage.waitReady({url: REPLICA_URL, canisterId: INTERNET_IDENTITY_ID});
   }
 
-  override async signIn(): Promise<void> {
+  override async signUp(): Promise<void> {
     this.#identity = await this.#iiPage.signInWithNewIdentity({
       selector: this.locators.sign_in_with_ii
     });
   }
 
-  async signInWithIdentity(): Promise<void> {
+  override async signIn(): Promise<void> {
     assertNonNullish(this.#identity);
 
     await this.#iiPage.signInWithIdentity({

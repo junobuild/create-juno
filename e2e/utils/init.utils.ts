@@ -4,17 +4,17 @@ import {ExampleInternetIdentityPage} from '../page-objects/example.ii.page';
 import {ExamplePage} from '../page-objects/example.page';
 import {ExamplePasskeyPage} from '../page-objects/example.passkey.page';
 
-export const initTestSuiteWithInternetIdentity = (): (() => ExampleInternetIdentityPage) =>
-  initTestSuite(ExampleInternetIdentityPage);
+export const initTestSuiteWithInternetIdentity = (): (() => ExampleInternetIdentityPage) => {
+  return initTestSuite(ExampleInternetIdentityPage);
+}
 
-export const initTestSuiteWithPasskey = (): (() => ExamplePasskeyPage) =>
-  initTestSuite(ExamplePasskeyPage);
+export const initTestSuiteWithPasskey = (): (() => ExamplePasskeyPage) => {
+  return initTestSuite(ExamplePasskeyPage);
+}
 
 const initTestSuite = <T extends ExamplePage>(
   classRef: new (params: AppPageParams) => T
 ): (() => T) => {
-  testWithII.describe.configure({mode: 'serial'});
-
   let examplePage: T;
 
   testWithII.beforeAll(async ({playwright}) => {
@@ -31,9 +31,11 @@ const initTestSuite = <T extends ExamplePage>(
       browser
     });
 
+    await examplePage.waitReady();
+
     await examplePage.goto();
 
-    await examplePage.signIn();
+    await examplePage.signUp();
   });
 
   testWithII.afterAll(async () => {

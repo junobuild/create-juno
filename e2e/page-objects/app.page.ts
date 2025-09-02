@@ -30,6 +30,10 @@ export abstract class AppPage {
     this.browser = browser;
   }
 
+  abstract waitReady(): Promise<void>;
+
+  abstract signUp(): Promise<void>;
+
   abstract signIn(): Promise<void>;
 
   async signOut(): Promise<void> {
