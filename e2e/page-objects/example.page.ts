@@ -6,6 +6,19 @@ import {IdentityPage, IdentityPageParams} from './identity.page';
 export class ExamplePage extends IdentityPage {
   #partyIIPage: InternetIdentityPage;
 
+  readonly #texts = {
+    logout: 'Logout',
+    continue_with_ii: 'Continue with Internet Identity',
+    add_an_entry: 'Add an entry',
+    submit: 'Submit'
+  };
+
+  readonly #locators = {
+    sign_in_with_ii: `button:has-text("${this.#texts.continue_with_ii}")`,
+    open_data: 'a[aria-label="Open data"]',
+    delete_entry: 'button[aria-label="Delete entry"]'
+  };
+
   constructor(params: IdentityPageParams) {
     super(params);
 
@@ -21,7 +34,7 @@ export class ExamplePage extends IdentityPage {
    */
   async signIn(): Promise<void> {
     this.identity = await this.#partyIIPage.signInWithNewIdentity({
-      selector: 'button:has-text("Sign in")'
+      selector: this.#locators.sign_in_with_ii
     });
   }
 
@@ -30,7 +43,7 @@ export class ExamplePage extends IdentityPage {
 
     await this.#partyIIPage.signInWithIdentity({
       identity: this.identity,
-      selector: 'button:has-text("Sign in")'
+      selector: this.#locators.sign_in_with_ii
     });
   }
 
@@ -38,17 +51,17 @@ export class ExamplePage extends IdentityPage {
    * @override
    */
   async signOut(): Promise<void> {
-    const button = this.page.locator('button', {hasText: 'Logout'});
+    const button = this.page.locator('button', {hasText: this.#texts.logout});
     await button.click();
   }
 
   async assertSignedIn(): Promise<void> {
-    const button = this.page.locator('button', {hasText: 'Logout'});
+    const button = this.page.locator('button', {hasText: this.#texts.logout});
     await expect(button).toBeVisible();
   }
 
   async assertSignedOut(): Promise<void> {
-    const button = this.page.locator('button', {hasText: 'Sign in'});
+    const button = this.page.locator('button', {hasText: this.#texts.continue_with_ii});
     await expect(button).toBeVisible();
   }
 
@@ -64,7 +77,7 @@ export class ExamplePage extends IdentityPage {
   }
 
   async addEntry(text: string): Promise<void> {
-    const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
+    const addEntryButton = this.page.locator('button', {hasText: this.#texts.add_an_entry});
     await expect(addEntryButton).toBeVisible();
 
     await addEntryButton.click();
@@ -72,7 +85,7 @@ export class ExamplePage extends IdentityPage {
     const textarea = this.page.locator('textarea');
     await textarea.fill(text);
 
-    const button = this.page.locator('button', {hasText: 'Submit'});
+    const button = this.page.locator('button', {hasText: this.#texts.submit});
     await button.click();
 
     const row = this.page.locator('[role="row"]', {hasText: text});
@@ -80,7 +93,7 @@ export class ExamplePage extends IdentityPage {
   }
 
   async addEntryWithFile({text, filePath}: {text: string; filePath: string}): Promise<void> {
-    const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
+    const addEntryButton = this.page.locator('button', {hasText: this.#texts.add_an_entry});
     await expect(addEntryButton).toBeVisible();
 
     await addEntryButton.click();
@@ -91,7 +104,7 @@ export class ExamplePage extends IdentityPage {
     const fileInput = this.page.locator('input[type="file"]');
     await fileInput.setInputFiles(filePath);
 
-    const button = this.page.locator('button', {hasText: 'Submit'});
+    const button = this.page.locator('button', {hasText: this.#texts.submit});
     await button.click();
 
     const row = this.page.locator('[role="row"]', {hasText: text});
@@ -101,7 +114,7 @@ export class ExamplePage extends IdentityPage {
   async assertUploadedImage(): Promise<void> {
     const [imgPage] = await Promise.all([
       this.page.context().waitForEvent('page'),
-      this.page.locator('a[aria-label="Open data"]').click()
+      this.page.locator(this.#locators.open_data).click()
     ]);
 
     await imgPage.waitForLoadState('load');
@@ -114,7 +127,7 @@ export class ExamplePage extends IdentityPage {
   }
 
   async deleteLastEntry(): Promise<void> {
-    const buttons = this.page.locator('button[aria-label="Delete entry"]');
+    const buttons = this.page.locator(this.#locators.delete_entry);
     await buttons.last().click();
 
     await expect(this.page.locator('[role="row"]', {hasText: 'text'})).toHaveCount(0);
@@ -134,7 +147,7 @@ export class ExamplePage extends IdentityPage {
   }
 
   async openAddEntry(): Promise<void> {
-    const addEntryButton = this.page.locator('button', {hasText: 'Add an entry'});
+    const addEntryButton = this.page.locator('button', {hasText: this.#texts.add_an_entry});
     await expect(addEntryButton).toBeVisible();
 
     await addEntryButton.click();
