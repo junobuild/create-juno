@@ -1,4 +1,3 @@
-import { WebAuthnSignInProgressStep } from "@junobuild/core";
 import type { ReactNode } from "react";
 
 interface ProgressProps {

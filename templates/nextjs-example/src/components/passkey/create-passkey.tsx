@@ -87,7 +87,7 @@ export const CreatePasskey = ({
         </>
       ) : progress.state === "setup" ? (
         <>
-          <p>Want to give it a nickname so you'll spot it easily later?</p>
+          <p>Want to give it a nickname so you&apos;ll spot it easily later?</p>
 
           <input
             className="m-0 mb-6 block w-full resize-none rounded-sm border-[3px] border-black bg-white px-3 py-1.5 text-base font-normal shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-hidden"
