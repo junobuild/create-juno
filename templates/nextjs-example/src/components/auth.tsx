@@ -34,10 +34,10 @@ export const Auth = ({ children }: AuthProps) => {
           <Logout />
         </div>
       ) : (
-        <>
+        <div className="gap flex flex-col">
           <Passkey />
           <Login />
-        </>
+        </div>
       )}
     </AuthContext.Provider>
   );

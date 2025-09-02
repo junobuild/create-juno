@@ -10,8 +10,8 @@ import { Progress } from "@/components/passkey/progress";
 import { PasskeyProps } from "@/types/passkey";
 
 export const UsePasskey = ({
-  progress: overallProgress,
-  onProgress: overallOnProgress,
+  progress: wizardProgress,
+  onProgress: wizardOnProgress,
 }: PasskeyProps) => {
   const [progress, setProgress] = useState<
     WebAuthnSignProgress<WebAuthnSignInProgressStep> | undefined | null
@@ -19,16 +19,16 @@ export const UsePasskey = ({
 
   const onProgress: WebAuthnSignProgressFn<WebAuthnSignInProgressStep> = (
     progress,
-  ) => overallOnProgress({ signIn: progress });
+  ) => wizardOnProgress({ signIn: progress });
 
   useEffect(() => {
-    if (overallProgress === undefined) {
+    if (wizardProgress === undefined) {
       setProgress(undefined);
       return;
     }
 
-    setProgress("signIn" in overallProgress ? overallProgress.signIn : null);
-  }, [overallProgress]);
+    setProgress("signIn" in wizardProgress ? wizardProgress.signIn : null);
+  }, [wizardProgress]);
 
   const doSignIn = async () => {
     try {
@@ -38,7 +38,7 @@ export const UsePasskey = ({
         },
       });
     } catch (error: unknown) {
-      overallOnProgress(undefined);
+      wizardOnProgress(undefined);
 
       // IRL the error would be gracefully displayed to the user unless
       // it is one to ignore - for example when the user cancel the flow.

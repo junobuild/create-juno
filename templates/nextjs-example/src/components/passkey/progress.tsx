@@ -33,7 +33,7 @@ export const Progress = ({ children }: ProgressProps) => {
         ></path>
       </svg>
 
-      <p className="max-w-1/2 text-center pb-6">{children}</p>
+      <p className="max-w-1/2 pb-6 text-center">{children}</p>
     </div>
   );
 };

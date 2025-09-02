@@ -8,37 +8,65 @@ import {
 import { useEffect, useState } from "react";
 import { Progress } from "@/components/passkey/progress";
 import { PasskeyProps } from "@/types/passkey";
+import { notEmptyString } from "@dfinity/utils";
+
+type ProgressSignUp =
+  | {
+      state: "init" | "setup" | "hidden";
+    }
+  | {
+      state: "progress";
+      detail: WebAuthnSignProgress<WebAuthnSignUpProgressStep>;
+    };
 
 export const CreatePasskey = ({
-  progress: overallProgress,
-  onProgress: overallOnProgress,
+  progress: wizardProgress,
+  onProgress: wizardOnProgress,
 }: PasskeyProps) => {
-  const [progress, setProgress] = useState<
-    WebAuthnSignProgress<WebAuthnSignUpProgressStep> | undefined | null
-  >();
+  const [progress, setProgress] = useState<ProgressSignUp>({ state: "init" });
+  const [inputText, setInputText] = useState("");
 
   const onProgress: WebAuthnSignProgressFn<WebAuthnSignUpProgressStep> = (
     progress,
-  ) => overallOnProgress({ signUp: progress });
+  ) => wizardOnProgress({ signUp: progress });
 
   useEffect(() => {
-    if (overallProgress === undefined) {
-      setProgress(undefined);
+    if (wizardProgress === undefined) {
+      setProgress({ state: "init" });
       return;
     }
 
-    setProgress("signUp" in overallProgress ? overallProgress.signUp : null);
-  }, [overallProgress]);
+    setProgress(
+      "signUp" in wizardProgress
+        ? { state: "progress", detail: wizardProgress.signUp }
+        : "setup" in wizardProgress
+          ? { state: "setup" }
+          : { state: "hidden" },
+    );
+  }, [wizardProgress]);
+
+  const goToSetup = () => {
+    wizardOnProgress({ setup: null });
+  };
 
   const doSignIn = async () => {
     try {
       await signUp({
         webauthn: {
-          options: { onProgress },
+          options: {
+            onProgress,
+            ...(notEmptyString(inputText) && {
+              passkey: {
+                user: {
+                  displayName: inputText,
+                },
+              },
+            }),
+          },
         },
       });
     } catch (error: unknown) {
-      overallOnProgress(undefined);
+      wizardOnProgress(undefined);
 
       // IRL the error would be gracefully displayed to the user unless
       // it is one to ignore - for example when the user cancel the flow.
@@ -48,42 +76,57 @@ export const CreatePasskey = ({
 
   return (
     <>
-      {progress === null ? (
-        <></>
-      ) : progress === undefined ? (
+      {progress.state === "init" ? (
         <>
           <p>
             First time here? Use your face or fingerprint to access the
             application.
           </p>
 
-          <Button onClick={doSignIn}>Create a new passkey</Button>
+          <Button onClick={goToSetup}>Create a new passkey</Button>
         </>
-      ) : (
+      ) : progress.state === "setup" ? (
+        <>
+          <p>Want to give it a nickname so you'll spot it easily later?</p>
+
+          <input
+            className="m-0 mb-6 block w-full resize-none rounded-sm border-[3px] border-black bg-white px-3 py-1.5 text-base font-normal shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-hidden"
+            placeholder="An optional nickname"
+            onChange={(e) => {
+              setInputText(e.target.value);
+            }}
+            value={inputText}
+          ></input>
+
+          <Button onClick={doSignIn}>Create now</Button>
+        </>
+      ) : progress.state === "progress" ? (
         <Progress>
-          {progress?.step ===
+          {progress?.detail.step ===
             WebAuthnSignUpProgressStep.CreatingUserCredential && (
             <span>Creating user credential...</span>
           )}
-          {progress?.step ===
+          {progress?.detail.step ===
             WebAuthnSignUpProgressStep.ValidatingUserCredential && (
             <span>Validating user credential...</span>
           )}
-          {progress?.step ===
+          {progress?.detail.step ===
             WebAuthnSignUpProgressStep.FinalizingCredential && (
             <span>Finalizing credential...</span>
           )}
-          {progress?.step === WebAuthnSignUpProgressStep.Signing && (
+          {progress?.detail.step === WebAuthnSignUpProgressStep.Signing && (
             <span>Signing request....</span>
           )}
-          {progress?.step === WebAuthnSignUpProgressStep.FinalizingSession && (
+          {progress?.detail.step ===
+            WebAuthnSignUpProgressStep.FinalizingSession && (
             <span>Finalizing session...</span>
           )}
-          {progress?.step === WebAuthnSignUpProgressStep.RegisteringUser && (
+          {progress?.detail.step ===
+            WebAuthnSignUpProgressStep.RegisteringUser && (
             <span>Registering user...</span>
           )}
         </Progress>
-      )}
+      ) : null}
     </>
   );
 };

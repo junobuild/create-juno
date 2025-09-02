@@ -10,7 +10,8 @@ export type PasskeyProgress =
     }
   | {
       signIn: WebAuthnSignProgress<WebAuthnSignInProgressStep>;
-    };
+    }
+  | { setup: null };
 
 export interface PasskeyProps {
   progress: PasskeyProgress | undefined;
