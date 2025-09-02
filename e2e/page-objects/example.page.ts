@@ -1,67 +1,45 @@
 import {InternetIdentityPage} from '@dfinity/internet-identity-playwright';
 import {assertNonNullish} from '@dfinity/utils';
 import {expect} from '@playwright/test';
-import {IdentityPage, IdentityPageParams} from './identity.page';
+import {AppPage, AppPageParams} from './app.page';
 
-export class ExamplePage extends IdentityPage {
-  #partyIIPage: InternetIdentityPage;
+export class ExamplePage extends AppPage {
+  #identity: number | undefined;
 
-  readonly #texts = {
-    logout: 'Logout',
-    continue_with_ii: 'Continue with Internet Identity',
-    add_an_entry: 'Add an entry',
-    submit: 'Submit'
-  };
+  #iiPage: InternetIdentityPage;
 
-  readonly #locators = {
-    sign_in_with_ii: `button:has-text("${this.#texts.continue_with_ii}")`,
-    open_data: 'a[aria-label="Open data"]',
-    delete_entry: 'button[aria-label="Delete entry"]'
-  };
-
-  constructor(params: IdentityPageParams) {
+  constructor(params: AppPageParams) {
     super(params);
 
-    this.#partyIIPage = new InternetIdentityPage({
+    this.#iiPage = new InternetIdentityPage({
       page: this.page,
       context: this.context,
       browser: this.browser
     });
   }
 
-  /**
-   * @override
-   */
-  async signIn(): Promise<void> {
-    this.identity = await this.#partyIIPage.signInWithNewIdentity({
-      selector: this.#locators.sign_in_with_ii
+  override async signIn(): Promise<void> {
+    this.#identity = await this.#iiPage.signInWithNewIdentity({
+      selector: this.locators.sign_in_with_ii
     });
   }
 
   async signInWithIdentity(): Promise<void> {
-    assertNonNullish(this.identity);
+    assertNonNullish(this.#identity);
 
-    await this.#partyIIPage.signInWithIdentity({
-      identity: this.identity,
-      selector: this.#locators.sign_in_with_ii
+    await this.#iiPage.signInWithIdentity({
+      identity: this.#identity,
+      selector: this.locators.sign_in_with_ii
     });
   }
 
-  /**
-   * @override
-   */
-  async signOut(): Promise<void> {
-    const button = this.page.locator('button', {hasText: this.#texts.logout});
-    await button.click();
-  }
-
   async assertSignedIn(): Promise<void> {
-    const button = this.page.locator('button', {hasText: this.#texts.logout});
+    const button = this.page.locator('button', {hasText: this.callToActions.logout});
     await expect(button).toBeVisible();
   }
 
   async assertSignedOut(): Promise<void> {
-    const button = this.page.locator('button', {hasText: this.#texts.continue_with_ii});
+    const button = this.page.locator('button', {hasText: this.callToActions.continue_with_ii});
     await expect(button).toBeVisible();
   }
 
@@ -69,7 +47,7 @@ export class ExamplePage extends IdentityPage {
     const REPLICA_URL = 'http://127.0.0.1:5987';
     const INTERNET_IDENTITY_ID = 'rdmx6-jaaaa-aaaaa-aaadq-cai';
 
-    await this.#partyIIPage.waitReady({url: REPLICA_URL, canisterId: INTERNET_IDENTITY_ID});
+    await this.#iiPage.waitReady({url: REPLICA_URL, canisterId: INTERNET_IDENTITY_ID});
   }
 
   async goto(): Promise<void> {
@@ -77,7 +55,7 @@ export class ExamplePage extends IdentityPage {
   }
 
   async addEntry(text: string): Promise<void> {
-    const addEntryButton = this.page.locator('button', {hasText: this.#texts.add_an_entry});
+    const addEntryButton = this.page.locator('button', {hasText: this.callToActions.add_an_entry});
     await expect(addEntryButton).toBeVisible();
 
     await addEntryButton.click();
@@ -85,7 +63,7 @@ export class ExamplePage extends IdentityPage {
     const textarea = this.page.locator('textarea');
     await textarea.fill(text);
 
-    const button = this.page.locator('button', {hasText: this.#texts.submit});
+    const button = this.page.locator('button', {hasText: this.callToActions.submit});
     await button.click();
 
     const row = this.page.locator('[role="row"]', {hasText: text});
@@ -93,7 +71,7 @@ export class ExamplePage extends IdentityPage {
   }
 
   async addEntryWithFile({text, filePath}: {text: string; filePath: string}): Promise<void> {
-    const addEntryButton = this.page.locator('button', {hasText: this.#texts.add_an_entry});
+    const addEntryButton = this.page.locator('button', {hasText: this.callToActions.add_an_entry});
     await expect(addEntryButton).toBeVisible();
 
     await addEntryButton.click();
@@ -104,7 +82,7 @@ export class ExamplePage extends IdentityPage {
     const fileInput = this.page.locator('input[type="file"]');
     await fileInput.setInputFiles(filePath);
 
-    const button = this.page.locator('button', {hasText: this.#texts.submit});
+    const button = this.page.locator('button', {hasText: this.callToActions.submit});
     await button.click();
 
     const row = this.page.locator('[role="row"]', {hasText: text});
@@ -114,7 +92,7 @@ export class ExamplePage extends IdentityPage {
   async assertUploadedImage(): Promise<void> {
     const [imgPage] = await Promise.all([
       this.page.context().waitForEvent('page'),
-      this.page.locator(this.#locators.open_data).click()
+      this.page.locator(this.locators.open_data).click()
     ]);
 
     await imgPage.waitForLoadState('load');
@@ -127,7 +105,7 @@ export class ExamplePage extends IdentityPage {
   }
 
   async deleteLastEntry(): Promise<void> {
-    const buttons = this.page.locator(this.#locators.delete_entry);
+    const buttons = this.page.locator(this.locators.delete_entry);
     await buttons.last().click();
 
     await expect(this.page.locator('[role="row"]', {hasText: 'text'})).toHaveCount(0);
@@ -147,7 +125,7 @@ export class ExamplePage extends IdentityPage {
   }
 
   async openAddEntry(): Promise<void> {
-    const addEntryButton = this.page.locator('button', {hasText: this.#texts.add_an_entry});
+    const addEntryButton = this.page.locator('button', {hasText: this.callToActions.add_an_entry});
     await expect(addEntryButton).toBeVisible();
 
     await addEntryButton.click();
