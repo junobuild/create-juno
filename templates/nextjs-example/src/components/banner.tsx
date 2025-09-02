@@ -1,7 +1,8 @@
 import { FC } from "react";
 
 export const Banner: FC = () => {
-  const dev = process.env?.NODE_ENV === "development";
+  const dev =
+    typeof process !== "undefined" && process.env?.NODE_ENV === "development";
   const satelliteId = process.env?.NEXT_PUBLIC_SATELLITE_ID;
   const satelliteMissing =
     satelliteId === undefined || satelliteId === "<DEV_SATELLITE_ID>";
