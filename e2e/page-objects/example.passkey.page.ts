@@ -43,7 +43,7 @@ export class ExamplePasskeyPage extends ExamplePage {
     await this.removeAuthenticator();
   }
 
-  async signUp(): Promise<void> {
+  override async signUp(): Promise<void> {
     await this.continueWithPasskey();
 
     // Create a new passkey
@@ -65,7 +65,7 @@ export class ExamplePasskeyPage extends ExamplePage {
     await this.runWithPasskey({action: signUp, withCreation: true});
   }
 
-  async signIn(): Promise<void> {
+  override async signIn(): Promise<void> {
     await this.continueWithPasskey();
 
     // User the existing passkey
