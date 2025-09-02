@@ -79,8 +79,8 @@ export const CreatePasskey = ({
       {progress.state === "init" ? (
         <>
           <p>
-            First time here? Use your face or fingerprint to access the
-            application.
+            First time here? Use your device (Face ID, Windows Hello, or screen
+            lock) to get in.
           </p>
 
           <Button onClick={goToSetup}>Create a new passkey</Button>
@@ -90,7 +90,7 @@ export const CreatePasskey = ({
           <p>Want to give it a nickname so you&apos;ll spot it easily later?</p>
 
           <input
-            className="m-0 mb-6 block w-full resize-none rounded-sm border-[3px] border-black bg-white px-3 py-1.5 text-base font-normal shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-hidden"
+            className="mx-0 mt-2 mb-6 block w-full resize-none rounded-sm border-[3px] border-black bg-white px-3 py-1.5 text-base font-normal shadow-[5px_5px_0px_rgba(0,0,0,1)] focus:outline-hidden"
             placeholder="An optional nickname"
             onChange={(e) => {
               setInputText(e.target.value);
