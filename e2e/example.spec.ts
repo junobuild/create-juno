@@ -1,12 +1,14 @@
 import {testWithII} from '@dfinity/internet-identity-playwright';
 import {initTestSuiteWithInternetIdentity, initTestSuiteWithPasskey} from './utils/init.utils';
 
+testWithII.describe.configure({mode: 'serial'});
+
 [
-  {title: 'With II', getExamplePage: initTestSuiteWithInternetIdentity()},
-  {title: 'With Passkey', getExamplePage: initTestSuiteWithPasskey()}
-].forEach(({title, getExamplePage}) => {
+  {title: 'With II', initExamplePage: initTestSuiteWithInternetIdentity},
+  {title: 'With Passkey', initExamplePage: initTestSuiteWithPasskey}
+].forEach(({title, initExamplePage}) => {
   testWithII.describe(title, () => {
-    testWithII.describe.configure({mode: 'serial'});
+    const getExamplePage = initExamplePage();
 
     testWithII('should sign-in', async () => {
       const examplePage = getExamplePage();

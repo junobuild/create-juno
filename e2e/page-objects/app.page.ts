@@ -16,13 +16,13 @@ export abstract class AppPage {
     add_an_entry: 'Add an entry',
     submit: 'Submit',
     internet_identity: {
-      continue: 'Continue with Internet Identity',
+      continue: 'Continue with Internet Identity'
     },
     passkey: {
-      continue: "Continue with Passkey",
-      create: "Create a new passkey",
-      create_now: "Create now",
-      use: "Use your Passkey",
+      continue: 'Continue with Passkey',
+      create: 'Create a new passkey',
+      create_now: 'Create now',
+      use: 'Use your Passkey'
     }
   };
 
@@ -30,7 +30,7 @@ export abstract class AppPage {
     open_data: 'a[aria-label="Open data"]',
     delete_entry: 'button[aria-label="Delete entry"]',
     internet_identity: {
-      sign_in: `button:has-text("${this.callToActions.internet_identity.continue}")`,
+      sign_in: `button:has-text("${this.callToActions.internet_identity.continue}")`
     }
   };
 
@@ -55,5 +55,6 @@ export abstract class AppPage {
 
   async close(): Promise<void> {
     await this.page.close();
+    await this.browser.close();
   }
 }
