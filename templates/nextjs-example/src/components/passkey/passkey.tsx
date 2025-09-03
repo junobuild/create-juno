@@ -4,7 +4,7 @@ import { Backdrop } from "@/components/backdrop";
 import { UsePasskey } from "@/components/passkey/use-passkey";
 import { PasskeyProgress } from "@/types/passkey";
 import { CreatePasskey } from "@/components/passkey/create-passkey";
-import { isWebAuthnAvailable } from "@junobuild/ic-client/webauthn";
+import { isWebAuthnAvailable } from "@junobuild/core";
 
 export const Passkey = () => {
   // Default to true because we assume passkeys are nowadays most often supported
