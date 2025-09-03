@@ -1,15 +1,23 @@
 import { Button } from "@/components/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Backdrop } from "@/components/backdrop";
 import { UsePasskey } from "@/components/passkey/use-passkey";
 import { PasskeyProgress } from "@/types/passkey";
 import { CreatePasskey } from "@/components/passkey/create-passkey";
+import { isWebAuthnAvailable } from "@junobuild/ic-client/webauthn";
 
 export const Passkey = () => {
+  // Default to true because we assume passkeys are nowadays most often supported
+  const [passkeySupported,  setPasskeySupported] = useState<boolean>(true);
+
   const [showModal, setShowModal] = useState<boolean>(false);
   const [progress, setProgress] = useState<PasskeyProgress | undefined>(
     undefined,
   );
+
+  useEffect(() => {
+    isWebAuthnAvailable().then(withWebAuthn => setPasskeySupported(withWebAuthn));
+  }, [])
 
   const start = () => {
     setProgress(undefined);
@@ -27,7 +35,7 @@ export const Passkey = () => {
 
   return (
     <>
-      <Button onClick={start}>Continue with Passkey</Button>
+      {passkeySupported && <Button onClick={start}>Continue with Passkey</Button>}
 
       {showModal ? (
         <>
