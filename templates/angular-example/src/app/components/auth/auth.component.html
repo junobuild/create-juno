@@ -1,9 +1,6 @@
-<ng-container *ngIf="signedIn(); else notSignedIn">
+@if (signedIn()) {
   <ng-content></ng-content>
-
   <app-logout />
-</ng-container>
-
-<ng-template #notSignedIn>
+} @else {
   <app-login />
-</ng-template>
+}
