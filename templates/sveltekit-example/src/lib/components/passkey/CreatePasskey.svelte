@@ -17,7 +17,7 @@
 
 	let inputText = $state('');
 
-	const progress = $derived(
+	const progress = $derived<ProgressSignUp>(
 		wizardProgress === undefined
 			? { state: 'init' }
 			: 'signUp' in wizardProgress

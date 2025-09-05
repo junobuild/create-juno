@@ -11,7 +11,7 @@
 
 	let { progress: wizardProgress, onProgress: wizardOnProgress }: PasskeyProps = $props();
 
-	const progress = $derived(
+	const progress = $derived<SignProgress<WebAuthnSignInProgressStep> | undefined | null>(
 		wizardProgress === undefined
 			? undefined
 			: 'signIn' in wizardProgress
