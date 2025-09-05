@@ -7,5 +7,5 @@ import { Component, input } from '@angular/core';
   templateUrl: './button.component.html',
 })
 export class ButtonComponent {
-  disabled = input.required<boolean>();
+  disabled = input<boolean>(false);
 }
