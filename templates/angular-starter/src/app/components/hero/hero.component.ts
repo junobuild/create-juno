@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-hero',
@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './hero.component.html',
 })
 export class HeroComponent {
-  @Input() href!: string;
-  @Input() ariaLabel!: string;
+  href = input.required<string>();
+  ariaLabel = input.required<string>();
 }
