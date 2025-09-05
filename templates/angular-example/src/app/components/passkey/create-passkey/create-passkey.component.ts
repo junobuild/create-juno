@@ -2,7 +2,7 @@ import {
   Component,
   computed,
   ElementRef,
-  input,
+  input, output,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -34,8 +34,7 @@ export class CreatePasskeyComponent {
   readonly WebAuthnSignUpProgressStep = WebAuthnSignUpProgressStep;
 
   readonly wizardProgress = input.required<PasskeyProgress | undefined>();
-  wizardOnProgress =
-    input.required<(progress: PasskeyProgress | undefined) => void>();
+  readonly wizardOnProgress = output<PasskeyProgress | undefined>();
 
   @ViewChild('inputText') readonly inputText:
     | ElementRef<HTMLInputElement>
@@ -59,14 +58,14 @@ export class CreatePasskeyComponent {
   }
 
   goToSetup() {
-    this.wizardOnProgress()({ setup: null });
+    this.wizardOnProgress.emit({ setup: null });
   }
 
   async doSignUp() {
     try {
       const onProgress: SignProgressFn<WebAuthnSignUpProgressStep> = (
         progress,
-      ) => this.wizardOnProgress()({ signUp: progress });
+      ) => this.wizardOnProgress.emit({ signUp: progress });
 
       await signUp({
         webauthn: {
@@ -83,7 +82,7 @@ export class CreatePasskeyComponent {
         },
       });
     } catch (error: unknown) {
-      this.wizardOnProgress()(undefined);
+      this.wizardOnProgress.emit(undefined);
 
       // IRL the error would be gracefully displayed to the user unless
       // it is one to ignore - for example when the user cancel the flow.

@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import {
   signIn,
   SignProgress,
@@ -20,8 +20,7 @@ export class UsePasskeyComponent {
   readonly WebAuthnSignInProgressStep = WebAuthnSignInProgressStep;
 
   readonly wizardProgress = input.required<PasskeyProgress | undefined>();
-  wizardOnProgress =
-    input.required<(progress: PasskeyProgress | undefined) => void>();
+  readonly wizardOnProgress = output<PasskeyProgress | undefined>();
 
   readonly #computedProgress = computed<ProgressSignIn>(() => {
     const progress = this.wizardProgress();
@@ -37,7 +36,7 @@ export class UsePasskeyComponent {
 
   async doSignIn () {
     const onProgress: SignProgressFn<WebAuthnSignInProgressStep> = (progress) =>
-      this.wizardOnProgress()({ signIn: progress });
+      this.wizardOnProgress.emit({ signIn: progress });
 
     try {
       await signIn({
@@ -46,7 +45,7 @@ export class UsePasskeyComponent {
         },
       });
     } catch (error: unknown) {
-      this.wizardOnProgress()(undefined);
+      this.wizardOnProgress.emit(undefined);
 
       // IRL the error would be gracefully displayed to the user unless
       // it is one to ignore - for example when the user cancel the flow.
