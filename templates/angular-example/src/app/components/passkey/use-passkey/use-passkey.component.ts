@@ -9,7 +9,10 @@ import type { PasskeyProgress } from '../../../types/passkey';
 import { ButtonComponent } from '../../button/button.component';
 import { ProgressComponent } from '../progress/progress.component';
 
-type ProgressSignIn = SignProgress<WebAuthnSignInProgressStep> | undefined | null;
+type ProgressSignIn =
+  | SignProgress<WebAuthnSignInProgressStep>
+  | undefined
+  | null;
 
 @Component({
   selector: 'app-use-passkey',
@@ -27,14 +30,16 @@ export class UsePasskeyComponent {
 
     return progress === undefined
       ? undefined
-      : "signIn" in progress ? progress.signIn : null;
+      : 'signIn' in progress
+        ? progress.signIn
+        : null;
   });
 
   get progress(): ProgressSignIn {
     return this.#computedProgress();
   }
 
-  async doSignIn () {
+  async doSignIn() {
     const onProgress: SignProgressFn<WebAuthnSignInProgressStep> = (progress) =>
       this.wizardOnProgress.emit({ signIn: progress });
 
@@ -51,5 +56,5 @@ export class UsePasskeyComponent {
       // it is one to ignore - for example when the user cancel the flow.
       throw error;
     }
-  };
+  }
 }

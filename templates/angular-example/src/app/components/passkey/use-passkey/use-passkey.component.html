@@ -4,7 +4,9 @@
   <app-button (click)="doSignIn()">Use your passkey</app-button>
 } @else if (progress !== null) {
   <app-progress>
-    @if (progress.step === WebAuthnSignInProgressStep.RequestingUserCredential) {
+    @if (
+      progress.step === WebAuthnSignInProgressStep.RequestingUserCredential
+    ) {
       <span>Requesting user credential...</span>
     }
     @if (progress.step === WebAuthnSignInProgressStep.FinalizingCredential) {

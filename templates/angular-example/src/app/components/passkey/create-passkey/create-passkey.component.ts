@@ -2,7 +2,8 @@ import {
   Component,
   computed,
   ElementRef,
-  input, output,
+  input,
+  output,
   signal,
   ViewChild,
 } from '@angular/core';
