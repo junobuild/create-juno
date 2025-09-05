@@ -1,4 +1,4 @@
-import { authSubscribe, User } from "@junobuild/core";
+import { onAuthStateChange, User } from "@junobuild/core";
 import {
   createContext,
   FC,
@@ -16,7 +16,7 @@ export const Auth: FC<PropsWithChildren> = (props) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const sub = authSubscribe((user) => setUser(user));
+    const sub = onAuthStateChange((user) => setUser(user));
 
     return () => sub();
   }, []);

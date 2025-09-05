@@ -1,4 +1,4 @@
-import { authSubscribe, initSatellite } from "@junobuild/core";
+import { onAuthStateChange, initSatellite } from "@junobuild/core";
 import { renderContent } from "./components/content";
 import { renderLogin } from "./components/login";
 import "./style.css";
@@ -7,7 +7,7 @@ import { renderBanner } from "./components/banner.js";
 /**
  * Global listener. When the user sign-in or sign-out, we re-render the app.
  */
-authSubscribe((user) => {
+onAuthStateChange((user) => {
   const app = document.querySelector("#app");
 
   if (user === null || user === undefined) {

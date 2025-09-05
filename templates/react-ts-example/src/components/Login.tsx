@@ -3,5 +3,11 @@ import { FC } from "react";
 import { Button } from "./Button";
 
 export const Login: FC = () => {
-  return <Button onClick={signIn}>Sign in</Button>;
+  const signWithII = async () => {
+    await signIn({
+      internet_identity: {},
+    });
+  };
+
+  return <Button onClick={signWithII}>Sign in</Button>;
 };

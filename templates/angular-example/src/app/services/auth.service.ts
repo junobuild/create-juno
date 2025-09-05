@@ -5,7 +5,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { authSubscribe, User } from '@junobuild/core';
+import { onAuthStateChange, User } from '@junobuild/core';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,6 @@ export class AuthService {
   );
 
   constructor() {
-    authSubscribe((user) => this.user.set(user));
+    onAuthStateChange((user) => this.user.set(user));
   }
 }
