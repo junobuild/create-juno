@@ -5,7 +5,7 @@ import {
   signUp,
   WebAuthnSignUpProgressStep,
 } from '@junobuild/core'
-import type { PasskeyProgress } from '@/types/passkey.ts'
+import type { PasskeyProgress, PasskeyProps } from '@/types/passkey.ts'
 import { computed, ref } from 'vue'
 import Button from '@/components/Button.vue'
 import Progress from '@/components/passkey/Progress.vue'
@@ -19,10 +19,7 @@ type ProgressSignUp =
       detail: SignProgress<WebAuthnSignUpProgressStep>
     }
 
-const { progress: wizardProgress, onProgress: wizardOnProgress } = defineProps<{
-  progress: PasskeyProgress | undefined
-  onProgress: (progress: PasskeyProgress | undefined) => void
-}>()
+const { progress: wizardProgress, onProgress: wizardOnProgress } = defineProps<PasskeyProps>()
 
 const progress = computed<ProgressSignUp>(() =>
   wizardProgress === undefined
