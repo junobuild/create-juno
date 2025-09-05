@@ -1,12 +1,13 @@
-@if (progress.state === 'init') {
+@if (progress.state === "init") {
   <p>
-    First time here? Use your device (Face ID, Windows Hello, or screen lock) to get in.
+    First time here? Use your device (Face ID, Windows Hello, or screen lock) to
+    get in.
   </p>
 
   <app-button (click)="goToSetup()">Create a new passkey</app-button>
 }
 
-@if (progress.state === 'setup') {
+@if (progress.state === "setup") {
   <p>Want to give it a nickname so you'll spot it easily later?</p>
 
   <input
@@ -20,21 +21,30 @@
   <app-button (click)="doSignUp()">Create now</app-button>
 }
 
-@if (progress.state === 'progress') {
+@if (progress.state === "progress") {
   <app-progress>
-    @if (progress.detail.step === WebAuthnSignUpProgressStep.CreatingUserCredential) {
+    @if (
+      progress.detail.step === WebAuthnSignUpProgressStep.CreatingUserCredential
+    ) {
       <span>Creating user credential...</span>
     }
-    @if (progress.detail.step === WebAuthnSignUpProgressStep.ValidatingUserCredential) {
+    @if (
+      progress.detail.step ===
+      WebAuthnSignUpProgressStep.ValidatingUserCredential
+    ) {
       <span>Validating user credential...</span>
     }
-    @if (progress.detail.step === WebAuthnSignUpProgressStep.FinalizingCredential) {
+    @if (
+      progress.detail.step === WebAuthnSignUpProgressStep.FinalizingCredential
+    ) {
       <span>Finalizing credential...</span>
     }
     @if (progress.detail.step === WebAuthnSignUpProgressStep.Signing) {
       <span>Signing request...</span>
     }
-    @if (progress.detail.step === WebAuthnSignUpProgressStep.FinalizingSession) {
+    @if (
+      progress.detail.step === WebAuthnSignUpProgressStep.FinalizingSession
+    ) {
       <span>Finalizing session...</span>
     }
     @if (progress.detail.step === WebAuthnSignUpProgressStep.RegisteringUser) {

@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-progress',
   templateUrl: './progress.component.html',
 })
-export class ProgressComponent {
-
-}
+export class ProgressComponent {}

@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-use-passkey',
   templateUrl: './use-passkey.component.html',
 })
-export class UsePasskeyComponent {
-
-}
+export class UsePasskeyComponent {}
