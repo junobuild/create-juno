@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { setDoc, uploadFile, User } from '@junobuild/core';
@@ -10,7 +9,7 @@ import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-modal',
-  imports: [NgIf, BackdropComponent, ReactiveFormsModule, ButtonComponent],
+  imports: [BackdropComponent, ReactiveFormsModule, ButtonComponent],
   templateUrl: './modal.component.html',
 })
 export class ModalComponent {

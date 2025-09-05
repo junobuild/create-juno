@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { deleteAsset, deleteDoc, Doc } from '@junobuild/core';
 import { DocsService } from '../../services/docs.service';
@@ -7,7 +6,7 @@ import { BackdropComponent } from '../backdrop/backdrop.component';
 
 @Component({
   selector: 'app-delete',
-  imports: [BackdropComponent, NgIf],
+  imports: [BackdropComponent],
   templateUrl: './delete.component.html',
 })
 export class DeleteComponent {

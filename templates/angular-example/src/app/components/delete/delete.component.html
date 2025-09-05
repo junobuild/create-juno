@@ -31,4 +31,6 @@
   </svg>
 </button>
 
-<app-backdrop [spinner]="true" *ngIf="progress" />
+@if (progress) {
+  <app-backdrop [spinner]="true" />
+}
