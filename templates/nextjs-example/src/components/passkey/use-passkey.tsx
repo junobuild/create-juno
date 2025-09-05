@@ -2,8 +2,8 @@ import { Button } from "@/components/button";
 import {
   signIn,
   WebAuthnSignInProgressStep,
-  type WebAuthnSignProgress,
-  type WebAuthnSignProgressFn,
+  type SignProgress,
+  type SignProgressFn,
 } from "@junobuild/core";
 import { useEffect, useState } from "react";
 import { Progress } from "@/components/passkey/progress";
@@ -14,10 +14,10 @@ export const UsePasskey = ({
   onProgress: wizardOnProgress,
 }: PasskeyProps) => {
   const [progress, setProgress] = useState<
-    WebAuthnSignProgress<WebAuthnSignInProgressStep> | undefined | null
-  >();
+    SignProgress<WebAuthnSignInProgressStep> | undefined | null
+  >(undefined);
 
-  const onProgress: WebAuthnSignProgressFn<WebAuthnSignInProgressStep> = (
+  const onProgress: SignProgressFn<WebAuthnSignInProgressStep> = (
     progress,
   ) => wizardOnProgress({ signIn: progress });
 

@@ -1,15 +1,15 @@
 import {
   WebAuthnSignInProgressStep,
-  WebAuthnSignProgress,
+  SignProgress,
   WebAuthnSignUpProgressStep,
 } from "@junobuild/core";
 
 export type PasskeyProgress =
   | {
-      signUp: WebAuthnSignProgress<WebAuthnSignUpProgressStep>;
+      signUp: SignProgress<WebAuthnSignUpProgressStep>;
     }
   | {
-      signIn: WebAuthnSignProgress<WebAuthnSignInProgressStep>;
+      signIn: SignProgress<WebAuthnSignInProgressStep>;
     }
   | { setup: null };
 

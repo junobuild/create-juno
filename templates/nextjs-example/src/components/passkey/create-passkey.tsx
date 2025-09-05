@@ -1,14 +1,13 @@
 import { Button } from "@/components/button";
 import {
   WebAuthnSignUpProgressStep,
-  type WebAuthnSignProgress,
-  type WebAuthnSignProgressFn,
+  type SignProgress,
+  type SignProgressFn,
   signUp,
 } from "@junobuild/core";
 import { useEffect, useState } from "react";
 import { Progress } from "@/components/passkey/progress";
 import { PasskeyProps } from "@/types/passkey";
-import { notEmptyString } from "@dfinity/utils";
 
 type ProgressSignUp =
   | {
@@ -16,7 +15,7 @@ type ProgressSignUp =
     }
   | {
       state: "progress";
-      detail: WebAuthnSignProgress<WebAuthnSignUpProgressStep>;
+      detail: SignProgress<WebAuthnSignUpProgressStep>;
     };
 
 export const CreatePasskey = ({
@@ -26,7 +25,7 @@ export const CreatePasskey = ({
   const [progress, setProgress] = useState<ProgressSignUp>({ state: "init" });
   const [inputText, setInputText] = useState("");
 
-  const onProgress: WebAuthnSignProgressFn<WebAuthnSignUpProgressStep> = (
+  const onProgress: SignProgressFn<WebAuthnSignUpProgressStep> = (
     progress,
   ) => wizardOnProgress({ signUp: progress });
 
@@ -49,13 +48,13 @@ export const CreatePasskey = ({
     wizardOnProgress({ setup: null });
   };
 
-  const doSignIn = async () => {
+  const doSignUp = async () => {
     try {
       await signUp({
         webauthn: {
           options: {
             onProgress,
-            ...(notEmptyString(inputText) && {
+            ...(inputText !== "" && {
               passkey: {
                 user: {
                   displayName: inputText,
@@ -98,7 +97,7 @@ export const CreatePasskey = ({
             value={inputText}
           ></input>
 
-          <Button onClick={doSignIn}>Create now</Button>
+          <Button onClick={doSignUp}>Create now</Button>
         </>
       ) : progress.state === "progress" ? (
         <Progress>
