@@ -16,7 +16,7 @@ export default defineConfig({
       ]
     },
     encoding: [['**/templates/*.tar.gz', 'identity']],
-    gzip: false,
+    precompress: false,
     collections: {
       datastore: [
         {
