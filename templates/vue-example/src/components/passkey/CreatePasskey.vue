@@ -5,7 +5,7 @@ import {
   signUp,
   WebAuthnSignUpProgressStep,
 } from '@junobuild/core'
-import type { PasskeyProgress, PasskeyProps } from '@/types/passkey.ts'
+import type { PasskeyProps } from '@/types/passkey.ts'
 import { computed, ref } from 'vue'
 import Button from '@/components/Button.vue'
 import Progress from '@/components/passkey/Progress.vue'

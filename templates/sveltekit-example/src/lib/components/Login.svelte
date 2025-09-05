@@ -4,7 +4,7 @@
 
 	const signInWithII = async () => {
 		await signIn({
-			internet_identity: {},
+			internet_identity: {}
 		});
 	};
 </script>
