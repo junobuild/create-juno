@@ -17,9 +17,8 @@ export const UsePasskey = ({
     SignProgress<WebAuthnSignInProgressStep> | undefined | null
   >(undefined);
 
-  const onProgress: SignProgressFn<WebAuthnSignInProgressStep> = (
-    progress,
-  ) => wizardOnProgress({ signIn: progress });
+  const onProgress: SignProgressFn<WebAuthnSignInProgressStep> = (progress) =>
+    wizardOnProgress({ signIn: progress });
 
   useEffect(() => {
     if (wizardProgress === undefined) {

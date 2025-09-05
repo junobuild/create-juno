@@ -8,7 +8,7 @@ import { isWebAuthnAvailable } from "@junobuild/core";
 
 export const Passkey = () => {
   // Default to true because we assume passkeys are nowadays most often supported
-  const [passkeySupported,  setPasskeySupported] = useState<boolean>(true);
+  const [passkeySupported, setPasskeySupported] = useState<boolean>(true);
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [progress, setProgress] = useState<PasskeyProgress | undefined>(
@@ -16,8 +16,10 @@ export const Passkey = () => {
   );
 
   useEffect(() => {
-    isWebAuthnAvailable().then(withWebAuthn => setPasskeySupported(withWebAuthn));
-  }, [])
+    isWebAuthnAvailable().then((withWebAuthn) =>
+      setPasskeySupported(withWebAuthn),
+    );
+  }, []);
 
   const start = () => {
     setProgress(undefined);
@@ -35,7 +37,9 @@ export const Passkey = () => {
 
   return (
     <>
-      {passkeySupported && <Button onClick={start}>Continue with Passkey</Button>}
+      {passkeySupported && (
+        <Button onClick={start}>Continue with Passkey</Button>
+      )}
 
       {showModal ? (
         <>

@@ -25,9 +25,8 @@ export const CreatePasskey = ({
   const [progress, setProgress] = useState<ProgressSignUp>({ state: "init" });
   const [inputText, setInputText] = useState("");
 
-  const onProgress: SignProgressFn<WebAuthnSignUpProgressStep> = (
-    progress,
-  ) => wizardOnProgress({ signUp: progress });
+  const onProgress: SignProgressFn<WebAuthnSignUpProgressStep> = (progress) =>
+    wizardOnProgress({ signUp: progress });
 
   useEffect(() => {
     if (wizardProgress === undefined) {
