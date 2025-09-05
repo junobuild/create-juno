@@ -8,6 +8,7 @@ import {
 } from "react";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
+import { Passkey } from "./passkey/Passkey.tsx";
 
 export const AuthContext = createContext<{ user: User | null }>({ user: null });
 
@@ -30,7 +31,10 @@ export const Auth: FC<PropsWithChildren> = (props) => {
           <Logout />
         </div>
       ) : (
-        <Login />
+        <div className="gap flex flex-col">
+          <Passkey />
+          <Login />
+        </div>
       )}
     </AuthContext.Provider>
   );

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
+import { Passkey } from "./passkey/Passkey";
 
 export const AuthContext = createContext();
 
@@ -24,7 +25,10 @@ export const Auth = ({ children }) => {
           <Logout />
         </div>
       ) : (
-        <Login />
+        <div className="gap flex flex-col">
+          <Passkey />
+          <Login />
+        </div>
       )}
     </AuthContext.Provider>
   );
