@@ -5,6 +5,7 @@
 	import { userSignedIn } from '$lib/derived/user.derived';
 	import Logout from '$lib/components/Logout.svelte';
 	import Login from '$lib/components/Login.svelte';
+	import Passkey from '$lib/components/passkey/Passkey.svelte';
 
 	interface Props {
 		children: Snippet;
@@ -30,5 +31,9 @@
 		<Logout />
 	</div>
 {:else}
-	<Login />
+	<div class="gap flex flex-col">
+		<Passkey />
+
+		<Login />
+	</div>
 {/if}
