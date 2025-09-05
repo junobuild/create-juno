@@ -1,1 +1,23 @@
-<p>use-passkey works!</p>
+@if (progress === undefined) {
+  <p class="pt-6">Already got one set-up?</p>
+
+  <app-button (click)="doSignIn()">Use your passkey</app-button>
+} @else if (progress !== null) {
+  <app-progress>
+    @if (progress.step === WebAuthnSignInProgressStep.RequestingUserCredential) {
+      <span>Requesting user credential...</span>
+    }
+    @if (progress.step === WebAuthnSignInProgressStep.FinalizingCredential) {
+      <span>Finalizing credential...</span>
+    }
+    @if (progress.step === WebAuthnSignInProgressStep.Signing) {
+      <span>Signing request...</span>
+    }
+    @if (progress.step === WebAuthnSignInProgressStep.FinalizingSession) {
+      <span>Finalizing session...</span>
+    }
+    @if (progress.step === WebAuthnSignInProgressStep.RetrievingUser) {
+      <span>Loading user...</span>
+    }
+  </app-progress>
+}
