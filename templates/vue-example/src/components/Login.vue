@@ -10,5 +10,5 @@ const signInWithII = async () => {
 </script>
 
 <template>
-  <Button @click="signInWithII">Sign in</Button>
+  <Button @click="signInWithII">Continue with Internet Identity</Button>
 </template>
