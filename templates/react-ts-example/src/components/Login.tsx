@@ -9,5 +9,5 @@ export const Login: FC = () => {
     });
   };
 
-  return <Button onClick={signWithII}>Sign in</Button>;
+  return <Button onClick={signWithII}>Continue with Internet Identity</Button>;
 };

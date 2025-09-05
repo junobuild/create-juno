@@ -8,5 +8,5 @@ export const Login = () => {
     });
   };
 
-  return <Button onClick={signWithII}>Sign in</Button>;
+  return <Button onClick={signWithII}>Continue with Internet Identity</Button>;
 };

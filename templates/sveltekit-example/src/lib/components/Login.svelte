@@ -9,4 +9,4 @@
 	};
 </script>
 
-<Button onclick={signInWithII}>Sign in</Button>
+<Button onclick={signInWithII}>Continue with Internet Identity</Button>
