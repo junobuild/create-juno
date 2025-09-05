@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { initSatellite } from '@junobuild/core';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './components/home/home.component';
@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
   imports: [HomeComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Juno / Angular Example';
 
   async ngOnInit() {

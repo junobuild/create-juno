@@ -11,7 +11,7 @@
       >
         <span
           role="cell"
-          aria-rowindex="{index}"
+          [attr.aria-rowindex]="i + 1"
           class="align-center flex min-w-max p-1"
         >
           {{ i + 1 }}
