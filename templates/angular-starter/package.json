@@ -10,7 +10,8 @@
     "test": "ng test",
     "format": "prettier --write .",
     "postinstall:copy-auth": "node -e \"require('fs').cpSync('node_modules/@junobuild/core/dist/workers/', './src/assets/workers', {recursive: true});\"",
-    "postinstall": "npm run postinstall:copy-auth"
+    "postinstall": "npm run postinstall:copy-auth",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +35,8 @@
     "@angular/compiler-cli": "^20.0.5",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/jasmine": "~5.1.8",
+    "angular-eslint": "20.2.0",
+    "eslint": "^9.33.0",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
@@ -44,7 +47,8 @@
     "prettier": "^3.6.1",
     "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwindcss": "^4.1.10",
-    "typescript": "~5.8.3"
+    "typescript": "~5.8.3",
+    "typescript-eslint": "8.40.0"
   },
   "overrides": {
     "@angular-devkit/build-angular": {
