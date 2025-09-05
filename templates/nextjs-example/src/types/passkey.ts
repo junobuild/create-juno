@@ -1,6 +1,6 @@
 import {
   WebAuthnSignInProgressStep,
-  SignProgress,
+  type SignProgress,
   WebAuthnSignUpProgressStep,
 } from "@junobuild/core";
 
