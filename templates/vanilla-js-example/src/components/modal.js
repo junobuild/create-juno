@@ -1,9 +1,9 @@
-import { authSubscribe, setDoc, uploadFile } from "@junobuild/core";
+import { onAuthStateChange, setDoc, uploadFile } from "@junobuild/core";
 import { nanoid } from "nanoid";
 import { addEventClick, reload } from "../utils/utils";
 
 let user;
-authSubscribe((u) => (user = u));
+onAuthStateChange((u) => (user = u));
 
 const submitEntry = async (modal) => {
   // Demo purpose therefore edge case not properly handled
