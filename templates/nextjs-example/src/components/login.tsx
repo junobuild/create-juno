@@ -2,11 +2,11 @@ import { Button } from "@/components/button";
 import { signIn } from "@junobuild/core";
 
 export const Login = () => {
-  const doSignIn = async () => {
+  const signWithII = async () => {
     await signIn({
       internet_identity: {},
     });
   };
 
-  return <Button onClick={doSignIn}>Continue with Internet Identity</Button>;
+  return <Button onClick={signWithII}>Continue with Internet Identity</Button>;
 };

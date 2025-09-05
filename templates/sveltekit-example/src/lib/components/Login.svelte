@@ -2,9 +2,11 @@
 	import Button from '$lib/components/Button.svelte';
 	import { signIn } from '@junobuild/core';
 
-	const login = async () => {
-		await signIn();
+	const signInWithII = async () => {
+		await signIn({
+			internet_identity: {},
+		});
 	};
 </script>
 
-<Button onclick={login}>Sign in</Button>
+<Button onclick={signInWithII}>Sign in</Button>
