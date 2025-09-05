@@ -29,5 +29,10 @@ export default ts.config(
 	},
 	{
 		ignores: ['build/', '.svelte-kit/', 'dist/', 'static/']
+	},
+	{
+		rules: {
+			'svelte/no-navigation-without-resolve': 'off'
+		}
 	}
 );
