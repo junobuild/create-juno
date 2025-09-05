@@ -5,8 +5,8 @@ import Button from '@/components/Button.vue'
 const signInWithII = async () => {
   await signIn({
     internet_identity: {},
-  });
-};
+  })
+}
 </script>
 
 <template>
