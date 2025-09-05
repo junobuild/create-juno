@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -7,5 +7,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './button.component.html',
 })
 export class ButtonComponent {
-  @Input() disabled!: boolean;
+  disabled = input.required<boolean>()
+
 }

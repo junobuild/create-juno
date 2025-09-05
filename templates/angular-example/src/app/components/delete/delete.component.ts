@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { deleteAsset, deleteDoc, Doc } from '@junobuild/core';
 import { DocsService } from '../../services/docs.service';
 import { Note } from '../../types/note';
@@ -12,7 +12,7 @@ import { BackdropComponent } from '../backdrop/backdrop.component';
 export class DeleteComponent {
   private readonly docsServices = inject(DocsService);
 
-  @Input() doc!: Doc<Note>;
+  doc = input.required<Doc<Note>>();
 
   progress = false;
 
@@ -22,7 +22,7 @@ export class DeleteComponent {
     try {
       const {
         data: { url },
-      } = this.doc;
+      } = this.doc();
 
       if (url !== undefined) {
         const { pathname: fullPath } = new URL(url);
@@ -35,7 +35,7 @@ export class DeleteComponent {
 
       await deleteDoc({
         collection: 'notes',
-        doc: this.doc,
+        doc: this.doc(),
       });
 
       await this.docsServices.reload();
