@@ -2,6 +2,7 @@ import { Login } from "@/components/login";
 import { Logout } from "@/components/logout";
 import { authSubscribe, type User } from "@junobuild/core";
 import { createContext, useEffect, useState, type ReactNode } from "react";
+import { Passkey } from "@/components/passkey/passkey";
 
 export const AuthContext = createContext<{ user: User | undefined | null }>({
   user: undefined,
@@ -33,7 +34,10 @@ export const Auth = ({ children }: AuthProps) => {
           <Logout />
         </div>
       ) : (
-        <Login />
+        <div className="gap flex flex-col">
+          <Passkey />
+          <Login />
+        </div>
       )}
     </AuthContext.Provider>
   );

@@ -1,53 +1,17 @@
-import {InternetIdentityPage} from '@dfinity/internet-identity-playwright';
-import {assertNonNullish} from '@dfinity/utils';
 import {expect} from '@playwright/test';
-import {AppPage, AppPageParams} from './app.page';
+import {AppPage} from './app.page';
 
-export class ExamplePage extends AppPage {
-  #identity: number | undefined;
-
-  #iiPage: InternetIdentityPage;
-
-  constructor(params: AppPageParams) {
-    super(params);
-
-    this.#iiPage = new InternetIdentityPage({
-      page: this.page,
-      context: this.context,
-      browser: this.browser
-    });
-  }
-
-  override async signIn(): Promise<void> {
-    this.#identity = await this.#iiPage.signInWithNewIdentity({
-      selector: this.locators.sign_in_with_ii
-    });
-  }
-
-  async signInWithIdentity(): Promise<void> {
-    assertNonNullish(this.#identity);
-
-    await this.#iiPage.signInWithIdentity({
-      identity: this.#identity,
-      selector: this.locators.sign_in_with_ii
-    });
-  }
-
+export abstract class ExamplePage extends AppPage {
   async assertSignedIn(): Promise<void> {
     const button = this.page.locator('button', {hasText: this.callToActions.logout});
     await expect(button).toBeVisible();
   }
 
   async assertSignedOut(): Promise<void> {
-    const button = this.page.locator('button', {hasText: this.callToActions.continue_with_ii});
+    const button = this.page.locator('button', {
+      hasText: this.callToActions.internet_identity.continue
+    });
     await expect(button).toBeVisible();
-  }
-
-  async waitReady(): Promise<void> {
-    const REPLICA_URL = 'http://127.0.0.1:5987';
-    const INTERNET_IDENTITY_ID = 'rdmx6-jaaaa-aaaaa-aaadq-cai';
-
-    await this.#iiPage.waitReady({url: REPLICA_URL, canisterId: INTERNET_IDENTITY_ID});
   }
 
   async goto(): Promise<void> {

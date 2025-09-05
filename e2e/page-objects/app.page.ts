@@ -13,15 +13,25 @@ export abstract class AppPage {
 
   protected readonly callToActions = {
     logout: 'Logout',
-    continue_with_ii: 'Sign in',
     add_an_entry: 'Add an entry',
-    submit: 'Submit'
+    submit: 'Submit',
+    internet_identity: {
+      continue: 'Continue with Internet Identity'
+    },
+    passkey: {
+      continue: 'Continue with Passkey',
+      create: 'Create a new passkey',
+      create_now: 'Create now',
+      use: 'Use your Passkey'
+    }
   };
 
   protected readonly locators = {
-    sign_in_with_ii: `button:has-text("${this.callToActions.continue_with_ii}")`,
     open_data: 'a[aria-label="Open data"]',
-    delete_entry: 'button[aria-label="Delete entry"]'
+    delete_entry: 'button[aria-label="Delete entry"]',
+    internet_identity: {
+      sign_in: `button:has-text("${this.callToActions.internet_identity.continue}")`
+    }
   };
 
   protected constructor({page, context, browser}: AppPageParams) {
@@ -29,6 +39,12 @@ export abstract class AppPage {
     this.context = context;
     this.browser = browser;
   }
+
+  waitReady?(): Promise<void>;
+
+  cleanUp?(): Promise<void>;
+
+  abstract signUp(): Promise<void>;
 
   abstract signIn(): Promise<void>;
 
@@ -39,5 +55,6 @@ export abstract class AppPage {
 
   async close(): Promise<void> {
     await this.page.close();
+    await this.browser.close();
   }
 }
