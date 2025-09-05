@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+     
     (async () =>
       await initSatellite({
         workers: {
