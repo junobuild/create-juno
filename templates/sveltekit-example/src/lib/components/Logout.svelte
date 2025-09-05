@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { signOut } from '@junobuild/core';
+
+	const doSignOut = (): Promise<void> => signOut();
 </script>
 
 <button
 	type="button"
-	onclick={signOut}
+	onclick={doSignOut}
 	class="hover:text-lavender-blue-500 active:text-lavender-blue-400 mt-24 flex items-center gap-2 dark:text-white"
 >
 	<svg

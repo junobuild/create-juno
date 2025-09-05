@@ -4,11 +4,17 @@ import { PasskeyProgress } from '../../../types/passkey';
 import { ButtonComponent } from '../../button/button.component';
 import { CreatePasskeyComponent } from '../create-passkey/create-passkey.component';
 import { UsePasskeyComponent } from '../use-passkey/use-passkey.component';
+import { BackdropComponent } from '../../backdrop/backdrop.component';
 
 @Component({
   selector: 'app-passkey',
   templateUrl: './passkey.component.html',
-  imports: [ButtonComponent, CreatePasskeyComponent, UsePasskeyComponent],
+  imports: [
+    ButtonComponent,
+    CreatePasskeyComponent,
+    UsePasskeyComponent,
+    BackdropComponent,
+  ],
 })
 export class PasskeyComponent implements OnInit {
   readonly #passkeySupported = signal(true);
