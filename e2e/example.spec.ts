@@ -45,6 +45,8 @@ testWithII.describe.configure({mode: 'serial'});
       const examplePage = getExamplePage();
 
       await examplePage.deleteLastEntry();
+
+      await examplePage.assertEntries(2);
     });
 
     testWithII('should sign-out', async () => {

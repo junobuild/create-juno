@@ -34,6 +34,11 @@ export abstract class ExamplePage extends AppPage {
     await expect(row).toBeVisible();
   }
 
+  async assertEntries(count: number): Promise<void> {
+    const rows = this.page.locator('[role="rowgroup"] [role="row"]');
+    await expect(rows).toHaveCount(count, {timeout: 2000});
+  }
+
   async addEntryWithFile({text, filePath}: {text: string; filePath: string}): Promise<void> {
     const addEntryButton = this.page.locator('button', {hasText: this.callToActions.add_an_entry});
     await expect(addEntryButton).toBeVisible();
