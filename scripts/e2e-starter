@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 TEST_TYPE=${1:-e2e}
 
 function run_test() {
