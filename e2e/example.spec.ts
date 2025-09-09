@@ -4,8 +4,8 @@ import {initTestSuiteWithInternetIdentity, initTestSuiteWithPasskey} from './uti
 testWithII.describe.configure({mode: 'serial'});
 
 [
-  {title: 'With II', initExamplePage: initTestSuiteWithInternetIdentity},
-  {title: 'With Passkey', initExamplePage: initTestSuiteWithPasskey}
+  {title: 'With Passkey', initExamplePage: initTestSuiteWithPasskey},
+  {title: 'With II', initExamplePage: initTestSuiteWithInternetIdentity}
 ].forEach(({title, initExamplePage}) => {
   testWithII.describe(title, () => {
     const getExamplePage = initExamplePage();
