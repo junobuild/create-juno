@@ -4,8 +4,8 @@ import {initTestSuiteWithInternetIdentity, initTestSuiteWithPasskey} from './uti
 testWithII.describe.configure({mode: 'serial'});
 
 [
-  {title: 'With II', initExamplePage: initTestSuiteWithInternetIdentity},
-  {title: 'With Passkey', initExamplePage: initTestSuiteWithPasskey}
+  {title: 'With Passkey', initExamplePage: initTestSuiteWithPasskey},
+  {title: 'With II', initExamplePage: initTestSuiteWithInternetIdentity}
 ].forEach(({title, initExamplePage}) => {
   testWithII.describe(title, () => {
     const getExamplePage = initExamplePage();
@@ -45,6 +45,8 @@ testWithII.describe.configure({mode: 'serial'});
       const examplePage = getExamplePage();
 
       await examplePage.deleteLastEntry();
+
+      await examplePage.assertEntries(2);
     });
 
     testWithII('should sign-out', async () => {
