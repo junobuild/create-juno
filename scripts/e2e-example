@@ -12,7 +12,7 @@ function run_test() {
   TEMPLATE=$template npm run "$TEST_TYPE" e2e/example.spec.ts
 }
 
-STARTERS=angular-example,nextjs-example,react-example,react-ts-example,sveltekit-example,vanilla-js-example,vue-example
+STARTERS=nextjs-example,angular-example,react-example,react-ts-example,sveltekit-example,vanilla-js-example,vue-example
 
 for template in $(echo $STARTERS | sed "s/,/ /g"); do
   run_test "$template"
