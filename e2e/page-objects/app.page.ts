@@ -1,7 +1,8 @@
-import {Browser, BrowserContext, Page} from '@playwright/test';
+import {Browser, BrowserContext, CDPSession, Page} from '@playwright/test';
 
 export interface AppPageParams {
   page: Page;
+  client: CDPSession;
   context: BrowserContext;
   browser: Browser;
 }
@@ -34,7 +35,7 @@ export abstract class AppPage {
     }
   };
 
-  protected constructor({page, context, browser}: AppPageParams) {
+  protected constructor({page, context, browser}: Omit<AppPageParams, 'client'>) {
     this.page = page;
     this.context = context;
     this.browser = browser;
