@@ -22,7 +22,7 @@ export class PasskeyComponent implements OnInit {
   #passkeyProgress = signal<PasskeyProgress | undefined>(undefined);
 
   get passkeySupported(): boolean {
-    return this.#passkeySupported();
+    return true;
   }
   get showModal(): boolean {
     return this.#showModal();
