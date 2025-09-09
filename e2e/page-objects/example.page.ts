@@ -83,8 +83,7 @@ export abstract class ExamplePage extends AppPage {
     name: string;
   }): Promise<void> {
     await expect(this.page).toHaveScreenshot(`${name}-${mode}-mode.png`, {
-      fullPage: true,
-      maxDiffPixelRatio: 0.1
+      fullPage: true
     });
   }
 
