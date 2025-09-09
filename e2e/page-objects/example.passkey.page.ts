@@ -17,7 +17,11 @@ export class ExamplePasskeyPage extends ExamplePage {
     this.#client = client;
   }
 
-  static async create({page, client, ...rest}: AppPageParams): Promise<ExamplePasskeyPage> {
+  static async create({page, ...rest}: AppPageParams): Promise<ExamplePasskeyPage> {
+    const client = await page.context().newCDPSession(page);
+
+    await client.send('WebAuthn.enable');
+
     const {authenticatorId} = await client.send('WebAuthn.addVirtualAuthenticator', {
       options: {
         protocol: 'ctap2',

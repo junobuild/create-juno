@@ -25,12 +25,8 @@ const initTestSuite = <T extends ExamplePage>(
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    const client = await page.context().newCDPSession(page);
-    await client.send('WebAuthn.enable');
-
     examplePage = await create({
       page,
-      client,
       context,
       browser
     });
