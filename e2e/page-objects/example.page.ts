@@ -8,10 +8,15 @@ export abstract class ExamplePage extends AppPage {
   }
 
   async assertSignedOut(): Promise<void> {
-    const button = this.page.locator('button', {
+    const buttonII = this.page.locator('button', {
       hasText: this.callToActions.internet_identity.continue
     });
-    await expect(button).toBeVisible();
+    await expect(buttonII).toBeVisible();
+
+    const buttonPasskey = this.page.locator('button', {
+      hasText: this.callToActions.passkey.continue
+    });
+    await expect(buttonPasskey).toBeVisible();
   }
 
   async goto(): Promise<void> {
