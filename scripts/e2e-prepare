@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 SATELLITE_ID="jx5yt-yyaaa-aaaal-abzbq-cai"
 
 function prepare() {
