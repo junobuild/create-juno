@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@junobuild/config": "^2.1.0",
-    "@junobuild/vite-plugin": "^4.1.4",
+    "@junobuild/vite-plugin": "^4.1.5",
     "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/vite": "^4.1.13",
     "prettier": "^3.6.2",
@@ -23,8 +23,8 @@
     "vite-plugin-node-polyfills": "^0.24.0"
   },
   "dependencies": {
-    "@junobuild/core": "^2.0.1",
-    "@junobuild/functions": "^0.2.7",
+    "@junobuild/core": "^2.1.0",
+    "@junobuild/functions": "^0.3.0",
     "nanoid": "^5.1.5"
   }
 }
