@@ -5,7 +5,7 @@ import { Component, input } from '@angular/core';
   selector: 'app-button',
   imports: [NgClass],
   templateUrl: './button.component.html',
-  host: { style: 'display: contents;' }
+  host: { style: 'display: contents;' },
 })
 export class ButtonComponent {
   disabled = input<boolean>(false);
