@@ -20,13 +20,13 @@ A starter kit developed for [Juno](https://juno.build) using [Angular](https://a
 
 All commands are run from the root of the project, from a terminal:
 
-| Command          | Action                                                         |
-| :--------------- | :------------------------------------------------------------- |
-| `npm install`    | Installs dependencies                                          |
-| `npm run start`  | Starts frontend dev server at `localhost:4200`                 |
-| `juno dev start` | Quickstart the local development emulator                      |
-| `npm run build`  | Build your production site to `./dist/angular-starter/browser` |
-| `juno deploy`    | Deploy your project to a Satellite                             |
+| Command               | Action                                                         |
+| :-------------------- | :------------------------------------------------------------- |
+| `npm install`         | Installs dependencies                                          |
+| `npm run start`       | Starts frontend dev server at `localhost:4200`                 |
+| `juno emulator start` | Quickstart the local development emulator                      |
+| `npm run build`       | Build your production site to `./dist/angular-starter/browser` |
+| `juno hosting deploy` | Deploy your project to a Satellite                             |
 
 ## 🚀 Launch
 
