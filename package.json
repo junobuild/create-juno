@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@dfinity/utils": "^3.1.0",
-    "@junobuild/cli-tools": "^0.7.1",
+    "@junobuild/cli-tools": "^0.8.0",
     "ora": "^8.2.0",
     "prompts": "^2.4.2",
     "tar-stream": "^3.1.7"
@@ -47,7 +47,7 @@
   "devDependencies": {
     "@dfinity/eslint-config-oisy-wallet": "^0.2.2",
     "@dfinity/internet-identity-playwright": "^2.0.0",
-    "@junobuild/config": "^2.1.0",
+    "@junobuild/config": "^2.3.0",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.4.0",
     "@types/prompts": "^2.4.9",
