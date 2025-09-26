@@ -32,7 +32,7 @@ const outro = ({
 
   const liveReload =
     nonNullish(serverlessFunctions) && ['ts', 'js'].includes(serverlessFunctions) ? ' --watch' : '';
-  const startCmd = `juno dev start${liveReload}`;
+  const startCmd = `juno emulator start${liveReload}`;
   const runJunoDevStart = `In another terminal, run ${cyan(startCmd)} to quickstart the local development emulator`;
 
   const runs = (index: number): string =>
