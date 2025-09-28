@@ -12,7 +12,7 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "devDependencies": {
-    "@junobuild/config": "^2.3.0",
+    "@junobuild/config": "^2.4.3",
     "@junobuild/vite-plugin": "^4.2.0",
     "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/vite": "^4.1.13",
