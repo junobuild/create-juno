@@ -8,14 +8,6 @@ export const Table = () => {
   const { user } = useContext(AuthContext);
   const [items, setItems] = useState<Note[]>([]);
 
-  useEffect(() => {
-    window.addEventListener("reload", list);
-
-    return () => {
-      window.removeEventListener("reload", list);
-    };
-  }, []);
-
   const list = async () => {
     const { items } = await listDocs<NoteData>({
       collection: "notes",
@@ -24,6 +16,14 @@ export const Table = () => {
 
     setItems(items);
   };
+
+  useEffect(() => {
+    window.addEventListener("reload", list);
+
+    return () => {
+      window.removeEventListener("reload", list);
+    };
+  }, []);
 
   useEffect(() => {
     if (user === undefined || user === null) {
