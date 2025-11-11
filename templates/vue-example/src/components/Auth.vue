@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth.store'
 import { storeToRefs } from 'pinia'
-import Login from './Login.vue'
+import LoginWithII from './LoginWithII.vue'
 import Passkey from './passkey/Passkey.vue'
 import Logout from './Logout.vue'
+import LoginWithGoogle from '@/components/LoginWithGoogle.vue'
 
 const store = useAuthStore()
 const { user } = storeToRefs(store)
@@ -20,9 +21,11 @@ const { user } = storeToRefs(store)
 
   <template v-else>
     <div class="gap flex flex-col">
+      <LoginWithGoogle />
+
       <Passkey />
 
-      <Login />
+      <LoginWithII />
     </div>
   </template>
 </template>

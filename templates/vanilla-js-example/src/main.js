@@ -1,6 +1,6 @@
 import { onAuthStateChange, initSatellite } from "@junobuild/core";
 import { renderContent } from "./components/content";
-import { renderLogin } from "./components/login";
+import { renderLoginWithII } from "./components/login-with-ii.js";
 import "./style.css";
 import { renderBanner } from "./components/banner.js";
 
@@ -11,7 +11,7 @@ onAuthStateChange((user) => {
   const app = document.querySelector("#app");
 
   if (user === null || user === undefined) {
-    renderLogin(app);
+    renderLoginWithII(app);
     return;
   }
 

@@ -1,8 +1,9 @@
 import { signIn } from "@junobuild/core";
 import { addEventClick } from "../utils/utils";
 import { renderPasskey } from "./passkey.js";
+import { renderLoginWithGoogle } from "./login-with-google.js";
 
-export const renderLogin = (app) => {
+export const renderLoginWithII = (app) => {
   const signInWithII = async () => {
     await signIn({
       internet_identity: {},
@@ -16,6 +17,8 @@ export const renderLogin = (app) => {
   });
 
   app.innerHTML = `<div class="gap flex flex-col w-fit">
+    ${renderLoginWithGoogle(app)}
+
     ${renderPasskey(app)}
     
     <button id="login"
