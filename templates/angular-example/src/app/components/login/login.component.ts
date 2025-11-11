@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { signIn } from '@junobuild/core';
-import { ButtonComponent } from '../button/button.component';
 import { PasskeyComponent } from '../passkey/passkey/passkey.component';
+import { LoginComponentWithII } from '../login-with-ii/login-with-ii.component';
+import { LoginComponentWithGoogle } from '../login-with-google/login-with-google.component';
 
 @Component({
   selector: 'app-login',
-  imports: [ButtonComponent, PasskeyComponent],
+  imports: [LoginComponentWithII, PasskeyComponent, LoginComponentWithGoogle],
   templateUrl: './login.component.html',
 })
-export class LoginComponent {
-  readonly signIn = signIn;
-}
+export class LoginComponent {}
