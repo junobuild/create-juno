@@ -6,9 +6,10 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Login } from "./Login";
+import { LoginWitII } from "./LoginWitII.tsx";
 import { Logout } from "./Logout";
 import { Passkey } from "./passkey/Passkey.tsx";
+import { LoginWithGoogle } from "./LoginWithGoogle.tsx";
 
 export const AuthContext = createContext<{ user: User | null }>({ user: null });
 
@@ -32,8 +33,9 @@ export const Auth: FC<PropsWithChildren> = (props) => {
         </div>
       ) : (
         <div className="gap flex flex-col">
+          <LoginWithGoogle />
           <Passkey />
-          <Login />
+          <LoginWitII />
         </div>
       )}
     </AuthContext.Provider>

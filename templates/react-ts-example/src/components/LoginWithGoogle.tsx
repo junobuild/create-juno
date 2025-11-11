@@ -1,10 +1,8 @@
-import { Button } from "./Button.jsx";
-import { useState } from "react";
-import { CreatePasskey } from "./passkey/CreatePasskey.jsx";
-import { UsePasskey } from "./passkey/UsePasskey.jsx";
-import { Backdrop } from "./Backdrop.jsx";
+import { FC, useState } from "react";
+import { Button } from "./Button";
+import { Backdrop } from "./Backdrop";
 
-export const LoginWithGoogle = () => {
+export const LoginWithGoogle: FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   const start = () => {

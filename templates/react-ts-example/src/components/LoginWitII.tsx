@@ -2,7 +2,7 @@ import { signIn } from "@junobuild/core";
 import { FC } from "react";
 import { Button } from "./Button";
 
-export const Login: FC = () => {
+export const LoginWitII: FC = () => {
   const signWithII = async () => {
     await signIn({
       internet_identity: {},
