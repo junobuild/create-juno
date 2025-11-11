@@ -35,7 +35,7 @@ function App() {
             ariaLabel="Open quickstart guides on Juno's website"
             title="Quickstart"
           >
-            Discover how to use Next.js with Juno.
+            Discover how to use React with Juno.
           </Article>
 
           <Article
