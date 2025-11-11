@@ -1,7 +1,7 @@
 import { signIn } from "@junobuild/core";
 import { Button } from "./Button";
 
-export const Login = () => {
+export const LoginWithII = () => {
   const signWithII = async () => {
     await signIn({
       internet_identity: {},

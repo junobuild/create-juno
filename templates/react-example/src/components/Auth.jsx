@@ -1,9 +1,10 @@
 import { onAuthStateChange } from "@junobuild/core";
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
-import { Login } from "./Login";
+import { LoginWithII } from "./LoginWithII.jsx";
 import { Logout } from "./Logout";
 import { Passkey } from "./passkey/Passkey";
+import { LoginWithGoogle } from "./LoginWithGoogle.jsx";
 
 export const AuthContext = createContext();
 
@@ -26,8 +27,9 @@ export const Auth = ({ children }) => {
         </div>
       ) : (
         <div className="gap flex flex-col">
+          <LoginWithGoogle />
           <Passkey />
-          <Login />
+          <LoginWithII />
         </div>
       )}
     </AuthContext.Provider>
