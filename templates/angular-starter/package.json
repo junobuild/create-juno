@@ -49,10 +49,5 @@
     "tailwindcss": "^4.1.13",
     "typescript": "~5.9.2",
     "typescript-eslint": "8.42.0"
-  },
-  "overrides": {
-    "@angular-devkit/build-angular": {
-      "tailwindcss": "latest"
-    }
   }
 }
