@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { signIn } from '@junobuild/core';
 import { ButtonComponent } from '../button/button.component';
 import { BackdropComponent } from '../backdrop/backdrop.component';
 
