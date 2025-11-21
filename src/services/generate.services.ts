@@ -16,6 +16,7 @@ import {
   getLocalTemplatePath,
   getRelativeTemplatePath
 } from '../utils/fs.utils';
+import {whichPMRuns} from '../utils/pm.utils';
 import {createDirectory, getLocalFiles, type LocalFileDescriptor} from '../utils/populate.utils';
 
 export const generate = async ({gitHubAction, serverlessFunctions, ...rest}: PopulateInput) => {
@@ -133,14 +134,13 @@ const populateGitHubAction = async ({
 
   createFolders(target);
 
-  if (isNullish(serverlessFunctions)) {
-    const source = join(BOILERPLATE_PATH, 'github');
+  const pm = whichPMRuns();
+  const source = join(BOILERPLATE_PATH, 'github', pm);
 
+  if (isNullish(serverlessFunctions)) {
     await copyFile({source, target, file: 'deploy.yml'});
     return;
   }
-
-  const source = join(BOILERPLATE_PATH, 'github');
 
   await copyFiles({source, target});
 };
