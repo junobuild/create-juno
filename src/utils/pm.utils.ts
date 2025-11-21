@@ -1,6 +1,6 @@
 import {isNullish} from '@dfinity/utils';
 
-export type PM = 'npm' | 'yarn' | 'pnpm' | 'bun';
+export type PM = 'npm' | 'yarn' | 'pnpm';
 
 export const whichPMRuns = (): PM => {
   const {
@@ -18,8 +18,6 @@ export const whichPMRuns = (): PM => {
       return 'yarn';
     case 'pnpm':
       return 'pnpm';
-    case 'bun':
-      return 'bun';
     default:
       return 'npm';
   }
