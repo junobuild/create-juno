@@ -45,6 +45,6 @@
 	},
 	"dependencies": {
 		"@junobuild/core": "^3.2.0",
-		"@junobuild/functions": "^0.4.1"
+		"@junobuild/functions": "^0.5.0"
 	}
 }
