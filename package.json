@@ -45,7 +45,7 @@
     "tar-stream": "^3.1.7"
   },
   "devDependencies": {
-    "@dfinity/eslint-config-oisy-wallet": "^0.2.2",
+    "@dfinity/eslint-config-oisy-wallet": "^0.2.3",
     "@dfinity/internet-identity-playwright": "^2.0.0",
     "@junobuild/config": "^2.7.0",
     "@playwright/test": "^1.57.0",
