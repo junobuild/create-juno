@@ -41,8 +41,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@junobuild/core": "^3.3.0",
-		"@junobuild/functions": "^0.5.2",
+		"@junobuild/core": "^3.3.2",
+		"@junobuild/functions": "^0.5.3",
 		"nanoid": "^5.1.5"
 	},
 	"overrides": {

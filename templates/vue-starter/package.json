@@ -16,8 +16,8 @@
     "postinstall": "npm run postinstall:copy-auth"
   },
   "dependencies": {
-    "@junobuild/core": "^3.3.0",
-    "@junobuild/functions": "^0.5.2",
+    "@junobuild/core": "^3.3.2",
+    "@junobuild/functions": "^0.5.3",
     "pinia": "^3.0.3",
     "vue": "^3.5.21",
     "vue-router": "^4.5.1"
