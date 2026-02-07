@@ -1,9 +1,7 @@
-import { LoginWithII } from "@/components/login-with-ii";
+import { Login } from "@/components/login";
 import { Logout } from "@/components/logout";
 import { onAuthStateChange, type User } from "@junobuild/core";
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import { Passkey } from "@/components/passkey/passkey";
-import { LoginWithGoogle } from "@/components/login-with-google";
 
 export const AuthContext = createContext<{ user: User | undefined | null }>({
   user: undefined,
@@ -36,9 +34,7 @@ export const Auth = ({ children }: AuthProps) => {
         </div>
       ) : (
         <div className="gap flex flex-col">
-          <LoginWithGoogle />
-          <Passkey />
-          <LoginWithII />
+          <Login />
         </div>
       )}
     </AuthContext.Provider>

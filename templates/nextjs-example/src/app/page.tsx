@@ -29,7 +29,7 @@ export default function Home() {
             Example App
           </h1>
           <p className="py-4 md:max-w-lg dark:text-white">
-            Explore this demo app built with Next.js, Tailwind, and{" "}
+            Try out this demo app to discover{" "}
             <a
               href="https://juno.build"
               rel="noopener noreferrer"
@@ -37,8 +37,7 @@ export default function Home() {
               className="underline"
             >
               Juno
-            </a>
-            , showcasing a practical application of these technologies.
+            </a>.
           </p>
 
           <Auth>
