@@ -2,11 +2,12 @@
 	import Button from '$lib/components/Button.svelte';
 	import { signIn } from '@junobuild/core';
 
-	const signInWithII = async () => {
+	const signInWithDev = async () => {
+		// Sign in for local development and E2E only
 		await signIn({
-			internet_identity: {}
+			dev: {},
 		});
 	};
 </script>
 
-<Button onclick={signInWithII}>Continue with Internet Identity</Button>
+<Button onclick={signInWithDev}>Sign in for dev</Button>
