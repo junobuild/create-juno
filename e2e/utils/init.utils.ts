@@ -1,15 +1,10 @@
-import {testWithII} from '@dfinity/internet-identity-playwright';
+import {test} from '@playwright/test';
 import {AppPageParams} from '../page-objects/app.page';
-import {ExampleInternetIdentityPage} from '../page-objects/example.ii.page';
+import {ExampleInternetIdentityPage} from '../page-objects/example.dev-sign-in.page';
 import {ExamplePage} from '../page-objects/example.page';
-import {ExamplePasskeyPage} from '../page-objects/example.passkey.page';
 
 export const initTestSuiteWithInternetIdentity = (): (() => ExampleInternetIdentityPage) => {
   return initTestSuite(ExampleInternetIdentityPage.create);
-};
-
-export const initTestSuiteWithPasskey = (): (() => ExamplePasskeyPage) => {
-  return initTestSuite(ExamplePasskeyPage.create);
 };
 
 const initTestSuite = <T extends ExamplePage>(
@@ -17,8 +12,8 @@ const initTestSuite = <T extends ExamplePage>(
 ): (() => T) => {
   let examplePage: T;
 
-  testWithII.beforeAll(async ({playwright}) => {
-    testWithII.setTimeout(120000);
+  test.beforeAll(async ({playwright}) => {
+    test.setTimeout(120000);
 
     const browser = await playwright.chromium.launch();
 
@@ -35,10 +30,10 @@ const initTestSuite = <T extends ExamplePage>(
 
     await examplePage.goto();
 
-    await examplePage.signUp();
+    await examplePage.signIn();
   });
 
-  testWithII.afterAll(async () => {
+  test.afterAll(async () => {
     await examplePage.cleanUp?.();
 
     await examplePage.close();
