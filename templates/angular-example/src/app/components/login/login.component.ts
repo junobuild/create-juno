@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { PasskeyComponent } from '../passkey/passkey/passkey.component';
-import { LoginComponentWithII } from '../login-with-ii/login-with-ii.component';
-import { LoginComponentWithGoogle } from '../login-with-google/login-with-google.component';
+import { signIn } from '@junobuild/core';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-login',
-  imports: [LoginComponentWithII, PasskeyComponent, LoginComponentWithGoogle],
+  imports: [ButtonComponent],
   templateUrl: './login.component.html',
 })
-export class LoginComponent {}
+export class LoginComponent {
+  async signIn() {
+    // Sign in for local development and E2E only
+    await signIn({
+      dev: {},
+    });
+  }
+}
