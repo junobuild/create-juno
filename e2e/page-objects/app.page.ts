@@ -12,26 +12,15 @@ export abstract class AppPage {
   protected readonly browser: Browser;
 
   protected readonly callToActions = {
+    login: 'Sign in for dev',
     logout: 'Logout',
     add_an_entry: 'Add an entry',
-    submit: 'Submit',
-    internet_identity: {
-      continue: 'Continue with Internet Identity'
-    },
-    passkey: {
-      continue: 'Continue with Passkey',
-      create: 'Create a new passkey',
-      create_now: 'Create now',
-      use: 'Use your Passkey'
-    }
+    submit: 'Submit'
   };
 
   protected readonly locators = {
     open_data: 'a[aria-label="Open data"]',
-    delete_entry: 'button[aria-label="Delete entry"]',
-    internet_identity: {
-      sign_in: `button:has-text("${this.callToActions.internet_identity.continue}")`
-    }
+    delete_entry: 'button[aria-label="Delete entry"]'
   };
 
   protected constructor({page, context, browser}: AppPageParams) {
@@ -43,8 +32,6 @@ export abstract class AppPage {
   waitReady?(): Promise<void>;
 
   cleanUp?(): Promise<void>;
-
-  abstract signUp(): Promise<void>;
 
   abstract signIn(): Promise<void>;
 
