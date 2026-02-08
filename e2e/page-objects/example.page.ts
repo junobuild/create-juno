@@ -9,7 +9,7 @@ export abstract class ExamplePage extends AppPage {
 
   async assertSignedOut(): Promise<void> {
     const button = this.page.locator('button', {
-      hasText: this.callToActions.internet_identity.continue
+      hasText: this.callToActions.login
     });
     await expect(button).toBeVisible();
   }
