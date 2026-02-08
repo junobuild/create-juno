@@ -39,6 +39,12 @@ test.describe.configure({mode: 'serial'});
         await examplePage.addEntry(lastEntryText);
       });
 
+      test('should display entries', async () => {
+        const examplePage = getExamplePage();
+
+        await examplePage.assertScreenshot({mode: 'current', name: 'entries'});
+      });
+
       test('should delete entries', async () => {
         const examplePage = getExamplePage();
 
