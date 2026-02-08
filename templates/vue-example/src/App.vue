@@ -29,10 +29,10 @@ onMounted(
         Example App
       </h1>
       <p class="py-4 md:max-w-lg dark:text-white">
-        Explore this demo app built with Vue, Tailwind, and
+        Try out this demo app to discover
         <a href="https://juno.build" rel="noopener noreferrer" target="_blank" class="underline">
           Juno</a
-        >, showcasing a practical application of these technologies.
+        >.
       </p>
 
       <Auth>

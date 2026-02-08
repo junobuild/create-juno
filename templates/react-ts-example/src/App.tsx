@@ -27,7 +27,7 @@ const App: FC = () => {
             Example App
           </h1>
           <p className="py-4 md:max-w-lg dark:text-white">
-            Explore this demo app built with React, Tailwind, and{" "}
+            Try out this demo app to discover{" "}
             <a
               href="https://juno.build"
               rel="noopener noreferrer"
@@ -36,7 +36,7 @@ const App: FC = () => {
             >
               Juno
             </a>
-            , showcasing a practical application of these technologies.
+            .
           </p>
 
           <Auth>

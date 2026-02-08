@@ -4,9 +4,7 @@
 	import { userStore } from '$lib/stores/user.store';
 	import { userSignedIn } from '$lib/derived/user.derived';
 	import Logout from '$lib/components/Logout.svelte';
-	import LoginWithII from '$lib/components/LoginWithII.svelte';
-	import Passkey from '$lib/components/passkey/Passkey.svelte';
-	import LoginWithGoogle from '$lib/components/LoginWithGoogle.svelte';
+	import Login from '$lib/components/Login.svelte';
 
 	interface Props {
 		children: Snippet;
@@ -33,10 +31,6 @@
 	</div>
 {:else}
 	<div class="gap flex flex-col">
-		<LoginWithGoogle />
-
-		<Passkey />
-
-		<LoginWithII />
+		<Login />
 	</div>
 {/if}

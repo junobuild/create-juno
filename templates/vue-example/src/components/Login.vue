@@ -2,13 +2,14 @@
 import { signIn } from '@junobuild/core'
 import Button from '@/components/Button.vue'
 
-const signInWithII = async () => {
+const signInWithDev = async () => {
+  // Sign in for local development and E2E only
   await signIn({
-    internet_identity: {},
+    dev: {},
   })
 }
 </script>
 
 <template>
-  <Button @click="signInWithII">Continue with Internet Identity</Button>
+  <Button @click="signInWithDev">Sign in for dev</Button>
 </template>
