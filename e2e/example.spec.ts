@@ -39,12 +39,12 @@ test.describe.configure({mode: 'serial'});
         await examplePage.addEntry(lastEntryText);
       });
 
-      test('should delete entry', async () => {
+      test('should delete entries', async () => {
         const examplePage = getExamplePage();
 
-        await examplePage.deleteLastEntry();
+        await examplePage.deleteEntries();
 
-        await examplePage.assertEntries(2);
+        await examplePage.assertEntries(0);
       });
 
       test('should sign-out', async () => {

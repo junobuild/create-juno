@@ -73,11 +73,14 @@ export abstract class ExamplePage extends AppPage {
     await imgPage.close();
   }
 
-  async deleteLastEntry(): Promise<void> {
-    const buttons = this.page.locator(this.locators.delete_entry);
-    await buttons.last().click();
+  async deleteEntries(): Promise<void> {
+    while ((await this.page.locator(this.locators.delete_entry).count()) > 0) {
+      const currentCount = await this.page.locator(this.locators.delete_entry).count();
 
-    await expect(this.page.locator('[role="row"]', {hasText: 'text'})).toHaveCount(0);
+      await this.page.locator(this.locators.delete_entry).first().click();
+
+      await expect(this.page.locator(this.locators.delete_entry)).toHaveCount(currentCount - 1);
+    }
   }
 
   async assertScreenshot({
