@@ -35,7 +35,8 @@ function App() {
               className="underline"
             >
               Juno
-            </a>.
+            </a>
+            .
           </p>
 
           <Auth>

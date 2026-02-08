@@ -6,7 +6,7 @@ const signInWithDev = async () => {
   // Sign in for local development and E2E only
   await signIn({
     dev: {},
-  });
+  })
 }
 </script>
 

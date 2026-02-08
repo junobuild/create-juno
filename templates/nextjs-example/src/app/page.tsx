@@ -37,7 +37,8 @@ export default function Home() {
               className="underline"
             >
               Juno
-            </a>.
+            </a>
+            .
           </p>
 
           <Auth>

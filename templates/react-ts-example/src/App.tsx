@@ -35,7 +35,8 @@ const App: FC = () => {
               className="underline"
             >
               Juno
-            </a>.
+            </a>
+            .
           </p>
 
           <Auth>
