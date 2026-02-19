@@ -15,7 +15,7 @@
     "@astrojs/mdx": "^4.3.12",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
-    "@junobuild/config": "^2.10.1",
+    "@junobuild/config": "^2.11.0",
     "@junobuild/vite-plugin": "^4.7.0",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.0",
