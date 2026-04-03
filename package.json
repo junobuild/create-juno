@@ -38,8 +38,8 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@dfinity/utils": "^4.1.0",
-    "@junobuild/cli-tools": "^0.10.1",
+    "@junobuild/cli-tools": "^0.13.3",
+    "@junobuild/utils": "^1.0.2",
     "ora": "^9.3.0",
     "prompts": "^2.4.2",
     "tar-stream": "^3.1.7"

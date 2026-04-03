@@ -1,5 +1,5 @@
-import {isNullish, nonNullish} from '@dfinity/utils';
 import {downloadFromURL, gunzipFile} from '@junobuild/cli-tools';
+import {isNullish, nonNullish} from '@junobuild/utils';
 import {readFile} from 'fs/promises';
 import {red} from 'kleur';
 import {writeFile} from 'node:fs/promises';
