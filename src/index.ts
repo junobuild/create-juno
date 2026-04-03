@@ -1,4 +1,4 @@
-import {isNullish, nonNullish} from '@dfinity/utils';
+import {isNullish, nonNullish} from '@junobuild/utils';
 import {cyan, green, grey, magenta, red} from 'kleur';
 // eslint-disable-next-line import/no-relative-parent-imports
 import {version} from '../package.json';
