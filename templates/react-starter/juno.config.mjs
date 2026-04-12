@@ -7,7 +7,9 @@ export default defineConfig({
       development: "<DEV_SATELLITE_ID>",
       production: "<PROD_SATELLITE_ID>",
     },
-    source: "dist",
-    predeploy: ["npm run build"],
+    hosting: {
+      source: "dist",
+      predeploy: ["npm run build"],
+    }
   },
 });
