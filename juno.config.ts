@@ -6,7 +6,11 @@ export default defineConfig({
       development: 'jx5yt-yyaaa-aaaal-abzbq-cai',
       production: 'fmkjf-bqaaa-aaaal-acpza-cai'
     },
-    source: 'out',
+    hosting: {
+      source: 'out',
+      encoding: [['**/templates/*.tar.gz', 'identity']],
+      precompress: false
+    },
     storage: {
       headers: [
         {
@@ -15,8 +19,6 @@ export default defineConfig({
         }
       ]
     },
-    encoding: [['**/templates/*.tar.gz', 'identity']],
-    precompress: false,
     collections: {
       datastore: [
         {
