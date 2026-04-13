@@ -196,6 +196,8 @@ jobs:
   deploy:
     name: Deploy to CDN
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     needs: ['docker-build']
     steps:
       - uses: actions/checkout@v4
@@ -292,4 +294,4 @@ jobs:
       - name: Deploy to Juno
         uses: junobuild/juno-action@main
         with:
-          args: deploy
+          args: hosting deploy
