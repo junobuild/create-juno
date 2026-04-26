@@ -13,14 +13,14 @@
   },
   "dependencies": {
     "@junobuild/core": "^5.4.0",
-    "@junobuild/functions": "^0.8.3",
+    "@junobuild/functions": "^0.9.0",
     "nanoid": "^5.1.5",
     "next": "16.0.7",
     "react": "19.2.1",
     "react-dom": "19.2.1"
   },
   "devDependencies": {
-    "@junobuild/config": "^3.0.0",
+    "@junobuild/config": "^3.0.1",
     "@junobuild/nextjs-plugin": "^4.7.1",
     "@next/eslint-plugin-next": "16.0.0",
     "@tailwindcss/postcss": "^4.1.13",
